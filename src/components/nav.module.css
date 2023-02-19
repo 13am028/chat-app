@@ -1,0 +1,44 @@
+.navTopFirst {
+    height: 100vh;
+    width: 20vw;
+    position: absolute;
+    left: 7vw;
+    background-color: #2f343f;
+    text-align: left;
+}
+
+.navTopFirst > h4, h5 {
+    padding-left: 10px;
+}
+
+.navTopSecond {
+    height: 4vh;
+    width: 73vw;
+    position: absolute;
+    left: 27vw;
+    background-color: #282c34;
+    text-align: left;
+}
+
+.navTopSecond > h4 {
+    display: inline;
+    padding: 20px;
+}
+
+.navLeft {
+    background-color: #1a1d1d;
+    position: absolute;
+    left: 0;
+    width: 7vw;
+    height: 100vh;
+}
+
+.line {
+    border-bottom: #4d5050 solid 1px;
+    width: 60%;
+    margin: 5px auto 5px auto;
+}
+
+.shadowLine {
+    border-bottom: #1a1d1d solid 1px;
+}

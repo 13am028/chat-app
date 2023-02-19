@@ -16,7 +16,7 @@ const Login = () => {
                     <input type='password' placeholder='password'/>
                     <button type='submit'>Log In</button>
                 </form>
-                <p><a href='signup'>Create new account</a></p>
+                <p><a href='/signup'>Create new account</a></p>
             </div>
         </div>
     );
