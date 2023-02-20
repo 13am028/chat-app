@@ -1,0 +1,44 @@
+.groupIcon {
+    height: 60px;
+    width: 60px;
+    background-color: var(--group-icon);
+    border-radius: 50%;
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.friendIcon {
+    height: 45px;
+    width: 45px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 5px;
+}
+
+.friend {
+    display: grid;
+    grid-template-columns: 70px auto;
+    text-align: left;
+    margin: 10px;
+}
+
+p {
+    margin: auto 0 auto 0;
+}
+
+.name {
+    font-weight: bold;
+}
+
+.myIcon {
+    height: 45px;
+    width: 45px;
+    background-color: pink;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 7px;
+    margin: 3px;
+}
+

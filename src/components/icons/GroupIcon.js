@@ -1,9 +1,9 @@
 import React from 'react';
-import './GroupIcon.css'
+import styles from './icons.module.css'
 
 const GroupIcon = () => {
     return (
-        <div className='groupIcon'>
+        <div className={styles.groupIcon}>
         </div>
     );
 };
