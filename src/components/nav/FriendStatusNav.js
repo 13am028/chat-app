@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './nav.module.css'
+import AddFriendModal from "./AddFriendModal";
+import MyIcon from "../icons/MyIcon";
 
 const FriendStatusNav = () => {
     return (
@@ -10,8 +12,8 @@ const FriendStatusNav = () => {
                 <h4>All</h4>
                 <h4>Pending</h4>
                 <h4>Blocked</h4>
-                <button>Add Friend</button>
-            <div className={styles.shadowLine}></div>
+                <AddFriendModal />
+                <MyIcon />
             </div>
         </div>
     );

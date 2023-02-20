@@ -5,9 +5,44 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--font);
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 20px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+:root {
+  --auth-bg: #fcd6dd;
+  --group-icon: #fcf6fd;
+  --friend-icon: white;
+  --nav-top-first: #c4f8f6;
+  --nav-top-second: #fdf4e3;
+  --nav-left: white;
+  --home-bg: #f6efe6;
+  --line: grey;
+  --shadow-line: #f6f5f5;
+  --font: black;
+  --message-bg: white;
+}
+
+body[data-theme="dark-theme"] {
+  --auth-bg: #282c34;
+  --group-icon: white;
+  --friend-icon: white;
+  --nav-top-first: #2f343f;
+  --nav-top-second: #282c34;
+  --nav-left: #1a1d1d;
+  --home-bg: #282c34;
+  --line: #4d5050;
+  --shadow-line: #1a1d1d;
+  --font: white;
+  --message-bg: #45484f;
 }

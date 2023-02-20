@@ -3,8 +3,9 @@
     width: 20vw;
     position: absolute;
     left: 7vw;
-    background-color: #2f343f;
+    background-color: var(--nav-top-first);
     text-align: left;
+    overflow: scroll;
 }
 
 .navTopFirst > h4, h5 {
@@ -12,33 +13,34 @@
 }
 
 .navTopSecond {
-    height: 4vh;
+    border-bottom: var(--shadow-line) solid 1px;
+    height: fit-content;
     width: 73vw;
     position: absolute;
     left: 27vw;
-    background-color: #282c34;
+    background-color: var(--nav-top-second);
     text-align: left;
 }
 
 .navTopSecond > h4 {
     display: inline;
-    padding: 20px;
 }
 
 .navLeft {
-    background-color: #1a1d1d;
+    background-color: var(--nav-left);
     position: absolute;
     left: 0;
     width: 7vw;
     height: 100vh;
+    overflow: scroll;
 }
 
 .line {
-    border-bottom: #4d5050 solid 1px;
+    border-bottom: var(--line) solid 1px;
     width: 60%;
     margin: 5px auto 5px auto;
 }
 
 .shadowLine {
-    border-bottom: #1a1d1d solid 1px;
+    border-bottom: var(--shadow-line) solid 1px;
 }

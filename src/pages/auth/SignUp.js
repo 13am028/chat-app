@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './auth.module.css'
 import logo from "../../logo.svg";
+import Button from "react-bootstrap/Button";
 
 const SignUp = () => {
     return (
@@ -15,7 +16,7 @@ const SignUp = () => {
                     <input type='email' placeholder='email'/>
                     <input type='password' placeholder='password'/>
                     <input type='password' placeholder='confirm password'/>
-                    <button type='submit'>Confirm</button>
+                    <Button type='submit'>Confirm</Button>
                 </form>
             </div>
         </div>

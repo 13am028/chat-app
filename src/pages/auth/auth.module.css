@@ -4,7 +4,7 @@
 }
 
 .bg {
-    background-color: #282c34;
+    background-color: var(--auth-bg);
     height: 100vh;
     color: cornflowerblue;
 }
@@ -12,6 +12,7 @@
 
 .login {
     margin: 35% auto auto auto;
+    color: black;
 }
 
 input {
@@ -20,6 +21,6 @@ input {
     padding: 10px;
 }
 
-button {
-    font-size: larger;
+Button {
+    margin: 10px;
 }

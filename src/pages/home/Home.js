@@ -1,15 +1,16 @@
 import React from 'react';
 import './Home.css'
-import Nav from "../../components/Nav";
-import FriendStatusNav from "../../components/FriendStatusNav";
-import FriendListNav from "../../components/FriendListNav";
+import Nav from "../../components/nav/Nav";
+import FriendStatusNav from "../../components/nav/FriendStatusNav";
+import DirectMessageNav from "../../components/nav/DirectMessageNav";
 
 const Home = () => {
     return (
-        <div className='bg'>
+        <div>
             <Nav />
-            <FriendListNav />
+            <DirectMessageNav />
             <FriendStatusNav />
+            <div className='bg'></div>
         </div>
     );
 };
