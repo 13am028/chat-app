@@ -1,16 +1,24 @@
-import React from 'react';
 import styles from './auth.module.css'
 import logo from '../../logo.svg'
-import {useNavigate} from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import React, {useEffect, useState} from "react";
+import {useAuthState} from "react-firebase-hooks/auth";
+import {useNavigate} from "react-router-dom";
+import {auth, logInWithEmailAndPassword, signInWithGoogle} from "../../firebase";
 
 const Login = () => {
 
-    let navigate = useNavigate();
-    const routeChange = () =>{
-        let path = '/home';
-        navigate(path);
-    }
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [user, loading] = useAuthState(auth);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (loading) {
+            // maybe trigger a loading screen
+            return;
+        }
+        if (user) navigate("/home");
+    }, [user, loading, navigate]);
 
     return (
         <div className={styles.grid}>
@@ -20,10 +28,11 @@ const Login = () => {
             </div>
             <div className={styles.login}>
                 <h1>Log In</h1>
-                <form onSubmit={routeChange}>
-                    <input type='email' placeholder='email'/>
-                    <input type='password' placeholder='password'/>
-                    <Button type='submit'>Log In</Button>
+                <form>
+                    <input type='email' placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    <input type='password' placeholder='password' value={password}
+                           onChange={(e) => setPassword(e.target.value)}/>
+                    <Button type='submit' onClick={() => logInWithEmailAndPassword(email, password)}>Log In</Button>
                 </form>
                 <p><a href='/signup'>Create new account</a></p>
 
@@ -33,6 +42,7 @@ const Login = () => {
                 <Button variant='light' onClick={() => document.body.setAttribute("data-theme", "")}>
                     Light
                 </Button>
+                <Button onClick={signInWithGoogle}>Login with Google</Button>
             </div>
         </div>
     );

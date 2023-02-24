@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--font);
+  color: var(--font-color);
 }
 
 h4 {
@@ -20,29 +20,29 @@ code {
 }
 
 :root {
-  --auth-bg: #fcd6dd;
+  --theme-primary: #fcd6dd;
+  --theme-secondary: #c4f8f6;
+  --theme-third: #fdf4e3;
+  --theme-fourth: white;
+  --theme-fifth: #f6efe6;
+  --font-color: black;
+  --message-bg: white;
   --group-icon: #fcf6fd;
   --friend-icon: white;
-  --nav-top-first: #c4f8f6;
-  --nav-top-second: #fdf4e3;
-  --nav-left: white;
-  --home-bg: #f6efe6;
   --line: grey;
   --shadow-line: #f6f5f5;
-  --font: black;
-  --message-bg: white;
 }
 
 body[data-theme="dark-theme"] {
-  --auth-bg: #282c34;
+  --theme-primary: #282c34;
+  --theme-secondary: #2f343f;
+  --theme-third: #282c34;
+  --theme-fourth: #1a1d1d;
+  --theme-fifth: #282c34;
+  --font-color: white;
+  --message-bg: #45484f;
   --group-icon: white;
   --friend-icon: white;
-  --nav-top-first: #2f343f;
-  --nav-top-second: #282c34;
-  --nav-left: #1a1d1d;
-  --home-bg: #282c34;
   --line: #4d5050;
   --shadow-line: #1a1d1d;
-  --font: white;
-  --message-bg: #45484f;
 }

@@ -4,7 +4,7 @@
 }
 
 .bg {
-    background-color: var(--auth-bg);
+    background-color: var(--theme-primary);
     height: 100vh;
     color: cornflowerblue;
 }

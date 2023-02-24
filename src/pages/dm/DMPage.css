@@ -4,6 +4,6 @@
     width: 73vw;
     position: absolute;
     left: 27vw;
-    background-color: var(--nav-top-second);
+    background-color: var(--theme-third);
     text-align: left;
 }

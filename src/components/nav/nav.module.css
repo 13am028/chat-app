@@ -3,7 +3,7 @@
     width: 20vw;
     position: absolute;
     left: 7vw;
-    background-color: var(--nav-top-first);
+    background-color: var(--theme-secondary);
     text-align: left;
     overflow: scroll;
 }
@@ -18,7 +18,7 @@
     width: 73vw;
     position: absolute;
     left: 27vw;
-    background-color: var(--nav-top-second);
+    background-color: var(--theme-third);
     text-align: left;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .navLeft {
-    background-color: var(--nav-left);
+    background-color: var(--theme-fourth);
     position: absolute;
     left: 0;
     width: 7vw;

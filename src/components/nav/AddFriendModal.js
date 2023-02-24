@@ -15,7 +15,7 @@ const AddFriendModal = () => {
             </Button>
 
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton style={{backgroundColor: "var(--auth-bg)"}}>
+                <Modal.Header closeButton style={{backgroundColor: "var(--theme-primary)"}}>
                     <Modal.Title>Add Friend</Modal.Title>
                 </Modal.Header>
                 <Modal.Body><input placeholder='username' type='text' /></Modal.Body>
