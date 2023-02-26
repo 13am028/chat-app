@@ -3,6 +3,7 @@ import Nav from "../../components/nav/Nav";
 import DirectMessageNav from "../../components/nav/DirectMessageNav";
 import './DMPage.css'
 import Message from "../../components/Message";
+import MessageTextField from "../../components/MessageTextField";
 
 const DMPage = () => {
     return (
@@ -14,6 +15,9 @@ const DMPage = () => {
             </div>
             <div className='bg'>
                 <Message/>
+            </div>
+            <div className='bg'>
+                <MessageTextField/>
             </div>
         </div>
     );
