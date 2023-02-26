@@ -1,0 +1,9 @@
+.DMContainer {
+    border-bottom: var(--shadow-line) solid 1px;
+    height: fit-content;
+    width: 73vw;
+    position: absolute;
+    left: 27vw;
+    background-color: var(--theme-third);
+    text-align: left;
+}

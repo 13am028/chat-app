@@ -1,0 +1,10 @@
+.bg {
+    background-color: var(--theme-fifth);
+    position: absolute;
+    width: 73vw;
+    left: 27vw;
+    height: 100vh;
+    overflow: scroll;
+    padding-top: 10vh;
+    z-index: -1;
+}
