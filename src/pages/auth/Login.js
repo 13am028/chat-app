@@ -25,7 +25,7 @@ const Login = () => {
                     <input type='password' placeholder='password'/>
                     <Button type='submit'>Log In</Button>
                 </form>
-                <p><a href='/signup'>Create new account</a></p>
+                <p><a href='/create-account?#'>Create new account</a></p>
 
                 <Button variant='dark' onClick={() => document.body.setAttribute("data-theme", "dark-theme")}>
                     Dark

@@ -1,0 +1,188 @@
+.create-account {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #36393f;
+}
+
+
+.create-account {
+    --background-color: #FFFFFF;
+    --text-color: #2C2F33;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.create-account.dark {
+    --background-color: #2C2F33;
+    --text-color: #FFFFFF;
+}
+
+.create-account__submit {
+    background-color: #677bc4;
+    color: #FFFFFF;
+}
+
+.create-account.dark .create-account__submit {
+    background-color: #677bc4;
+    color: #FFFFFF;
+}
+
+
+.dark-mode-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dark-mode-btn:hover {
+    background-color: #444;
+}
+
+
+.create-account__content {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 40rem; /* adjust this width to fit your needs */
+    max-width: 100%; /* add this line to make the form width responsive */
+}
+
+.create-account__title {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem; /* adjust the font size to make it smaller */
+    font-weight: 700;
+    color: #2c2f33;
+}
+
+.create-account__form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 0.5rem; /* adjust the gap between the form elements to make it smaller */
+}
+
+.create-account__form-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 0.25rem; /* adjust the gap between the form groups to make it smaller */
+}
+
+.create-account__label {
+    font-size: 1rem; /* adjust the font size to make it smaller */
+    font-weight: 500;
+    color: #2c2f33;
+    text-align: left;
+    margin-top: 0.5rem; /* adjust the margin to make it smaller */
+}
+
+.create-account__input {
+    padding: 0.4rem;
+    font-size: 1rem;
+    color: #2c2f33;
+    border: none;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+
+.create-account__input:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 1px #7289da, inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.create-account__submit {
+    padding: 0.5rem; /* adjust the padding to make it smaller */
+    font-size: 0.875rem; /* adjust the font size to make it smaller */
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #7289da;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.create-account__submit:hover {
+    background-color: #677bc4;
+}
+
+.create-account__submit:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(114, 137, 218, 0.4);
+}
+
+.create-account__submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.create-account__instructions {
+    font-size: 0.75rem; /* adjust the font size to make it smaller */
+    color: #555555;
+    text-align: left;
+}
+
+.create-account__checkbox {
+    display: inline-block;
+    position: relative;
+    width: 1.125rem;
+    height: 1.125rem;
+    vertical-align: middle;
+    border: 1px solid #2c2f33;
+    border-radius: 2px;
+    box-sizing: border-box;
+    margin-right: 0.5rem;
+}
+
+
+.create-account__checkbox-label {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #2c2f33;
+    line-height: 1.125rem; /* Set the line-height to match the height of the checkbox */
+}
+
+
+.create-account__label--checkbox {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+    color: #2c2f33;
+    height: 1.125rem;
+}
+
+.create-account__link {
+    color: #7289da;
+    text-decoration: none;
+}
+
+.create-account__link:hover {
+    text-decoration: underline;
+}
+
+.create-account__already-have-account {
+    margin-top: -1rem;
+    font-size: 0.775rem;
+    color: #2c2f33;
+    text-align: center;
+}
+
+@media only screen and (min-width: 568px) {
+    .create-account__content {
+        max-width: 500px;
+        margin: auto;
+    }
+}

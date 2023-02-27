@@ -1,0 +1,171 @@
+.create-account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #36393f;
+}
+
+.create-account__content {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 40rem; /* adjust this width to fit your needs */
+}
+
+.create-account__title {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #2c2f33;
+}
+
+.create-account__form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0.01rem;
+}
+
+.create-account__form-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0.5rem;
+}
+
+.create-account__label {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #2c2f33;
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.create-account__input {
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #2c2f33;
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  text-align: left;
+}
+
+.create-account__submit {
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #7289da;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.create-account__submit:hover {
+  background-color: #677bc4;
+}
+
+.create-account__submit:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(114, 137, 218, 0.4);
+}
+
+.create-account__submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.create-account__form-group--confirm-password {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0.5rem;
+}
+
+.create-account__input {
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #2c2f33;
+  border: none;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1), inset 0 1px 3px rgba(0,0,0,0.1);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.create-account__input:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 1px #7289da, inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.create-account__instructions {
+  font-size: 0.875rem;
+  color: #555555;
+  text-align: left;
+}
+
+
+.create-account__checkbox {
+  display: inline-block;
+  position: relative;
+  width: 1.125rem;
+  height: 1.125rem;
+  vertical-align: middle;
+  border: 1px solid #2c2f33;
+  border-radius: 2px;
+  box-sizing: border-box;
+  margin-right: 0.5rem;
+}
+
+
+.create-account__checkbox-label {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2c2f33;
+  line-height: 1.125rem; /* Set the line-height to match the height of the checkbox */
+}
+
+
+
+.create-account__label--checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  color: #2c2f33;
+  height: 1.125rem;
+}
+
+.create-account__link {
+  color: #7289da;
+  text-decoration: none;
+}
+
+.create-account__link:hover {
+  text-decoration: underline;
+}
+
+.create-account__already-have-account {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: #2c2f33;
+  text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .create-account__content {
+    max-width: 500px;
+    margin: auto;
+  }
+}
+
+
+/* media query for mobile screens */
+/*@media only screen and (max-width: 600px) {*/
+/*  .create-account__content {*/
+/*    width: 100%;*/
+/*  }*/
+/*}*/
