@@ -12,15 +12,6 @@
     border-radius: 5px;
 }
 
-#chat-window {
-    height: 21rem;
-}
-
-#chat-window-messages {
-    height: 20rem;
-    overflow: auto;
-}
-
 
 
 
