@@ -10,9 +10,9 @@ const MyIcon = () => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Settings</Dropdown.Item>
-                <Dropdown.Item href="/login">Log out</Dropdown.Item>
+                <Dropdown.Item href="/profile">Profile</Dropdown.Item>
+                <Dropdown.Item hred="#/settings">Settings</Dropdown.Item>
+                <Dropdown.Item href="/logout">Logout</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
     );
