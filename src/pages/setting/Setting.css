@@ -1,0 +1,91 @@
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    flex-direction: row;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2C2F33;
+    color: #FFFFFF;
+    margin: 0;
+}
+  
+/* Left Panel*/
+  
+.left-panel {
+    position: relative;
+    background-color: #292A2E;
+    width: 34vw;
+    padding-top: 10vh;
+}
+  
+.left-panel h2 {
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0 0 2% 70%;
+    color: #FFFFFF;
+    text-align: left;
+}
+  
+.left-panel hr {
+    margin: 2% 3% 4% 70%;
+}
+
+.left-panel ul {
+    list-style: none;
+    padding-right: 13px;
+    margin: 0;
+}
+  
+.left-panel li {
+    margin: 0 0 8px 68%;
+}
+
+.left-panel a {
+    color: #aaafb5;
+    transition: background-color 0.2s;
+    display: block;
+    padding: 3px;
+    border-radius: 5px;
+    padding-left: 12px;
+
+    text-decoration: none;
+    text-align: left;
+    font-size: 16px;
+}
+  
+.left-panel a:hover {
+    background-color: #7289DA;
+}
+  
+.left-panel .active {
+    background-color: #3f4249;
+}
+  
+/* Right Panel */
+
+.right-panel {
+    position: relative;
+    background-color: #2C2F33;
+    width: 66vw;
+    padding-top: 10vh;
+    flex: 1;
+    margin-left: 5vw;
+}
+  
+.right-panel h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+  
+.right-panel label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
