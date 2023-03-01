@@ -1,0 +1,94 @@
+:root {
+    --bg-color: #f2f2f2;
+    --text-color: #333;
+    --form-bg-color: #fff;
+    --form-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    --input-bg-color: #fff;
+    --input-border-color: #ccc;
+    --button-bg-color: #0066cc;
+    --button-text-color: #fff;
+}
+
+.dark-mode {
+    --bg-color: #333;
+    --text-color: #f2f2f2;
+    --form-bg-color: #444;
+    --form-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    --input-bg-color: #555;
+    --input-border-color: #666;
+    --button-bg-color: #0066cc;
+    --button-text-color: #fff;
+}
+
+.App {
+    background-color: white;
+}
+
+.App.dark-mode{
+    background-color: white;
+}
+
+.login-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+
+
+
+.login-form {
+    width: 420px;
+    box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.login-form-content {
+    padding-left: 12%;
+    padding-right: 12%;
+}
+
+.login-form-title {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 24px;
+    color: rgb(34, 34, 34);
+    font-weight: 800;
+}
+
+.form-group-mt-3 {
+    margin-top: 1px;
+    text-align: left;
+}
+
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup-form-container {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 20px;
+    margin-top: 20px;
+    width: 420px;
+    box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+    /*border-radius: 8px;*/
+    background-color: var(--form-bg-color);
+}
+
+.signup-text {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(34, 34, 34);
+}

@@ -4,9 +4,26 @@
 }
 
 .bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.bg img {
+    max-height: 70%;
+    max-width: 70%;
+}
+
+.bg {
     background-color: var(--auth-bg);
     height: 100vh;
-    color: cornflowerblue;
+    /*color: cornflowerblue;*/
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*flex-direction: column;*/
+
 }
 
 
