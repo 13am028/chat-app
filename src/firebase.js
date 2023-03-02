@@ -67,13 +67,20 @@ const logInWithEmailAndPassword = async (email, password) => {
     }
 };
 
-const registerWithEmailAndPassword = async (name, email, password) => {
+const registerWithEmailAndPassword = async (username, displayName, email, password) => {
     try {
+        const querySnapshot = await getDocs(collection(db, "users"));
+        querySnapshot.forEach((doc) => {
+            if (doc.data().username === username) {
+                throw Error("username already exists")
+            }
+        });
         const res = await createUserWithEmailAndPassword(auth, email, password);
         const user = res.user;
         await addDoc(collection(db, "users"), {
             uid: user.uid,
-            name,
+            username,
+            displayName,
             authProvider: "local",
             email,
         });
