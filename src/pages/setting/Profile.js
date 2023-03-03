@@ -1,6 +1,6 @@
 import React from 'react';
 import './Setting.css'
-
+import { TextareaAutosize } from '@mui/base';
 
 const ProfilePage = () => {
     return (
@@ -32,9 +32,8 @@ const ProfilePage = () => {
                     </div>
                     <div className='profile-content'>
                         <h3>username</h3>
-                        <textarea className='profile-description'>
-
-                        </textarea>
+                        <label>Your Description</label>
+                        <TextareaAutosize className='profile-description' placeholder='Tell people about yourself' minRows={5}/>
                     </div>
                 </div>
             </div>
