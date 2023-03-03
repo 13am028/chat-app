@@ -27,6 +27,15 @@ const ProfilePage = () => {
             <div className="right-panel">
                 <div className='profile'>
                     <h1>Your Profile</h1>
+                    <div className='profile-head'>
+                        <img className='profile-img' src="https://icotar.com/initials/Test"></img>
+                    </div>
+                    <div className='profile-content'>
+                        <h3>username</h3>
+                        <textarea className='profile-description'>
+
+                        </textarea>
+                    </div>
                 </div>
             </div>
         </div>
