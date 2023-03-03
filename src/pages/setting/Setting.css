@@ -1,9 +1,14 @@
+h1, h2, h3, h4, h5 {
+    text-transform: uppercase;
+}
+
 .container {
     display: flex;
     height: 100vh;
     width: 100%;
     flex-direction: row;
     margin: 0;
+    padding: 0;
 }
 
 body {
@@ -18,47 +23,44 @@ body {
 .left-panel {
     position: relative;
     background-color: #292A2E;
-    width: 34vw;
+    width: 40%;
     padding-top: 10vh;
+    padding-left: 20%;
 }
   
 .left-panel h2 {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: bold;
-    margin: 0 0 2% 70%;
     color: #FFFFFF;
     text-align: left;
-}
-  
-.left-panel hr {
-    margin: 2% 3% 4% 70%;
+    padding-left: 10px;
+    padding-bottom: 5px;
 }
 
 .left-panel ul {
     list-style: none;
-    padding-right: 13px;
+    padding-right: 15px;
+    padding-left: 0;
     margin: 0;
-}
-  
-.left-panel li {
-    margin: 0 0 8px 68%;
 }
 
 .left-panel a {
     color: #aaafb5;
     transition: background-color 0.2s;
     display: block;
-    padding: 3px;
+    padding: 5px;
+    margin-top: 6px;
     border-radius: 5px;
-    padding-left: 12px;
-
+    margin-left: 10px;
     text-decoration: none;
     text-align: left;
-    font-size: 16px;
+    font-size: 15px;
 }
   
 .left-panel a:hover {
     background-color: #7289DA;
+    color: white;
+    transition: all .2s ease-in-out;
 }
   
 .left-panel .active {
@@ -88,4 +90,12 @@ body {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 10px;
+}
+/* Profile page */
+.profile {
+    text-align: left;
+}
+
+.profile h1 {
+    color: rgba(255, 255, 255, 0.8);
 }
