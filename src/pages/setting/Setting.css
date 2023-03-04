@@ -73,7 +73,7 @@ body {
     width: 66vw;
     padding-top: 10vh;
     flex: 1;
-    margin-left: 5vw;
+    padding-left: 10vw;
 }
   
 .right-panel h1 {
@@ -88,4 +88,11 @@ body {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 10px;
+}
+
+/* tab */
+
+.tabShow {
+    transition: all 0.5s ease-in;
+    width: 80%;
 }
