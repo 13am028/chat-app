@@ -1,41 +1,127 @@
-import React from 'react';
-import styles from './auth.module.css'
-import logo from '../../logo.svg'
-import {useNavigate} from "react-router-dom";
-import Button from "react-bootstrap/Button";
+import React, {useState} from "react";
+import "./Login.css";
+import styles from "./auth.module.css";
+import logo from "../../logo.svg";
 
-const Login = () => {
+function Login() {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [rememberMe, setRememberMe] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
-    let navigate = useNavigate();
-    const routeChange = () =>{
-        let path = '/home';
-        navigate(path);
-    }
+    const handleUsernameChange = (event) => {
+        setUsername(event.target.value);
+    };
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
+
+    const handleRememberMeChange = (event) => {
+        setRememberMe(event.target.checked);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log("Username:", username);
+        console.log("Password:", password);
+        console.log("Remember me:", rememberMe);
+
+        // Redirect to Home page
+        window.location.href = "/home";
+    };
+
+    const toggleDarkMode = () => {
+        setIsDarkMode(!isDarkMode);
+    };
 
     return (
         <div className={styles.grid}>
             <div className={styles.bg}>
-                <p>This is auth page.</p>
-                <img src={logo} className="App-logo" alt="logo"/>
-            </div>
-            <div className={styles.login}>
-                <h1>Log In</h1>
-                <form onSubmit={routeChange}>
-                    <input type='email' placeholder='email'/>
-                    <input type='password' placeholder='password'/>
-                    <Button type='submit'>Log In</Button>
-                </form>
-                <p><a href='/create-account?#'>Create new account</a></p>
+                <img
+                    src="/logo3_text.png"
+                    alt="logo3"
 
-                <Button variant='dark' onClick={() => document.body.setAttribute("data-theme", "dark-theme")}>
-                    Dark
-                </Button>
-                <Button variant='light' onClick={() => document.body.setAttribute("data-theme", "")}>
-                    Light
-                </Button>
+                />
+            </div>
+            <div className="login-form-container">
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <div className="login-form-content">
+                        <h3 className="login-form-title">Sign In</h3>
+                        <div className="form-group-mt-3">
+                            <label>Email address</label>
+                            <input
+                                type="email"
+                                className="form-control mt-1"
+                                placeholder="Enter email"
+                                required
+                                onChange={handleUsernameChange}
+                            />
+                        </div>
+                        <div className="form-group-mt-3">
+                            <label>Password</label>
+                            <input
+                                type="password"
+                                className="form-control mt-1"
+                                placeholder="Enter password"
+                                required
+                                onChange={handlePasswordChange}
+                            />
+                        </div>
+                        <div className="d-grid gap-2 mt-3">
+                            <button type="submit" className="signup__submit">
+                                Submit
+                            </button>
+                        </div>
+                        <p className="forgot-password text-right mt-2">
+                            <a href="#" className="create-account__link">
+                                Forgot password?
+                            </a>
+                        </p>
+                    </div>
+                </form>
+                <form>
+                    <div className="signup-form-container">
+                        <p className="signup-text">
+                            Don't have an account?{" "}
+                            <a href="/SignUp" className="create-account__link">
+                                Sign up
+                            </a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <div className={`mode-toggle ${isDarkMode ? "dark-mode" : "light-mode"}`}>
+                <button
+                    className="dark-mode-btn"
+                    onClick={toggleDarkMode}
+                    style={{
+                        position: "fixed",
+                        bottom: "20px",
+                        right: "20px",
+                        backgroundColor: "transparent",
+                        border: "none",
+                        outline: "none",
+                        cursor: "pointer",
+                    }}
+                >
+                    {isDarkMode ? (
+                        <img
+                            src="/dark-mode-toggle-icon.png"
+                            alt="Dark mode"
+                            style={{width: "44px", height: "24px"}}
+                        />
+                    ) : (
+                        <img
+                            src="/light-mode-toggle-icon.svg"
+                            alt="Light mode"
+                            style={{width: "44px", height: "24px"}}
+                        />
+                    )}
+                </button>
             </div>
         </div>
     );
-};
+}
 
 export default Login;
