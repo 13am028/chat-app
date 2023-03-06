@@ -1,60 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Setting.css'
+import ProfileSetting from './pages/ProfileSetting';
+
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { Link } from 'react-router-dom';
 
 const UserSettingPage = () => {
 
-    // TODO : CLOSE SETTING TABS (GO BACK TO HOME OR WHERE EVER USER IN)
-    // TODO : LEFT PANEL CONTAIN ALL DIFFERENT KIND OF SETTING (EG. Account, Profile, Apperance, etc)
-    // TODO : RIGHT PANEL CONTAIN ALL SETTING FEATURE AVALABLE FOR THE SETTING
-
-    // TODO : TRANSITION TO AND OUT OF SETTING PAGE
+    const [activeTab, setActiveTab] = useState('profile');
 
     return (
 
         <div className="container">
-
             <nav className="left-panel">
-                <h2>USER SETTING</h2>
+                <h2>USER SETTINGS</h2>
                 <ul>
-                    <li><a href="/setting" className="active">My Account</a></li>
-                    <li><a href="/profile">Profile</a></li>
-                    <li><a href="#">Privacy &amp; Safety</a></li>
-                    <li><a href="#">Authorized Apps</a></li>
-                    <li><a href="#">Devices</a></li>
-                    <li><a href="#">Connections</a></li>
-                    <li><a href="#">Friend Requests</a></li>
+                    <li><a onClick={() => setActiveTab('profile')} href="#">My Profile</a></li>
+                    <li><a onClick={() => setActiveTab('profile')} href="#">Privacy &amp; Safety</a></li>
+                    <li><a onClick={() => setActiveTab('profile')} href="#">Friend Requests</a></li>
                 </ul>
                 <hr />
-                <h2>APP SETTING</h2>
+                <h2>APP SETTINGS</h2>
                 <ul>
-                    <li><a href="#">Appearance</a></li>
-                    <li><a href="#">Accessibility</a></li>
-                    <li><a href="#">Voice</a></li>
+                    <li><a onClick={() => setActiveTab('appearance')} href="#">Appearance</a></li>
+                    <li><a onClick={() => setActiveTab('accessibility')} href="#">Accessibility</a></li>
+                    <li><a onClick={() => setActiveTab('voice-video')} href="#">Voice & Video</a></li>
+                    <li><a onClick={() => setActiveTab('text-image')} href="#">Text & Image</a></li>
+                    <li><a onClick={() => setActiveTab('notification')} href="#">Notification</a></li>
+                    <li><a onClick={() => setActiveTab('language')} href="#">Language</a></li>
+                </ul>
+                <hr />
+                <h2>ACTIVITY SETTINGS</h2>
+                <ul>
+                    <li><a onClick={() => setActiveTab('appearance')} href="#">Appearance</a></li>
+                    <li><a onClick={() => setActiveTab('accessibility')} href="#">Accessibility</a></li>
+                    <li><a onClick={() => setActiveTab('voice-video')} href="#">Voice & Video</a></li>
+                    <li><a onClick={() => setActiveTab('text-image')} href="#">Text & Image</a></li>
+                    <li><a onClick={() => setActiveTab('notification')} href="#">Notification</a></li>
+                    <li><a onClick={() => setActiveTab('language')} href="#">Language</a></li>
+                </ul>
+                <hr />
+                <ul>
+                    <li><a onClick={() => setActiveTab('logout')} href="#">Log Out</a></li>
                 </ul>
             </nav>
-
+            
             <div className="right-panel">
-                <h1>My Account</h1>
-                <form>
-                    <label htmlFor="username">Username:</label>
-                    <input type="text" id="username" name="username" />
+                {activeTab === 'profile' && <ProfileSetting />}
+                
+            </div>
 
-                    <label htmlFor="email">Email:</label>
-                    <input type="email" id="email" name="email" />
-
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" name="password" />
-
-                    <label htmlFor="language">Language:</label>
-                    <select id="language" name="language">
-                        <option value="english">English</option>
-                        <option value="spanish">Spanish</option>
-                        <option value="french">French</option>
-                        <option value="german">German</option>
-                    </select>
-
-                    <button type="submit">Save Changes</button>
-                </form>
+            <div className="close-panel">
+                <Link to="/home" className="icon-link">
+                    <HighlightOffIcon className="custom-icon" />
+                </Link>
             </div>
         </div>
     );

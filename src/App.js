@@ -5,7 +5,6 @@ import SignUp from "./pages/auth/SignUp";
 import Home from "./pages/home/Home";
 import DMPage from "./pages/dm/DMPage";
 import UserSettingPage from './pages/setting/UserSetting';
-import ProfilePage from './pages/setting/Profile';
 
 
 function App() {
@@ -19,7 +18,6 @@ function App() {
             <Route path="home" element={<Home />} />
             <Route path="dm" element={<DMPage />} />
             <Route path="setting" element={<UserSettingPage />} />
-            <Route path="profile" element={<ProfilePage />} />
           </Route>
         </Routes>
       </BrowserRouter>
