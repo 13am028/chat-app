@@ -1,46 +1,71 @@
 /* Profile block Section */
 .profile {
     text-align: left;
-    width: 55%;
+    width: 93%;
 }
 
-.profile-head {
+.profile-banner {
     margin-top: 10px;
-    /* margin-bottom: 30px; */
-    border-radius: 10px 10px 0 0;
-    background-color: #7289da;
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    background-color: #516eda;
     height: 120px;
 }
 
 .profile-img {
-    width: 100px;
-    height: 100px;
+    width: 91px;
+    height: 91px;
     border-radius: 50px;
     justify-content: center;
-    margin-top: 70px;
-    margin-left: 20px;
+    margin-left: 25px;
+    margin-bottom: 25px;
     position: absolute;
 }
 
-.profile-content {
-    padding-top: 70px;
-    padding: 70px 15px 15px 15px;
-    -webkit-box-shadow: 0px 0px 25px -5px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 0px 25px -5px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 25px -5px rgba(0, 0, 0, 0.75);
-    border-radius: 0 0 10px 10px;
+.profile-card {
+    background-color: #1d1e20;
+    height: 225px;
+    border-radius: 0 0 8px 8px;
+    padding: 16px;
+}
+
+.profile-card-field-list {
+    background-color: #2e2f31;
+    height: 100%;
+    border-radius: 8px 8px 8px 8px;
+    padding: 16px;
+}
+
+.field {
+    height: 28%;
+}
+
+.field-spacer {
+    margin-top: 12px;
+}
+
+.field h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgb(186, 182, 182);
+    margin: 0;
+}
+
+.field span {
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
 }
 
 .profile-description {
     align-self: center;
     width: 90%;
     border-radius: 10px;
-    margin: 10px;
+    margin: 8px 16px 16px 16px;
     padding: 15px;
     font-size: 14px;
     background-color: #3f4249;
     color: #fff;
-    margin-left: 1.5rem;
     resize: none;
 }
 
@@ -57,4 +82,35 @@
     padding-top: 10px;
     font-size: 14px;
     text-transform: capitalize;
+}
+
+.user-info{
+    background-color: #1d1e20;
+    height: 72px;
+}
+
+.username-span {
+    line-height: 80px;
+    margin-left: 120px;
+    color: white;
+}
+
+.username-row {
+    width: 20%;
+}
+
+.email-row {
+    width: 45%;
+}
+
+.phone-row {
+    width: 25%;
+}
+
+.reveal-button {
+    padding: 0px;
+    font-size: 15px;
+    border: none;
+    background-color: #2e2f31;
+    color: rgb(27, 136, 246);
 }

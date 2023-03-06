@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import './Setting.css'
 import ProfileSetting from './pages/ProfileSetting';
 
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { Link } from 'react-router-dom';
+
 const UserSettingPage = () => {
 
-    // TODO : CLOSE SETTING TABS (GO BACK TO HOME OR WHERE EVER USER IN)
-    // TODO : TRANSITION TO AND OUT OF SETTING PAGE
-
     const [activeTab, setActiveTab] = useState('profile');
-
 
     return (
 
@@ -44,13 +43,17 @@ const UserSettingPage = () => {
                 <ul>
                     <li><a onClick={() => setActiveTab('logout')} href="#">Log Out</a></li>
                 </ul>
-                    
-
-
             </nav>
             
             <div className="right-panel">
                 {activeTab === 'profile' && <ProfileSetting />}
+                
+            </div>
+
+            <div className="close-panel">
+                <Link to="/home" className="icon-link">
+                    <HighlightOffIcon className="custom-icon" />
+                </Link>
             </div>
         </div>
     );
