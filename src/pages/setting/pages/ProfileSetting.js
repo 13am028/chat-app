@@ -1,12 +1,12 @@
 import React from 'react';
 import './ProfileSetting.css'
-import { TextareaAutosize } from '@mui/base';
+import { Divider, TextareaAutosize } from '@mui/material';
 
 const ProfileSetting = () => {
     return (
         <div>
             <div className='profile'>
-                <h1>Your Profile</h1>
+                <h1>My Profile</h1>
                 <div className='profile-head'>
                     <img className='profile-img' src="https://icotar.com/initials/Test"></img>
                 </div>
@@ -15,7 +15,7 @@ const ProfileSetting = () => {
                     <label>Your Description</label>
                     <TextareaAutosize className='profile-description' placeholder='Tell people about yourself' minRows={5}/>
                 </div>
-            </div>
+            </div>      
         </div>
     );
 };
