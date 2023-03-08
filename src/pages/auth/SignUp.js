@@ -14,13 +14,15 @@ const SignUp = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [name, setName] = useState("");
+    const [cPassword, setCPassword] = useState("");
+    const [displayName, setDisplayName] = useState("");
+    const [username, setUsername] = useState("");
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
 
     const register = async () => {
-        if (!name) alert("Please enter name");
-        await registerWithEmailAndPassword(name, email, password);
+        if (password !== cPassword) alert("passwords have to match")
+        else await registerWithEmailAndPassword(username, displayName, email, password);
     };
 
     useEffect(() => {
@@ -38,15 +40,22 @@ const SignUp = () => {
                 <form>
                     <input
                         type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        value={displayName}
+                        onChange={(e) => setDisplayName(e.target.value)}
                         placeholder="Display Name"
+                    />
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="Username"
                     />
                     <input type='email' placeholder='email' value={email}
                            onChange={(e) => setEmail(e.target.value)}/>
                     <input type='password' placeholder='password' value={password}
                            onChange={(e) => setPassword(e.target.value)}/>
-                    <input type='password' placeholder='confirm password'/>
+                    <input type='password' placeholder='confirm password' value={cPassword}
+                            onChange={(e) => setCPassword(e.target.value)}/>
                     <Button onClick={register}>Confirm</Button>
                 </form>
             </div>
