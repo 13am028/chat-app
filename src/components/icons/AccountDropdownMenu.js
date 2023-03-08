@@ -12,7 +12,7 @@ const AccountDropdownMenu = () => {
             <Dropdown.Menu>
                 <Dropdown.Item href="/profile">Profile</Dropdown.Item>
                 <Dropdown.Item href="/setting">Settings</Dropdown.Item>
-                <Dropdown.Item href="/login">Log out</Dropdown.Item>
+                <Dropdown.Item href="/logout">Log out</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
     );
