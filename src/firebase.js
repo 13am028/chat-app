@@ -101,9 +101,14 @@ const sendPasswordReset = async (email) => {
     }
 };
 
-const logout = () => {
-    signOut(auth);
-};
+const logout = async () => {
+    try {
+        await signOut(auth);
+    } catch (err) {
+        console.error(err);
+        alert(err.message)
+    }
+}
 
 export {
     auth,
