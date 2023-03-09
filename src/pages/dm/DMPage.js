@@ -2,8 +2,7 @@ import React from 'react';
 import Nav from "../../components/nav/Nav";
 import DirectMessageNav from "../../components/nav/DirectMessageNav";
 import './DMPage.css'
-import Message from "../../components/Message";
-
+import Conversation from "../../components/Conversation";
 const DMPage = () => {
     return (
         <div>
@@ -12,11 +11,10 @@ const DMPage = () => {
             <div className='DMContainer'>
                 <h4>John Doe</h4>
             </div>
-            <div className='bg'>
-                <Message/>
-            </div>
+            <Conversation></Conversation>
         </div>
     );
 };
+
 
 export default DMPage;

@@ -2,13 +2,18 @@ import React from 'react';
 import './Message.css'
 import FriendIcon from "./icons/FriendIcon";
 
-const Message = () => {
+
+function Message(props) {
     return (
-        <div className='messageGrid'>
-            <FriendIcon />
-            <p className='message'>Hello !</p>
+        <div>
+            {props.messages.map((message) => (
+                <div className='messageGrid'>
+                    <FriendIcon></FriendIcon>
+                    <p className='message'>{message.text}</p>
+                </div>
+            ))}
         </div>
     );
-};
+}
 
 export default Message;
