@@ -27,7 +27,7 @@
 }
 
 .navLeft {
-    background-color: var(--theme-fourth);
+    background-color: var(--nav-bar);
     position: absolute;
     left: 0;
     width: 7vw;

@@ -5,13 +5,19 @@ import {Modal, CloseButton} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 const AddServerIcon = () => {
+    /* Show or Hide Popup when clicking button */
     const [showModal, setShowModal] = useState(false);
 
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
 
+    /* Prevent user from right click this button */
+    const handleContextMenu = (event) => {
+        event.preventDefault();
+    };
+
     return (
-        <div onClick={handleShow} className={styles.addServerIcon}>
+        <div onContextMenu={handleContextMenu} onClick={handleShow} className={styles.addServerIcon}>
             <img src={plusIcon} className={styles.addServerIconImage}/>
 
             <Modal show={showModal} onHide={handleClose} centered>
