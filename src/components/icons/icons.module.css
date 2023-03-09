@@ -42,3 +42,87 @@ p {
     margin: 3px;
 }
 
+/* add server */
+
+.addServerIcon {
+    height: 60px;
+    width: 60px;
+    background-color: #e9e0eb;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+    transition: border-radius 0.2s ease-in-out;
+}
+
+.addServerIcon:hover {
+    background-color: #6c626e;
+    border-radius: 30%;
+}
+
+.addServerIconImage {
+    margin-top: 15px;
+}
+
+
+.addServerModalHeader {
+    padding: 24px 24px 0px 24px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.addServerModalHeader h1 {
+    text-align: center;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.addServerModalHeader div {
+    text-align: center;
+    font-size: 16px;
+    width: 90%;
+    color: #9a9494;
+}
+
+.addServerModalBody {
+    border: none;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 200px;
+}
+
+.addServerModalBodyContent {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.addServerModalBodyFormHeader {
+    margin: 24px 0px 8px 0px;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgb(102, 100, 100);
+}
+
+.addServerModalBodyFormContent {
+    border: none;
+    background-color: #f3efef;
+    border-radius: 6px;
+    width: 100%;
+    height: 45px;
+}
+
+.addServerModalFooter {
+    border: none;
+    background-color: #f3efef;
+}
+
+.addServerModalFooterButton {
+    background-color: #516eda;
+    width: 22%;
+}
