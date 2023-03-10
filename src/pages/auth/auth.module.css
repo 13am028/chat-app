@@ -6,7 +6,15 @@
 .bg {
     background-color: var(--theme-primary);
     height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
     color: cornflowerblue;
+}
+
+.bg img {
+    max-height: 70%;
+    max-width: 70%;
 }
 
 
