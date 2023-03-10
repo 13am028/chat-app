@@ -5,8 +5,14 @@ import FriendStatusNav from "../../components/nav/FriendStatusNav";
 import DirectMessageNav from "../../components/nav/DirectMessageNav";
 
 const Home = () => {
+
+    /* Disable default context menu */
+    const handleContextMenu = (event) => {
+        event.preventDefault();
+      };
+
     return (
-        <div>
+        <div onContextMenu={handleContextMenu}>
             <Nav />
             <DirectMessageNav />
             <FriendStatusNav />
