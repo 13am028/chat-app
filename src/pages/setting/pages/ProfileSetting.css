@@ -24,10 +24,9 @@
     width: 91px;
     height: 91px;
     border-radius: 50px;
-    justify-content: center;
     margin-left: 25px;
-    margin-bottom: 25px;
-    position: absolute;
+    margin-top: -85px;
+    position: sticky;
 }
 
 .profile-card {
@@ -99,7 +98,7 @@
 
 .username-span {
     line-height: 80px;
-    margin-left: 120px;
+    margin-left: 25px;
     color: var(--primary-text-color);
 }
 
@@ -124,7 +123,7 @@
 }
 
 .user-security {
-    height: 200px;
+    height: max-content;
 }
 
 /* General CSS section */

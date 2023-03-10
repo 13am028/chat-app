@@ -45,16 +45,12 @@ const UserSettingPage = () => {
             </div>
 
             <div className="right-panel">
+                <Link to="/home" className="icon-link">
+                    <HighlightOffIcon className="close-button" />
+                </Link>
+
                 {activeTab === 'profile' && <ProfileSetting />}
 
-            </div>
-
-            <div className="close-panel">
-                <div className="close-panel-content">
-                    <Link to="/home" className="icon-link">
-                        <HighlightOffIcon className="close-button" />
-                    </Link>
-                </div>
             </div>
         </div>
     );
