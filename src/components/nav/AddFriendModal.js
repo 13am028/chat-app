@@ -8,16 +8,15 @@ import {
     query,
     getDocs,
     where,
-    updateDoc,
     arrayUnion,
-    serverTimestamp,
-    addDoc,
+    setDoc,
+    getDoc,
+    updateDoc,
 } from 'firebase/firestore';
 
 const AddFriendModal = () => {
     const [show, setShow] = useState(false);
     const [username, setUsername] = useState('');
-    // const [friends, setFriends] = useState([]);
     const handleClose = () => {
         setUsername('');
         setShow(false);
@@ -36,7 +35,6 @@ const AddFriendModal = () => {
         alert(`Username not found.`);
     };
 
-
     const handleAddFriend = async () => {
         // Check that the username is not empty
         if (username.trim() === '') {
@@ -46,9 +44,8 @@ const AddFriendModal = () => {
         // Get the current user's document from Firestore
         const user = auth.currentUser;
         const userRef = doc(db, 'users', user.uid);
-        console.log('userRef:', userRef);
 
-        //Check if the username exists in Firestore
+        // Check if the username exists in Firestore
         const querySnapshot = await getDocs(
             query(collection(db, 'users'), where('username', '==', username.trim()))
         );
@@ -57,21 +54,30 @@ const AddFriendModal = () => {
             return;
         }
 
-        // Add the friend to the user's friends collection
+        // Add the friend to the user's friends list in the `friendsList` collection
         const friendDoc = querySnapshot.docs[0];
-        const friendsCollection = collection(db, 'friends');
-        await addDoc(friendsCollection, {
-            user: userRef,
-            friend: friendDoc.ref,
-            addedAt: serverTimestamp(),
-        });
-
-        // Add the user to the friend's friends collection
         const friendRef = friendDoc.ref;
-        console.log('friendRef:', friendRef);
-        await updateDoc(friendRef, {
-            friends: arrayUnion(userRef),
-        });
+        const friendsListRef = doc(db, 'friendsList', user.uid);
+        await setDoc(friendsListRef, {
+            username: user.displayName,
+            email: user.email,
+            friends: arrayUnion(friendRef),
+        }, { merge: true });
+
+        // Add the user to the friend's friends list in the `friendsList` collection, or create a new `friendsList` document for the friend if it doesn't exist yet
+        const friendFriendsListRef = doc(db, 'friendsList', friendDoc.id);
+        const friendFriendsListDoc = await getDoc(friendFriendsListRef);
+        if (friendFriendsListDoc.exists()) {
+            await updateDoc(friendFriendsListRef, {
+                friends: arrayUnion(userRef),
+            });
+        } else {
+            await setDoc(friendFriendsListRef, {
+                username: friendDoc.data().username,
+                email: friendDoc.data().email,
+                friends: [userRef],
+            });
+        }
 
         alertSuccessfully(friendDoc.data().username);
         handleClose();
@@ -101,7 +107,6 @@ const AddFriendModal = () => {
                 </Modal.Footer>
             </Modal>
         </div>
-
     );
 };
 
