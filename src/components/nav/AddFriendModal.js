@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { Modal } from 'react-bootstrap';
-import { auth, db } from '../../firebase';
+import {addFriend, auth, db} from '../../firebase';
 import {
     collection,
     doc,
@@ -43,38 +43,7 @@ const AddFriendModal = () => {
             return;
         }
 
-        // Get the current user's document from Firestore
-        const user = auth.currentUser;
-        const userRef = doc(db, 'users', user.uid);
-        console.log('userRef:', userRef);
-
-        //Check if the username exists in Firestore
-        const querySnapshot = await getDocs(
-            query(collection(db, 'users'), where('username', '==', username.trim()))
-        );
-        if (querySnapshot.empty) {
-            alertNotFound();
-            return;
-        }
-
-        // Add the friend to the user's friends collection
-        const friendDoc = querySnapshot.docs[0];
-        const friendsCollection = collection(db, 'friends');
-        await addDoc(friendsCollection, {
-            user: userRef,
-            friend: friendDoc.ref,
-            addedAt: serverTimestamp(),
-        });
-
-        // Add the user to the friend's friends collection
-        const friendRef = friendDoc.ref;
-        console.log('friendRef:', friendRef);
-        await updateDoc(friendRef, {
-            friends: arrayUnion(userRef),
-        });
-
-        alertSuccessfully(friendDoc.data().username);
-        handleClose();
+        await addFriend(username)
     };
 
 

@@ -28,12 +28,12 @@ const Login = () => {
         setPassword(event.target.value);
     };
 
-    const handleSubmit = (event) => {
+    /* TODO: use router to navigate properly and refactor this page
+             remove unused code, make everything cleaner. this is hard to debug.
+     */
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log("Username:", email);
-        console.log("Password:", password);
-
-        // Redirect to Home page
+        await logInWithEmailAndPassword(email, password)
         window.location.href = "/home";
     };
 
