@@ -33,9 +33,9 @@ const ProfileSetting = () => {
                                 <h3>EMAIL</h3>
                                 <div className="email-inner-row">
                                     <span>*************@hotmail.com</span>
-                                    <button className="reveal-button">
-                                        <div>Reveal</div>
-                                    </button>
+                                    <a className="reveal-button">
+                                        Reveal
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -44,9 +44,9 @@ const ProfileSetting = () => {
                                 <h3>PHONE NUMBER</h3>
                                 <div className="phone-inner-row">
                                     <span>********1519</span>
-                                    <button className="reveal-button">
-                                        <div>Reveal</div>
-                                    </button>
+                                    <a className="reveal-button">
+                                        Reveal
+                                    </a>
                                 </div>
                             </div>
                         </div>
