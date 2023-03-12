@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import {initializeApp} from "firebase/app";
 import {
     GoogleAuthProvider,
     getAuth,
@@ -12,10 +12,11 @@ import {
 import {
     getFirestore,
     query,
+    getDoc,
     getDocs,
     collection,
     where,
-    addDoc,
+    setDoc, doc,
 } from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -45,13 +46,16 @@ const signInWithGoogle = async () => {
         const q = query(collection(db, "users"), where("uid", "==", user.uid));
         const docs = await getDocs(q);
         if (docs.docs.length === 0) {
-            await addDoc(collection(db, "users"), {
+            await setDoc(doc(db, 'users', user.uid), {
                 uid: user.uid,
                 displayName: user.displayName,
                 username: user.uid,
                 authProvider: "google",
                 email: user.email,
             });
+            await setDoc(doc(db, 'friends', user.uid), {
+                friends: []
+            })
         }
     } catch (err) {
         console.error(err);
@@ -78,13 +82,16 @@ const registerWithEmailAndPassword = async (username, displayName, email, passwo
         });
         const res = await createUserWithEmailAndPassword(auth, email, password);
         const user = res.user;
-        await addDoc(collection(db, "users"), {
+        await setDoc(doc(db, 'users', user.uid), {
             uid: user.uid,
             username,
             displayName,
             authProvider: "local",
             email,
         });
+        await setDoc(doc(db, 'friends', user.uid), {
+            friends: []
+        })
     } catch (err) {
         console.error(err);
         alert(err.message);
@@ -110,6 +117,34 @@ const logout = async () => {
     }
 }
 
+/* TODO:
+    handle the case where username is not found properly (in toADdUID === "" part)
+    check if users are already friends
+ */
+const addFriend = async (toAddUsername) => {
+    const q = query(collection(db, "users"), where("username", "==",toAddUsername));
+    const docs = await getDocs(q);
+    let toAddUID = ""
+    docs.forEach((doc) => {
+        if (doc.data().username === toAddUsername) {
+            toAddUID = doc.data().uid
+        }
+    });
+    if (toAddUID === "") return
+
+    const myUID = auth.currentUser.uid
+    let myFriends = (await getDoc(doc(db, 'friends', myUID))).data().friends
+    myFriends.push(toAddUID)
+    setDoc(doc(db, 'friends', myUID), {
+        friends: myFriends
+    })
+    let toAddFriends = (await getDoc(doc(db, 'friends', toAddUID))).data().friends
+    toAddFriends.push(myUID)
+    setDoc(doc(db, 'friends', toAddUID), {
+        friends: toAddFriends
+    })
+}
+
 export {
     auth,
     db,
@@ -118,4 +153,5 @@ export {
     registerWithEmailAndPassword,
     sendPasswordReset,
     logout,
+    addFriend
 };
