@@ -31,6 +31,19 @@ code {
   --friend-icon: white;
   --line: grey;
   --shadow-line: #f6f5f5;
+  --button-text-color: #ffffff;
+  --text-color-light-mode: black;
+  --background-color-light-mode: #ffffff;
+  --button-color: #7289da;
+  --button-hover-color: #677bc4;
+  --text-intruction-color: #555555;
+  --text-instruction-dark-mode-color:#FBFAF2;
+  --box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  --white-hover: whitesmoke;
+  --dark-background-color: #333333;
+  --dark-login-form-background: #444444;
+  --dark-login-button-background: #444444;
+  --dark-login-button-hover-background: #555555;
 }
 
 body[data-theme="dark-theme"] {
@@ -45,4 +58,6 @@ body[data-theme="dark-theme"] {
   --friend-icon: white;
   --line: #4d5050;
   --shadow-line: #1a1d1d;
+
+
 }

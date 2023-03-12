@@ -13,10 +13,9 @@
 }
 
 .bg img {
-    max-height: 70%;
-    max-width: 70%;
+    max-height: 100%;
+    max-width: 100%;
 }
-
 
 .login {
     margin: 35% auto auto auto;

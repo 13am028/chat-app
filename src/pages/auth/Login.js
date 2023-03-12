@@ -2,16 +2,18 @@ import styles from './auth.module.css'
 import Button from "react-bootstrap/Button";
 import React, {useEffect, useState} from "react";
 import {useAuthState} from "react-firebase-hooks/auth";
-import {useNavigate} from "react-router-dom";
-import {auth, logInWithEmailAndPassword, signInWithGoogle} from "../../firebase";
+import {useNavigate, Link} from "react-router-dom";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import {auth, logInWithEmailAndPassword, signInWithGoogle }from "../../firebase";
 import "./Login.css"
 
-const Login = () => {
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+const Login = (props) => {
+    const { theme } = props;
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
+
     useEffect(() => {
         if (loading) {
             // maybe trigger a loading screen
@@ -20,126 +22,136 @@ const Login = () => {
         if (user) navigate("/home");
     }, [user, loading, navigate]);
 
-    const handleUsernameChange = (event) => {
-        setEmail(event.target.value);
+    const SignInWithGoogleButton = () => {
+        return (
+            <Button
+                className={`signInWithGoogleButton ${theme === 'dark' ? 'dark' : ''}`}
+                onClick={signInWithGoogle}
+            >
+                <img
+                    src="https://companieslogo.com/img/orig/GOOG-0ed88f7c.png?t=1633218227"
+                    alt="Google logo"
+                />
+                Sign in with Google
+            </Button>
+        );
     };
 
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
+    const SignUpBox = () => {
+        return (
+            <form>
+                <div className={`signup-box ${theme === 'dark' ? 'dark': ''}`}>
+                    <p className="signup-text">
+                        Don't have an account?{' '}
+                        <Link to="/SignUp" className="signup_link">
+                            Sign up
+                        </Link>
+                    </p>
+                </div>
+            </form>
+        );
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log("Username:", email);
-        console.log("Password:", password);
+    const LoginBox = () => {
+        const [email, setEmail] = useState("");
+        const [password, setPassword] = useState("");
+        const [showPassword, setShowPassword] = useState(false);
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            const userCredential = await logInWithEmailAndPassword(email, password);
+            // Signed in
+            if (userCredential) {
+                alert("Logged in successfully");
+                navigate("/home");
+            } else {
+                navigate("/login");
+            }
+        };
 
-        // Redirect to Home page
-        window.location.href = "/home";
-    };
+        const loginFormClassNames = `login-form ${theme === 'dark' ? 'dark': ''}`;
+        const emailInputClassNames = `form-control mt-1 ${theme === 'dark' ? 'dark text-light' : ''}`;
+        const passwordInputClassNames = `form-control mt-1 ${theme === 'dark' ? 'dark text-light' : ''}`;
+        const emailInputStyles = {
+            backgroundColor: theme === 'dark' ? '#333' : '',
+            borderColor: theme === 'dark' ? 'transparent' : ''
+        };
+        const passwordInputStyles = {
+            backgroundColor: theme === 'dark' ? '#333' : '',
+            borderColor: theme === 'dark' ? 'transparent' : ''
+        };
 
+        return (
+        <form className={loginFormClassNames} onSubmit={handleSubmit} >
+            <div className="login-form-content">
+                <h3 className="login-form-title">Sign In</h3>
+                <div className="form-group-mt-3">
+                    <label>Email address</label>
+                    <input
+                        type="email"
+                        id = "email"
+                        className={emailInputClassNames}
+                        style={emailInputStyles}
+                        placeholder="Enter email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </div>
+                <div className="form-group-mt-3 password-input-container">
+                    <label>Password</label>
+                    <input
+                        type={showPassword ? "text" : "password"}
+                        id="password"
+                        className={passwordInputClassNames}
+                        style={passwordInputStyles}
+                        placeholder="Enter password"
+                        required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+
+                    />
+                    <div
+                        className="show-password-icon"
+                        onClick={() => setShowPassword(!showPassword)}
+                    >
+                        {showPassword ? (
+                            <VisibilityOffIcon />
+                        ) : (
+                            <VisibilityIcon />
+                        )}
+                    </div>
+                </div>
+
+                <div className="d-grid gap-2 mt-3">
+                    <button type="submit" className="login_submit" >
+                        Login
+                    </button>
+                </div>
+                <p className="forgot-password text-right mt-2">
+                    <a href="#" className="signup_link">
+                        Forgot password?
+                    </a>
+                </p>
+            </div>
+        </form>
+    )
+    }
 
     return (
         <div className={styles.grid}>
-            <div className={styles.bg}>
-                <img src="/logo3_text.png" alt="logo"/>
+            <div className={`background ${theme === 'dark' ? 'dark': ''}`}>
+                <img src="/logo3_1.png" alt="logo"/>
             </div>
             <div className="login-form-container">
-                <form className="login-form" onSubmit={handleSubmit}>
-                    <div className="login-form-content">
-                        <h3 className="login-form-title">Sign In</h3>
-                        <div className="form-group-mt-3">
-                            <label>Email address</label>
-                            <input
-                                type="email"
-                                className="form-control mt-1"
-                                placeholder="Enter email"
-                                required
-                                onChange={handleUsernameChange}
-                            />
-                        </div>
-                        <div className="form-group-mt-3">
-                            <label>Password</label>
-                            <input
-                                type="password"
-                                className="form-control mt-1"
-                                placeholder="Enter password"
-                                required
-                                onChange={handlePasswordChange}
-                            />
-                        </div>
-                        <div className="d-grid gap-2 mt-3">
-                            <button type="submit" className="signin__submit">
-                                Login
-                            </button>
-                        </div>
-                        <p className="forgot-password text-right mt-2">
-                            <a href="#" className="signin__link">
-                                Forgot password?
-                            </a>
-                        </p>
-                    </div>
-                </form>
-                <button className="signInWithGoogleButton" onClick={signInWithGoogle}>
-                    <img
-                        src="https://companieslogo.com/img/orig/GOOG-0ed88f7c.png?t=1633218227"
-                        alt="Google logo"
-                    />
-                    Sign in with Google
-                </button>
+                <LoginBox />
+                <SignInWithGoogleButton />
                 <div className="divider">
                     <hr className="divider-line"/>
                     <span className="divider-text">or</span>
                     <hr className="divider-line"/>
                 </div>
-                <form>
-                    <div className="signup-box">
-                        <p className="signup-text">
-                            Don't have an account?{" "}
-                            <a href="/SignUp" className="signin__link">
-                                Sign up
-                            </a>
-                        </p>
-                    </div>
-                </form>
+                <SignUpBox/>
             </div>
-            {/*<div className={`mode-toggle ${isDarkMode ? "dark-mode" : "light-mode"}`}>*/}
-            {/*    <button*/}
-            {/*        className="dark-mode-btn"*/}
-            {/*        onClick={toggleDarkMode}*/}
-            {/*        style={{*/}
-            {/*            position: "fixed",*/}
-            {/*            bottom: "20px",*/}
-            {/*            right: "20px",*/}
-            {/*            backgroundColor: "transparent",*/}
-            {/*            border: "none",*/}
-            {/*            outline: "none",*/}
-            {/*            cursor: "pointer",*/}
-            {/*        }}*/}
-            {/*    >*/}
-            {/*        {isDarkMode ? (*/}
-            {/*            <img*/}
-            {/*                src="/dark-mode-toggle-icon.png"*/}
-            {/*                alt="Dark mode"*/}
-            {/*                style={{width: "44px", height: "24px"}}*/}
-            {/*            />*/}
-            {/*        ) : (*/}
-            {/*            <img*/}
-            {/*                src="/light-mode-toggle-icon.svg"*/}
-            {/*                alt="Light mode"*/}
-            {/*                style={{width: "44px", height: "24px"}}*/}
-            {/*            />*/}
-            {/*        )}*/}
-            {/*    </button>*/}
-            {/*</div>*/}
-
-
-            <Button variant='dark' onClick={() => document.body.setAttribute("data-theme", "dark-theme")}>
-                Dark
-            </Button>
-            <Button variant='light' onClick={() => document.body.setAttribute("data-theme", "")}>
-                Light
-            </Button>
-
         </div>
     );
 };
