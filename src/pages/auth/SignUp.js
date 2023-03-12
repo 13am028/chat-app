@@ -17,6 +17,7 @@ const SignUp = (props) => {
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
 
+
     const SignUpBox = () => {
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
@@ -60,22 +61,33 @@ const SignUp = (props) => {
         const CheckboxCustom = () => (
             <Checkbox
                 style={{color: theme === 'dark' ? 'white' : '', marginLeft: -10}}
+                id = "terms"
                 required
             />
         );
 
         const register = async (e) => {
             e.preventDefault();
+            if (!displayName || !username || !email || !password) {
+                alert("Please fill in all fields.");
+                return;
+            }
             if (!isEmailValid(email)) {
                 alert("Please enter a valid email address.");
                 return;
             }
-            if (!isValidPassword(password)) {
-                alert("Please enter a valid password. Your password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
-                return;
-            }
+            // if (!isValidPassword(password)) {
+            //     alert("Please enter a valid password. Your password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
+            //     return;
+            // }
             if (password !== cPassword) {
                 alert("Passwords have to match");
+                return;
+            }
+            // Check that the checkbox is checked
+            const checkbox = document.getElementById("terms");
+            if (!checkbox.checked) {
+                alert("Please agree to the terms of service and privacy policy.");
                 return;
             }
             try {
@@ -95,7 +107,7 @@ const SignUp = (props) => {
         }, [user, loading, navigate]);
 
         return (
-            <form className={formClasses} onSubmit={register}>
+            <form className={formClasses} >
                 <div className="form-group-mt-3">
                     <h1 className="signup__title">Sign Up to chat with your friends and family</h1>
                     {[
@@ -199,7 +211,7 @@ const SignUp = (props) => {
               </span>
                     </label>
                 </div>
-                <button className="signup__submit" type="submit" >
+                <button className="signup__submit" type="submit"  onClick={register}>
                     Sign Up
                 </button>
                 <p className="signup__already-have-account">
@@ -208,7 +220,6 @@ const SignUp = (props) => {
                         Log in here
                     </a>
                 </p>
-
             </form>
         )
     };

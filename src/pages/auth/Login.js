@@ -81,7 +81,7 @@ const Login = (props) => {
         };
 
         return (
-        <form className={loginFormClassNames} onSubmit={handleSubmit} >
+        <form className={loginFormClassNames}  >
             <div className="login-form-content">
                 <h3 className="login-form-title">Sign In</h3>
                 <div className="form-group-mt-3">
@@ -123,7 +123,7 @@ const Login = (props) => {
                 </div>
 
                 <div className="d-grid gap-2 mt-3">
-                    <button type="submit" className="login_submit" >
+                    <button type="submit" className="login_submit" onClick={handleSubmit} >
                         Login
                     </button>
                 </div>
