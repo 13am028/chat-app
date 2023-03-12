@@ -55,56 +55,8 @@ body[data-theme="dark-theme"] {
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
-  transition: all 0.5s ease-in-out;
-}
-
-.left-panel .active {
-  background-color: #3f4249;
-}
-
-/* Right Panel */
-
-.right-panel {
-  position: relative;
-  background-color: #2c2f33;
-  width: 66vw;
-  padding-top: 10vh;
-  flex: 1;
-  margin-left: 5vw;
-}
-
-.right-panel h1 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-
-.right-panel label {
-  display: block;
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-/* Profile page */
-.profile {
-  text-align: left;
-}
-
-.profile-head {
-  margin-top: 10px;
-  border-radius: 10px;
-  background-color: #7289da;
-  height: 100px;
-}
-
-.profile-img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
-  justify-content: center;
-  margin-top: 50px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
