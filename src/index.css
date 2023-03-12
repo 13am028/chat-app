@@ -32,8 +32,8 @@ code {
   --friend-icon: white;
   --line: grey;
   --shadow-line: #f6f5f5;
-  --scroll-track: #cccccc86;
-  --scroll-color: rgba(93, 93, 93, 0.605);
+  --scroll-track: #cccccc5a;
+  --scroll-color: rgba(93, 93, 93, 0.6);
   --scroll-color-hover: rgb(102, 102, 102);
 }
 
@@ -49,7 +49,7 @@ body[data-theme="dark-theme"] {
   --friend-icon: white;
   --line: #4d5050;
   --shadow-line: #1a1d1d;
-  --scroll-track: #1a1d1d;
+  --scroll-track: #1a1d1d4b;
   --scroll-color: #ccc;
   --scroll-color-hover: #ffffff;
 }
