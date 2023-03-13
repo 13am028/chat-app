@@ -34,7 +34,6 @@ const Login = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         await logInWithEmailAndPassword(email, password)
-        window.location.href = "/home";
     };
 
 

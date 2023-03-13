@@ -135,14 +135,24 @@ const addFriend = async (toAddUsername) => {
     const myUID = auth.currentUser.uid
     let myFriends = (await getDoc(doc(db, 'friends', myUID))).data().friends
     myFriends.push(toAddUID)
-    setDoc(doc(db, 'friends', myUID), {
+    await setDoc(doc(db, 'friends', myUID), {
         friends: myFriends
     })
     let toAddFriends = (await getDoc(doc(db, 'friends', toAddUID))).data().friends
     toAddFriends.push(myUID)
-    setDoc(doc(db, 'friends', toAddUID), {
+    await setDoc(doc(db, 'friends', toAddUID), {
         friends: toAddFriends
     })
+}
+
+const getFriends = async () => {
+    const friendUIDs = (await getDoc(doc(db, 'friends', auth.currentUser.uid))).data().friends
+    let friendsData = []
+    for (const uid of friendUIDs) {
+        let temp = (await getDoc(doc(db, 'users', uid))).data()
+        friendsData.push(temp)
+    }
+    return friendsData
 }
 
 export {
@@ -153,5 +163,6 @@ export {
     registerWithEmailAndPassword,
     sendPasswordReset,
     logout,
-    addFriend
+    addFriend,
+    getFriends
 };
