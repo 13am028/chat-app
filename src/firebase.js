@@ -1,15 +1,23 @@
 // Import the functions you need from the SDKs you need
 import {initializeApp} from "firebase/app";
 import {
-    createUserWithEmailAndPassword,
-    getAuth,
     GoogleAuthProvider,
-    sendPasswordResetEmail,
-    signInWithEmailAndPassword,
+    getAuth,
     signInWithPopup,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    sendPasswordResetEmail,
     signOut,
 } from "firebase/auth";
-import {collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where,} from "firebase/firestore";
+import {
+    getFirestore,
+    query,
+    getDoc,
+    getDocs,
+    collection,
+    where,
+    setDoc, doc,
+} from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -114,7 +122,7 @@ const logout = async () => {
     check if users are already friends
  */
 const addFriend = async (toAddUsername) => {
-    const q = query(collection(db, "users"), where("username", "==", toAddUsername));
+    const q = query(collection(db, "users"), where("username", "==",toAddUsername));
     const docs = await getDocs(q);
     let toAddUID = ""
     docs.forEach((doc) => {
@@ -127,14 +135,24 @@ const addFriend = async (toAddUsername) => {
     const myUID = auth.currentUser.uid
     let myFriends = (await getDoc(doc(db, 'friends', myUID))).data().friends
     myFriends.push(toAddUID)
-    setDoc(doc(db, 'friends', myUID), {
+    await setDoc(doc(db, 'friends', myUID), {
         friends: myFriends
     })
     let toAddFriends = (await getDoc(doc(db, 'friends', toAddUID))).data().friends
     toAddFriends.push(myUID)
-    setDoc(doc(db, 'friends', toAddUID), {
+    await setDoc(doc(db, 'friends', toAddUID), {
         friends: toAddFriends
     })
+}
+
+const getFriends = async () => {
+    const friendUIDs = (await getDoc(doc(db, 'friends', auth.currentUser.uid))).data().friends
+    let friendsData = []
+    for (const uid of friendUIDs) {
+        let temp = (await getDoc(doc(db, 'users', uid))).data()
+        friendsData.push(temp)
+    }
+    return friendsData
 }
 
 export {
@@ -145,5 +163,6 @@ export {
     registerWithEmailAndPassword,
     sendPasswordReset,
     logout,
-    addFriend
+    addFriend,
+    getFriends
 };
