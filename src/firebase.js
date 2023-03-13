@@ -1,23 +1,15 @@
 // Import the functions you need from the SDKs you need
 import {initializeApp} from "firebase/app";
 import {
-    GoogleAuthProvider,
-    getAuth,
-    signInWithPopup,
-    signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
+    getAuth,
+    GoogleAuthProvider,
     sendPasswordResetEmail,
+    signInWithEmailAndPassword,
+    signInWithPopup,
     signOut,
 } from "firebase/auth";
-import {
-    getFirestore,
-    query,
-    getDoc,
-    getDocs,
-    collection,
-    where,
-    setDoc, doc,
-} from "firebase/firestore";
+import {collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where,} from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -122,7 +114,7 @@ const logout = async () => {
     check if users are already friends
  */
 const addFriend = async (toAddUsername) => {
-    const q = query(collection(db, "users"), where("username", "==",toAddUsername));
+    const q = query(collection(db, "users"), where("username", "==", toAddUsername));
     const docs = await getDocs(q);
     let toAddUID = ""
     docs.forEach((doc) => {

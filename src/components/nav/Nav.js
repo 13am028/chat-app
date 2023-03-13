@@ -6,14 +6,14 @@ import {useNavigate} from "react-router-dom";
 
 const Nav = () => {
     let navigate = useNavigate();
-    const routeChange = () =>{
+    const routeChange = () => {
         let path = '/home';
         navigate(path);
     }
 
     return (
         <div className={styles.navLeft}>
-            <div onClick={routeChange}><GroupIcon /></div>
+            <div onClick={routeChange}><GroupIcon/></div>
             <div className={styles.line}></div>
             <GroupIcon/>
             <GroupIcon/>

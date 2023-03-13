@@ -2,10 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styles from './auth.module.css'
 import './SignUp.css'
 import Checkbox from '@mui/material/Checkbox';
-import {
-    auth,
-    registerWithEmailAndPassword,
-} from "../../firebase";
+import {auth, registerWithEmailAndPassword,} from "../../firebase";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {useNavigate} from "react-router-dom";
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -13,7 +10,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 
 const SignUp = (props) => {
-    const { theme } = props;
+    const {theme} = props;
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
 
@@ -61,7 +58,7 @@ const SignUp = (props) => {
         const CheckboxCustom = () => (
             <Checkbox
                 style={{color: theme === 'dark' ? 'white' : '', marginLeft: -10}}
-                id = "terms"
+                id="terms"
                 required
             />
         );
@@ -107,7 +104,7 @@ const SignUp = (props) => {
         }, [user, loading, navigate]);
 
         return (
-            <form className={formClasses} >
+            <form className={formClasses}>
                 <div className="form-group-mt-3">
                     <h1 className="signup__title">Sign Up to chat with your friends and family</h1>
                     {[
@@ -169,8 +166,8 @@ const SignUp = (props) => {
                                             () => setCShowPassword(!cShowPassword)}
                                     >
                                         {inputProps.id === "password" ?
-                                            (showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />) :
-                                            (cShowPassword ? <VisibilityOffIcon /> : <VisibilityIcon />)
+                                            (showPassword ? <VisibilityOffIcon/> : <VisibilityIcon/>) :
+                                            (cShowPassword ? <VisibilityOffIcon/> : <VisibilityIcon/>)
                                         }
                                     </div>
                                 </div>
@@ -211,7 +208,7 @@ const SignUp = (props) => {
               </span>
                     </label>
                 </div>
-                <button className="signup__submit" type="submit"  onClick={register}>
+                <button className="signup__submit" type="submit" onClick={register}>
                     Sign Up
                 </button>
                 <p className="signup__already-have-account">
@@ -226,7 +223,7 @@ const SignUp = (props) => {
 
     return (
         <div className={styles.grid}>
-            <div className={`background ${theme === 'dark' ? 'dark': ''}`}>
+            <div className={`background ${theme === 'dark' ? 'dark' : ''}`}>
                 <img src="/logo3_1.png" alt="logo"/>
             </div>
             <div className="signup-form-container">

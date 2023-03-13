@@ -1,10 +1,3 @@
-:root {
-    --main-color: #516eda;
-    --primary-text-color: white;
-    --secondary-text-color: rgb(186, 182, 182);
-    --hr-color: #a39e9e;
-}
-
 /* Profile Card Section */
 
 .profile {
@@ -16,7 +9,7 @@
     margin-top: 10px;
     width: 100%;
     border-radius: 8px 8px 0 0;
-    background-color: var(--main-color);
+    background-color: var(--setting-main-color);
     height: 110px;
 }
 
@@ -24,21 +17,20 @@
     width: 91px;
     height: 91px;
     border-radius: 50px;
-    justify-content: center;
     margin-left: 25px;
-    margin-bottom: 25px;
-    position: absolute;
+    margin-top: -85px;
+    position: sticky;
 }
 
 .profile-card {
-    background-color: #1d1e20;
+    background-color: var(--setting-profile-card-bg);
     height: 225px;
     border-radius: 0 0 8px 8px;
     padding: 16px;
 }
 
 .profile-card-field-list {
-    background-color: #2e2f31;
+    background-color: var(--setting-primary-color);
     height: 100%;
     border-radius: 8px 8px 8px 8px;
     padding: 16px;
@@ -55,14 +47,14 @@
 .field h3 {
     font-size: 13px;
     font-weight: 600;
-    color: var(--secondary-text-color);
+    color: var(--setting-secondary-text-color);
     margin: 0;
 }
 
 .field span {
     font-size: 13px;
     font-weight: 600;
-    color: var(--primary-text-color);
+    color: var(--setting-primary-text-color);
 }
 
 .profile-description {
@@ -73,16 +65,16 @@
     padding: 15px;
     font-size: 14px;
     background-color: #3f4249;
-    color: var(--primary-text-color);
+    color: var(--setting-primary-text-color);
     resize: none;
 }
 
 .profile h1 {
-    color: var(--primary-text-color);
+    color: var(--setting-primary-text-color);
 }
 
 .profile-content h3 {
-    color: var(--primary-text-color);
+    color: var(--setting-primary-text-color);
     text-transform: initial;
 }
 
@@ -92,15 +84,17 @@
     text-transform: capitalize;
 }
 
-.user-info{
-    background-color: #1d1e20;
+.user-info {
+    background-color: var(--setting-profile-card-bg);
     height: 72px;
 }
 
 .username-span {
+    font-weight: 600;
     line-height: 80px;
-    margin-left: 120px;
-    color: var(--primary-text-color);
+    margin-left: 25px;
+    color: var(--setting-secondary-text-color);
+    font-size: larger;
 }
 
 .username-row {
@@ -116,21 +110,26 @@
 }
 
 .reveal-button {
-    padding: 0px;
     font-size: 15px;
-    border: none;
-    background-color: #2e2f31;
-    color: rgb(27, 136, 246);
+    margin-left: 10px;
+    color: var(--setting-main-color);
+    text-transform: capitalize;
+    text-decoration: none;
+}
+
+.reveal-button:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .user-security {
-    height: 200px;
+    height: max-content;
 }
 
 /* General CSS section */
 
 .section-title {
-    color: var(--primary-text-color);
+    color: var(--setting-primary-text-color);
     font-size: 20px;
 }
 
@@ -138,8 +137,8 @@
     border-radius: 4px;
     margin: 15px 0px 25px 0px;
     padding: 5px 15px;
-    background-color: var(--main-color);
-    color: var(--primary-text-color);
+    background-color: var(--setting-main-color);
+    color: var(--setting-primary-text-color);
     border: none;
     margin-left: 0;
     font-size: 15px;
@@ -153,11 +152,11 @@
 }
 
 .description {
-    color: var(--secondary-text-color);
+    color: var(--setting-secondary-text-color);
     font-size: 14px;
 }
 
 hr {
     margin: 5% 5% 5% 0;
-    border-color: var(--hr-color);
+    border-color: var(--setting-hr-color);
 }

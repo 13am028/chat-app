@@ -2,15 +2,15 @@ import styles from './auth.module.css'
 import Button from "react-bootstrap/Button";
 import React, {useEffect, useState} from "react";
 import {useAuthState} from "react-firebase-hooks/auth";
-import {useNavigate, Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import {auth, logInWithEmailAndPassword, signInWithGoogle }from "../../firebase";
+import {auth, logInWithEmailAndPassword, signInWithGoogle} from "../../firebase";
 import "./Login.css"
 
 
 const Login = (props) => {
-    const { theme } = props;
+    const {theme} = props;
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
 
@@ -40,7 +40,7 @@ const Login = (props) => {
     const SignUpBox = () => {
         return (
             <form>
-                <div className={`signup-box ${theme === 'dark' ? 'dark': ''}`}>
+                <div className={`signup-box ${theme === 'dark' ? 'dark' : ''}`}>
                     <p className="signup-text">
                         Don't have an account?{' '}
                         <Link to="/SignUp" className="signup_link">
@@ -68,7 +68,7 @@ const Login = (props) => {
             }
         };
 
-        const loginFormClassNames = `login-form ${theme === 'dark' ? 'dark': ''}`;
+        const loginFormClassNames = `login-form ${theme === 'dark' ? 'dark' : ''}`;
         const emailInputClassNames = `form-control mt-1 ${theme === 'dark' ? 'dark text-light' : ''}`;
         const passwordInputClassNames = `form-control mt-1 ${theme === 'dark' ? 'dark text-light' : ''}`;
         const emailInputStyles = {
@@ -81,14 +81,14 @@ const Login = (props) => {
         };
 
         return (
-            <form className={loginFormClassNames}  >
+            <form className={loginFormClassNames}>
                 <div className="login-form-content">
                     <h3 className="login-form-title">Sign In</h3>
                     <div className="form-group-mt-3">
                         <label>Email address</label>
                         <input
                             type="email"
-                            id = "email"
+                            id="email"
                             className={emailInputClassNames}
                             style={emailInputStyles}
                             placeholder="Enter email"
@@ -115,15 +115,15 @@ const Login = (props) => {
                             onClick={() => setShowPassword(!showPassword)}
                         >
                             {showPassword ? (
-                                <VisibilityOffIcon />
+                                <VisibilityOffIcon/>
                             ) : (
-                                <VisibilityIcon />
+                                <VisibilityIcon/>
                             )}
                         </div>
                     </div>
 
                     <div className="d-grid gap-2 mt-3">
-                        <button type="submit" className="login_submit" onClick={handleSubmit} >
+                        <button type="submit" className="login_submit" onClick={handleSubmit}>
                             Login
                         </button>
                     </div>
@@ -139,12 +139,12 @@ const Login = (props) => {
 
     return (
         <div className={styles.grid}>
-            <div className={`background ${theme === 'dark' ? 'dark': ''}`}>
+            <div className={`background ${theme === 'dark' ? 'dark' : ''}`}>
                 <img src="/logo3_1.png" alt="logo"/>
             </div>
             <div className="login-form-container">
-                <LoginBox />
-                <SignInWithGoogleButton />
+                <LoginBox/>
+                <SignInWithGoogleButton/>
                 <div className="divider">
                     <hr className="divider-line"/>
                     <span className="divider-text">or</span>
