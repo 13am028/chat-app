@@ -12,11 +12,15 @@ const Home = () => {
     };
 
     return (
-        <div onContextMenu={handleContextMenu}>
-            <Nav/>
-            <DirectMessageNav/>
-            <FriendStatusNav/>
-            <div className='bg'></div>
+        <div onContextMenu={handleContextMenu} className='navbar-group'>
+            <div className='navbar-left'>
+                <Nav />
+                <DirectMessageNav />
+            </div>
+            <div className='navbar-right'>
+                <FriendStatusNav />
+                <div className='bg'></div>
+            </div>
         </div>
     );
 };
