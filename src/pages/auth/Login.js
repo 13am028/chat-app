@@ -81,60 +81,60 @@ const Login = (props) => {
         };
 
         return (
-        <form className={loginFormClassNames}  >
-            <div className="login-form-content">
-                <h3 className="login-form-title">Sign In</h3>
-                <div className="form-group-mt-3">
-                    <label>Email address</label>
-                    <input
-                        type="email"
-                        id = "email"
-                        className={emailInputClassNames}
-                        style={emailInputStyles}
-                        placeholder="Enter email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-                <div className="form-group-mt-3 password-input-container">
-                    <label>Password</label>
-                    <input
-                        type={showPassword ? "text" : "password"}
-                        id="password"
-                        className={passwordInputClassNames}
-                        style={passwordInputStyles}
-                        placeholder="Enter password"
-                        required
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-
-                    />
-                    <div
-                        className="show-password-icon"
-                        onClick={() => setShowPassword(!showPassword)}
-                    >
-                        {showPassword ? (
-                            <VisibilityOffIcon />
-                        ) : (
-                            <VisibilityIcon />
-                        )}
+            <form className={loginFormClassNames}  >
+                <div className="login-form-content">
+                    <h3 className="login-form-title">Sign In</h3>
+                    <div className="form-group-mt-3">
+                        <label>Email address</label>
+                        <input
+                            type="email"
+                            id = "email"
+                            className={emailInputClassNames}
+                            style={emailInputStyles}
+                            placeholder="Enter email"
+                            required
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
                     </div>
-                </div>
+                    <div className="form-group-mt-3 password-input-container">
+                        <label>Password</label>
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            id="password"
+                            className={passwordInputClassNames}
+                            style={passwordInputStyles}
+                            placeholder="Enter password"
+                            required
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
 
-                <div className="d-grid gap-2 mt-3">
-                    <button type="submit" className="login_submit" onClick={handleSubmit} >
-                        Login
-                    </button>
+                        />
+                        <div
+                            className="show-password-icon"
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            {showPassword ? (
+                                <VisibilityOffIcon />
+                            ) : (
+                                <VisibilityIcon />
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="d-grid gap-2 mt-3">
+                        <button type="submit" className="login_submit" onClick={handleSubmit} >
+                            Login
+                        </button>
+                    </div>
+                    <p className="forgot-password text-right mt-2">
+                        <a href="#" className="signup_link">
+                            Forgot password?
+                        </a>
+                    </p>
                 </div>
-                <p className="forgot-password text-right mt-2">
-                    <a href="#" className="signup_link">
-                        Forgot password?
-                    </a>
-                </p>
-            </div>
-        </form>
-    )
+            </form>
+        )
     }
 
     return (

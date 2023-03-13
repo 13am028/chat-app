@@ -76,10 +76,10 @@ const SignUp = (props) => {
                 alert("Please enter a valid email address.");
                 return;
             }
-            // if (!isValidPassword(password)) {
-            //     alert("Please enter a valid password. Your password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
-            //     return;
-            // }
+            if (!isValidPassword(password)) {
+                alert("Please enter a valid password. Your password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
+                return;
+            }
             if (password !== cPassword) {
                 alert("Passwords have to match");
                 return;
@@ -230,7 +230,7 @@ const SignUp = (props) => {
                 <img src="/logo3_1.png" alt="logo"/>
             </div>
             <div className="signup-form-container">
-               <SignUpBox/>
+                <SignUpBox/>
             </div>
         </div>
     );

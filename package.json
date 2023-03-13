@@ -22,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -44,6 +44,11 @@
     ]
   },
   "devDependencies": {
+<<<<<<< HEAD
     "react-router-dom": "^6.9.0"
+=======
+    "jest": "^27.5.1",
+    "react-router-dom": "^6.8.1"
+>>>>>>> "43fe7ef3cfd52f091f39770cb5c39944ade81c34"
   }
 }
