@@ -36,7 +36,7 @@ const SignUp = () => {
             </div>
             <div className="signup-form-container">
 
-                <form className="signup__form" onSubmit={register}>
+                <div className="signup__form">
                     <div className="form-group-mt-3">
                         <h1 className="signup__title">Sign Up to chat with your friends and family</h1>
                         <label htmlFor="displayName" className="signup__label">
@@ -134,7 +134,7 @@ const SignUp = () => {
               </span>
                         </label>
                     </div>
-                    <button className="signup__submit" type="submit">
+                    <button className="signup__submit" onClick={register}>
                         Sing Up
                     </button>
                     <p className="signup__already-have-account">
@@ -143,7 +143,7 @@ const SignUp = () => {
                             Log in here
                         </a>
                     </p>
-                </form>
+                </div>
             </div>
         </div>
     );
