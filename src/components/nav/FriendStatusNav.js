@@ -12,8 +12,8 @@ const FriendStatusNav = () => {
                 <h4>All</h4>
                 <h4>Pending</h4>
                 <h4>Blocked</h4>
-                <AddFriendModal />
-                <AccountDropdownMenu />
+                <AddFriendModal/>
+                <AccountDropdownMenu/>
             </div>
         </div>
     );

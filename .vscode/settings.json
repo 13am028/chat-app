@@ -1,2 +1,4 @@
 {
+  "prettier.htmlWhitespaceSensitivity": "strict",
+  "prettier.tabWidth": 4
 }

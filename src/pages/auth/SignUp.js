@@ -1,13 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import styles from './auth.module.css'
-import logo from "../../logo.svg";
 import './SignUp.css'
-import Button from "react-bootstrap/Button";
 
-import {
-    auth,
-    registerWithEmailAndPassword,
-} from "../../firebase";
+import {auth, registerWithEmailAndPassword,} from "../../firebase";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {useNavigate} from "react-router-dom";
 

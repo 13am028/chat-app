@@ -9,13 +9,13 @@ const Home = () => {
     /* Disable default context menu */
     const handleContextMenu = (event) => {
         event.preventDefault();
-      };
+    };
 
     return (
         <div onContextMenu={handleContextMenu}>
-            <Nav />
-            <DirectMessageNav />
-            <FriendStatusNav />
+            <Nav/>
+            <DirectMessageNav/>
+            <FriendStatusNav/>
             <div className='bg'></div>
         </div>
     );

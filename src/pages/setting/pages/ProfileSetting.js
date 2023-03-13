@@ -54,7 +54,7 @@ const ProfileSetting = () => {
                 </div>
             </div>
 
-            <hr />
+            <hr/>
 
             <div className="profile user-security">
                 <div>
@@ -69,7 +69,7 @@ const ProfileSetting = () => {
                     <div>
                         <div className='flex'>
                             <div className='description title'>TWO-FACTOR AUTHENTICATION</div>
-                            <div className='description' style={{ marginBottom: 8 }}>
+                            <div className='description' style={{marginBottom: 8}}>
                                 Protect your Discord account with an extra layer of security.
                                 Once configured, you'll be required to enter both your password
                                 and an authentication code from your mobile phone in order to sign in.

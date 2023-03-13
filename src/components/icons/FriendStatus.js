@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 const FriendStatus = () => {
 
     let navigate = useNavigate();
-    const routeChange = () =>{
+    const routeChange = () => {
         let path = '/dm';
         navigate(path);
     }
