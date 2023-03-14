@@ -2,7 +2,7 @@ import React from 'react';
 import GroupIcon from "../icons/GroupIcon";
 import AddServerIcon from '../icons/AddServerIcon';
 import styles from './nav.module.css'
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Nav = () => {
     let navigate = useNavigate();
@@ -13,13 +13,24 @@ const Nav = () => {
 
     return (
         <div className={styles.navLeft}>
-            <div onClick={routeChange}><GroupIcon/></div>
-            <div className={styles.line}></div>
-            <GroupIcon/>
-            <GroupIcon/>
-            <GroupIcon/>
-            <GroupIcon/>
-            <div><AddServerIcon/></div>
+            <div className={styles.nav_head}>
+                <GroupIcon onClick={routeChange} />
+            </div>
+            <div className={styles.nav_content}>
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <AddServerIcon />
+            </div>
         </div>
     );
 };
