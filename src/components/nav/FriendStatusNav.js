@@ -6,12 +6,14 @@ import AccountDropdownMenu from "../icons/AccountDropdownMenu";
 const FriendStatusNav = () => {
     return (
         <div className={styles.navTopSecond}>
-            <h4>Friends</h4>
-            <h4>Online</h4>
-            <h4>All</h4>
-            <h4>Pending</h4>
-            <h4>Blocked</h4>
-            <AddFriendModal />
+            <ul className={styles.navTop_list}>
+                <li><h4><a>Friends</a></h4></li>
+                <li><h4><a>Online</a></h4></li>
+                <li><h4><a>All</a></h4></li>
+                <li><h4><a>Pending</a></h4></li>
+                <li><h4><a>Blocked</a></h4></li>
+                <li><AddFriendModal /></li>
+            </ul>
             <AccountDropdownMenu />
         </div>
     );

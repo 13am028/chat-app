@@ -191,35 +191,31 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    border-radius: 10px; /* Set the border radius to create a curve */
-    border: 1px solid #333; /* Set the border to a solid dark line */
-    background-color: #fefefe; /* Set the background color to a light shade */
-    padding: 5px 5px; /* Add padding to the button */
-    font-size: 16px; /* Set the font size */
-    color: #333;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 17px;
     z-index: 99;
-}
-
-.Dark-Light-Button:hover {
+    width: 40px;
+    height: 40px;
+    transition: all 0.2s ease-in-out;
+    color: #fefefe;
     background-color: #333;
-    color: #f2f2f2;
 }
 
 .dark.Dark-Light-Button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    border-radius: 10px; /* Set the border radius to create a curve */
-    padding: 5px 5px; /* Add padding to the button */
-    font-size: 16px; /* Set the font size */
-    background-color: #333; /*Set the background color to a light shade *!*/
-    color: #f2f2f2;
-    border-color: #f2f2f2; /* Set the border to a solid dark line */
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.Dark-Light-Button:hover {
+    color: #f7ef80;
+    border-radius: 30%;
 }
 
 .dark.Dark-Light-Button:hover {
-    background-color: #f2f2f2;
-    color: #333;
+    color: #ffcd43;
+
+    /* color: #333; */
 }
 
 label {
