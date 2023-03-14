@@ -27,6 +27,7 @@
 .nav_content {
     overflow: auto;
     padding-bottom: 15vh;
+    padding-top: 5px;
 }
 
 .navTopFirst {

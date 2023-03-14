@@ -28,19 +28,27 @@
 }
 
 .friendIcon {
-    height: 45px;
-    width: 45px;
+    height: 7vh;
+    width: 7vh;
     background-color: white;
     border-radius: 50%;
     display: inline-block;
-    margin: 5px;
+    margin: 0 5px 0 5px;
 }
 
 .friend {
-    display: grid;
+    display: flex;
     grid-template-columns: 70px auto;
     text-align: left;
-    margin: 10px;
+    padding: 5px;
+}
+
+.friend:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.friendName {
+    padding: 10px;
 }
 
 p {
