@@ -3,6 +3,7 @@
     height: 92vh;
     overflow: auto;
     background-color: transparent;
+    padding-bottom: 15vh;
 }
 
 .navbar-group {

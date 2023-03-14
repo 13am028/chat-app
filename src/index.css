@@ -1,8 +1,8 @@
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: var(--font-color);
@@ -16,7 +16,7 @@ h4 {
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+        monospace;
 }
 
 :root {
@@ -25,7 +25,7 @@ code {
     --theme-third: #fdf4e3;
     --theme-fourth: white;
     --theme-fifth: #f6efe6;
-    --nav-bar: #d37cc454;
+    --nav-bar: #ebc9db;
     --font-color: black;
     --message-bg: white;
     --group-icon: #fcf6fd;
@@ -38,7 +38,7 @@ code {
     --button-color: #7289da;
     --button-hover-color: #677bc4;
     --text-intruction-color: #555555;
-    --text-instruction-dark-mode-color: #FBFAF2;
+    --text-instruction-dark-mode-color: #fbfaf2;
     --box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
     --white-hover: whitesmoke;
     --dark-background-color: #333333;

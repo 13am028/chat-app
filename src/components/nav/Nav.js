@@ -13,13 +13,24 @@ const Nav = () => {
 
     return (
         <div className={styles.navLeft}>
-            <GroupIcon onClick={routeChange} />
-            <div className={styles.line}></div>
-            <GroupIcon />
-            <GroupIcon />
-            <GroupIcon />
-            <GroupIcon />
-            <AddServerIcon />
+            <div className={styles.nav_head}>
+                <GroupIcon onClick={routeChange} />
+            </div>
+            <div className={styles.nav_content}>
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <GroupIcon />
+                <AddServerIcon />
+            </div>
         </div>
     );
 };
