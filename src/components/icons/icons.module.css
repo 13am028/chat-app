@@ -8,7 +8,7 @@
     display: inline-block;
     margin: 5px 5px 0 5px;
     cursor: pointer;
-    transition: border-radius 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 .groupIcon:hover {
@@ -34,6 +34,7 @@
     border-radius: 50%;
     display: inline-block;
     margin: 0 5px 0 5px;
+    transition: all 0.2s ease-in-out;
 }
 
 .friend {
@@ -41,10 +42,16 @@
     grid-template-columns: 70px auto;
     text-align: left;
     padding: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 
 .friend:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.friend:hover .friendIcon {
+    border-radius: 30%;
 }
 
 .friendName {
@@ -67,6 +74,15 @@ p {
     cursor: pointer;
     padding: 7px;
     margin: 3px;
+    transition: all 0.2s ease-in-out;
+}
+
+.myIcon:hover {
+    border-radius: 30%;
+}
+
+.myIcon::after {
+    content: none;
 }
 
 /* add server */
@@ -78,7 +94,7 @@ p {
     border-radius: 50%;
     margin: 5px 5px 0 5px;
     cursor: pointer;
-    transition: border-radius 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     border-color: transparent;
 }
 
