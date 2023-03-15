@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './icons.module.css'
 import { CloseButton, Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import AddIcon from '@mui/icons-material/Add';
 import { createGroup } from '../../firebase';
-import { async } from '@firebase/util';
 
 const AddServerIcon = () => {
     /* Show or Hide Popup when clicking button */
