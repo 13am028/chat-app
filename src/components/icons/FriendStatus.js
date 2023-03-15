@@ -1,21 +1,21 @@
 import React from 'react';
 import styles from "./icons.module.css";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const FriendStatus = (user) => {
 
     let navigate = useNavigate();
-    const routeChange = () =>{
+    const routeChange = () => {
         let path = '/dm';
-        navigate(path, {state: {displayName: user.displayName, uid: user.uid}});
+        navigate(path, { state: { displayName: user.displayName, uid: user.uid } });
     }
 
     return (
         <div className={styles.friend} onClick={routeChange}>
             <div className={styles.friendIcon}></div>
-            <div>
+            <div className={styles.friendName}>
                 <p className={styles.name}>{user.displayName}</p>
-                <p>status</p>
+                <strong>status</strong>
             </div>
         </div>
     );

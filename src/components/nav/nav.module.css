@@ -10,6 +10,7 @@
     background-color: inherit;
     height: 8vh;
     top: 0;
+    padding-right: 5px;
     display: block;
     position: sticky;
     position: -webkit-sticky;
@@ -25,25 +26,61 @@
 }
 
 .nav_content {
+    height: 92vh;
     overflow: auto;
-    padding-bottom: 15vh;
+    padding-bottom: 8vh;
+    padding-top: 5px;
 }
 
 .navTopFirst {
     width: 80%;
     background-color: var(--theme-secondary);
-    overflow: auto;
 }
 
 .navTopSecond {
-    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16),
-        0px 2px 10px 0px rgba(0, 0, 0, 0.12);
-    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16),
-        0px 2px 10px 0px rgba(0, 0, 0, 0.12);
+    padding-right: 20px;
     width: 100%;
     height: 8vh;
     background-color: var(--theme-third);
     text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16),
+        0px 2px 10px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16),
+        0px 2px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+.navTopSecond > h4 {
+    padding-left: 20px;
+}
+
+.navTop_list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.navTop_list h4 {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    padding: 0;
+    margin: 0;
+}
+
+.navTop_list h4 > a {
+    padding: 20px;
+    cursor: pointer;
+}
+
+.navTop_list h4 > a:hover {
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .navTopSecond > h4 {

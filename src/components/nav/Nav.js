@@ -26,9 +26,6 @@ const Nav = () => {
                 <GroupIcon />
                 <GroupIcon />
                 <GroupIcon />
-                <GroupIcon />
-                <GroupIcon />
-                <GroupIcon />
                 <AddServerIcon />
             </div>
         </div>
