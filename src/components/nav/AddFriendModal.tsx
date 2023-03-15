@@ -13,11 +13,11 @@ const AddFriendModal = () => {
     };
     const handleShow = () => setShow(true);
 
-    const handleUsernameChange = (event) => {
+    const handleUsernameChange = (event: any) => {
         setUsername(event.target.value);
     };
 
-    const alertSuccessfully = (username) => {
+    const alertSuccessfully = (username: string) => {
         alert(`${username} has been successfully added as your friend.`);
     };
 
@@ -38,7 +38,7 @@ const AddFriendModal = () => {
 
     return (
         <div style={{ display: 'inline-block' }}>
-            <Button variant="primary" onClick={handleShow} size="md">
+            <Button variant="primary" onClick={handleShow} size="sm">
                 <PersonAddAlt1Icon />
             </Button>
 
