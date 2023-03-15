@@ -3,10 +3,12 @@ import styles from './icons.module.css'
 import { CloseButton, Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import AddIcon from '@mui/icons-material/Add';
+import { createGroup } from '../../firebase';
 
 const AddServerIcon = () => {
     /* Show or Hide Popup when clicking button */
     const [showModal, setShowModal] = useState(false);
+    const [groupName, setgroupName] = useState('');
 
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
@@ -16,13 +18,28 @@ const AddServerIcon = () => {
         event.preventDefault();
     };
 
+    const handleCreateGroup = async () => {
+        try 
+        {
+            await createGroup(groupName);
+        } 
+        catch (error) 
+        {
+            console.error('Error creating group:', error);
+        }
+    };
+
+    const handleGroupNameChange = (event) => {
+        setgroupName(event.target.value);
+    };
+
     return (
         <button onContextMenu={handleContextMenu} onClick={handleShow} className={styles.addServerIcon}>
             <AddIcon htmlColor="white" fontSize='large' />
             <Modal show={showModal} onHide={handleClose} centered>
 
                 <Modal.Header className={styles.addServerModalHeader}>
-                    <CloseButton onClick={(handleClose)} />
+                    <CloseButton onClick={handleClose} />
                     <h1>Customize your server</h1>
                     <div>Give your new server a personality with a name and an icon. You can always change it later.
                     </div>
@@ -58,12 +75,13 @@ const AddServerIcon = () => {
 
                     <form>
                         <label className={styles.addServerModalBodyFormHeader}>SERVER NAME</label>
-                        <input className={styles.addServerModalBodyFormContent} placeholder='server name' type='text' />
+                        <input className={styles.addServerModalBodyFormContent} placeholder='server name' type='text' 
+                        onChange={handleGroupNameChange} value={groupName}/>
                     </form>
                 </Modal.Body>
 
                 <Modal.Footer className={styles.addServerModalFooter}>
-                    <Button onClick={handleClose} className={styles.addServerModalFooterButton}>
+                    <Button onClick={handleCreateGroup} className={styles.addServerModalFooterButton}>
                         Create
                     </Button>
                 </Modal.Footer>

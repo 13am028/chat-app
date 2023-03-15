@@ -155,6 +155,24 @@ const getFriends = async () => {
     return friendsData
 }
 
+const createGroup = async (groupName) => {
+    try {
+        await setDoc(doc(db, 'groups', group.uid), {
+            uid: group.uid,
+            groupName,
+            adminName,
+        });
+        const groupRef = db.collection('group').doc();
+        await groupRef.set({groupName});
+        return groupRef.id;
+
+      } catch (error) {
+
+        console.error('Error creating group:', error);
+        alert(error.message);
+      }
+}
+
 export {
     auth,
     db,
@@ -164,5 +182,6 @@ export {
     sendPasswordReset,
     logout,
     addFriend,
-    getFriends
+    getFriends,
+    createGroup,
 };
