@@ -1,0 +1,241 @@
+.background {
+    background-color: var(--theme-primary);
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: cornflowerblue;
+}
+
+.background img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.dark.background {
+    background-color: var(--dark-background-color);
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: cornflowerblue;
+}
+
+.logo-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+}
+
+.login-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+}
+
+.login-form {
+    width: 420px;
+    box-shadow: var(--box-shadow);
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-radius: 8px;
+}
+
+.dark.login-form {
+    width: 420px;
+    box-shadow: var(--box-shadow);
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-radius: 8px;
+    background: var(--dark-login-form-background);
+}
+
+.login-form-content {
+    padding-left: 12%;
+    padding-right: 12%;
+}
+
+.login-form-title {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.form-group-mt-3 {
+    margin-top: 1px;
+    text-align: left;
+}
+
+.signup_link {
+    color: var(--button-color);
+    text-decoration: none;
+}
+
+.signup_link:hover {
+    text-decoration: underline;
+}
+
+.login_submit {
+    padding: 0.5rem; /* adjust the padding to make it smaller */
+    font-size: 0.875rem; /* adjust the font size to make it smaller */
+    font-weight: 500;
+    color: var(--button-text-color);
+    background-color: var(--button-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.login_submit:hover {
+    background-color: var(--button-hover-color);
+}
+
+.signup-box {
+    border: 1px #ced4da;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 10px;
+    width: 420px;
+    box-shadow: var(--box-shadow);
+    flex-direction: column;
+}
+
+.dark.signup-box {
+    border: 1px #ced4da;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 10px;
+    width: 420px;
+    box-shadow: var(--box-shadow);
+    flex-direction: column;
+    background-color: var(--dark-login-form-background);
+}
+
+.signup-text {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.divider-line {
+    flex: 1;
+    border: none;
+    border-top: 2px solid #ccc;
+    color: black;
+}
+
+.divider-text {
+    margin: 0 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.signInWithGoogleButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-color-light-mode);
+    margin-bottom: 0;
+    font-weight: bold;
+    border: 1px #757575;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    width: 420px;
+    color: var(--text-color-light-mode);
+    box-shadow: var(--box-shadow);
+}
+
+.signInWithGoogleButton:hover {
+    background-color: var(--white-hover);
+    color: var(--text-color-light-mode);
+}
+
+.dark.signInWithGoogleButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+    font-weight: bold;
+    border: 1px #757575;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    width: 420px;
+    box-shadow: var(--box-shadow);
+    background: var(--dark-login-button-background);
+    color: white;
+}
+
+.dark.signInWithGoogleButton:hover {
+    background-color: var(--dark-login-button-hover-background);
+}
+
+.signInWithGoogleButton img {
+    margin-right: 10px;
+    height: 20px;
+}
+
+.Dark-Light-Button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 17px;
+    z-index: 99;
+    width: 40px;
+    height: 40px;
+    transition: all 0.2s ease-in-out;
+    color: #fefefe;
+    background-color: #333;
+}
+
+.dark.Dark-Light-Button {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.Dark-Light-Button:hover {
+    color: #f7ef80;
+    border-radius: 30%;
+}
+
+.dark.Dark-Light-Button:hover {
+    color: #ffcd43;
+
+    /* color: #333; */
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.show-password-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding-top: 28px;
+}
+
+.password-input-container {
+    position: relative;
+}

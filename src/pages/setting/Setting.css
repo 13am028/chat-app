@@ -1,0 +1,112 @@
+:root {
+    --setting-main-color: #516eda;
+    --setting-primary-color: #ccc;
+    --setting-secondary-color: white;
+    --setting-primary-font-color: black;
+    --setting-secondary-font-color: #a39e9e;
+    --setting-third-font-color: #292a2e;
+    --setting-profile-card-bg: #a39e9e;
+    --hr-color: #a39e9e;
+}
+
+body[data-theme="dark-theme"] {
+    --setting-main-color: #516eda;
+    --setting-primary-color: #292a2e;
+    --setting-secondary-color: #2c2f33;
+    --primary-font-color: white;
+    --setting-secondary-font-color: #a39e9e;
+    --setting-third-font-color: #ccc;
+    --setting-profile-card-bg: #1d1e20;
+    --hr-color: #a39e9e;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    background-color: var(--setting-primary-color);
+}
+
+/* Left Panel*/
+
+.left-panel {
+    background-color: var(--setting-primary-color);
+    margin-left: 20%;
+}
+
+.left-panel-bar {
+    width: 220px;
+    height: 100%;
+}
+
+.left-panel-content {
+    text-align: left;
+    padding: 90px 12px 60px 35px;
+}
+
+.left-panel-content h2 {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--setting-secondary-font-color);
+    padding: 0px 0px 5px 5px;
+}
+
+.left-panel-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.left-panel-content a {
+    font-size: 15px;
+    color: var(--setting-third-font-color);
+    transition: background-color 0.2s;
+    display: block;
+    padding: 5px 0px 5px 5px;
+    margin: 6px 0px 0px 0px;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.left-panel-content a:hover {
+    background-color: var(--setting-main-color);
+    color: var(--setting-primary-font-color);
+    transition: all 0.2s ease-in-out;
+}
+
+.left-panel-content .active {
+    background-color: #3f4249;
+}
+
+.left-panel-content hr {
+    padding-bottom: 15px;
+    border-color: var(--setting-secondary-font-color);
+}
+
+/* Right Panel */
+
+.right-panel {
+    background-color: var(--setting-secondary-color);
+    width: 100%;
+    padding: 80px 0px 80px 45px;
+}
+
+.right-panel hr {
+    width: 80%;
+    min-width: 620px;
+}
+
+/* Close Panel */
+
+.icon-link {
+    position: absolute;
+    margin-left: 20%;
+}
+
+/* Meterial Icon */
+
+.close-button {
+    color: var(--setting-third-font-color);
+}

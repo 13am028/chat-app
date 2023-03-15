@@ -1,0 +1,15 @@
+.messageGrid {
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 60px auto;
+    position: relative;
+    text-align: left;
+}
+
+.message {
+    background-color: var(--message-bg);
+    width: fit-content;
+    padding: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+}
