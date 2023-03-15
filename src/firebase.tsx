@@ -56,6 +56,7 @@ const signInWithGoogle = async () => {
             await setDoc(doc(db, 'friends', user.uid), {
                 friends: []
             })
+            await setDoc(doc(db, 'userChats', user.uid), {});
         }
     } catch (err: any) {
         console.error(err);
@@ -92,6 +93,7 @@ const registerWithEmailAndPassword = async (username: string, displayName: strin
         await setDoc(doc(db, 'friends', user.uid), {
             friends: []
         })
+        await setDoc(doc(db, 'userChats', user.uid), {});
     } catch (err: any) {
         console.error(err);
         alert(err.message);
