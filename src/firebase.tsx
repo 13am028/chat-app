@@ -18,6 +18,7 @@ import {
     collection,
     where,
     setDoc, doc,
+    serverTimestamp,
 } from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -168,17 +169,40 @@ const createGroup = async (groupName: string) => {
         const groupRef = doc(collection(db, "groups"));
         const groupUid = groupRef.id;
         const myUID = auth.currentUser.uid
-
+        
+        // Group Document
         await setDoc(groupRef, {
             groupId: groupUid,
             groupName,
             adminUID: myUID,
+            users: {
+                [myUID]: true,
+                role: 'admin',
+                profilePic: "some image url",
+            },
         });
+
+        // Message subcollection under group document
+        const messagesCollection = collection(groupRef, "messages");
+
+        const initialMessage = {
+            text: "Welcome to the group!",
+            senderId: myUID,
+            timestamp: serverTimestamp(),
+        };
+
+        await addDoc(messagesCollection, initialMessage);
+
+
       } catch (error: any) {
 
         console.error('Error creating group:', error);
         alert(error.message);
       }
+}
+
+const getGroups = async () => {
+
 }
 
 export {
@@ -192,4 +216,5 @@ export {
     addFriend,
     getFriends,
     createGroup,
+    getGroups,
 };
