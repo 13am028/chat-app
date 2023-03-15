@@ -12,6 +12,7 @@ import {
 import {
     getFirestore,
     query,
+    addDoc,
     getDoc,
     getDocs,
     collection,
@@ -160,6 +161,26 @@ const getFriends = async () => {
     return friendsData
 }
 
+const createGroup = async (groupName: string) => {
+    try {
+        if (!auth.currentUser) return
+
+        const groupRef = doc(collection(db, "groups"));
+        const groupUid = groupRef.id;
+        const myUID = auth.currentUser.uid
+
+        await setDoc(groupRef, {
+            groupId: groupUid,
+            groupName,
+            adminUID: myUID,
+        });
+      } catch (error: any) {
+
+        console.error('Error creating group:', error);
+        alert(error.message);
+      }
+}
+
 export {
     auth,
     db,
@@ -169,5 +190,6 @@ export {
     sendPasswordReset,
     logout,
     addFriend,
-    getFriends
+    getFriends,
+    createGroup,
 };
