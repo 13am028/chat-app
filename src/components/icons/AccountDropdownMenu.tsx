@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from './icons.module.css'
 import { Dropdown } from "react-bootstrap";
+import PersonIcon from '@mui/icons-material/Person';
 
 const AccountDropdownMenu = () => {
     return (
-        <Dropdown style={{ display: "inline-block", position: "absolute", right: "0", margin: "0" }}>
+        <Dropdown style={{ display: "inline-block", right: "0", margin: "0" }}>
             <Dropdown.Toggle variant="light" id="dropdown-basic" size='sm' className={styles.myIcon}>
-                ME
+                <PersonIcon />
             </Dropdown.Toggle>
 
             <Dropdown.Menu>

@@ -4,8 +4,8 @@ import MessageTextField from "./MessageTextField";
 
 
 function Conversation() {
-    const [messages, setMessages] = useState([]);
-    const handleSendMessage = (message) => {
+    const [messages, setMessages] = useState<any[]>([]);
+    const handleSendMessage = (message: string) => {
         setMessages([...messages, message]);
     };
 

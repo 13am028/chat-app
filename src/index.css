@@ -1,49 +1,92 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: var(--font-color);
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--font-color);
 }
 
 h4 {
-  font-size: 1rem;
-  font-weight: bold;
-  margin: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: initial;
+    margin: 0;
+    padding: 0;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+ul {
+    list-style: none;
 }
 
 :root {
-  --theme-primary: #fcd6dd;
-  --theme-secondary: #c4f8f6;
-  --theme-third: #fdf4e3;
-  --theme-fourth: white;
-  --theme-fifth: #f6efe6;
-  --nav-bar: #d37cc454;
-  --font-color: black;
-  --message-bg: white;
-  --group-icon: #fcf6fd;
-  --friend-icon: white;
-  --line: grey;
-  --shadow-line: #f6f5f5;
+    --theme-primary: #fcd6dd;
+    --theme-secondary: #c4f8f6;
+    --theme-third: #fdf4e3;
+    --theme-fourth: white;
+    --theme-fifth: #f6efe6;
+    --nav-bar: #ebc9db;
+    --font-color: black;
+    --message-bg: white;
+    --group-icon: #fcf6fd;
+    --friend-icon: white;
+    --line: grey;
+    --shadow-line: #f6f5f5;
+    --button-text-color: #ffffff;
+    --text-color-light-mode: black;
+    --background-color-light-mode: #ffffff;
+    --button-color: #7289da;
+    --button-hover-color: #677bc4;
+    --text-intruction-color: #555555;
+    --text-instruction-dark-mode-color: #fbfaf2;
+    --box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+    --white-hover: whitesmoke;
+    --dark-background-color: #333333;
+    --dark-login-form-background: #444444;
+    --dark-login-button-background: #444444;
+    --dark-login-button-hover-background: #555555;
+    --scroll-track: #cccccc5a;
+    --scroll-color: rgba(93, 93, 93, 0.6);
+    --scroll-color-hover: rgb(102, 102, 102);
 }
 
 body[data-theme="dark-theme"] {
-  --theme-primary: #282c34;
-  --theme-secondary: #2f343f;
-  --theme-third: #282c34;
-  --theme-fourth: #1a1d1d;
-  --theme-fifth: #282c34;
-  --font-color: white;
-  --message-bg: #45484f;
-  --group-icon: white;
-  --friend-icon: white;
-  --line: #4d5050;
-  --shadow-line: #1a1d1d;
+    --theme-primary: #282c34;
+    --theme-secondary: #2f343f;
+    --theme-third: #282c34;
+    --theme-fourth: #1a1d1d;
+    --theme-fifth: #282c34;
+    --font-color: white;
+    --message-bg: #45484f;
+    --group-icon: white;
+    --friend-icon: white;
+    --line: #4d5050;
+    --shadow-line: #1a1d1d;
+    --scroll-track: #1a1d1d4b;
+    --scroll-color: #ccc;
+    --scroll-color-hover: #ffffff;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scroll-track);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scroll-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scroll-color-hover);
 }

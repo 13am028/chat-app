@@ -4,10 +4,10 @@ import React, {useState} from 'react';
 import {Form} from "react-bootstrap";
 import './MessageTextField.css'
 
-function MessageTextField(props) {
+function MessageTextField(props: any) {
     const [message, setMessage] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event: any) => {
         event.preventDefault();
         props.onSendMessage({
             sender: 'You',
@@ -16,7 +16,7 @@ function MessageTextField(props) {
         setMessage('');
     };
 
-    const handleChange = (event) => {
+    const handleChange = (event: any) => {
         setMessage(event.target.value);
     };
 
@@ -52,7 +52,7 @@ function MessageTextField(props) {
                         width: '100px',
                         boxShadow: '0 1px 3px rgba(0, 0, 0, 0.2)'
                     }}
-                    size='large'
+                    size='lg'
                     type='submit'
             >
                 Send

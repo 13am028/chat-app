@@ -5,36 +5,41 @@ import FriendStatusNav from "../../components/nav/FriendStatusNav";
 import DirectMessageNav from "../../components/nav/DirectMessageNav";
 import FriendStatus from "../../components/icons/FriendStatus";
 import {getFriends} from "../../firebase";
-
 const Home = () => {
 
     /* Disable default context menu */
-    const handleContextMenu = (event) => {
+    const handleContextMenu = (event: any) => {
         event.preventDefault();
     };
 
-    const [friends, setFriends] = useState(null);
+
+    const [friends, setFriends] = useState<any>(null);
     useEffect(() => {
         (async () => {
             const users = await getFriends();
             setFriends(users);
         })();
-    }, []);
+    }, [friends]);
 
-    let friendList=[];
+
+    let friendList: any =[];
     if (friends) {
-        friends.forEach((user) => {
+        friends.forEach((user: any) => {
             friendList.push(<FriendStatus key={user.uid} displayName={user.displayName} uid={user.uid}/>)
         })
     }
 
     return (
-        <div onContextMenu={handleContextMenu}>
-            <Nav/>
-            <DirectMessageNav/>
-            <FriendStatusNav/>
-            <div className='bg'>
-                {friendList}
+        <div onContextMenu={handleContextMenu} className='navbar-group'>
+            <div className='navbar-left'>
+                <Nav />
+                <DirectMessageNav />
+            </div>
+            <div className='navbar-right'>
+                <FriendStatusNav />
+                <div className='bg'>
+                    {friendList}
+                </div>
             </div>
         </div>
     );

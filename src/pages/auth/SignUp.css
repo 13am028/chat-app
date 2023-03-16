@@ -1,58 +1,38 @@
-.signup {
+.background {
+    background-color: var(--theme-primary);
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
     display: flex;
-    min-height: 100vh;
-    background-color: #36393f;
+    color: cornflowerblue;
 }
 
-
-.signup {
-    --background-color: #FFFFFF;
-    --text-color: #2C2F33;
-    background-color: var(--background-color);
-    color: var(--text-color);
+.background img {
+    max-height: 100%;
+    max-width: 100%;
 }
 
-.signup.dark {
-    --background-color: #2C2F33;
-    --text-color: #FFFFFF;
+.dark.background {
+    background-color: var(--dark-background-color);
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: cornflowerblue;
 }
 
 .signup__submit {
-    background-color: #677bc4;
-    color: #FFFFFF;
-}
-
-.signup.dark .create-account__submit {
-    background-color: #677bc4;
-    color: #FFFFFF;
-}
-
-
-.dark-mode-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.dark-mode-btn:hover {
-    background-color: #444;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
 }
 
 .signup-form-container {
-    background-color: #ffffff;
     display: flex;
     padding: 1rem;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     height: 100%;
-    box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
-    /*width: 50rem; !* adjust this width to fit your needs *!*/
     max-width: 100%; /* add this line to make the form width responsive */
 }
 
@@ -62,53 +42,43 @@
     margin-bottom: 1rem;
     font-size: 1.5rem; /* adjust the font size to make it smaller */
     font-weight: 700;
-    color: #2c2f33;
 }
 
 .signup__form {
     display: grid;
     width: 520px;
     grid-template-columns: 1fr;
-    box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+    box-shadow: var(--box-shadow);
     border-radius: 8px;
-    /*flex-direction: column;*/
     align-items: center;
     padding: 2% 6%;
     grid-gap: 0.5rem; /* adjust the gap between the form elements to make it smaller */
 }
 
+.dark.signup__form {
+    display: grid;
+    width: 520px;
+    grid-template-columns: 1fr;
+    box-shadow: var(--box-shadow);
+    border-radius: 8px;
+    align-items: center;
+    padding: 2% 6%;
+    grid-gap: 0.5rem; /* adjust the gap between the form elements to make it smaller */
+    background: var(--dark-login-form-background);
+}
+
 .signup__label {
     font-size: 1rem; /* adjust the font size to make it smaller */
     font-weight: 500;
-    color: #2c2f33;
     text-align: left;
     margin-top: 0.5rem; /* adjust the margin to make it smaller */
 }
-
-.signup__input {
-    padding: 0.4rem;
-    font-size: 1rem;
-    /*color: #2c2f33;*/
-    border: none;
-    border-radius: 4px;
-    /*background-color: #f5f5f5;*/
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.2s ease-in-out;
-}
-
-/*in-case input box needed*/
-.signup__input:focus {
-    outline: none;
-    box-shadow: 0 0 0 5px rgba(114, 137, 218, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 
 .signup__submit {
     padding: 0.5rem; /* adjust the padding to make it smaller */
     font-size: 0.875rem; /* adjust the font size to make it smaller */
     font-weight: 500;
-    color: #ffffff;
-    background-color: #7289da;
+    background-color: var(--button-color);
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -116,17 +86,12 @@
 }
 
 .signup__submit:hover {
-    background-color: #677bc4;
+    background-color: var(--button-hover-color);
 }
 
 .signup__submit:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(114, 137, 218, 0.4);
-}
-
-.signup__submit:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
 }
 
 .signup__instructions {
@@ -135,39 +100,30 @@
     text-align: left;
 }
 
-.signup__checkbox {
-    display: inline-block;
-    position: relative;
-    width: 1.125rem;
-    height: 1.125rem;
-    vertical-align: middle;
-    border: 1px solid #2c2f33;
-    border-radius: 2px;
-    box-sizing: border-box;
-    margin-right: 0.5rem;
+.dark.signup__instructions {
+    font-size: 0.75rem; /* adjust the font size to make it smaller */
+    color: var(--text-instruction-dark-mode-color);
+    text-align: left;
+    background: var(--dark-login-form-background);
 }
-
 
 .signup__checkbox-label {
     display: inline-block;
     font-size: 1rem;
     font-weight: 500;
-    color: #2c2f33;
     line-height: 1.125rem; /* Set the line-height to match the height of the checkbox */
 }
-
 
 .signup__label--checkbox {
     display: flex;
     align-items: center;
     font-size: 0.875rem;
     margin-top: 1rem;
-    color: #2c2f33;
     height: 1.125rem;
 }
 
 .signup__link {
-    color: #7289da;
+    color: var(--button-color);
     text-decoration: none;
 }
 
@@ -178,8 +134,23 @@
 .signup__already-have-account {
     margin-top: -1rem;
     font-size: 0.775rem;
-    color: #2c2f33;
     text-align: center;
+}
+
+.show-password-cpassword-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.password-input-container {
+    position: relative;
 }
 
 @media only screen and (min-width: 568px) {

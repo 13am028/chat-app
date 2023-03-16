@@ -1,19 +1,8 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { Modal } from 'react-bootstrap';
-import {addFriend, auth, db} from '../../firebase';
-import {
-    collection,
-    doc,
-    query,
-    getDocs,
-    where,
-    updateDoc,
-    arrayUnion,
-    serverTimestamp,
-    addDoc,
-} from 'firebase/firestore';
-
+import { addFriend } from '../../firebase';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 const AddFriendModal = () => {
     const [show, setShow] = useState(false);
     const [username, setUsername] = useState('');
@@ -24,11 +13,11 @@ const AddFriendModal = () => {
     };
     const handleShow = () => setShow(true);
 
-    const handleUsernameChange = (event) => {
+    const handleUsernameChange = (event: any) => {
         setUsername(event.target.value);
     };
 
-    const alertSuccessfully = (username) => {
+    const alertSuccessfully = (username: string) => {
         alert(`${username} has been successfully added as your friend.`);
     };
 
@@ -42,7 +31,6 @@ const AddFriendModal = () => {
         if (username.trim() === '') {
             return;
         }
-
         await addFriend(username)
     };
 
@@ -50,8 +38,9 @@ const AddFriendModal = () => {
     return (
         <div style={{ display: 'inline-block' }}>
             <Button variant="primary" onClick={handleShow} size="sm">
-                Add Friend
+                <PersonAddAlt1Icon />
             </Button>
+
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton style={{ backgroundColor: 'var(--theme-primary)' }}>

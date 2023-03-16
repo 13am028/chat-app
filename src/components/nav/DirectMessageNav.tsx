@@ -6,10 +6,11 @@ const DirectMessageNav = () => {
     const items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
     return (
-        <div>
-            <div className={styles.navTopFirst}>
+        <div className={styles.navTopFirst}>
+            <div className={styles.nav_head}>
                 <h4>DIRECT MESSAGES</h4>
-                <div className={styles.shadowLine}></div>
+            </div>
+            <div className={styles.nav_content}>
                 {items.map((item, index) => {
                     return <FriendStatus key={index}></FriendStatus>
                 })}
