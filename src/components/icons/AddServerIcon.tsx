@@ -10,12 +10,15 @@ const AddServerIcon = () => {
     const [showModal, setModal] = useState(false);
     const [groupName, setgroupName] = useState('');
 
-    const handleClose = () =>  {
+    const handleClose = () =>  
+    {
         setModal(false);
     }
 
-    const handleShow = () => setModal(true);
+    const handleShow = () => {
 
+        setModal(true);
+    }
     /* Prevent user from right click this button */
     const handleContextMenu = (event: any) => {
         event.preventDefault();
@@ -25,6 +28,7 @@ const AddServerIcon = () => {
         try 
         {
             await createGroup(groupName);
+            handleClose();
         } 
         catch (error) 
         {
@@ -37,8 +41,11 @@ const AddServerIcon = () => {
     };
 
     return (
-        <button onContextMenu={handleContextMenu} onClick={handleShow} className={styles.addServerIcon}>
-            <AddIcon htmlColor="white" fontSize='large' />
+        <div>
+            <button onContextMenu={handleContextMenu} onClick={handleShow} className={styles.addServerIcon}>
+                <AddIcon htmlColor="white" fontSize='large' />
+            </button>
+            
             <Modal show={showModal} onHide={handleClose} centered>
 
                 <Modal.Header className={styles.addServerModalHeader}>
@@ -84,13 +91,14 @@ const AddServerIcon = () => {
                 </Modal.Body>
 
                 <Modal.Footer className={styles.addServerModalFooter}>
-                    <Button onClick={handleCreateGroup} className={styles.addServerModalFooterButton}>
+                    <Button onClick={handleCreateGroup} className={styles.addServerModalFooterButton} disabled={!groupName.trim()}>
                         Create
                     </Button>
                 </Modal.Footer>
 
             </Modal>
-        </button>
+        </div>
+        
     );
 };
 

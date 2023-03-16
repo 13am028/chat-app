@@ -164,6 +164,7 @@ const getFriends = async () => {
 
 const createGroup = async (groupName: string) => {
     try {
+
         if (!auth.currentUser) return
 
         const groupRef = doc(collection(db, "groups"));
