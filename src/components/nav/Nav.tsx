@@ -20,10 +20,10 @@ const Nav = () => {
             const userGroups = await getGroups();
             // userGroups potentially return as 'undefined' type so we need add || [] so that if it undefined we will use defailt value of []
             setGroups(userGroups || []);
-          
+            
         };
         fetchGroups();
-    }, []);
+    }, [groups]);
 
     return (
         <div className={styles.navLeft}>
@@ -31,9 +31,10 @@ const Nav = () => {
                 <GroupIcon />
             </div>
             <div className={styles.nav_content}>
-                {groups.map((group) => (
-                    <GroupIcon key={group.id} imageUrl={group.groupPic} />
-                ))}
+                    {
+                    groups.map((group) => (
+                        <GroupIcon key={group.id} imageUrl={group.groupPic} />
+                    ))}
                 <AddServerIcon />
             </div>
         </div>
