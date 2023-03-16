@@ -31,7 +31,6 @@ const AddFriendModal = () => {
         if (username.trim() === '') {
             return;
         }
-
         await addFriend(username)
     };
 

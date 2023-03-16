@@ -136,7 +136,7 @@ const addFriend = async (toAddUsername: string) => {
     let friendsData = (await getDoc(doc(db, 'friends', myUID))).data()
     let toAddFriendsData = (await getDoc(doc(db, 'friends', toAddUID))).data()
     if (!friendsData || !toAddFriendsData) return
-    let myFriends = friendsData.data().friends
+    let myFriends = friendsData.friends
     myFriends.push(toAddUID)
     await setDoc(doc(db, 'friends', myUID), {
         friends: myFriends
