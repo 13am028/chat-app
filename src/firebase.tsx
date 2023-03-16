@@ -12,11 +12,13 @@ import {
 import {
     getFirestore,
     query,
+    addDoc,
     getDoc,
     getDocs,
     collection,
     where,
     setDoc, doc,
+    serverTimestamp,
 } from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -160,6 +162,72 @@ const getFriends = async () => {
     return friendsData
 }
 
+const createGroup = async (groupName: string) => {
+    try {
+
+        if (!auth.currentUser) return
+
+        const groupRef = doc(collection(db, "groups"));
+        const groupUid = groupRef.id;
+        const myUID = auth.currentUser.uid
+        
+        // Group Document
+        await setDoc(groupRef, {
+            groupId: groupUid,
+            groupName,
+            groupPic: "some image url",
+            adminUID: myUID,
+            users: {
+                [myUID]: true,
+                role: 'admin',
+                profilePic: "some image url",
+            },
+        });
+
+        // Message subcollection under group document
+        const messagesCollection = collection(groupRef, "messages");
+
+        const initialMessage = {
+            text: "Welcome to the group!",
+            senderId: myUID,
+            timestamp: serverTimestamp(),
+        };
+
+        await addDoc(messagesCollection, initialMessage);
+
+
+      } catch (error: any) {
+
+        console.error('Error creating group:', error);
+        alert(error.message);
+      }
+}
+
+const getGroups = async () => {
+    try {
+        if (!auth.currentUser) return
+        const myUID = auth.currentUser.uid
+
+        const groupsReference = collection(db, 'groups');
+        const userGroupsQuery = query(groupsReference, where(`users.${myUID}`, "==", true));
+
+        // Execute the query and retrieve the documents
+        const querySnapshot = await getDocs(userGroupsQuery);
+
+        // Iterate through the documents and extract group data
+        const groups: Array<{id: string, groupPic: string}> = [];
+            querySnapshot.forEach((doc) => {
+            // Not good particle to retreive everything in the group
+            groups.push({ id: doc.id, groupPic: doc.data().groupPic});
+        });
+
+        return groups;
+
+    } catch (error: any) {
+        console.error(error);
+      }
+}
+
 export {
     auth,
     db,
@@ -169,5 +237,7 @@ export {
     sendPasswordReset,
     logout,
     addFriend,
-    getFriends
+    getFriends,
+    createGroup,
+    getGroups,
 };
