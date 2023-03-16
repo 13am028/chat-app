@@ -2,7 +2,7 @@ import React, {createContext, useEffect, useState} from "react";
 import {auth} from "../../firebase";
 import {onAuthStateChanged} from "firebase/auth";
 
-type User = {
+export type User = {
     uid: string;
     email: string | null;
     displayName: string | null;

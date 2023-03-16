@@ -4,16 +4,18 @@ import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext";
 import {doc, getDoc, serverTimestamp, setDoc, updateDoc} from "firebase/firestore";
 import {db} from "../../firebase";
+import {ChatContext} from "../context/ChatContext";
 
 const FriendStatus = (user: any) => {
 
+    const {currentUser} = useContext(AuthContext)
+    const {dispatch} = useContext(ChatContext)
     let navigate = useNavigate();
     const routeChange = () => {
         let path = '/dm';
         navigate(path, {state: {displayName: user.displayName, uid: user.uid}});
     }
 
-    const {currentUser} = useContext(AuthContext)
     const handleOnSelect = async () => {
         const combinedId = (currentUser?.uid ?? "") > user.uid ? currentUser?.uid + user.uid : user.uid + (currentUser?.uid ?? "");
         try {
@@ -36,6 +38,7 @@ const FriendStatus = (user: any) => {
 
                 });
             }
+            dispatch({type: "CHANGE_USER", payload: {uid: user.uid, displayName: user.displayName}})
             routeChange()
         } catch (err) {
         }
