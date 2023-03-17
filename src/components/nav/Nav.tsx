@@ -16,11 +16,15 @@ const Nav = () => {
     const [groups, setGroups] = useState<any>([]);
     useEffect(() => {
         (async () => {
-            console.log("g");
             const userGroups = await getGroups();
             setGroups(userGroups);
         })();
     }, []);
+
+    const handleNewGroupRender = async () => {
+        const userGroups = await getGroups();
+        setGroups(userGroups);
+    }
 
     let groupList: any = [];
     if (groups) {
@@ -35,13 +39,8 @@ const Nav = () => {
                 <GroupIcon />
             </div>
             <div className={styles.nav_content}>
-                    {/* {
-                    groups.map((group) => (
-                        <GroupIcon key={group.id} imageUrl={group.groupPic} />
-                    ))} */}
-                    {/* {groupList} */}
-                    {groupList}
-                <AddServerIcon />
+                {groupList}
+                <AddServerIcon onGroupCreate={handleNewGroupRender}/>
             </div>
         </div>
     );

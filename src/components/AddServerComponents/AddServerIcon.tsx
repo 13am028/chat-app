@@ -6,7 +6,11 @@ import AddIcon from '@mui/icons-material/Add';
 import { createGroup } from '../../firebase';
 import CustomSVG from './CustomSVG';
 
-const AddServerIcon = () => {
+type Props = {
+    onGroupCreate: () => void
+}
+
+const AddServerIcon = ({ onGroupCreate }: Props) => {
     /* Show or Hide Popup when clicking button */
     const [showModal, setModal] = useState(false);
     const [groupName, setgroupName] = useState('');
@@ -30,6 +34,7 @@ const AddServerIcon = () => {
         {
             await createGroup(groupName);
             handleClose();
+            onGroupCreate();
         } 
         catch (error) 
         {
