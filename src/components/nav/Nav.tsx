@@ -28,7 +28,6 @@ const Nav = () => {
             groupList.push(<GroupIcon key={group.id} imageUrl={group.groupPic} />)
         });
     }
-    
 
     return (
         <div className={styles.navLeft}>

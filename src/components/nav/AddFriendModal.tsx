@@ -25,14 +25,25 @@ const AddFriendModal = () => {
         alert(`Username not found.`);
     };
 
-
+    const alertAlreadyFriends = (username: string) => {
+        alert(`You are already friends with ${username}.`);
+    }
     const handleAddFriend = async () => {
         // Check that the username is not empty
         if (username.trim() === '') {
             return;
         }
-
-        await addFriend(username)
+        const result = await addFriend(username)
+        if (result === "success") {
+            alertSuccessfully(username);
+        } else if (result === "not_found") {
+            alertNotFound()
+        } else {
+            if (result === "already_friends") {
+                alertAlreadyFriends(username)
+            }
+        }
+        handleClose()
     };
 
 
