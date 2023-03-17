@@ -6,24 +6,29 @@ import { useNavigate } from "react-router-dom";
 import { getGroups } from '../../firebase';
 
 const Nav = () => {
-    const [groups, setGroups] = useState<{ id: string, groupPic: string }[]>([]);
-
+    
     let navigate = useNavigate();
     const routeChange = () => {
         let path = '/home';
         navigate(path);
     }
 
+    const [groups, setGroups] = useState<any>([]);
     useEffect(() => {
-        const fetchGroups = async () => {
-          
+        (async () => {
+            console.log("g");
             const userGroups = await getGroups();
-            // userGroups potentially return as 'undefined' type so we need add || [] so that if it undefined we will use defailt value of []
-            setGroups(userGroups || []);
-            
-        };
-        fetchGroups();
-    }, [groups]);
+            setGroups(userGroups);
+        })();
+    }, []);
+
+    let groupList: any = [];
+    if (groups) {
+        groups.forEach((group: any) => {
+            groupList.push(<GroupIcon key={group.id} imageUrl={group.groupPic} />)
+        });
+    }
+    
 
     return (
         <div className={styles.navLeft}>
@@ -31,10 +36,12 @@ const Nav = () => {
                 <GroupIcon />
             </div>
             <div className={styles.nav_content}>
-                    {
+                    {/* {
                     groups.map((group) => (
                         <GroupIcon key={group.id} imageUrl={group.groupPic} />
-                    ))}
+                    ))} */}
+                    {/* {groupList} */}
+                    {groupList}
                 <AddServerIcon />
             </div>
         </div>
