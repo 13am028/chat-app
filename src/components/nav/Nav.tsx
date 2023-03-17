@@ -14,16 +14,17 @@ const Nav = () => {
         navigate(path);
     }
 
-    useEffect(() => {
-        const fetchGroups = async () => {
-          
-            const userGroups = await getGroups();
-            // userGroups potentially return as 'undefined' type so we need add || [] so that if it undefined we will use defailt value of []
-            setGroups(userGroups || []);
-            
-        };
-        fetchGroups();
-    }, [groups]);
+    // TODO: fix this (maybe see Home.tsx for reference)
+    // useEffect(() => {
+    //     const fetchGroups = async () => {
+    //
+    //         const userGroups = await getGroups();
+    //         // userGroups potentially return as 'undefined' type so we need add || [] so that if it undefined we will use defailt value of []
+    //         setGroups(userGroups || []);
+    //
+    //     };
+    //     fetchGroups();
+    // }, [groups]);
 
     return (
         <div className={styles.navLeft}>
