@@ -5,6 +5,7 @@ import {AuthContext} from "../context/AuthContext";
 import {db} from "../../firebase";
 import {ChatContext} from "../context/ChatContext";
 import {useNavigate} from "react-router-dom";
+import nstyles from "./nav.module.css";
 
 const DirectMessageNav = () => {
 
@@ -44,8 +45,8 @@ const DirectMessageNav = () => {
     }
 
     return (
-        <div className={styles.navTopFirst}>
-            <div className={styles.nav_head}>
+        <div className={nstyles.navTopFirst}>
+            <div className={nstyles.nav_head}>
                 <h4>DIRECT MESSAGES</h4>
             </div>
             {chats && Object.entries(chats)?.map((chat) => (
