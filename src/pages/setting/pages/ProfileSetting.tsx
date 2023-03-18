@@ -1,7 +1,6 @@
-import React from 'react';
-import './ProfileSetting.css'
-import SpanRevealButton from '../../../components/setting/SpanRevealButton';
-
+import React from "react";
+import "./ProfileSetting.css";
+import SpanRevealButton from "../../../components/setting/SpanRevealButton";
 
 const ProfileSetting = () => {
     return (
@@ -15,30 +14,38 @@ const ProfileSetting = () => {
                     </mask> */}
                 </svg>
                 <div className='user-info'>
-                    <img className='profile-img' src="https://icotar.com/initials/Test"></img>
+                    <img
+                        className='profile-img'
+                        src='https://icotar.com/initials/Test'></img>
                     <span className='username-span'>username</span>
                 </div>
                 <div className='profile-card'>
-                    <div className="profile-card-field-list">
-                        <div className="field">
-                            <div className="username-row">
+                    <div className='profile-card-field-list'>
+                        <div className='field'>
+                            <div className='username-row'>
                                 <h3>USERNAME</h3>
-                                <div className="username-inner-row">
+                                <div className='username-inner-row'>
                                     <span>b2</span>
                                     <span>#6550</span>
                                 </div>
                             </div>
                         </div>
-                        <div className="field field-spacer">
-                            <div className="email-row">
+                        <div className='field field-spacer'>
+                            <div className='email-row'>
                                 <h3>EMAIL</h3>
-                                <SpanRevealButton data='johndow@example.com' type='email' />
+                                <SpanRevealButton
+                                    data='johndow@example.com'
+                                    type='email'
+                                />
                             </div>
                         </div>
-                        <div className="field field-spacer">
-                            <div className="phone-row">
+                        <div className='field field-spacer'>
+                            <div className='phone-row'>
                                 <h3>PHONE NUMBER</h3>
-                                <SpanRevealButton data='0123456789' type='phone' />
+                                <SpanRevealButton
+                                    data='0123456789'
+                                    type='phone'
+                                />
                             </div>
                         </div>
                     </div>
@@ -47,9 +54,11 @@ const ProfileSetting = () => {
 
             <hr />
 
-            <div className="profile user-security">
+            <div className='profile user-security'>
                 <div>
-                    <h2 className='section-title'>Password and Authentication</h2>
+                    <h2 className='section-title'>
+                        Password and Authentication
+                    </h2>
                 </div>
                 <div className='children'>
                     <div>
@@ -59,11 +68,17 @@ const ProfileSetting = () => {
                     </div>
                     <div>
                         <div className='flex'>
-                            <div className='description title'>TWO-FACTOR AUTHENTICATION</div>
-                            <div className='description' style={{ marginBottom: 8 }}>
-                                Protect your Discord account with an extra layer of security.
-                                Once configured, you'll be required to enter both your password
-                                and an authentication code from your mobile phone in order to sign in.
+                            <div className='description title'>
+                                TWO-FACTOR AUTHENTICATION
+                            </div>
+                            <div
+                                className='description'
+                                style={{ marginBottom: 8 }}>
+                                Protect your Discord account with an extra layer
+                                of security. Once configured, you'll be required
+                                to enter both your password and an
+                                authentication code from your mobile phone in
+                                order to sign in.
                             </div>
                             <div>
                                 <button className='button'>

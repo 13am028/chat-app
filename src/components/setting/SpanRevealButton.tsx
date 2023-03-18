@@ -7,60 +7,77 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
  * <DataRevealButton data="johndoe@example.com" type="email" />
  */
 interface Props {
-  data: string;
-  type: "email" | "phone";
+    data: string;
+    type: "email" | "phone";
 }
 
 const SpanRevealButton: React.FC<Props> = ({ data, type }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
 
-  const handleClick = () => {
-    setIsVisible(!isVisible);
-  };
+    const handleClick = () => {
+        setIsVisible(!isVisible);
+    };
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
 
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
 
-  const maskedData = () => {
-    switch (type) {
-      case "email":
-        // how some first and domain with fixed asterisk
-        return data.replace(
-          /^(.{1,4})(.*)(@.*)$/,
-          (match, first, middle, last) => {
-            return `${first}${"****"}${last}`;
-          }
-        );
-      case "phone":
-        // show only last 4 digit
-        return data.replace(
-          /^(\d{6})(\d{4})$/,
-          (match, first, last) => {
-            return `******${last}`;
-          }
-        );
-      default:
-        return data;
-    }
-  };
+    const maskedData = () => {
+        switch (type) {
+            case "email":
+                // how some first and domain with fixed asterisk
+                return data.replace(
+                    /^(.{1,4})(.*)(@.*)$/,
+                    (match, first, middle, last) => {
+                        return `${first}${"****"}${last}`;
+                    },
+                );
+            case "phone":
+                // show only last 4 digit
+                return data.replace(
+                    /^(\d{6})(\d{4})$/,
+                    (match, first, last) => {
+                        return `******${last}`;
+                    },
+                );
+            default:
+                return data;
+        }
+    };
 
-  const displayedData = isVisible ? data : maskedData();
-  const visibilityIcon = isHovered ? <VisibilityOffIcon /> : <VisibilityIcon />;
+    const displayedData = isVisible ? data : maskedData();
+    const visibilityIcon = isVisible ? (
+        isHovered ? (
+            <VisibilityOffIcon
+                onClick={handleClick}
+                onMouseLeave={handleMouseLeave}
+            />
+        ) : (
+            <VisibilityIcon onMouseEnter={handleMouseEnter} />
+        )
+    ) : isHovered ? (
+        <VisibilityIcon onClick={handleClick} onMouseLeave={handleMouseLeave} />
+    ) : (
+        <VisibilityOffIcon onMouseEnter={handleMouseEnter} />
+    );
 
-  return (
-    <div className="user-data-inner-row">
-      <span>{displayedData}</span>
-      <a className="reveal-button" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick}>
-        {visibilityIcon}
-      </a>
-    </div>
-  );
+    return (
+        <div className='user-data-inner-row'>
+            <span>{displayedData}</span>
+            <a
+                className='reveal-button'
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onClick={handleClick}>
+                {visibilityIcon}
+            </a>
+        </div>
+    );
 };
 
 export default SpanRevealButton;
