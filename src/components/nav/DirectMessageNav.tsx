@@ -15,7 +15,7 @@ const DirectMessageNav = () => {
             displayName: string;
         };
         lastMessage: {
-            message: string;
+            message: string | null;
         }
     }
 
@@ -54,7 +54,7 @@ const DirectMessageNav = () => {
                     <div className={styles.friendIcon}></div>
                     <div className={styles.friendName}>
                         <p className={styles.name}>{chat[1].userInfo.displayName}</p>
-                        <p>{chat[1].lastMessage.message}</p>
+                        <p>{chat[1].lastMessage?.message}</p>
                     </div>
                 </div>
             ))}
