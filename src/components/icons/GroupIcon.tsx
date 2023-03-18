@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styles from './icons.module.css';
 
-const GroupIcon = () => {
+const GroupIcon = ({ imageUrl }: { imageUrl?: string }) => {
     const [showMenu, setShowMenu] = useState(false);
     const [menuPosition, setMenuPosition] = useState({x: 0, y: 0});
     const menuRef = useRef(null);
@@ -28,6 +28,7 @@ const GroupIcon = () => {
 
     return (
         <div className={styles.groupIcon} onContextMenu={handleContextMenu}>
+            {imageUrl}
             {showMenu && (
                 <div className={styles.customContextMenu} ref={menuRef}
                      style={{top: menuPosition.y, left: menuPosition.x}}>

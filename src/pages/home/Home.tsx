@@ -4,8 +4,8 @@ import Nav from "../../components/nav/Nav";
 import FriendStatusNav from "../../components/nav/FriendStatusNav";
 import DirectMessageNav from "../../components/nav/DirectMessageNav";
 import FriendStatus from "../../components/icons/FriendStatus";
-import {getFriends} from "../../firebase";
-
+import {auth, db, getFriends} from "../../firebase";
+import {doc, onSnapshot} from "firebase/firestore";
 const Home = () => {
 
     /* Disable default context menu */
@@ -13,13 +13,17 @@ const Home = () => {
         event.preventDefault();
     };
 
+
     const [friends, setFriends] = useState<any>(null);
     useEffect(() => {
-        (async () => {
+        // @ts-ignore
+        const unsub = onSnapshot(doc(db, "friends", auth.currentUser.uid), (async () => {
             const users = await getFriends();
             setFriends(users);
-        })();
+        }))
+        return unsub
     }, []);
+
 
     let friendList: any =[];
     if (friends) {
