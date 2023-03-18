@@ -1,5 +1,6 @@
 import React from 'react';
 import './ProfileSetting.css'
+import SpanRevealButton from '../../../components/setting/SpanRevealButton';
 
 
 const ProfileSetting = () => {
@@ -31,30 +32,20 @@ const ProfileSetting = () => {
                         <div className="field field-spacer">
                             <div className="email-row">
                                 <h3>EMAIL</h3>
-                                <div className="email-inner-row">
-                                    <span>*************@hotmail.com</span>
-                                    <a className="reveal-button">
-                                        Reveal
-                                    </a>
-                                </div>
+                                <SpanRevealButton data='johndow@example.com' type='email' />
                             </div>
                         </div>
                         <div className="field field-spacer">
                             <div className="phone-row">
                                 <h3>PHONE NUMBER</h3>
-                                <div className="phone-inner-row">
-                                    <span>********1519</span>
-                                    <a className="reveal-button">
-                                        Reveal
-                                    </a>
-                                </div>
+                                <SpanRevealButton data='0123456789' type='phone' />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <hr/>
+            <hr />
 
             <div className="profile user-security">
                 <div>
@@ -69,7 +60,7 @@ const ProfileSetting = () => {
                     <div>
                         <div className='flex'>
                             <div className='description title'>TWO-FACTOR AUTHENTICATION</div>
-                            <div className='description' style={{marginBottom: 8}}>
+                            <div className='description' style={{ marginBottom: 8 }}>
                                 Protect your Discord account with an extra layer of security.
                                 Once configured, you'll be required to enter both your password
                                 and an authentication code from your mobile phone in order to sign in.
