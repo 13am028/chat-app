@@ -5,9 +5,10 @@ import {Form} from "react-bootstrap";
 import './MessageTextField.css'
 import {AuthContext} from "./context/AuthContext";
 import {ChatContext} from "./context/ChatContext";
-import {arrayUnion, doc, updateDoc} from "firebase/firestore";
+import {arrayUnion, doc, serverTimestamp, updateDoc, Timestamp} from "firebase/firestore";
 import {db} from "../firebase";
 import uuid from 'react-uuid';
+
 
 function MessageTextField(props: any) {
     const [message, setMessage] = useState('');
@@ -22,8 +23,24 @@ function MessageTextField(props: any) {
                 id: uuid(),
                 text: message,
                 senderId: currentUser?.uid,
+                date: Timestamp.now()
             })
         })
+        // @ts-ignore
+        await updateDoc(doc(db, "userChats", currentUser.uid), {
+            [data.chatId + ".lastMessage"]: {
+                message,
+            },
+            [data.chatId + ".date"]: serverTimestamp(),
+        });
+
+        await updateDoc(doc(db, "userChats", data.user.uid), {
+            [data.chatId + ".lastMessage"]: {
+                message,
+            },
+            [data.chatId + ".date"]: serverTimestamp(),
+        });
+        setMessage("");
     };
     const handleChange = (event: any) => {
         setMessage(event.target.value);

@@ -13,6 +13,9 @@ const DirectMessageNav = () => {
         userInfo: {
             displayName: string;
         };
+        lastMessage: {
+            message: string;
+        }
     }
 
     const {currentUser} = useContext(AuthContext)
@@ -40,18 +43,17 @@ const DirectMessageNav = () => {
         navigate("/dm")
     }
 
-
     return (
         <div className={styles.navTopFirst}>
             <div className={styles.nav_head}>
                 <h4>DIRECT MESSAGES</h4>
             </div>
-            {Object.entries(chats)?.map((chat) => (
+            {chats && Object.entries(chats)?.map((chat) => (
                 <div className={styles.friend} key={chat[0]} onClick={() => handleOnSelect(chat[1].userInfo)}>
                     <div className={styles.friendIcon}></div>
                     <div className={styles.friendName}>
                         <p className={styles.name}>{chat[1].userInfo.displayName}</p>
-                        <p>latest message..</p>
+                        <p>{chat[1].lastMessage.message}</p>
                     </div>
                 </div>
             ))}
