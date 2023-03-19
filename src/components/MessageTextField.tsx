@@ -1,21 +1,47 @@
 import {OutlinedInput} from "@mui/material";
 import Button from "react-bootstrap/Button";
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Form} from "react-bootstrap";
 import './MessageTextField.css'
+import {AuthContext} from "./context/AuthContext";
+import {ChatContext} from "./context/ChatContext";
+import {arrayUnion, doc, serverTimestamp, updateDoc, Timestamp} from "firebase/firestore";
+import {db} from "../firebase";
+import uuid from 'react-uuid';
+
 
 function MessageTextField(props: any) {
     const [message, setMessage] = useState('');
+    const {currentUser} = useContext(AuthContext);
+    const {data} = useContext(ChatContext);
 
-    const handleSubmit = (event: any) => {
+
+    const handleSubmit = async (event: any) => {
         event.preventDefault();
-        props.onSendMessage({
-            sender: 'You',
-            text: message,
+        await updateDoc(doc(db, "chats", data.chatId), {
+            messages: arrayUnion({
+                id: uuid(),
+                text: message,
+                senderId: currentUser?.uid,
+                date: Timestamp.now()
+            })
+        })
+        // @ts-ignore
+        await updateDoc(doc(db, "userChats", currentUser.uid), {
+            [data.chatId + ".lastMessage"]: {
+                message,
+            },
+            [data.chatId + ".date"]: serverTimestamp(),
         });
-        setMessage('');
-    };
 
+        await updateDoc(doc(db, "userChats", data.user.uid), {
+            [data.chatId + ".lastMessage"]: {
+                message,
+            },
+            [data.chatId + ".date"]: serverTimestamp(),
+        });
+        setMessage("");
+    };
     const handleChange = (event: any) => {
         setMessage(event.target.value);
     };
