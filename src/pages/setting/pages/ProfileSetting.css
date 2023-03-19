@@ -24,7 +24,6 @@
 
 .profile-card {
     background-color: var(--setting-profile-card-bg);
-    height: 225px;
     border-radius: 0 0 8px 8px;
     padding: 16px;
 }

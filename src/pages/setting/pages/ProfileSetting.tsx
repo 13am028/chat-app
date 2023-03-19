@@ -1,8 +1,23 @@
-import React from "react";
+import { useContext } from "react";
 import "./ProfileSetting.css";
 import SpanRevealButton from "../../../components/setting/SpanRevealButton";
+import { AuthContext } from "../../../components/context/AuthContext";
 
 const ProfileSetting = () => {
+    const { currentUser } = useContext(AuthContext);
+    const mockUser = {
+        uid: "1234",
+        email: "johndow@example.com",
+        displayName: "Johndow",
+        username: "Johndow",
+    };
+
+    const user = currentUser || mockUser;
+    const email = user.email ? user.email : "johndow@example.com";
+    const displayName = user.displayName ? user.displayName : "Johndow";
+    // const username = user.username ? user.username : "Johndow";
+    const profile = `https://icotar.com/initials/${displayName}`;
+
     return (
         <div>
             <div className='profile'>
@@ -14,10 +29,8 @@ const ProfileSetting = () => {
                     </mask> */}
                 </svg>
                 <div className='user-info'>
-                    <img
-                        className='profile-img'
-                        src='https://icotar.com/initials/Test'></img>
-                    <span className='username-span'>username</span>
+                    <img className='profile-img' src={profile}></img>
+                    <span className='username-span'>{displayName}</span>
                 </div>
                 <div className='profile-card'>
                     <div className='profile-card-field-list'>
@@ -33,21 +46,15 @@ const ProfileSetting = () => {
                         <div className='field field-spacer'>
                             <div className='email-row'>
                                 <h3>EMAIL</h3>
-                                <SpanRevealButton
-                                    data='johndow@example.com'
-                                    type='email'
-                                />
+                                <SpanRevealButton data={email} type='email' />
                             </div>
                         </div>
-                        <div className='field field-spacer'>
+                        {/* <div className='field field-spacer'>
                             <div className='phone-row'>
                                 <h3>PHONE NUMBER</h3>
-                                <SpanRevealButton
-                                    data='0123456789'
-                                    type='phone'
-                                />
+                                <SpanRevealButton data={phone} type='phone' />
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
