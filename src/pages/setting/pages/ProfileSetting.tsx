@@ -15,7 +15,7 @@ const ProfileSetting = () => {
     const user = currentUser || mockUser;
     const email = user.email ? user.email : "johndow@example.com";
     const displayName = user.displayName ? user.displayName : "Johndow";
-    // const username = user.username ? user.username : "Johndow";
+    const username = user.username ? user.username : "Johndow";
     const profile = `https://icotar.com/initials/${displayName}`;
 
     return (
@@ -38,8 +38,8 @@ const ProfileSetting = () => {
                             <div className='username-row'>
                                 <h3>USERNAME</h3>
                                 <div className='username-inner-row'>
-                                    <span>b2</span>
-                                    <span>#6550</span>
+                                    <span>{username}</span>
+                                    {/* <span>#6550</span> */}
                                 </div>
                             </div>
                         </div>
