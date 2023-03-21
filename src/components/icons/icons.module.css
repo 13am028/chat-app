@@ -8,18 +8,64 @@
     display: inline-block;
     margin: 5px 5px 0 5px;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: border-radius 0.2s ease-in-out;
 }
 
 .groupIcon:hover {
     border-radius: 30%;
 }
 
+.addServerModalTitle{
+    text-align: left;
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    background-color: whitesmoke;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    height: 50px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.dark.searchBar {
+    display: flex;
+    align-items: center;
+    background-color: red;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    height: 50px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.searchBar input[type="text"] {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    flex: 1;
+    font-size: 17px;
+    padding: 0 5px;
+}
+
+.searchBar input[type="text"]::placeholder {
+    color: #aaa;
+}
+
+
 .customContextMenu {
     padding: 6px;
     z-index: 10;
     position: absolute;
-    background-color: rgba(87, 50, 90, 0.632);
+    background-color: var(--theme-primary);
+    /*background-color: rgba(87, 50, 90, 0.632);*/
     border-radius: 10%;
     width: 120px;
     color: rgb(231, 229, 225);
@@ -27,43 +73,110 @@
     font-size: 15px;
 }
 
+.menuOptionLine{
+    color: black
+}
+
+.dark.menuOptionLine{
+    color: white;
+}
+
+.menuOptionInvite{
+    color: #7289da;
+}
+
+.menuOptionInvite:hover {
+    cursor: pointer;
+    color: #ffffff;
+    background-color: var(--button-color);
+    border-radius: 3px;
+}
+
+.menuOptionLeave {
+    color: #ff2c2c;
+}
+
+.menuOptionLeave:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #ff2c2c;
+    border-radius: 3px;
+}
+
+
 .friendIcon {
-    height: 7vh;
-    width: 7vh;
-    background-color: white;
+    height: 45px;
+    width: 45px;
+    background-color: black;
     border-radius: 50%;
     display: inline-block;
-    margin: 0 5px 0 5px;
-    transition: all 0.2s ease-in-out;
+    margin: 5px;
+}
+
+.friendIconAddServer {
+    position: absolute;
+    height: 45px;
+    width: 45px;
+    background-color: whitesmoke;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 0 0 0;
+}
+
+.dark.friendIconAddServer {
+    position: absolute;
+    height: 45px;
+    width: 45px;
+    background-color: #444444;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 0 0 0;
 }
 
 .friend {
-    display: flex;
+    display: grid;
     grid-template-columns: 70px auto;
     text-align: left;
-    padding: 5px;
+    margin: 10px;
+}
+
+.inviteButton {
+    color: black;
+    border-color: #00d400;
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin-top: 0px;
+    margin-left: auto; /* Move button to the right side */
+}
+
+.dark.inviteButton {
+    color: black;
+    border-color: #00d400;
+    border-radius: 5px;
+    padding: 7px 14px;
+    margin-left: auto; /* Move button to the right side */
+}
+
+.inviteButton:hover {
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
-}
-
-.friend:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-}
-
-.friend:hover .friendIcon {
-    border-radius: 30%;
-}
-
-.friendName {
-    padding: 10px;
-}
-
-p {
-    margin: auto 0 auto 0;
+    color: white;
+    border-color: transparent;
+    background-color: #005000; /* Change background color on hover */
 }
 
 .name {
     font-weight: bold;
+    margin-left: 30px;
+    margin-top: 15px;
+    color: black;
+}
+
+.inviteFriendsName{
+    font-weight: bold;
+    margin-left: 50px;
+    margin-top: 10px;
+    color: black;
 }
 
 .myIcon {
@@ -74,14 +187,120 @@ p {
     cursor: pointer;
     padding: 7px;
     margin: 3px;
-    transition: all 0.2s ease-in-out;
 }
 
-.myIcon:hover {
+/* add server */
+
+.addServerIcon {
+    height: 7vh;
+    width: 7vh;
+    background-color: #9d37a873;
+    border-radius: 50%;
+    margin: 5px 5px 0 5px;
+    cursor: pointer;
+    transition: border-radius 0.2s ease-in-out;
+    border-color: transparent;
+}
+
+.addServerIcon:hover {
+    background-color: #1d68d0b2;
     border-radius: 30%;
 }
 
-.myIcon::after {
-    content: none;
+.addServerIconImage {
+    margin-top: 15px;
 }
 
+.addServerModalHeader {
+    padding: 15px 15px 0 15px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: var(--box-shadow);
+
+}
+
+.dark.addServerModalHeader {
+    padding: 15px 15px 0 15px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    --black-shadow: rgba(0, 0, 0, 0.5);
+    --box-shadow: 2px 2px 5px var(--black-shadow);
+    box-shadow: var(--box-shadow);
+    background-color: var(--dark-login-form-background);
+}
+
+.addServerModalHeader h1 {
+    text-align: center;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.addServerModalHeader div {
+    text-align: center;
+    font-size: 16px;
+    width: 90%;
+    color: #9a9494;
+}
+
+.addServerModalBody {
+    border: none;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 200px;
+}
+.inviteFriendsModalBody{
+    border: none;
+    margin-top: -13px;
+    /*margin-bottom: 16px;*/
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 380px;
+}
+
+.dark.inviteFriendsModalBody{
+    border: none;
+    margin-top: -13px;
+    /*margin-bottom: 16px;*/
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 380px;
+    background-color: var(--dark-login-form-background);
+}
+
+.addServerModalBodyContent {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.addServerModalBodyFormHeader {
+    margin: 24px 0px 8px 0px;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgb(102, 100, 100);
+}
+
+.addServerModalBodyFormContent {
+    border: none;
+    background-color: #f3efef;
+    border-radius: 6px;
+    width: 100%;
+    height: 45px;
+}
+
+.addServerModalFooter {
+    border: none;
+    background-color: #f3efef;
+}
+
+.addServerModalFooterButton {
+    background-color: #516eda;
+    width: 22%;
+}

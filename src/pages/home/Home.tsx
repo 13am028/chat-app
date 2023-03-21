@@ -4,30 +4,27 @@ import Nav from "../../components/nav/Nav";
 import FriendStatusNav from "../../components/nav/FriendStatusNav";
 import DirectMessageNav from "../../components/nav/DirectMessageNav";
 import FriendStatus from "../../components/icons/FriendStatus";
-import {auth, db, getFriends} from "../../firebase";
-import {doc, onSnapshot} from "firebase/firestore";
-const Home = () => {
+import {getFriends} from "../../firebase";
+
+const Home = (props: { theme: any}) => {
+    const { theme } = props;
 
     /* Disable default context menu */
-    const handleContextMenu = (event: any) => {
+    const handleContextMenu = (event) => {
         event.preventDefault();
     };
 
-
-    const [friends, setFriends] = useState<any>(null);
+    const [friends, setFriends] = useState(null);
     useEffect(() => {
-        // @ts-ignore
-        const unsub = onSnapshot(doc(db, "friends", auth.currentUser.uid), (async () => {
+        (async () => {
             const users = await getFriends();
             setFriends(users);
-        }))
-        return unsub
+        })();
     }, []);
 
-
-    let friendList: any =[];
+    let friendList=[];
     if (friends) {
-        friends.forEach((user: any) => {
+        friends.forEach((user) => {
             friendList.push(<FriendStatus key={user.uid} displayName={user.displayName} uid={user.uid}/>)
         })
     }
@@ -35,7 +32,7 @@ const Home = () => {
     return (
         <div onContextMenu={handleContextMenu} className='navbar-group'>
             <div className='navbar-left'>
-                <Nav />
+                <Nav theme={theme}/>
                 <DirectMessageNav />
             </div>
             <div className='navbar-right'>

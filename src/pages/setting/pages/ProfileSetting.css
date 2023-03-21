@@ -4,6 +4,86 @@
     text-align: left;
     width: 650px;
 }
+.profile-img-wrapper {
+    position: relative;
+}
+
+
+.user-info {
+    background-color: var(--setting-profile-card-bg);
+    height: 72px;
+}
+
+
+
+.profile-pic-bg{
+    background-color: var(--setting-profile-card-bg);
+    display: flex;
+    align-items: center;
+
+}
+.profilepic {
+    margin-top: -25px;
+    margin-left: 15px;
+    position: relative;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: var(--setting-profile-card-bg);
+    border: 7px solid var(--setting-profile-card-bg);
+}
+
+.profilepic:hover .profilepic__content {
+    opacity: 1;
+}
+
+.profilepic:hover .profilepic__img {
+    opacity: .5;
+}
+
+.profilepic__img {
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity .2s ease-in-out;
+}
+
+.profilepic__content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.5); /* add this line to set the background color */
+}
+
+.profilepic__icon {
+    color: white;
+    padding-bottom: 8px;
+}
+
+.fas {
+    font-size: 20px;
+}
+
+.profilepic__text {
+    text-transform: uppercase;
+    font-size: 10px;
+    width: 70%;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+
 
 .profile-banner {
     margin-top: 10px;
@@ -13,14 +93,14 @@
     height: 110px;
 }
 
-.profile-img {
-    width: 91px;
-    height: 91px;
-    border-radius: 50px;
-    margin-left: 25px;
-    margin-top: -85px;
-    position: sticky;
-}
+/*.profile-img {*/
+/*    width: 91px;*/
+/*    height: 91px;*/
+/*    border-radius: 50px;*/
+/*    margin-left: 25px;*/
+/*    margin-top: -85px;*/
+/*    position: sticky;*/
+/*}*/
 
 .profile-card {
     background-color: var(--setting-profile-card-bg);
@@ -83,17 +163,16 @@
     text-transform: capitalize;
 }
 
-.user-info {
-    background-color: var(--setting-profile-card-bg);
-    height: 72px;
-}
+
 
 .username-span {
-    font-weight: 600;
-    line-height: 80px;
-    margin-left: 25px;
+    font-weight: 500;
+    margin-top: -15px; /* adjust this value to move the element higher or lower */
+    /*line-height: 200px; !* increase line-height to move the text up *!*/
+    margin-left: 15px; /* decrease margin-left to move the text to the left */
     color: var(--setting-secondary-text-color);
     font-size: larger;
+    flex-grow: 1;
 }
 
 .username-row {
@@ -130,6 +209,7 @@
 .section-title {
     color: var(--setting-primary-text-color);
     font-size: 20px;
+    text-align: left;
 }
 
 .button {
@@ -158,4 +238,108 @@
 hr {
     margin: 5% 5% 5% 0;
     border-color: var(--setting-hr-color);
+}
+
+/* Modal styles */
+
+.modal-title{
+    color: black;
+    font-weight: bolder;
+    font-size: 20px;
+}
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: calc(50% - 30px); /* 50% width of the parent minus the margin */
+    height: 200px;
+    background-color: #fff;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin: 20px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.modal-label {
+    margin-top: 10px;
+    text-align: center;
+}
+
+/*To make it borderless between header and body*/
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-body {
+    border-top: none;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+/**/
+
+.modal-icon {
+    width: 130px;
+    height: 160px;
+    border-radius: 50%;
+    background-color: #5f5f5f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-upload {
+    margin-right: 10px;
+}
+
+.modal-view {
+    margin-left: 10px;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.modal-btn {
+    background-color: #5f5f5f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.modal-btn:hover {
+    background-color: #424242;
+}
+
+.modal-input {
+    display: none;
+}
+
+.modal-label {
+    text-align: center;
+    font-weight: bold;
+    color: #444444;
+    margin-top: 8px;
+    cursor: pointer;
+}
+.modal-box:hover .modal-label {
+    color: black;
+
 }
