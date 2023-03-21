@@ -37,7 +37,7 @@ function App() {
                 <Routes>
                     <Route path="/">
                         <Route path="logout" element={<Logout />} />
-                        <Route path="home" element={<Home />} />
+                        <Route path="home" element={<Home theme={theme}/>} />
                         <Route path="dm" element={<DMPage />} />
                         <Route path="setting" element={<UserSettingPage />} />
                         <Route path="login" element={<Login theme={theme} toggleTheme={toggleTheme} />} />

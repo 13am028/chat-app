@@ -1,34 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import GroupIcon from "../icons/GroupIcon";
-import AddServerIcon from '../icons/AddServerIcon';
+import AddServerIcon from '../AddServerComponents/AddServerIcon';
 import styles from './nav.module.css'
 import { useNavigate } from "react-router-dom";
+import { getGroups } from '../../firebase';
 
-const Nav = () => {
+const Nav = (props: { theme: any} ) => {
+    const { theme } = props;
+    const [groups, setGroups] = useState<{ id: string, groupPic: string }[]>([]);
+
     let navigate = useNavigate();
     const routeChange = () => {
         let path = '/home';
         navigate(path);
     }
 
+    useEffect(() => {
+        const fetchGroups = async () => {
+
+            const userGroups = await getGroups();
+            // userGroups potentially return as 'undefined' type so we need add || [] so that if it undefined we will use defailt value of []
+            setGroups(userGroups || []);
+
+        };
+        fetchGroups();
+    }, [groups]);
+
     return (
         <div className={styles.navLeft}>
-            <div className={styles.nav_head}>
-                <GroupIcon onClick={routeChange} />
+            <div className={styles.nav_head} onClick={routeChange}>
+                <GroupIcon theme={theme}/>
             </div>
             <div className={styles.nav_content}>
-                <GroupIcon />
-                <GroupIcon />
-                <GroupIcon />
-                <GroupIcon />
-                <GroupIcon />
-                <GroupIcon />
-                <GroupIcon />
-                <GroupIcon />
-                <GroupIcon />
-                <GroupIcon />
-                <GroupIcon />
-                <GroupIcon />
+                {
+                    groups.map((group) => (
+                        <GroupIcon  theme={theme} key={group.id} imageUrl={group.groupPic} />
+                    ))}
                 <AddServerIcon />
             </div>
         </div>

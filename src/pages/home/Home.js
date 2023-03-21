@@ -6,7 +6,8 @@ import DirectMessageNav from "../../components/nav/DirectMessageNav";
 import FriendStatus from "../../components/icons/FriendStatus";
 import {getFriends} from "../../firebase";
 
-const Home = () => {
+const Home = (props: { theme: any}) => {
+    const { theme } = props;
 
     /* Disable default context menu */
     const handleContextMenu = (event) => {
@@ -31,7 +32,7 @@ const Home = () => {
     return (
         <div onContextMenu={handleContextMenu} className='navbar-group'>
             <div className='navbar-left'>
-                <Nav />
+                <Nav theme={theme}/>
                 <DirectMessageNav />
             </div>
             <div className='navbar-right'>
