@@ -1,9 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
+// @ts-ignore
 import styles from './icons.module.css';
 import { CloseButton, Modal } from 'react-bootstrap';
 import SearchIcon from '@mui/icons-material/Search';
 
-const GroupIcon = (props: { imageUrl?: string }) => {
+const GroupIcon = ({ imageUrl }: { imageUrl?: string }) => {
     const [showMenu, setShowMenu] = useState(false);
     const [menuPosition, setMenuPosition] = useState({x: 0, y: 0});
     const menuRef = useRef(null);
