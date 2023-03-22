@@ -4,17 +4,75 @@
     text-align: left;
     width: 650px;
 }
-.profile-img-wrapper {
-    position: relative;
+
+.profile-banner {
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    background-color: var(--setting-main-color);
+    height: 110px;
 }
 
-
-.user-info {
+.profile-card {
     background-color: var(--setting-profile-card-bg);
-    height: 72px;
+    border-radius: 0 0 8px 8px;
+    padding: 16px;
 }
 
+.profile-card-field-list {
+    background-color: var(--setting-primary-color);
+    height: 100%;
+    border-radius: 8px 8px 8px 8px;
+    padding: 16px;
+}
 
+.field {
+    height: 28%;
+}
+
+.field-spacer {
+    margin-top: 12px;
+}
+
+.field h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--setting-secondary-text-color);
+    margin: 0;
+}
+
+.field span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--setting-primary-text-color);
+}
+
+.profile-description {
+    align-self: center;
+    width: 90%;
+    border-radius: 10px;
+    margin: 8px 16px 16px 16px;
+    padding: 15px;
+    font-size: 14px;
+    background-color: #3f4249;
+    color: var(--setting-primary-text-color);
+    resize: none;
+}
+
+.profile h1 {
+    color: var(--setting-primary-text-color);
+}
+
+.profile-content h3 {
+    color: var(--setting-primary-text-color);
+    text-transform: initial;
+}
+
+.profile label {
+    padding-top: 10px;
+    font-size: 14px;
+    text-transform: capitalize;
+}
 
 .profile-pic-bg{
     background-color: var(--setting-profile-card-bg);
@@ -82,90 +140,6 @@
     cursor: pointer;
 }
 
-
-
-
-.profile-banner {
-    margin-top: 10px;
-    width: 100%;
-    border-radius: 8px 8px 0 0;
-    background-color: var(--setting-main-color);
-    height: 110px;
-}
-
-/*.profile-img {*/
-/*    width: 91px;*/
-/*    height: 91px;*/
-/*    border-radius: 50px;*/
-/*    margin-left: 25px;*/
-/*    margin-top: -85px;*/
-/*    position: sticky;*/
-/*}*/
-
-.profile-card {
-    background-color: var(--setting-profile-card-bg);
-    height: 225px;
-    border-radius: 0 0 8px 8px;
-    padding: 16px;
-}
-
-.profile-card-field-list {
-    background-color: var(--setting-primary-color);
-    height: 100%;
-    border-radius: 8px 8px 8px 8px;
-    padding: 16px;
-}
-
-.field {
-    height: 28%;
-}
-
-.field-spacer {
-    margin-top: 12px;
-}
-
-.field h3 {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--setting-secondary-text-color);
-    margin: 0;
-}
-
-.field span {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--setting-primary-text-color);
-}
-
-.profile-description {
-    align-self: center;
-    width: 90%;
-    border-radius: 10px;
-    margin: 8px 16px 16px 16px;
-    padding: 15px;
-    font-size: 14px;
-    background-color: #3f4249;
-    color: var(--setting-primary-text-color);
-    resize: none;
-}
-
-.profile h1 {
-    color: var(--setting-primary-text-color);
-}
-
-.profile-content h3 {
-    color: var(--setting-primary-text-color);
-    text-transform: initial;
-}
-
-.profile label {
-    padding-top: 10px;
-    font-size: 14px;
-    text-transform: capitalize;
-}
-
-
-
 .username-span {
     font-weight: 500;
     margin-top: -15px; /* adjust this value to move the element higher or lower */
@@ -210,7 +184,6 @@
 .section-title {
     color: var(--setting-primary-text-color);
     font-size: 20px;
-    text-align: left;
 }
 
 .button {

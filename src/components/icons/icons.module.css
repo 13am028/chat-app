@@ -8,57 +8,12 @@
     display: inline-block;
     margin: 5px 5px 0 5px;
     cursor: pointer;
-    transition: border-radius 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 .groupIcon:hover {
     border-radius: 30%;
 }
-
-.addServerModalTitle{
-    text-align: left;
-    font-size: 24px;
-    font-weight: 800;
-    margin-bottom: 30px;
-}
-
-.searchBar {
-    display: flex;
-    align-items: center;
-    background-color: whitesmoke;
-    padding: 5px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    height: 50px;
-    overflow: hidden;
-    width: 100%;
-}
-
-.dark.searchBar {
-    display: flex;
-    align-items: center;
-    background-color: red;
-    padding: 5px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    height: 50px;
-    overflow: hidden;
-    width: 100%;
-}
-
-.searchBar input[type="text"] {
-    border: none;
-    outline: none;
-    background-color: transparent;
-    flex: 1;
-    font-size: 17px;
-    padding: 0 5px;
-}
-
-.searchBar input[type="text"]::placeholder {
-    color: #aaa;
-}
-
 
 .customContextMenu {
     padding: 6px;
@@ -104,79 +59,25 @@
 }
 
 
+
+
 .friendIcon {
-    height: 45px;
-    width: 45px;
-    background-color: black;
+    height: 7vh;
+    width: 7vh;
+    background-color: white;
     border-radius: 50%;
-    display: inline-block;
-    margin: 5px;
+    margin-right: 10px;
+    transition: all 0.2s ease-in-out;
 }
 
-.friendIconAddServer {
-    position: absolute;
-    height: 45px;
-    width: 45px;
-    background-color: whitesmoke;
-    border-radius: 50%;
-    display: inline-block;
-    margin: 0 0 0 0;
-}
 
-.dark.friendIconAddServer {
-    position: absolute;
-    height: 45px;
-    width: 45px;
-    background-color: #444444;
-    border-radius: 50%;
-    display: inline-block;
-    margin: 0 0 0 0;
-}
 
-.friend {
-    display: grid;
-    grid-template-columns: 70px auto;
-    text-align: left;
-    margin: 10px;
-}
-
-.inviteButton {
-    color: black;
-    border-color: #00d400;
-    background-color: transparent;
-    border-radius: 5px;
-    padding: 5px 15px;
-    margin-top: 0px;
-    margin-left: auto; /* Move button to the right side */
-}
-
-.dark.inviteButton {
-    color: black;
-    border-color: #00d400;
-    border-radius: 5px;
-    padding: 7px 14px;
-    margin-left: auto; /* Move button to the right side */
-}
-
-.inviteButton:hover {
-    cursor: pointer;
-    color: white;
-    border-color: transparent;
-    background-color: #005000; /* Change background color on hover */
+p {
+    margin: auto 0 auto 0;
 }
 
 .name {
     font-weight: bold;
-    margin-left: 30px;
-    margin-top: 15px;
-    color: black;
-}
-
-.inviteFriendsName{
-    font-weight: bold;
-    margin-left: 50px;
-    margin-top: 10px;
-    color: black;
 }
 
 .myIcon {
@@ -187,29 +88,25 @@
     cursor: pointer;
     padding: 7px;
     margin: 3px;
+    transition: all 0.2s ease-in-out;
 }
 
-/* add server */
-
-.addServerIcon {
-    height: 7vh;
-    width: 7vh;
-    background-color: #9d37a873;
-    border-radius: 50%;
-    margin: 5px 5px 0 5px;
-    cursor: pointer;
-    transition: border-radius 0.2s ease-in-out;
-    border-color: transparent;
-}
-
-.addServerIcon:hover {
-    background-color: #1d68d0b2;
+.myIcon:hover {
     border-radius: 30%;
 }
 
-.addServerIconImage {
-    margin-top: 15px;
+.myIcon::after {
+    content: none;
 }
+
+.addServerModalTitle{
+    text-align: left;
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 30px;
+    color: black;
+}
+
 
 .addServerModalHeader {
     padding: 15px 15px 0 15px;
@@ -245,6 +142,13 @@
     width: 90%;
     color: #9a9494;
 }
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
 
 .addServerModalBody {
     border: none;
@@ -254,23 +158,81 @@
     padding-right: 16px;
     height: 200px;
 }
-.inviteFriendsModalBody{
-    border: none;
-    margin-top: -13px;
-    /*margin-bottom: 16px;*/
-    padding-left: 16px;
-    padding-right: 16px;
-    height: 380px;
+
+.inviteFriendsModalBody {
+    display: flex;
+    flex-direction: column;
+    height: 360px;
 }
 
-.dark.inviteFriendsModalBody{
-    border: none;
-    margin-top: -13px;
-    /*margin-bottom: 16px;*/
-    padding-left: 16px;
-    padding-right: 16px;
-    height: 380px;
-    background-color: var(--dark-login-form-background);
+.serverFriend {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.friendIconAddServer {
+    height: 45px;
+    width: 45px;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 0 0 20px;
+}
+
+.serverFriendName {
+    flex: 1;
+    overflow: hidden;
+}
+
+.inviteFriendsName {
+    margin: 0 0 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: black;
+    font-weight: bold;
+
+}
+
+.inviteButton {
+    background-color: transparent; /* replace with your button style */
+    border-color: #00d400;
+    padding: 10px;
+    margin-left: 300px;
+    color:black;
+    border-radius: 5px;
+    align-self: flex-end;
+}
+
+.inviteButton:hover {
+    cursor: pointer;
+    color: white;
+    border-color: transparent;
+    background-color: #005000; /* Change background color on hover */
+}
+
+.friend {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.friend:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.friend:hover .friendIcon {
+    border-radius: 30%;
+}
+
+.friendName {
+    padding: 10px;
+    flex-grow: 1;
 }
 
 .addServerModalBodyContent {
@@ -304,3 +266,45 @@
     background-color: #516eda;
     width: 22%;
 }
+
+
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    background-color: whitesmoke;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    height: 50px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.dark.searchBar {
+    display: flex;
+    align-items: center;
+    background-color: red;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    height: 50px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.searchBar input[type="text"] {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    flex: 1;
+    font-size: 17px;
+    padding: 0 5px;
+}
+
+.searchBar input[type="text"]::placeholder {
+    color: #aaa;
+}
+
+
+

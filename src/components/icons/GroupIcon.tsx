@@ -3,8 +3,7 @@ import styles from './icons.module.css';
 import { CloseButton, Modal } from 'react-bootstrap';
 import SearchIcon from '@mui/icons-material/Search';
 
-const GroupIcon = (props: { theme: any, imageUrl?: string }) => {
-    const { theme } = props;
+const GroupIcon = (props: { imageUrl?: string }) => {
     const [showMenu, setShowMenu] = useState(false);
     const [menuPosition, setMenuPosition] = useState({x: 0, y: 0});
     const menuRef = useRef(null);
@@ -32,7 +31,8 @@ const GroupIcon = (props: { theme: any, imageUrl?: string }) => {
         setShowModal(false);
     };
 
-    const items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    const items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
 
     useEffect(() => {
         document.addEventListener('click', handleClick);
@@ -41,6 +41,7 @@ const GroupIcon = (props: { theme: any, imageUrl?: string }) => {
         };
     }, []);
 
+    // @ts-ignore
     return (
         <div className={styles.groupIcon} onContextMenu={handleContextMenu}>
             {showMenu && (
@@ -53,37 +54,37 @@ const GroupIcon = (props: { theme: any, imageUrl?: string }) => {
                         Invite people
                     </div>
                     <hr
-                        className={`${styles.menuOptionLine} ${
-                            theme === 'dark' ? styles.dark : ''
-                        }`}
+                        className={styles.menuOptionLine}
                     />
                     <div className={styles.menuOptionLeave}>Leave server</div>
                 </div>
             )}
             <Modal show={showModal} onHide={handleClose} centered>
-                <Modal.Header className={`${styles.addServerModalHeader} ${theme === 'dark' ? 'dark' : ''}`}>
+                <Modal.Header className={styles.addServerModalHeader}>
                     <CloseButton onClick={handleClose} />
                     <h1 className={styles.addServerModalTitle}>Invite Friends</h1>
-                    <div className={`${styles.searchBar} ${theme === 'dark' ? 'dark' : ''}`}>
+                    <div className={styles.searchBar}>
                         <input type="text" placeholder="Search for friends"  />
                         <SearchIcon />
                     </div>
                 </Modal.Header>
-                <Modal.Body className={`${styles.inviteFriendsModalBody} ${theme === 'dark' ? 'dark' : ''}`}>
-                    <div style={{ height: '103%', overflowY: 'auto', paddingTop: '-10px' }}>
+               <Modal.Body className={styles.inviteFriendsModalBody}>
+                    <div style={{  height: '100%', overflowY: 'hidden', overflow: 'auto' }}>
                         {items.map((item, index) => (
-                            <div className={`${styles.friend} ${theme === 'dark' ? 'dark' : ''}`} key={index} style={{ position: 'relative' }}>
-                                <div className={`${styles.friendIconAddServer} ${theme === 'dark' ? 'dark' : ''}`}></div>
-                                <div>
-                                    <p className={`${styles.inviteFriendsName} ${theme === 'dark' ? 'dark' : ''}`}>Hello</p>
+                            <div className={styles.serverFriend} key={index} style={{ position: 'relative' }}>
+                                <div className={styles.friendIconAddServer}></div>
+                                <div className={styles.serverFriendName}>
+                                    <p className={styles.inviteFriendsName}>Hello</p>
                                 </div>
-                                <button type="submit" className={`${styles.inviteButton} ${theme === 'dark' ? 'dark' : ''}`}>
+                                <button type="submit" className={styles.inviteButton}>
                                     Invite
                                 </button>
                             </div>
                         ))}
                     </div>
+
                 </Modal.Body>
+
 
             </Modal>
         </div>

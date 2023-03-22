@@ -5,38 +5,42 @@ import styles from './nav.module.css'
 import { useNavigate } from "react-router-dom";
 import { getGroups } from '../../firebase';
 
-const Nav = (props: { theme: any} ) => {
-    const { theme } = props;
-    const [groups, setGroups] = useState<{ id: string, groupPic: string }[]>([]);
-
+const Nav = () => {
+    
     let navigate = useNavigate();
     const routeChange = () => {
         let path = '/home';
         navigate(path);
     }
 
+    const [groups, setGroups] = useState<any>([]);
     useEffect(() => {
-        const fetchGroups = async () => {
-
+        (async () => {
             const userGroups = await getGroups();
-            // userGroups potentially return as 'undefined' type so we need add || [] so that if it undefined we will use defailt value of []
-            setGroups(userGroups || []);
+            setGroups(userGroups);
+        })();
+    }, []);
 
-        };
-        fetchGroups();
-    }, [groups]);
+    const handleNewGroupRender = async () => {
+        const userGroups = await getGroups();
+        setGroups(userGroups);
+    }
+
+    let groupList: any = [];
+    if (groups) {
+        groups.forEach((group: any) => {
+            groupList.push(<GroupIcon key={group.id} imageUrl={group.groupPic} />)
+        });
+    }
 
     return (
         <div className={styles.navLeft}>
             <div className={styles.nav_head} onClick={routeChange}>
-                <GroupIcon theme={theme}/>
+                <GroupIcon />
             </div>
             <div className={styles.nav_content}>
-                {
-                    groups.map((group) => (
-                        <GroupIcon  theme={theme} key={group.id} imageUrl={group.groupPic} />
-                    ))}
-                <AddServerIcon />
+                {groupList}
+                <AddServerIcon onGroupCreate={handleNewGroupRender}/>
             </div>
         </div>
     );

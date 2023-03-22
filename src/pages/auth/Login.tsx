@@ -9,7 +9,7 @@ import {auth, logInWithEmailAndPassword, signInWithGoogle} from "../../firebase"
 import "./Login.css"
 
 
-const Login = (props) => {
+const Login = (props: any) => {
     const {theme} = props;
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
@@ -56,16 +56,9 @@ const Login = (props) => {
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
         const [showPassword, setShowPassword] = useState(false);
-        const handleSubmit = async (e) => {
+        const handleSubmit = async (e: any) => {
             e.preventDefault();
-            const userCredential = await logInWithEmailAndPassword(email, password);
-            // Signed in
-            if (userCredential) {
-                alert("Logged in successfully");
-                navigate("/home");
-            } else {
-                navigate("/login");
-            }
+            await logInWithEmailAndPassword(email, password);
         };
 
         const loginFormClassNames = `login-form ${theme === 'dark' ? 'dark' : ''}`;

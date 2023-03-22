@@ -9,7 +9,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 
-const SignUp = (props) => {
+const SignUp = (props: any) => {
     const {theme} = props;
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
@@ -45,12 +45,12 @@ const SignUp = (props) => {
             color: ''
         };
 
-        const isValidPassword = (password) => {
+        const isValidPassword = (password: string) => {
             const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+~`|}{\[\]\\:';"<>,.?/]).{8,}$/;
             return passwordPattern.test(password);
         }
 
-        const isEmailValid = (email) => {
+        const isEmailValid = (email: string) => {
             const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i;
             return emailPattern.test(email);
         };
@@ -63,7 +63,7 @@ const SignUp = (props) => {
             />
         );
 
-        const register = async (e) => {
+        const register = async (e: any) => {
             e.preventDefault();
             if (!displayName || !username || !email || !password) {
                 alert("Please fill in all fields.");
@@ -83,17 +83,14 @@ const SignUp = (props) => {
             }
             // Check that the checkbox is checked
             const checkbox = document.getElementById("terms");
-            if (!checkbox.checked) {
+            // @ts-ignore
+            if (checkbox && !checkbox.checked) {
                 alert("Please agree to the terms of service and privacy policy.");
                 return;
             }
             try {
-                const userCredential = await registerWithEmailAndPassword(username, displayName, email, password);
-                if (userCredential) {
-                    alert("User created successfully!");
-                    navigate("/login");
-                }
-            } catch (error) {
+                await registerWithEmailAndPassword(username, displayName, email, password);
+            } catch (error: any) {
                 alert("Error creating user: " + error.message);
             }
         };
@@ -112,35 +109,35 @@ const SignUp = (props) => {
                             label: "Display Name",
                             id: "displayName",
                             value: displayName,
-                            onChange: (event) => setDisplayName(event.target.value),
+                            onChange: (event: any) => setDisplayName(event.target.value),
                             type: "text"
                         },
                         {
                             label: "Username",
                             id: "username",
                             value: username,
-                            onChange: (event) => setUsername(event.target.value),
+                            onChange: (event: any) => setUsername(event.target.value),
                             type: "text"
                         },
                         {
                             label: "Email",
                             id: "email",
                             value: email,
-                            onChange: (event) => setEmail(event.target.value),
+                            onChange: (event: any) => setEmail(event.target.value),
                             type: "email"
                         },
                         {
                             label: "Password",
                             id: "password",
                             value: password,
-                            onChange: (event) => setPassword(event.target.value),
+                            onChange: (event: any) => setPassword(event.target.value),
                             type: "password"
                         },
                         {
                             label: "Confirm Password",
                             id: "confirm-password",
                             value: cPassword,
-                            onChange: (event) => setCPassword(event.target.value),
+                            onChange: (event: any) => setCPassword(event.target.value),
                             type: "password"
                         },
                     ].map((inputProps, index) => (

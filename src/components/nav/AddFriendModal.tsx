@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import {Modal} from 'react-bootstrap';
-import {addFriend} from '../../firebase';
-
+import { Modal } from 'react-bootstrap';
+import { addFriend } from '../../firebase';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 const AddFriendModal = () => {
     const [show, setShow] = useState(false);
     const [username, setUsername] = useState('');
@@ -13,11 +13,11 @@ const AddFriendModal = () => {
     };
     const handleShow = () => setShow(true);
 
-    const handleUsernameChange = (event) => {
+    const handleUsernameChange = (event: any) => {
         setUsername(event.target.value);
     };
 
-    const alertSuccessfully = (username) => {
+    const alertSuccessfully = (username: string) => {
         alert(`${username} has been successfully added as your friend.`);
     };
 
@@ -25,29 +25,41 @@ const AddFriendModal = () => {
         alert(`Username not found.`);
     };
 
-
+    const alertAlreadyFriends = (username: string) => {
+        alert(`You are already friends with ${username}.`);
+    }
     const handleAddFriend = async () => {
         // Check that the username is not empty
         if (username.trim() === '') {
             return;
         }
-
-        await addFriend(username)
+        const result = await addFriend(username)
+        if (result === "success") {
+            alertSuccessfully(username);
+        } else if (result === "not_found") {
+            alertNotFound()
+        } else {
+            if (result === "already_friends") {
+                alertAlreadyFriends(username)
+            }
+        }
+        handleClose()
     };
 
 
     return (
-        <div style={{display: 'inline-block'}}>
+        <div style={{ display: 'inline-block' }}>
             <Button variant="primary" onClick={handleShow} size="sm">
-                Add Friend
+                <PersonAddAlt1Icon />
             </Button>
 
+
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton style={{backgroundColor: 'var(--theme-primary)'}}>
+                <Modal.Header closeButton style={{ backgroundColor: 'var(--theme-primary)' }}>
                     <Modal.Title>Add Friend</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <input placeholder="username" type="text" value={username} onChange={handleUsernameChange}/>
+                    <input placeholder="username" type="text" value={username} onChange={handleUsernameChange} />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>

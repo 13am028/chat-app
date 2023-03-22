@@ -12,11 +12,13 @@ import {
 import {
     getFirestore,
     query,
+    addDoc,
     getDoc,
     getDocs,
     collection,
     where,
     setDoc, doc,
+    serverTimestamp,
 } from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -56,23 +58,24 @@ const signInWithGoogle = async () => {
             await setDoc(doc(db, 'friends', user.uid), {
                 friends: []
             })
+            await setDoc(doc(db, 'userChats', user.uid), {});
         }
-    } catch (err) {
+    } catch (err: any) {
         console.error(err);
         alert(err.message);
     }
 };
 
-const logInWithEmailAndPassword = async (email, password) => {
+const logInWithEmailAndPassword = async (email: string, password: string) => {
     try {
         await signInWithEmailAndPassword(auth, email, password);
-    } catch (err) {
+    } catch (err: any) {
         console.error(err);
         alert(err.message);
     }
 };
 
-const registerWithEmailAndPassword = async (username, displayName, email, password) => {
+const registerWithEmailAndPassword = async (username: string, displayName: string, email: string, password: string) => {
     try {
         const querySnapshot = await getDocs(collection(db, "users"));
         querySnapshot.forEach((doc) => {
@@ -92,17 +95,18 @@ const registerWithEmailAndPassword = async (username, displayName, email, passwo
         await setDoc(doc(db, 'friends', user.uid), {
             friends: []
         })
-    } catch (err) {
+        await setDoc(doc(db, 'userChats', user.uid), {});
+    } catch (err: any) {
         console.error(err);
         alert(err.message);
     }
 };
 
-const sendPasswordReset = async (email) => {
+const sendPasswordReset = async (email: string) => {
     try {
         await sendPasswordResetEmail(auth, email);
         alert("Password reset link sent!");
-    } catch (err) {
+    } catch (err: any) {
         console.error(err);
         alert(err.message);
     }
@@ -111,7 +115,7 @@ const sendPasswordReset = async (email) => {
 const logout = async () => {
     try {
         await signOut(auth);
-    } catch (err) {
+    } catch (err: any) {
         console.error(err);
         alert(err.message)
     }
@@ -121,38 +125,123 @@ const logout = async () => {
     handle the case where username is not found properly (in toADdUID === "" part)
     check if users are already friends
  */
-const addFriend = async (toAddUsername) => {
-    const q = query(collection(db, "users"), where("username", "==",toAddUsername));
+const addFriend = async (toAddUsername: string) => {
+    const q = query(collection(db, "users"), where("username", "==", toAddUsername));
     const docs = await getDocs(q);
-    let toAddUID = ""
+    let toAddUID = "";
     docs.forEach((doc) => {
         if (doc.data().username === toAddUsername) {
-            toAddUID = doc.data().uid
+            toAddUID = doc.data().uid;
         }
     });
-    if (toAddUID === "") return
 
-    const myUID = auth.currentUser.uid
-    let myFriends = (await getDoc(doc(db, 'friends', myUID))).data().friends
-    myFriends.push(toAddUID)
+    if (toAddUID === "" || !auth.currentUser) {
+        return "not_found";
+    }
+
+    const myUID = auth.currentUser.uid;
+    let friendsData = (await getDoc(doc(db, 'friends', myUID))).data();
+    let toAddFriendsData = (await getDoc(doc(db, 'friends', toAddUID))).data();
+
+    if (!friendsData || !toAddFriendsData) {
+        return "not_found";
+    }
+
+    let myFriends = friendsData.friends;
+    if (myFriends.includes(toAddUID)) {
+        return "already_friends";
+    }
+
+    myFriends.push(toAddUID);
     await setDoc(doc(db, 'friends', myUID), {
         friends: myFriends
-    })
-    let toAddFriends = (await getDoc(doc(db, 'friends', toAddUID))).data().friends
-    toAddFriends.push(myUID)
+    });
+
+    let toAddFriends = toAddFriendsData.friends;
+    toAddFriends.push(myUID);
     await setDoc(doc(db, 'friends', toAddUID), {
         friends: toAddFriends
-    })
+    });
+
+    return "success";
 }
 
 const getFriends = async () => {
-    const friendUIDs = (await getDoc(doc(db, 'friends', auth.currentUser.uid))).data().friends
+    if (!auth.currentUser) return
+    const friends: any = (await getDoc(doc(db, 'friends', auth.currentUser.uid))).data()
+    const friendUIDs = friends.friends
     let friendsData = []
     for (const uid of friendUIDs) {
         let temp = (await getDoc(doc(db, 'users', uid))).data()
         friendsData.push(temp)
     }
     return friendsData
+}
+
+const createGroup = async (groupName: string) => {
+    try {
+
+        if (!auth.currentUser) return
+
+        const groupRef = doc(collection(db, "groups"));
+        const groupUid = groupRef.id;
+        const myUID = auth.currentUser.uid
+
+        // Group Document
+        await setDoc(groupRef, {
+            groupId: groupUid,
+            groupName,
+            groupPic: "some image url",
+            adminUID: myUID,
+            users: {
+                [myUID]: true,
+                role: 'admin',
+                profilePic: "some image url",
+            },
+        });
+
+        // Message subcollection under group document
+        const messagesCollection = collection(groupRef, "messages");
+
+        const initialMessage = {
+            text: "Welcome to the group!",
+            senderId: myUID,
+            timestamp: serverTimestamp(),
+        };
+
+        await addDoc(messagesCollection, initialMessage);
+
+
+    } catch (error: any) {
+
+        console.error('Error creating group:', error);
+        alert(error.message);
+    }
+}
+
+const getGroups = async () => {
+    try {
+        if (!auth.currentUser) return
+        const myUID = auth.currentUser.uid
+
+        const groupsReference = collection(db, 'groups');
+        const userGroupsQuery = query(groupsReference, where(`users.${myUID}`, "==", true));
+
+        // Execute the query and retrieve the documents
+        const querySnapshot = await getDocs(userGroupsQuery);
+
+        // Iterate through the documents and extract group data
+        const groups: Array<{id: string, groupPic: string}> = [];
+        querySnapshot.forEach((doc) => {
+            // Not good particle to retreive everything in the group
+            groups.push({ id: doc.id, groupPic: doc.data().groupPic});
+        });
+
+        return groups;
+
+    } catch (error: any) {
+        console.error(error);
+    }
 }
 
 export {
@@ -164,5 +253,7 @@ export {
     sendPasswordReset,
     logout,
     addFriend,
-    getFriends
+    getFriends,
+    createGroup,
+    getGroups,
 };
