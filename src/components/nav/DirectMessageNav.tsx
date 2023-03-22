@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import styles from "../icons/icons.module.css";
-import {doc, onSnapshot} from "firebase/firestore";
+import {doc, onSnapshot, Timestamp} from "firebase/firestore";
 import {AuthContext} from "../context/AuthContext";
 import {db} from "../../firebase";
 import {ChatContext} from "../context/ChatContext";
@@ -17,6 +17,7 @@ const DirectMessageNav = () => {
         lastMessage: {
             message: string | null;
         }
+        date: Timestamp;
     }
 
     const {currentUser} = useContext(AuthContext)
@@ -28,16 +29,16 @@ const DirectMessageNav = () => {
         const getChats = () => {
             if (currentUser?.uid) {
                 const unsub = onSnapshot(doc(db, 'userChats', currentUser.uid), (doc) => {
-                    // @ts-ignore
-                    setChats(doc.data());
+                    const chatsData = doc.data();
+                    const chatsArray = chatsData ? Object.values(chatsData) : [];
+                    const sortedChats = chatsArray.sort((a, b) => b.date - a.date);
+                    setChats(sortedChats);
                 });
                 return () => unsub();
             }
         };
         currentUser?.uid && getChats()
     }, [currentUser?.uid]);
-
-    //console.log(Object.entries(chats))
 
     const handleOnSelect = (u: any) => {
         dispatch({type: "CHANGE_USER", payload: u})
