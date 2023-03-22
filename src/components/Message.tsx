@@ -6,7 +6,6 @@ import {AuthContext} from "./context/AuthContext";
 function Message(props: any) {
     const {currentUser} = useContext(AuthContext);
     const ref = useRef<HTMLDivElement>(null);
-
     useEffect(() => {
         ref.current?.scrollIntoView({behavior: 'smooth'});
     }, [props.messages]);
