@@ -33,7 +33,6 @@ function MessageTextField(props: any) {
             },
             [data.chatId + ".date"]: serverTimestamp(),
         });
-
         await updateDoc(doc(db, "userChats", data.user.uid), {
             [data.chatId + ".lastMessage"]: {
                 message,
