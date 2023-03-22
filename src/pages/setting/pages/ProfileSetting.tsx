@@ -52,7 +52,7 @@ const ProfileSetting = () => {
                         </div>
 
                     </div>
-                    <span className='username-span'>username</span>
+                    <span className='username-span'>{displayName}</span>
                 </div>
                 <Modal show={showModal} onHide={handleCloseModal} centered>
                     <Modal.Header closeButton>
