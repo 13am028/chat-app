@@ -124,10 +124,6 @@ const logout = async () => {
     }
 }
 
-/* TODO:
-    handle the case where username is not found properly (in toADdUID === "" part)
-    check if users are already friends
- */
 const addFriend = async (toAddUsername: string) => {
     const q = query(collection(db, "users"), where("username", "==", toAddUsername));
     const docs = await getDocs(q);
@@ -168,6 +164,61 @@ const addFriend = async (toAddUsername: string) => {
 
     return "success";
 }
+
+const removeFriend = async (toRemoveUsername: string): Promise<string> => {
+    try {
+        const currentUser = auth.currentUser;
+        if (!currentUser) {
+            throw new Error('User not authenticated');
+        }
+
+        const userQuery = query(collection(db, "users"), where("username", "==", toRemoveUsername));
+        const userDocs = await getDocs(userQuery);
+        let toRemoveUID = "";
+        userDocs.forEach((doc) => {
+            if (doc.data().username === toRemoveUsername) {
+                toRemoveUID = doc.data().uid;
+            }
+        });
+
+        if (toRemoveUID === "") {
+            return "not_found";
+        }
+
+        const myUID = currentUser.uid;
+        const myFriendsDoc = await getDoc(doc(db, 'friends', myUID));
+        const myFriendsData = myFriendsDoc.data();
+
+        const toRemoveFriendsDoc = await getDoc(doc(db, 'friends', toRemoveUID));
+        const toRemoveFriendsData = toRemoveFriendsDoc.data();
+
+        if (!myFriendsData || !toRemoveFriendsData) {
+            return "not_found";
+        }
+
+        let myFriends = myFriendsData.friends;
+        if (!myFriends.includes(toRemoveUID)) {
+            return "not_friends";
+        }
+
+        myFriends = myFriends.filter((uid: string) => uid !== toRemoveUID);
+        await setDoc(doc(db, 'friends', myUID), {
+            friends: myFriends
+        });
+
+        let toRemoveFriends = toRemoveFriendsData.friends;
+        toRemoveFriends = toRemoveFriends.filter((uid: string) => uid !== myUID);
+        await setDoc(doc(db, 'friends', toRemoveUID), {
+            friends: toRemoveFriends
+        });
+
+        return "success";
+    } catch (err: any) {
+        console.error(err);
+        return "error";
+    }
+};
+
 
 const getFriends = async () => {
     if (!auth.currentUser) return
@@ -259,4 +310,5 @@ export {
     getFriends,
     createGroup,
     getGroups,
+    removeFriend,
 };
