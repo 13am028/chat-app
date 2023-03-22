@@ -1,4 +1,5 @@
 import React from 'react';
+// @ts-ignore
 import styles from './nav.module.css'
 import AddFriendModal from "./AddFriendModal";
 import AccountDropdownMenu from "../icons/AccountDropdownMenu";

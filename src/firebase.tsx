@@ -121,6 +121,10 @@ const logout = async () => {
     }
 }
 
+/* TODO:
+    handle the case where username is not found properly (in toADdUID === "" part)
+    check if users are already friends
+ */
 const addFriend = async (toAddUsername: string) => {
     const q = query(collection(db, "users"), where("username", "==", toAddUsername));
     const docs = await getDocs(q);
@@ -215,7 +219,6 @@ const removeFriend = async (toRemoveUsername: string): Promise<string> => {
         return "error";
     }
 };
-
 
 const getFriends = async () => {
     if (!auth.currentUser) return

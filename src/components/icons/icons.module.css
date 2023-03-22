@@ -19,7 +19,8 @@
     padding: 6px;
     z-index: 10;
     position: absolute;
-    background-color: rgba(87, 50, 90, 0.632);
+    background-color: var(--theme-primary);
+    /*background-color: rgba(87, 50, 90, 0.632);*/
     border-radius: 10%;
     width: 120px;
     color: rgb(231, 229, 225);
@@ -27,36 +28,49 @@
     font-size: 15px;
 }
 
+.menuOptionLine{
+    color: black
+}
+
+.dark.menuOptionLine{
+    color: white;
+}
+
+.menuOptionInvite{
+    color: #7289da;
+}
+
+.menuOptionInvite:hover {
+    cursor: pointer;
+    color: #ffffff;
+    background-color: var(--button-color);
+    border-radius: 3px;
+}
+
+.menuOptionLeave {
+    color: #ff2c2c;
+}
+
+.menuOptionLeave:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #ff2c2c;
+    border-radius: 3px;
+}
+
+
+
+
 .friendIcon {
     height: 7vh;
     width: 7vh;
     background-color: white;
     border-radius: 50%;
-    display: inline-block;
-    margin: 0 5px 0 5px;
+    margin-right: 10px;
     transition: all 0.2s ease-in-out;
 }
 
-.friend {
-    display: flex;
-    grid-template-columns: 70px auto;
-    text-align: left;
-    padding: 5px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-}
 
-.friend:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-}
-
-.friend:hover .friendIcon {
-    border-radius: 30%;
-}
-
-.friendName {
-    padding: 10px;
-}
 
 p {
     margin: auto 0 auto 0;
@@ -84,4 +98,213 @@ p {
 .myIcon::after {
     content: none;
 }
+
+.addServerModalTitle{
+    text-align: left;
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 30px;
+    color: black;
+}
+
+
+.addServerModalHeader {
+    padding: 15px 15px 0 15px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: var(--box-shadow);
+
+}
+
+.dark.addServerModalHeader {
+    padding: 15px 15px 0 15px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    --black-shadow: rgba(0, 0, 0, 0.5);
+    --box-shadow: 2px 2px 5px var(--black-shadow);
+    box-shadow: var(--box-shadow);
+    background-color: var(--dark-login-form-background);
+}
+
+.addServerModalHeader h1 {
+    text-align: center;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.addServerModalHeader div {
+    text-align: center;
+    font-size: 16px;
+    width: 90%;
+    color: #9a9494;
+}
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+
+.addServerModalBody {
+    border: none;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 200px;
+}
+
+.inviteFriendsModalBody {
+    display: flex;
+    flex-direction: column;
+    height: 360px;
+}
+
+.serverFriend {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.friendIconAddServer {
+    height: 45px;
+    width: 45px;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 0 0 20px;
+}
+
+.serverFriendName {
+    flex: 1;
+    overflow: hidden;
+}
+
+.inviteFriendsName {
+    margin: 0 0 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: black;
+    font-weight: bold;
+
+}
+
+.inviteButton {
+    background-color: transparent; /* replace with your button style */
+    border-color: #00d400;
+    padding: 10px;
+    margin-left: 300px;
+    color:black;
+    border-radius: 5px;
+    align-self: flex-end;
+}
+
+.inviteButton:hover {
+    cursor: pointer;
+    color: white;
+    border-color: transparent;
+    background-color: #005000; /* Change background color on hover */
+}
+
+.friend {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.friend:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.friend:hover .friendIcon {
+    border-radius: 30%;
+}
+
+.friendName {
+    padding: 10px;
+    flex-grow: 1;
+}
+
+.addServerModalBodyContent {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.addServerModalBodyFormHeader {
+    margin: 24px 0px 8px 0px;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgb(102, 100, 100);
+}
+
+.addServerModalBodyFormContent {
+    border: none;
+    background-color: #f3efef;
+    border-radius: 6px;
+    width: 100%;
+    height: 45px;
+}
+
+.addServerModalFooter {
+    border: none;
+    background-color: #f3efef;
+}
+
+.addServerModalFooterButton {
+    background-color: #516eda;
+    width: 22%;
+}
+
+
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    background-color: whitesmoke;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    height: 50px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.dark.searchBar {
+    display: flex;
+    align-items: center;
+    background-color: red;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    height: 50px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.searchBar input[type="text"] {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    flex: 1;
+    font-size: 17px;
+    padding: 0 5px;
+}
+
+.searchBar input[type="text"]::placeholder {
+    color: #aaa;
+}
+
+
 
