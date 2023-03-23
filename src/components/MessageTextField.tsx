@@ -9,7 +9,6 @@ import {arrayUnion, doc, serverTimestamp, updateDoc, Timestamp} from "firebase/f
 import {db} from "../firebase";
 import uuid from 'react-uuid';
 
-
 function MessageTextField(props: any) {
     const [message, setMessage] = useState('');
     const {currentUser} = useContext(AuthContext);
@@ -18,6 +17,7 @@ function MessageTextField(props: any) {
 
     const handleSubmit = async (event: any) => {
         event.preventDefault();
+        if (message == "") return
         await updateDoc(doc(db, "chats", data.chatId), {
             messages: arrayUnion({
                 id: uuid(),
@@ -33,7 +33,6 @@ function MessageTextField(props: any) {
             },
             [data.chatId + ".date"]: serverTimestamp(),
         });
-
         await updateDoc(doc(db, "userChats", data.user.uid), {
             [data.chatId + ".lastMessage"]: {
                 message,

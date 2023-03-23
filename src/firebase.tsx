@@ -8,6 +8,7 @@ import {
     createUserWithEmailAndPassword,
     sendPasswordResetEmail,
     signOut,
+    updateProfile
 } from "firebase/auth";
 import {
     getFirestore,
@@ -45,6 +46,7 @@ const signInWithGoogle = async () => {
     try {
         const res = await signInWithPopup(auth, googleProvider);
         const user = res.user;
+        await updateProfile(user, { displayName: user.displayName });
         const q = query(collection(db, "users"), where("uid", "==", user.uid));
         const docs = await getDocs(q);
         if (docs.docs.length === 0) {
@@ -85,6 +87,7 @@ const registerWithEmailAndPassword = async (username: string, displayName: strin
         });
         const res = await createUserWithEmailAndPassword(auth, email, password);
         const user = res.user;
+        await updateProfile(user, { displayName });
         await setDoc(doc(db, 'users', user.uid), {
             uid: user.uid,
             username,
