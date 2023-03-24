@@ -54,6 +54,7 @@
         "@types/node": "^18.15.7",
         "eslint": "^8.22.0",
         "firebase-mock": "^2.3.2",
+        "firestore-jest-mock": "^0.20.0",
         "husky": "^8.0.3",
         "jest": "^27.5.1",
         "lint-staged": "^13.2.0",
