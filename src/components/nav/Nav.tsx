@@ -1,36 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import GroupIcon from "../icons/GroupIcon";
-import AddServerIcon from '../AddServerComponents/AddServerIcon';
+import React, { useEffect, useState } from 'react'
+import GroupIcon from '../icons/GroupIcon'
+import AddServerIcon from '../AddServerComponents/AddServerIcon'
 import styles from './nav.module.css'
-import { useNavigate } from "react-router-dom";
-import { getGroups } from '../../firebase';
+import { useNavigate } from 'react-router-dom'
+import { getGroups } from '../../firebase/groups/getGroups'
 
 const Nav = () => {
-    
-    let navigate = useNavigate();
+    let navigate = useNavigate()
     const routeChange = () => {
-        let path = '/home';
-        navigate(path);
+        let path = '/home'
+        navigate(path)
     }
 
-    const [groups, setGroups] = useState<any>([]);
+    const [groups, setGroups] = useState<any>([])
     useEffect(() => {
-        (async () => {
-            const userGroups = await getGroups();
-            setGroups(userGroups);
-        })();
-    }, []);
+        ;(async () => {
+            const userGroups = await getGroups()
+            setGroups(userGroups)
+        })()
+    }, [])
 
     const handleNewGroupRender = async () => {
-        const userGroups = await getGroups();
-        setGroups(userGroups);
+        const userGroups = await getGroups()
+        setGroups(userGroups)
     }
 
-    let groupList: any = [];
+    let groupList: any = []
     if (groups) {
         groups.forEach((group: any) => {
-            groupList.push(<GroupIcon key={group.id} imageUrl={group.groupPic} />)
-        });
+            groupList.push(
+                <GroupIcon key={group.id} imageUrl={group.groupPic} />,
+            )
+        })
     }
 
     return (
@@ -40,10 +41,10 @@ const Nav = () => {
             </div>
             <div className={styles.nav_content}>
                 {groupList}
-                <AddServerIcon onGroupCreate={handleNewGroupRender}/>
+                <AddServerIcon onGroupCreate={handleNewGroupRender} />
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Nav;
+export default Nav
