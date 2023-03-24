@@ -13,7 +13,7 @@ type Props = {
 const AddServerIcon = ({ onGroupCreate }: Props) => {
     /* Show or Hide Popup when clicking button */
     const [showModal, setModal] = useState(false)
-    const [groupName, setgroupName] = useState('')
+    const [groupName, setGroupName] = useState('')
 
     const handleClose = () => {
         setModal(false)
@@ -22,7 +22,7 @@ const AddServerIcon = ({ onGroupCreate }: Props) => {
     const handleShow = () => {
         setModal(true)
     }
-    /* Prevent user from right click this button */
+    /* Prevent user from right-click this button */
     const handleContextMenu = (event: any) => {
         event.preventDefault()
     }
@@ -38,12 +38,13 @@ const AddServerIcon = ({ onGroupCreate }: Props) => {
     }
 
     const handleGroupNameChange = (event: any) => {
-        setgroupName(event.target.value)
+        setGroupName(event.target.value)
     }
 
     return (
-        <div>
+        <div data-testid="add-server-icon">
             <button
+                data-testid="add-server-icon-button"
                 onContextMenu={handleContextMenu}
                 onClick={handleShow}
                 className="addServerIcon"
@@ -51,9 +52,17 @@ const AddServerIcon = ({ onGroupCreate }: Props) => {
                 <AddIcon htmlColor="white" fontSize="large" />
             </button>
 
-            <Modal show={showModal} onHide={handleClose} centered>
+            <Modal
+                data-testid="add-server-modal"
+                show={showModal}
+                onHide={handleClose}
+                centered
+            >
                 <Modal.Header className="addServerModalHeader">
-                    <CloseButton onClick={handleClose} />
+                    <CloseButton
+                        data-testid="add-server-modal-close-button"
+                        onClick={handleClose}
+                    />
                     <h1>Customize your server</h1>
                     <div>
                         Give your new server a personality with a name and an
@@ -67,10 +76,14 @@ const AddServerIcon = ({ onGroupCreate }: Props) => {
                     </div>
 
                     <form>
-                        <label className="addServerModalBodyFormHeader">
+                        <label
+                            data-testid="add-server-modal-label"
+                            className="addServerModalBodyFormHeader"
+                        >
                             SERVER NAME
                         </label>
                         <input
+                            data-testid="add-server-modal-input"
                             className="addServerModalBodyFormContent"
                             placeholder="server name"
                             type="text"
@@ -82,6 +95,7 @@ const AddServerIcon = ({ onGroupCreate }: Props) => {
 
                 <Modal.Footer className="addServerModalFooter">
                     <Button
+                        data-testid="add-server-modal-create-button"
                         onClick={handleCreateGroup}
                         className="addServerModalFooterButton"
                         disabled={!groupName.trim()}
