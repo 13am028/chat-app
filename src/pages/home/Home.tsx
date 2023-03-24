@@ -21,9 +21,6 @@ const Home = () => {
 
     const [friends, setFriends] = useState<any>(null);
 
-    const users = (async () => { setFriends(await getFriends())});
-    users().then()
-
     useEffect(() => {
         if (!currentUser) return
         return onSnapshot(doc(db, "friends", currentUser.uid), (async () => {
