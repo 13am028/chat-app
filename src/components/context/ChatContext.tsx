@@ -13,10 +13,11 @@ export const ChatContext = createContext<ChatContextProps>({
     data: {
         chatId: 'null',
         user: {
-            uid: '',
-            email: '',
-            displayName: '',
-            username: '',
+            uid: "",
+            email: "",
+            displayName: "",
+            username: "",
+            avatar: ""
         },
     },
     dispatch: () => null,

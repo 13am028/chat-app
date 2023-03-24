@@ -28,6 +28,7 @@ function Conversation() {
     return (
         <div className="bg">
             <Message messages={messages} />
+            {/*@ts-ignore*/}
             <MessageTextField onSendMessage={handleSendMessage} />
         </div>
     )
