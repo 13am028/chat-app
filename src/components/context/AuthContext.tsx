@@ -1,5 +1,5 @@
 import React, {createContext, useEffect, useState} from "react";
-import {auth} from "../../firebase";
+import {auth, getUser} from "../../firebase";
 import {onAuthStateChanged} from "firebase/auth";
 
 export type User = {
@@ -7,6 +7,7 @@ export type User = {
     email: string | null;
     displayName: string | null;
     username: string | null;
+    avatar: string | null;
 };
 
 type AuthContextProps = {
@@ -20,6 +21,7 @@ export const AuthContext = createContext<AuthContextProps>({
     },
 });
 
+
 export const AuthContextProvider = ({
                                         children,
                                     }: {
@@ -28,14 +30,18 @@ export const AuthContextProvider = ({
     const [currentUser, setCurrentUser] = useState<User | null>(null);
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async () => {
+            if (!auth.currentUser) return;
+            const currentUser = await getUser(auth.currentUser.uid)
+            console.log(currentUser)
             setCurrentUser(
-                user
+                currentUser
                     ? {
-                        uid: user.uid,
-                        email: user.email,
-                        displayName: user.displayName,
-                        username: user.uid,
+                        uid: currentUser.uid,
+                        email: currentUser.email,
+                        displayName: currentUser.displayName,
+                        username: currentUser.username,
+                        avatar: currentUser.avatar
                     }
                     : null,
             );

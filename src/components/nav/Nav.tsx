@@ -3,7 +3,7 @@ import GroupIcon from "../icons/GroupIcon";
 import AddServerIcon from '../AddServerComponents/AddServerIcon';
 import styles from './nav.module.css'
 import { useNavigate } from "react-router-dom";
-import { getGroups } from '../../firebase';
+import { getGroups} from '../../firebase';
 
 const Nav = () => {
     
@@ -14,6 +14,10 @@ const Nav = () => {
     }
 
     const [groups, setGroups] = useState<any>([]);
+
+    const group = (async () => { setGroups(await getGroups())});
+    group().then()
+
     useEffect(() => {
         (async () => {
             const userGroups = await getGroups();

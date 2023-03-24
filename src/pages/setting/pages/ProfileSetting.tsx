@@ -3,8 +3,7 @@ import "./ProfileSetting.css";
 import {Modal} from 'react-bootstrap';
 import SpanRevealButton from "../../../components/setting/SpanRevealButton";
 import { AuthContext } from "../../../components/context/AuthContext";
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import PersonPinIcon from '@mui/icons-material/PersonPin';
+import UploadWidget from "../../../components/UploadWidget";
 
 const ProfileSetting = () => {
     const { currentUser } = useContext(AuthContext);
@@ -15,11 +14,15 @@ const ProfileSetting = () => {
         username: "Johndow",
     };
 
+    let imgURL = "https://cdn-icons-png.flaticon.com/512/456/456212.png"
+    if (currentUser && currentUser.avatar) {
+        imgURL = currentUser.avatar
+    }
+
     const user = currentUser || mockUser;
     const email = user.email ? user.email : "johndow@example.com";
     const displayName = user.displayName ? user.displayName : "Johndow";
     const username = user.username ? user.username : "Johndow";
-    const profile = `https://icotar.com/initials/${displayName}`;
     const [showModal, setShowModal] = useState(false);
 
     const handleShowModal = () => {
@@ -42,9 +45,10 @@ const ProfileSetting = () => {
                 </svg>
                 <div className='profile-pic-bg'>
                     <div className='profilepic'>
+                        {/*TODO: fix, image very zoomed in*/}
                         <img
                             className='profile-img'
-                            src='https://icotar.com/initials/Test'
+                            src={imgURL}
                             alt='Profile'
                         />
                         <div className="profilepic__content" >
@@ -59,27 +63,7 @@ const ProfileSetting = () => {
                         <h4 className='modal-title'>Change Avatar</h4>
                     </Modal.Header>
                     <Modal.Body>
-                        <div className="modal-box modal-upload" >
-
-                            <div className="modal-icon">
-                                <i className="fas fa-upload"></i>
-                                <AddPhotoAlternateIcon style={{ fontSize: 40 }}/>
-                            </div>
-                            <div className="modal-label" >Upload Image</div>
-                            <input
-                                type='file'
-                                style={{ display: 'none' }}
-                            />
-                        </div>
-                        <div className="modal-box modal-view" >
-                            <div className="modal-icon">
-                                <i className="fas fa-user"></i>
-                                <PersonPinIcon style={{ fontSize: 40 }}/>
-                            </div>
-                            <div className='modal-label'>
-                                View Profile
-                            </div>
-                        </div>
+                        <UploadWidget />
                     </Modal.Body>
                 </Modal>
                 <div className='profile-card'>

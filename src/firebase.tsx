@@ -19,7 +19,7 @@ import {
     collection,
     where,
     setDoc, doc,
-    serverTimestamp,
+    serverTimestamp, updateDoc,
 } from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -56,6 +56,7 @@ const signInWithGoogle = async () => {
                 username: user.uid,
                 authProvider: "google",
                 email: user.email,
+                avatar: ""
             });
             await setDoc(doc(db, 'friends', user.uid), {
                 friends: []
@@ -94,6 +95,7 @@ const registerWithEmailAndPassword = async (username: string, displayName: strin
             displayName,
             authProvider: "local",
             email,
+            avatar: ""
         });
         await setDoc(doc(db, 'friends', user.uid), {
             friends: []
@@ -124,10 +126,6 @@ const logout = async () => {
     }
 }
 
-/* TODO:
-    handle the case where username is not found properly (in toADdUID === "" part)
-    check if users are already friends
- */
 const addFriend = async (toAddUsername: string) => {
     const q = query(collection(db, "users"), where("username", "==", toAddUsername));
     const docs = await getDocs(q);
@@ -301,6 +299,18 @@ const getGroups = async () => {
     }
 }
 
+const getUser = async (uid: string) => {
+    return (await getDoc(doc(db, 'users',uid))).data();
+}
+
+const updateAvatar = async (url: string) => {
+    if (!auth.currentUser) return
+    const userRef = doc(db, "users", auth.currentUser.uid);
+    await updateDoc(userRef, {
+        "avatar": url
+    });
+}
+
 export {
     auth,
     db,
@@ -314,4 +324,6 @@ export {
     createGroup,
     getGroups,
     removeFriend,
+    getUser,
+    updateAvatar
 };

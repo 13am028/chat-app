@@ -1,12 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './Home.css'
 import Nav from "../../components/nav/Nav";
 import FriendStatusNav from "../../components/nav/FriendStatusNav";
 import DirectMessageNav from "../../components/nav/DirectMessageNav";
 import FriendStatus from "../../components/icons/FriendStatus";
-import {auth, db, getFriends} from "../../firebase";
+import {db, getFriends} from "../../firebase";
 import {doc, onSnapshot} from "firebase/firestore";
+import {AuthContext} from "../../components/context/AuthContext";
+
 const Home = () => {
+
+    const {currentUser} = useContext(AuthContext)
 
     /* Disable default context menu */
     const handleContextMenu = (event: any) => {
@@ -15,14 +19,17 @@ const Home = () => {
 
 
     const [friends, setFriends] = useState<any>(null);
+
+    const users = (async () => { setFriends(await getFriends())});
+    users().then()
+
     useEffect(() => {
-        // @ts-ignore
-        const unsub = onSnapshot(doc(db, "friends", auth.currentUser.uid), (async () => {
+        if (!currentUser) return
+        return onSnapshot(doc(db, "friends", currentUser.uid), (async () => {
             const users = await getFriends();
             setFriends(users);
         }))
-        return unsub
-    }, []);
+    });
 
 
     let friendList: any =[];
