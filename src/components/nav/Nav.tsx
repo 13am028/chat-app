@@ -15,9 +15,6 @@ const Nav = () => {
 
     const [groups, setGroups] = useState<any>([]);
 
-    const group = (async () => { setGroups(await getGroups())});
-    group().then()
-
     useEffect(() => {
         (async () => {
             const userGroups = await getGroups();
