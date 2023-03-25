@@ -1,5 +1,6 @@
-import {doc, getDoc, setDoc} from 'firebase/firestore';
-import {auth, db} from '../init';
+import {doc, getDoc, setDoc,} from 'firebase/firestore'
+import {auth, db} from '../init'
+
 
 const blockFriend = async (user: { uid: string; displayName: string }): Promise<string> => {
     try {
@@ -8,25 +9,24 @@ const blockFriend = async (user: { uid: string; displayName: string }): Promise<
             throw new Error('User not authenticated');
         }
         if (!user.uid) {
-            throw new Error('User UID not provided');
+            throw new Error('User UID not provided')
         }
-
-        const toBlockUID = user.uid;
 
         const myUID = currentUser.uid;
         const myFriendsDoc = await getDoc(doc(db, 'friends', myUID));
-        const myFriendsData = myFriendsDoc.data();
 
-        if (!myFriendsData) {
+        if (!myFriendsDoc.exists()) {
             return "not_found";
         }
 
-        let myBlocked = myFriendsData.blocked;
-        if (!myBlocked.includes(toBlockUID)) {
-            myBlocked.push(toBlockUID);
+        const myFriendsData = myFriendsDoc.data();
+        const myBlocked = myFriendsData.blocked || [];
+
+        if (!myBlocked.includes(user.uid)) {
+            myBlocked.push(user.uid);
             await setDoc(doc(db, 'friends', myUID), {
                 ...myFriendsData,
-                blocked: myBlocked,
+                blocked: myBlocked
             });
         }
 
@@ -37,4 +37,4 @@ const blockFriend = async (user: { uid: string; displayName: string }): Promise<
     }
 };
 
-export {blockFriend};
+export {blockFriend}
