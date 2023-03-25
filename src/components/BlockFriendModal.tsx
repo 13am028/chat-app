@@ -4,7 +4,10 @@ import {Modal} from 'react-bootstrap'
 import {blockFriend} from '../firebase/friends/blockFriend';
 import PersonRemoveAlt1Icon from '@mui/icons-material/PersonRemoveAlt1'
 
-const BlockFriendModal = ({user}: { user: { uid: string; displayName: string } }) => {
+const BlockFriendModal = ({
+                              user,
+                              onClick
+                          }: { user: { uid: string; displayName: string }, onClick: (e: React.MouseEvent) => void }) => {
     const [show, setShow] = useState(false)
 
     const handleClose = () => {
@@ -25,7 +28,7 @@ const BlockFriendModal = ({user}: { user: { uid: string; displayName: string } }
         handleClose()
     }
     return (
-        <div style={{display: 'inline-block'}}>
+        <div style={{display: 'inline-block'}} onClick={onClick}>
             <Button variant="danger" onClick={handleShow} size="sm">
                 <PersonRemoveAlt1Icon/>
             </Button>

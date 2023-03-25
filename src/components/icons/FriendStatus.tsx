@@ -45,10 +45,15 @@ const FriendStatus = (user: any) => {
             }
             dispatch({
                 type: 'CHANGE_USER',
-                payload: { uid: user.uid, displayName: user.displayName },
+                payload: {uid: user.uid, displayName: user.displayName},
             })
             routeChange()
-        } catch (err) {}
+        } catch (err) {
+        }
+    }
+
+    const stopPropagation = (e: React.MouseEvent) => {
+        e.stopPropagation();
     }
 
     return (
@@ -59,8 +64,8 @@ const FriendStatus = (user: any) => {
                 <strong>status</strong>
             </div>
             <div style={{display: 'inline-block'}}>
-                <RemoveFriendModal user={{displayName: user.displayName, uid: user.uid}}/>
-                <BlockFriendModal user={{displayName: user.displayName, uid: user.uid}}/>
+                <RemoveFriendModal user={{displayName: user.displayName, uid: user.uid}} onClick={stopPropagation}/>
+                <BlockFriendModal user={{displayName: user.displayName, uid: user.uid}} onClick={stopPropagation}/>
             </div>
         </div>
     );
