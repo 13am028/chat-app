@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './ServerChat.css'
 import Nav from "../../components/nav/Nav";
 import Conversation from "../../components/Conversation";
