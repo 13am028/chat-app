@@ -1,34 +1,17 @@
-import {
-    collection,
-    doc,
-    getDoc,
-    getDocs,
-    query,
-    setDoc,
-    where,
-} from 'firebase/firestore'
-import { auth, db } from '../init'
+import {doc, getDoc, setDoc} from 'firebase/firestore';
+import {auth, db} from '../init';
 
-
-const blockFriend = async (toBlockUsername: string) => {
+const blockFriend = async (user: { uid: string; displayName: string }): Promise<string> => {
     try {
         const currentUser = auth.currentUser;
         if (!currentUser) {
             throw new Error('User not authenticated');
         }
-
-        const userQuery = query(collection(db, "users"), where("username", "==", toBlockUsername));
-        const userDocs = await getDocs(userQuery);
-        let toBlockUID = "";
-        userDocs.forEach((doc) => {
-            if (doc.data().username === toBlockUsername) {
-                toBlockUID = doc.data().uid;
-            }
-        });
-
-        if (toBlockUID === "") {
-            return "not_found";
+        if (!user.uid) {
+            throw new Error('User UID not provided');
         }
+
+        const toBlockUID = user.uid;
 
         const myUID = currentUser.uid;
         const myFriendsDoc = await getDoc(doc(db, 'friends', myUID));
@@ -43,7 +26,7 @@ const blockFriend = async (toBlockUsername: string) => {
             myBlocked.push(toBlockUID);
             await setDoc(doc(db, 'friends', myUID), {
                 ...myFriendsData,
-                blocked: myBlocked
+                blocked: myBlocked,
             });
         }
 
@@ -54,4 +37,4 @@ const blockFriend = async (toBlockUsername: string) => {
     }
 };
 
-export { blockFriend }
+export {blockFriend};
