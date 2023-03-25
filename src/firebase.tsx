@@ -372,4 +372,5 @@ export {
     createGroup,
     getGroups,
     removeFriend,
+    blockFriend,
 }
