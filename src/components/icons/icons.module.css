@@ -86,8 +86,7 @@ p {
     background-color: pink;
     border-radius: 50%;
     cursor: pointer;
-    padding: 7px;
-    margin: 3px;
+    padding: 0;
     transition: all 0.2s ease-in-out;
 }
 
@@ -242,7 +241,7 @@ p {
 }
 
 .addServerModalBodyFormHeader {
-    margin: 24px 0px 8px 0px;
+    margin: 24px 0 8px 0;
     width: 100%;
     font-size: 13px;
     font-weight: 700;
