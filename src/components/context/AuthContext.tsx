@@ -1,15 +1,15 @@
-import React, {createContext, useEffect, useState} from "react";
-import {auth} from "../../firebase/init";
-import { getUser } from "../../firebase/utils";
-import {onAuthStateChanged} from "firebase/auth";
+import React, { createContext, useEffect, useState } from 'react'
+import { auth } from '../../firebase/init'
+import { getUser } from '../../firebase/utils'
+import { onAuthStateChanged } from 'firebase/auth'
 
 export type User = {
-    uid: string;
-    email: string | null;
-    displayName: string | null;
-    username: string | null;
-    avatar: string | null;
-};
+    uid: string
+    email: string | null
+    displayName: string | null
+    username: string | null
+    avatar: string | null
+}
 
 type AuthContextProps = {
     currentUser: User | null
@@ -21,7 +21,6 @@ export const AuthContext = createContext<AuthContextProps>({
     setCurrentUser: () => {},
 })
 
-
 export const AuthContextProvider = ({
     children,
 }: {
@@ -31,25 +30,28 @@ export const AuthContextProvider = ({
 
     useEffect(() => {
         onAuthStateChanged(auth, async () => {
-            if (!auth.currentUser) return;
+            if (!auth.currentUser) return
             const currentUser = await getUser(auth.currentUser.uid)
             console.log(currentUser)
             setCurrentUser(
                 currentUser
                     ? {
-                        uid: currentUser.uid,
-                        email: currentUser.email,
-                        displayName: currentUser.displayName,
-                        username: currentUser.username,
-                        avatar: currentUser.avatar
-                    }
+                          uid: currentUser.uid,
+                          email: currentUser.email,
+                          displayName: currentUser.displayName,
+                          username: currentUser.username,
+                          avatar: currentUser.avatar,
+                      }
                     : null,
             )
         })
     }, [])
 
     return (
-        <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
+        <AuthContext.Provider
+            value={{ currentUser, setCurrentUser }}
+            data-testid="auth-context-provider"
+        >
             {children}
         </AuthContext.Provider>
     )

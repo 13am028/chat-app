@@ -10,19 +10,13 @@ const FriendStatusNav = () => {
         <div className={styles.navTopSecond}>
             <ul className={styles.navTop_list}>
                 <li>
-                    <h4>
-                        Friends
-                    </h4>
+                    <h4>Friends</h4>
                 </li>
                 <li>
-                    <h4>
-                        Pending
-                    </h4>
+                    <h4>Pending</h4>
                 </li>
                 <li>
-                    <h4>
-                        Blocked
-                    </h4>
+                    <h4>Blocked</h4>
                 </li>
                 <li>
                     <AddFriendModal />
