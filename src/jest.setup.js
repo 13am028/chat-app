@@ -1,4 +1,4 @@
-import MockFirebase from 'mock-cloud-firestore';
+import MockFirebase from 'mock-cloud-firestore'
 
 const mockFirebase = () => {
     const fixtureData = {
@@ -16,24 +16,24 @@ const mockFirebase = () => {
                 },
             },
         },
-    };
+    }
 
-    const mockFirebaseInstance = new MockFirebase(fixtureData);
-    const firestore = mockFirebaseInstance.firestore();
+    const mockFirebaseInstance = new MockFirebase(fixtureData)
+    const firestore = mockFirebaseInstance.firestore()
 
     jest.mock('firebase/app', () => ({
         initializeApp: jest.fn(),
-    }));
+    }))
 
     jest.mock('firebase/firestore', () => ({
         getFirestore: jest.fn(() => firestore),
-    }));
+    }))
 
     jest.mock('firebase/auth', () => ({
         getAuth: jest.fn(() => ({
             onAuthStateChanged: jest.fn(),
         })),
-    }));
-};
+    }))
+}
 
-mockFirebase();
+mockFirebase()

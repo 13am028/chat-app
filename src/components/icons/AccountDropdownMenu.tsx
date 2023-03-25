@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
-import styles from './icons.module.css';
-import { Dropdown } from 'react-bootstrap';
-import { AuthContext } from '../context/AuthContext';
+import React, { useContext } from 'react'
+import styles from './icons.module.css'
+import { Dropdown } from 'react-bootstrap'
+import { AuthContext } from '../context/AuthContext'
 
 const AccountDropdownMenu = () => {
-    const { currentUser } = useContext(AuthContext);
-    let imgURL = 'https://cdn-icons-png.flaticon.com/512/456/456212.png';
+    const { currentUser } = useContext(AuthContext)
+    let imgURL = 'https://cdn-icons-png.flaticon.com/512/456/456212.png'
     if (currentUser && currentUser.avatar) {
-        imgURL = currentUser.avatar;
+        imgURL = currentUser.avatar
     }
     return (
         <Dropdown style={{ display: 'inline-block', right: '0', margin: '0' }}>
@@ -39,7 +39,7 @@ const AccountDropdownMenu = () => {
                 </Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
-    );
-};
+    )
+}
 
-export default AccountDropdownMenu;
+export default AccountDropdownMenu
