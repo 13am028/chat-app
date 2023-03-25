@@ -11,17 +11,17 @@ const FriendStatusNav = () => {
             <ul className={styles.navTop_list}>
                 <li>
                     <h4>
-                        <a href="#top">Friends</a>
+                        Friends
                     </h4>
                 </li>
                 <li>
                     <h4>
-                        <a href="#top">Pending</a>
+                        Pending
                     </h4>
                 </li>
                 <li>
                     <h4>
-                        <a href="#top">Blocked</a>
+                        Blocked
                     </h4>
                 </li>
                 <li>

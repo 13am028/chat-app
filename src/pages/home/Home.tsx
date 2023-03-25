@@ -1,30 +1,33 @@
-import React, { useEffect, useState } from 'react'
+import React, {useContext, useEffect, useState} from 'react';
 import './Home.css'
-import Nav from '../../components/nav/Nav'
-import FriendStatusNav from '../../components/nav/FriendStatusNav'
-import DirectMessageNav from '../../components/nav/DirectMessageNav'
-import FriendStatus from '../../components/icons/FriendStatus'
-import { auth, db } from '../../firebase/init'
-import { getFriends } from '../../firebase/friends/getFriends'
-import { doc, onSnapshot } from 'firebase/firestore'
+import Nav from "../../components/nav/Nav";
+import FriendStatusNav from "../../components/nav/FriendStatusNav";
+import DirectMessageNav from "../../components/nav/DirectMessageNav";
+import FriendStatus from "../../components/icons/FriendStatus";
+import {getFriends} from "../../firebase/friends/getFriends";
+import { db } from "../../firebase/init"
+import {doc, onSnapshot} from "firebase/firestore";
+import {AuthContext} from "../../components/context/AuthContext";
+
 const Home = () => {
+
+    const {currentUser} = useContext(AuthContext)
+
     /* Disable default context menu */
     const handleContextMenu = (event: any) => {
         event.preventDefault()
     }
 
-    const [friends, setFriends] = useState<any>(null)
+
+    const [friends, setFriends] = useState<any>(null);
+
     useEffect(() => {
-        const unsub = onSnapshot(
-            // @ts-ignore
-            doc(db, 'friends', auth.currentUser.uid),
-            async () => {
-                const users = await getFriends()
-                setFriends(users)
-            },
-        )
-        return unsub
-    }, [])
+        if (!currentUser) return
+        return onSnapshot(doc(db, "friends", currentUser.uid), (async () => {
+            const users = await getFriends();
+            setFriends(users);
+        }))
+    });
 
     let friendList: any = []
     if (friends) {
