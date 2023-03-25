@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import GroupIcon from "../icons/GroupIcon";
 import AddServerIcon from '../AddServerComponents/AddServerIcon';
 import styles from './nav.module.css'
 import { useNavigate } from "react-router-dom";
 import { getGroups } from '../../firebase';
+import {ChatContext} from "../context/ChatContext";
 
 const Nav = () => {
     
@@ -28,10 +29,20 @@ const Nav = () => {
 
     let groupList: any = [];
     if (groups) {
-        groups.forEach((group: any) => {
-            groupList.push(<GroupIcon key={group.id} imageUrl={group.groupPic} />)
-        });
+        groupList = groups.map((group: any) => (
+            <div key={group.id} onClick={() => handleOnSelect(group)}>
+                <GroupIcon imageUrl={group.groupPic} />
+            </div>
+        ));
     }
+
+
+    const {dispatch} = useContext(ChatContext);
+    const handleOnSelect = (group: any) => {
+        dispatch({type: "CHANGE_GROUP", payload: group})
+        navigate('/serverChat/')
+    }
+
 
     return (
         <div className={styles.navLeft}>
