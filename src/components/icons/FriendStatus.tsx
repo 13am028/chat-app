@@ -6,6 +6,7 @@ import {doc, getDoc, serverTimestamp, setDoc, updateDoc,} from 'firebase/firesto
 import {db} from '../../firebase/init'
 import {ChatContext} from '../context/ChatContext'
 import RemoveFriendModal from '../RemoveFriendModal';
+import BlockFriendModal from '../BlockFriendModal';
 
 const FriendStatus = (user: any) => {
     const { currentUser } = useContext(AuthContext)
@@ -59,6 +60,7 @@ const FriendStatus = (user: any) => {
             </div>
             <div style={{display: 'inline-block'}}>
                 <RemoveFriendModal user={{displayName: user.displayName, uid: user.uid}}/>
+                <BlockFriendModal user={{displayName: user.displayName, uid: user.uid}}/>
             </div>
         </div>
     );

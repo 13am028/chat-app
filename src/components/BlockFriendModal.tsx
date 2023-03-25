@@ -1,56 +1,50 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button'
 import {Modal} from 'react-bootstrap'
-import {removeFriend} from '../firebase/friends/removeFriend'
+import {blockFriend} from '../firebase/friends/blockFriend';
 import PersonRemoveAlt1Icon from '@mui/icons-material/PersonRemoveAlt1'
 
-const RemoveFriendModal = ({user}: { user: { uid: string; displayName: string } }) => {
+const BlockFriendModal = ({user}: { user: { uid: string; displayName: string } }) => {
     const [show, setShow] = useState(false)
 
     const handleClose = () => {
         setShow(false)
     }
+
     const handleShow = () => setShow(true)
 
     const alertSuccessfully = (displayName: string) => {
-        alert(`${displayName} has been successfully removed from your friends.`)
+        alert(`user ${displayName} has been blocked successfully`)
     }
 
-    const alertNotFriends = (displayName: string) => {
-        alert(`You are not friends with ${displayName}.`)
-    }
-
-    const handleRemoveFriend = async () => {
-        const result = await removeFriend(user)
+    const handleBlockFriend = async () => {
+        const result = await blockFriend(user)
         if (result === 'success') {
             alertSuccessfully(user.displayName);
-        } else if (result === 'not_friends') {
-            alertNotFriends(user.displayName);
         }
         handleClose()
     }
-
     return (
-        <div style={{ display: 'inline-block' }}>
-            <Button variant="warning" onClick={handleShow} size="sm">
+        <div style={{display: 'inline-block'}}>
+            <Button variant="danger" onClick={handleShow} size="sm">
                 <PersonRemoveAlt1Icon/>
             </Button>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header
                     closeButton
-                    style={{backgroundColor: 'var(--theme-warning)'}}
+                    style={{backgroundColor: 'var(--theme-danger)'}}
                 >
-                    <Modal.Title>Remove Friend</Modal.Title>
+                    <Modal.Title>Block Friend</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Are you sure you want to remove {user.displayName} from your friends?
+                    Are you sure you want to block {user.displayName} from your friends?
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="danger" onClick={handleRemoveFriend}>
+                    <Button variant="danger" onClick={handleBlockFriend}>
                         Remove
                     </Button>
                 </Modal.Footer>
@@ -59,4 +53,4 @@ const RemoveFriendModal = ({user}: { user: { uid: string; displayName: string } 
     )
 }
 
-export default RemoveFriendModal
+export default BlockFriendModal;
