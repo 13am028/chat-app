@@ -1,51 +1,51 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import { Modal } from 'react-bootstrap';
-import { removeFriend } from '../../firebase';
-import PersonRemoveAlt1Icon from '@mui/icons-material/PersonRemoveAlt1';
+import React, { useState } from 'react'
+import Button from 'react-bootstrap/Button'
+import { Modal } from 'react-bootstrap'
+import { removeFriend } from '../../firebase/friends/removeFriend'
+import PersonRemoveAlt1Icon from '@mui/icons-material/PersonRemoveAlt1'
 
 const RemoveFriendModal = () => {
-    const [show, setShow] = useState(false);
-    const [username, setUsername] = useState('');
+    const [show, setShow] = useState(false)
+    const [username, setUsername] = useState('')
 
     const handleClose = () => {
-        setUsername('');
-        setShow(false);
-    };
-    const handleShow = () => setShow(true);
+        setUsername('')
+        setShow(false)
+    }
+    const handleShow = () => setShow(true)
 
     const handleUsernameChange = (event: any) => {
-        setUsername(event.target.value);
-    };
+        setUsername(event.target.value)
+    }
 
     const alertSuccessfully = (username: string) => {
-        alert(`${username} has been successfully removed from your friends.`);
-    };
+        alert(`${username} has been successfully removed from your friends.`)
+    }
 
     const alertNotFound = () => {
-        alert(`Username not found.`);
-    };
+        alert(`Username not found.`)
+    }
 
     const alertNotFriends = (username: string) => {
-        alert(`You are not friends with ${username}.`);
+        alert(`You are not friends with ${username}.`)
     }
 
     const handleRemoveFriend = async () => {
         if (username.trim() === '') {
-            return;
+            return
         }
         const result = await removeFriend(username)
-        if (result === "success") {
-            alertSuccessfully(username);
-        } else if (result === "not_found") {
-            alertNotFound();
+        if (result === 'success') {
+            alertSuccessfully(username)
+        } else if (result === 'not_found') {
+            alertNotFound()
         } else {
-            if (result === "not_friends") {
-                alertNotFriends(username);
+            if (result === 'not_friends') {
+                alertNotFriends(username)
             }
         }
-        handleClose();
-    };
+        handleClose()
+    }
 
     return (
         <div style={{ display: 'inline-block' }}>
@@ -54,11 +54,19 @@ const RemoveFriendModal = () => {
             </Button>
 
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton style={{ backgroundColor: 'var(--theme-danger)' }}>
+                <Modal.Header
+                    closeButton
+                    style={{ backgroundColor: 'var(--theme-danger)' }}
+                >
                     <Modal.Title>Remove Friend</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <input placeholder="username" type="text" value={username} onChange={handleUsernameChange} />
+                    <input
+                        placeholder="username"
+                        type="text"
+                        value={username}
+                        onChange={handleUsernameChange}
+                    />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
@@ -70,7 +78,7 @@ const RemoveFriendModal = () => {
                 </Modal.Footer>
             </Modal>
         </div>
-    );
-};
+    )
+}
 
-export default RemoveFriendModal;
+export default RemoveFriendModal
