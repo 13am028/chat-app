@@ -1,11 +1,11 @@
 import React, {useContext, useEffect, useState} from 'react';
-import styles from "../icons/icons.module.css";
+import styles from "../../components/icons/icons.module.css";
 import {doc, onSnapshot, Timestamp} from "firebase/firestore";
-import {AuthContext} from "../context/AuthContext";
+import { AuthContext } from "../../components/context/AuthContext";
 import {db} from "../../firebase";
-import {ChatContext} from "../context/ChatContext";
+import { ChatContext } from "../../components/context/ChatContext";
 import {useNavigate} from "react-router-dom";
-import nstyles from "./nav.module.css";
+import "./ServerPeople.css";
 
 const DirectMessageNav = () => {
 
@@ -42,13 +42,13 @@ const DirectMessageNav = () => {
 
     const handleOnSelect = (u: any) => {
         dispatch({type: "CHANGE_USER", payload: u})
-        navigate("/dm")
+        navigate("/ServerChat")
     }
 
     return (
-        <div className={nstyles.navTopFirst}>
-            <div className={nstyles.nav_head}>
-                <h4>DIRECT MESSAGES</h4>
+        <div className="navTopFirst">
+            <div className="nav_head">
+                <h4>Members</h4>
             </div>
             {chats && Object.entries(chats)?.map((chat) => (
                 <div className={styles.friend} key={chat[0]} onClick={() => handleOnSelect(chat[1].userInfo)}>
