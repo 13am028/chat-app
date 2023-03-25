@@ -51,7 +51,7 @@ const FriendStatus = (user: any) => {
     }
 
     return (
-        <div className={styles.friend}>
+        <div className={styles.friend} onClick={handleOnSelect}>
             <div className={styles.friendIcon}></div>
             <div className={styles.friendName}>
                 <p className={styles.name}>{user.displayName}</p>
