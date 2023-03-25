@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import {initializeApp} from "firebase/app";
+import { initializeApp } from 'firebase/app'
 import {
     GoogleAuthProvider,
     getAuth,
@@ -8,8 +8,8 @@ import {
     createUserWithEmailAndPassword,
     sendPasswordResetEmail,
     signOut,
-    updateProfile
-} from "firebase/auth";
+    updateProfile,
+} from 'firebase/auth'
 import {
     getFirestore,
     query,
@@ -18,9 +18,10 @@ import {
     getDocs,
     collection,
     where,
-    setDoc, doc,
+    setDoc,
+    doc,
     serverTimestamp,
-} from "firebase/firestore";
+} from 'firebase/firestore'
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -33,294 +34,255 @@ const firebaseConfig = {
     storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
     appId: process.env.REACT_APP_APP_ID,
-    measurementId: process.env.REACT_APP_MEASUREMENT_ID
-};
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+}
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+const app = initializeApp(firebaseConfig)
+const auth = getAuth(app)
+const db = getFirestore(app)
 
-const googleProvider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider()
 
 const signInWithGoogle = async () => {
     try {
-        const res = await signInWithPopup(auth, googleProvider);
-        const user = res.user;
-        await updateProfile(user, {displayName: user.displayName});
-        const q = query(collection(db, "users"), where("uid", "==", user.uid));
-        const docs = await getDocs(q);
+        const res = await signInWithPopup(auth, googleProvider)
+        const user = res.user
+        await updateProfile(user, { displayName: user.displayName })
+        const q = query(collection(db, 'users'), where('uid', '==', user.uid))
+        const docs = await getDocs(q)
         if (docs.docs.length === 0) {
             await setDoc(doc(db, 'users', user.uid), {
                 uid: user.uid,
                 displayName: user.displayName,
                 username: user.uid,
-                authProvider: "google",
+                authProvider: 'google',
                 email: user.email,
-            });
+            })
             await setDoc(doc(db, 'friends', user.uid), {
                 friends: [],
-                blocked: [],
             })
-            await setDoc(doc(db, 'userChats', user.uid), {});
+            await setDoc(doc(db, 'userChats', user.uid), {})
         }
     } catch (err: any) {
-        console.error(err);
-        alert(err.message);
-    }
-};
-
-const logInWithEmailAndPassword = async (email: string, password: string) => {
-    try {
-        await signInWithEmailAndPassword(auth, email, password);
-    } catch (err: any) {
-        console.error(err);
-        alert(err.message);
-    }
-};
-
-const registerWithEmailAndPassword = async (username: string, displayName: string, email: string, password: string) => {
-    try {
-        const querySnapshot = await getDocs(collection(db, "users"));
-        querySnapshot.forEach((doc) => {
-            if (doc.data().username === username) {
-                throw Error("username already exists")
-            }
-        });
-        const res = await createUserWithEmailAndPassword(auth, email, password);
-        const user = res.user;
-        await updateProfile(user, {displayName});
-        await setDoc(doc(db, 'users', user.uid), {
-            uid: user.uid,
-            username,
-            displayName,
-            authProvider: "local",
-            email,
-        });
-        await setDoc(doc(db, 'friends', user.uid), {
-            friends: [],
-            blocked: [],
-        })
-        await setDoc(doc(db, 'userChats', user.uid), {});
-    } catch (err: any) {
-        console.error(err);
-        alert(err.message);
-    }
-};
-
-const sendPasswordReset = async (email: string) => {
-    try {
-        await sendPasswordResetEmail(auth, email);
-        alert("Password reset link sent!");
-    } catch (err: any) {
-        console.error(err);
-        alert(err.message);
-    }
-};
-
-const logout = async () => {
-    try {
-        await signOut(auth);
-    } catch (err: any) {
-        console.error(err);
+        console.error(err)
         alert(err.message)
     }
 }
 
-const addFriend = async (toAddUsername: string) => {
-    const q = query(collection(db, "users"), where("username", "==", toAddUsername));
-    const docs = await getDocs(q);
-    let toAddUID = "";
-    docs.forEach((doc) => {
-        if (doc.data().username === toAddUsername) {
-            toAddUID = doc.data().uid;
-        }
-    });
+const logInWithEmailAndPassword = async (email: string, password: string) => {
+    try {
+        await signInWithEmailAndPassword(auth, email, password)
+    } catch (err: any) {
+        console.error(err)
+        alert(err.message)
+    }
+}
 
-    if (toAddUID === "" || !auth.currentUser) {
-        return "not_found";
+const registerWithEmailAndPassword = async (
+    username: string,
+    displayName: string,
+    email: string,
+    password: string,
+) => {
+    try {
+        const querySnapshot = await getDocs(collection(db, 'users'))
+        querySnapshot.forEach(doc => {
+            if (doc.data().username === username) {
+                throw Error('username already exists')
+            }
+        })
+        const res = await createUserWithEmailAndPassword(auth, email, password)
+        const user = res.user
+        await updateProfile(user, { displayName })
+        await setDoc(doc(db, 'users', user.uid), {
+            uid: user.uid,
+            username,
+            displayName,
+            authProvider: 'local',
+            email,
+        })
+        await setDoc(doc(db, 'friends', user.uid), {
+            friends: [],
+        })
+        await setDoc(doc(db, 'userChats', user.uid), {})
+    } catch (err: any) {
+        console.error(err)
+        alert(err.message)
+    }
+}
+
+const sendPasswordReset = async (email: string) => {
+    try {
+        await sendPasswordResetEmail(auth, email)
+        alert('Password reset link sent!')
+    } catch (err: any) {
+        console.error(err)
+        alert(err.message)
+    }
+}
+
+const logout = async () => {
+    try {
+        await signOut(auth)
+    } catch (err: any) {
+        console.error(err)
+        alert(err.message)
+    }
+}
+
+/* TODO:
+    handle the case where username is not found properly (in toADdUID === "" part)
+    check if users are already friends
+ */
+const addFriend = async (toAddUsername: string) => {
+    const q = query(
+        collection(db, 'users'),
+        where('username', '==', toAddUsername),
+    )
+    const docs = await getDocs(q)
+    let toAddUID = ''
+    docs.forEach(doc => {
+        if (doc.data().username === toAddUsername) {
+            toAddUID = doc.data().uid
+        }
+    })
+
+    if (toAddUID === '' || !auth.currentUser) {
+        return 'not_found'
     }
 
-    const myUID = auth.currentUser.uid;
-    let friendsData = (await getDoc(doc(db, 'friends', myUID))).data();
-    let toAddFriendsData = (await getDoc(doc(db, 'friends', toAddUID))).data();
+    const myUID = auth.currentUser.uid
+    let friendsData = (await getDoc(doc(db, 'friends', myUID))).data()
+    let toAddFriendsData = (await getDoc(doc(db, 'friends', toAddUID))).data()
 
     if (!friendsData || !toAddFriendsData) {
-        return "not_found";
+        return 'not_found'
     }
 
-    let myFriends = friendsData.friends;
+    let myFriends = friendsData.friends
     if (myFriends.includes(toAddUID)) {
-        return "already_friends";
+        return 'already_friends'
     }
 
-    myFriends.push(toAddUID);
+    myFriends.push(toAddUID)
     await setDoc(doc(db, 'friends', myUID), {
-        friends: myFriends
-    });
+        friends: myFriends,
+    })
 
-    let toAddFriends = toAddFriendsData.friends;
-    toAddFriends.push(myUID);
+    let toAddFriends = toAddFriendsData.friends
+    toAddFriends.push(myUID)
     await setDoc(doc(db, 'friends', toAddUID), {
-        friends: toAddFriends
-    });
+        friends: toAddFriends,
+    })
 
-    return "success";
+    return 'success'
 }
 
 const removeFriend = async (toRemoveUsername: string): Promise<string> => {
     try {
-        const currentUser = auth.currentUser;
+        const currentUser = auth.currentUser
         if (!currentUser) {
-            throw new Error('User not authenticated');
+            throw new Error('User not authenticated')
         }
 
-        const userQuery = query(collection(db, "users"), where("username", "==", toRemoveUsername));
-        const userDocs = await getDocs(userQuery);
-        let toRemoveUID = "";
-        userDocs.forEach((doc) => {
+        const userQuery = query(
+            collection(db, 'users'),
+            where('username', '==', toRemoveUsername),
+        )
+        const userDocs = await getDocs(userQuery)
+        let toRemoveUID = ''
+        userDocs.forEach(doc => {
             if (doc.data().username === toRemoveUsername) {
-                toRemoveUID = doc.data().uid;
+                toRemoveUID = doc.data().uid
             }
-        });
+        })
 
-        if (toRemoveUID === "") {
-            return "not_found";
+        if (toRemoveUID === '') {
+            return 'not_found'
         }
 
-        const myUID = currentUser.uid;
-        const myFriendsDoc = await getDoc(doc(db, 'friends', myUID));
-        const myFriendsData = myFriendsDoc.data();
+        const myUID = currentUser.uid
+        const myFriendsDoc = await getDoc(doc(db, 'friends', myUID))
+        const myFriendsData = myFriendsDoc.data()
 
-        const toRemoveFriendsDoc = await getDoc(doc(db, 'friends', toRemoveUID));
-        const toRemoveFriendsData = toRemoveFriendsDoc.data();
+        const toRemoveFriendsDoc = await getDoc(doc(db, 'friends', toRemoveUID))
+        const toRemoveFriendsData = toRemoveFriendsDoc.data()
 
         if (!myFriendsData || !toRemoveFriendsData) {
-            return "not_found";
+            return 'not_found'
         }
 
-        let myFriends = myFriendsData.friends;
+        let myFriends = myFriendsData.friends
         if (!myFriends.includes(toRemoveUID)) {
-            return "not_friends";
+            return 'not_friends'
         }
 
-        myFriends = myFriends.filter((uid: string) => uid !== toRemoveUID);
+        myFriends = myFriends.filter((uid: string) => uid !== toRemoveUID)
         await setDoc(doc(db, 'friends', myUID), {
-            friends: myFriends
-        });
+            friends: myFriends,
+        })
 
-        let toRemoveFriends = toRemoveFriendsData.friends;
-        toRemoveFriends = toRemoveFriends.filter((uid: string) => uid !== myUID);
+        let toRemoveFriends = toRemoveFriendsData.friends
+        toRemoveFriends = toRemoveFriends.filter((uid: string) => uid !== myUID)
         await setDoc(doc(db, 'friends', toRemoveUID), {
-            friends: toRemoveFriends
-        });
+            friends: toRemoveFriends,
+        })
 
-        return "success";
+        return 'success'
     } catch (err: any) {
-        console.error(err);
-        return "error";
+        console.error(err)
+        return 'error'
     }
-};
+}
 
 const getFriends = async () => {
     if (!auth.currentUser) return
-    const myFriendsData: any = (await getDoc(doc(db, 'friends', auth.currentUser.uid))).data();
-    const friendUIDs = myFriendsData.friends;
-    const myBlocked = myFriendsData.blocked;
-
-    let friendsData = [];
+    const friends: any = (
+        await getDoc(doc(db, 'friends', auth.currentUser.uid))
+    ).data()
+    const friendUIDs = friends.friends
+    let friendsData = []
     for (const uid of friendUIDs) {
-        if (!myBlocked.includes(uid)) {
-            let temp = (await getDoc(doc(db, 'users', uid))).data();
-            friendsData.push(temp);
-        }
+        let temp = (await getDoc(doc(db, 'users', uid))).data()
+        friendsData.push(temp)
     }
-    return friendsData;
+    return friendsData
 }
-
-
-const blockFriend = async (toBlockUsername: string) => {
-    try {
-        const currentUser = auth.currentUser;
-        if (!currentUser) {
-            throw new Error('User not authenticated');
-        }
-
-        const userQuery = query(collection(db, "users"), where("username", "==", toBlockUsername));
-        const userDocs = await getDocs(userQuery);
-        let toBlockUID = "";
-        userDocs.forEach((doc) => {
-            if (doc.data().username === toBlockUsername) {
-                toBlockUID = doc.data().uid;
-            }
-        });
-
-        if (toBlockUID === "") {
-            return "not_found";
-        }
-
-        const myUID = currentUser.uid;
-        const myFriendsDoc = await getDoc(doc(db, 'friends', myUID));
-        const myFriendsData = myFriendsDoc.data();
-
-        if (!myFriendsData) {
-            return "not_found";
-        }
-
-        let myBlocked = myFriendsData.blocked;
-        if (!myBlocked.includes(toBlockUID)) {
-            myBlocked.push(toBlockUID);
-            await setDoc(doc(db, 'friends', myUID), {
-                ...myFriendsData,
-                blocked: myBlocked
-            });
-        }
-
-        return "success";
-    } catch (err: any) {
-        console.error(err);
-        return "error";
-    }
-};
-
 
 const createGroup = async (groupName: string) => {
     try {
-
         if (!auth.currentUser) return
 
-        const groupRef = doc(collection(db, "groups"));
-        const groupUid = groupRef.id;
+        const groupRef = doc(collection(db, 'groups'))
+        const groupUid = groupRef.id
         const myUID = auth.currentUser.uid
 
         // Group Document
         await setDoc(groupRef, {
             groupId: groupUid,
             groupName,
-            groupPic: "some image url",
+            groupPic: 'some image url',
             adminUID: myUID,
             users: {
                 [myUID]: true,
                 role: 'admin',
-                profilePic: "some image url",
+                profilePic: 'some image url',
             },
-        });
+        })
 
         // Message subcollection under group document
-        const messagesCollection = collection(groupRef, "messages");
+        const messagesCollection = collection(groupRef, 'messages')
 
         const initialMessage = {
-            text: "Welcome to the group!",
+            text: 'Welcome to the group!',
             senderId: myUID,
             timestamp: serverTimestamp(),
-        };
+        }
 
-        await addDoc(messagesCollection, initialMessage);
-
-
+        await addDoc(messagesCollection, initialMessage)
     } catch (error: any) {
-
-        console.error('Error creating group:', error);
-        alert(error.message);
+        console.error('Error creating group:', error)
+        alert(error.message)
     }
 }
 
@@ -329,23 +291,25 @@ const getGroups = async () => {
         if (!auth.currentUser) return
         const myUID = auth.currentUser.uid
 
-        const groupsReference = collection(db, 'groups');
-        const userGroupsQuery = query(groupsReference, where(`users.${myUID}`, "==", true));
+        const groupsReference = collection(db, 'groups')
+        const userGroupsQuery = query(
+            groupsReference,
+            where(`users.${myUID}`, '==', true),
+        )
 
         // Execute the query and retrieve the documents
-        const querySnapshot = await getDocs(userGroupsQuery);
+        const querySnapshot = await getDocs(userGroupsQuery)
 
         // Iterate through the documents and extract group data
-        const groups: Array<{ id: string, groupPic: string }> = [];
-        querySnapshot.forEach((doc) => {
+        const groups: Array<{ id: string; groupPic: string }> = []
+        querySnapshot.forEach(doc => {
             // Not good particle to retreive everything in the group
-            groups.push({id: doc.id, groupPic: doc.data().groupPic});
-        });
+            groups.push({ id: doc.id, groupPic: doc.data().groupPic })
+        })
 
-        return groups;
-
+        return groups
     } catch (error: any) {
-        console.error(error);
+        console.error(error)
     }
 }
 
@@ -362,5 +326,4 @@ export {
     createGroup,
     getGroups,
     removeFriend,
-    blockFriend,
-};
+}

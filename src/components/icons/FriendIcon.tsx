@@ -1,10 +1,8 @@
-import React from 'react';
+import React from 'react'
 import styles from './icons.module.css'
 
 const FriendIcon = () => {
-    return (
-        <div className={styles.friendIcon}></div>
-    );
-};
+    return <div className={styles.friendIcon}></div>
+}
 
-export default FriendIcon;
+export default FriendIcon
