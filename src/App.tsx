@@ -6,6 +6,7 @@ import Home from './pages/home/Home'
 import DMPage from './pages/dm/DMPage'
 import UserSettingPage from './pages/setting/UserSetting'
 import Logout from './pages/auth/Logout'
+import ServerChat from './pages/serverChat/ServerChat'
 import React, { useEffect, useState } from 'react'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
@@ -61,6 +62,7 @@ function App() {
                             }
                         />
                     </Route>
+                    <Route path="serverChat" element={<ServerChat />} ></Route>
                 </Routes>
             </BrowserRouter>
         </div>
