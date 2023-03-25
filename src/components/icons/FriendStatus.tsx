@@ -1,17 +1,12 @@
-import React, { useContext } from 'react'
+import React, {useContext} from 'react'
 import styles from './icons.module.css'
-import { useNavigate } from 'react-router-dom'
-import { AuthContext } from '../context/AuthContext'
-import {
-    doc,
-    getDoc,
-    serverTimestamp,
-    setDoc,
-    updateDoc,
-} from 'firebase/firestore'
-import { db } from '../../firebase/init'
-import { ChatContext } from '../context/ChatContext'
+import {useNavigate} from 'react-router-dom'
+import {AuthContext} from '../context/AuthContext'
+import {doc, getDoc, serverTimestamp, setDoc, updateDoc,} from 'firebase/firestore'
+import {db} from '../../firebase/init'
+import {ChatContext} from '../context/ChatContext'
 import RemoveFriendModal from '../RemoveFriendModal';
+
 const FriendStatus = (user: any) => {
     const { currentUser } = useContext(AuthContext)
     const { dispatch } = useContext(ChatContext)
@@ -63,7 +58,7 @@ const FriendStatus = (user: any) => {
                 <strong>status</strong>
             </div>
             <div style={{display: 'inline-block'}}>
-                <RemoveFriendModal user={{ displayName: user.displayName, username: user.username }} />
+                <RemoveFriendModal user={{displayName: user.displayName, uid: user.uid}}/>
             </div>
         </div>
     );

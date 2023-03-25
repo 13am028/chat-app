@@ -1,36 +1,18 @@
-import { auth, db } from '../init'
-import {
-    collection,
-    doc,
-    getDoc,
-    getDocs,
-    query,
-    setDoc,
-    where,
-} from 'firebase/firestore'
+import {auth, db} from '../init'
+import {doc, getDoc, setDoc,} from 'firebase/firestore'
 
-const removeFriend = async (user: { username: string; displayName: string }): Promise<string> => {
+const removeFriend = async (user: { uid: string; displayName: string }): Promise<string> => {
     try {
         const currentUser = auth.currentUser
         if (!currentUser) {
             throw new Error('User not authenticated')
         }
 
-        const userQuery = query(
-            collection(db, 'users'),
-            where('username', '==', user.username),
-        )
-        const userDocs = await getDocs(userQuery)
-        let toRemoveUID = ''
-        userDocs.forEach(doc => {
-            if (doc.data().username === user.username) {
-                toRemoveUID = doc.data().uid
-            }
-        })
-
-        if (toRemoveUID === '') {
-            return 'not_found'
+        if (!user.uid) {
+            throw new Error('User UID not provided')
         }
+
+        const toRemoveUID = user.uid
 
         const myUID = currentUser.uid
         const myFriendsDoc = await getDoc(doc(db, 'friends', myUID))

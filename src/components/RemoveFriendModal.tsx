@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import Button from 'react-bootstrap/Button'
-import { Modal } from 'react-bootstrap'
-import { removeFriend } from '../firebase/friends/removeFriend'
+import {Modal} from 'react-bootstrap'
+import {removeFriend} from '../firebase/friends/removeFriend'
 import PersonRemoveAlt1Icon from '@mui/icons-material/PersonRemoveAlt1'
 
-const RemoveFriendModal = ({ user }: { user: { displayName: string; username: string } }) => {
+const RemoveFriendModal = ({user}: { user: { uid: string; displayName: string } }) => {
     const [show, setShow] = useState(false)
 
     const handleClose = () => {
@@ -12,20 +12,20 @@ const RemoveFriendModal = ({ user }: { user: { displayName: string; username: st
     }
     const handleShow = () => setShow(true)
 
-    const alertSuccessfully = (username: string) => {
-        alert(`${username} has been successfully removed from your friends.`)
+    const alertSuccessfully = (displayName: string) => {
+        alert(`${displayName} has been successfully removed from your friends.`)
     }
 
-    const alertNotFriends = (username: string) => {
-        alert(`You are not friends with ${username}.`)
+    const alertNotFriends = (displayName: string) => {
+        alert(`You are not friends with ${displayName}.`)
     }
 
     const handleRemoveFriend = async () => {
         const result = await removeFriend(user)
         if (result === 'success') {
-            alertSuccessfully(user.username)
+            alertSuccessfully(user.displayName);
         } else if (result === 'not_friends') {
-            alertNotFriends(user.username)
+            alertNotFriends(user.displayName);
         }
         handleClose()
     }
