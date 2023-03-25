@@ -60,6 +60,7 @@ const signInWithGoogle = async () => {
             })
             await setDoc(doc(db, 'friends', user.uid), {
                 friends: [],
+                blocked: [],
             })
             await setDoc(doc(db, 'userChats', user.uid), {})
         }
@@ -103,6 +104,7 @@ const registerWithEmailAndPassword = async (
         })
         await setDoc(doc(db, 'friends', user.uid), {
             friends: [],
+            blocked: [],
         })
         await setDoc(doc(db, 'userChats', user.uid), {})
     } catch (err: any) {
@@ -130,10 +132,6 @@ const logout = async () => {
     }
 }
 
-/* TODO:
-    handle the case where username is not found properly (in toADdUID === "" part)
-    check if users are already friends
- */
 const addFriend = async (toAddUsername: string) => {
     const q = query(
         collection(db, 'users'),
@@ -237,17 +235,65 @@ const removeFriend = async (toRemoveUsername: string): Promise<string> => {
 
 const getFriends = async () => {
     if (!auth.currentUser) return
-    const friends: any = (
-        await getDoc(doc(db, 'friends', auth.currentUser.uid))
-    ).data()
-    const friendUIDs = friends.friends
-    let friendsData = []
+    const myFriendsData: any = (await getDoc(doc(db, 'friends', auth.currentUser.uid))).data();
+    const friendUIDs = myFriendsData.friends;
+    const myBlocked = myFriendsData.blocked;
+
+    let friendsData = [];
     for (const uid of friendUIDs) {
-        let temp = (await getDoc(doc(db, 'users', uid))).data()
-        friendsData.push(temp)
+        if (!myBlocked.includes(uid)) {
+            let temp = (await getDoc(doc(db, 'users', uid))).data();
+            friendsData.push(temp);
+        }
     }
-    return friendsData
+    return friendsData;
 }
+
+
+const blockFriend = async (toBlockUsername: string) => {
+    try {
+        const currentUser = auth.currentUser;
+        if (!currentUser) {
+            throw new Error('User not authenticated');
+        }
+
+        const userQuery = query(collection(db, "users"), where("username", "==", toBlockUsername));
+        const userDocs = await getDocs(userQuery);
+        let toBlockUID = "";
+        userDocs.forEach((doc) => {
+            if (doc.data().username === toBlockUsername) {
+                toBlockUID = doc.data().uid;
+            }
+        });
+
+        if (toBlockUID === "") {
+            return "not_found";
+        }
+
+        const myUID = currentUser.uid;
+        const myFriendsDoc = await getDoc(doc(db, 'friends', myUID));
+        const myFriendsData = myFriendsDoc.data();
+
+        if (!myFriendsData) {
+            return "not_found";
+        }
+
+        let myBlocked = myFriendsData.blocked;
+        if (!myBlocked.includes(toBlockUID)) {
+            myBlocked.push(toBlockUID);
+            await setDoc(doc(db, 'friends', myUID), {
+                ...myFriendsData,
+                blocked: myBlocked
+            });
+        }
+
+        return "success";
+    } catch (err: any) {
+        console.error(err);
+        return "error";
+    }
+};
+
 
 const createGroup = async (groupName: string) => {
     try {
@@ -326,4 +372,5 @@ export {
     createGroup,
     getGroups,
     removeFriend,
+    blockFriend,
 }
