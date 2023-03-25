@@ -11,6 +11,7 @@ import {
 } from 'firebase/firestore'
 import { db } from '../../firebase/init'
 import { ChatContext } from '../context/ChatContext'
+import { blockFriend } from '../../firebase/friends/blockFriend'
 
 const FriendStatus = (user: any) => {
     const { currentUser } = useContext(AuthContext)
@@ -54,6 +55,20 @@ const FriendStatus = (user: any) => {
             routeChange()
         } catch (err) {}
     }
+    const handleBlockFriend = async (event: React.MouseEvent) => {
+        event.stopPropagation(); //
+
+        if (currentUser) {
+            const response = await blockFriend(user.username);
+            if (response === 'success'){
+                alert(`Successfully blocked ${user.displayName}`);
+            } else if (response === 'not_found'){
+                alert(`User ${user.displayName} not found`);
+            } else {
+                alert('Error blocking user');
+            }
+        }
+    };
     return (
         <div className={styles.friend} onClick={handleOnSelect}>
             <div className={styles.friendIcon}></div>
@@ -61,6 +76,7 @@ const FriendStatus = (user: any) => {
                 <p className={styles.name}>{user.displayName}</p>
                 <strong>status</strong>
             </div>
+            <button onClick={handleBlockFriend}>Block</button>
         </div>
     )
 }
