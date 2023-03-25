@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import GroupIcon from '../icons/GroupIcon'
 import AddServerIcon from '../AddServerComponents/AddServerIcon'
 import styles from './nav.module.css'
 import { useNavigate } from 'react-router-dom'
 import { getGroups } from '../../firebase/groups/getGroups'
+import {ChatContext} from "../context/ChatContext";
 
 const Nav = () => {
     let navigate = useNavigate()
@@ -26,6 +27,8 @@ const Nav = () => {
         setGroups(userGroups)
     }
 
+
+    /*TO DO: Add onclick for group icon*/
     let groupList: any = []
     if (groups) {
         groups.forEach((group: any) => {
@@ -33,6 +36,13 @@ const Nav = () => {
                 <GroupIcon key={group.id} imageUrl={group.groupPic} />,
             )
         })
+    }
+
+    const { dispatch } = useContext(ChatContext)
+
+    const handleOnSelect = (u: any) => {
+        dispatch({ type: 'CHANGE_USER', payload: u })
+        navigate('/serverChat')
     }
 
     return (
