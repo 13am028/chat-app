@@ -12,7 +12,9 @@ describe('AccountDropdownMenu', () => {
             avatar: 'https://example.com/avatar.png',
         }
         render(
-            <AuthContext.Provider value={{ currentUser }}>
+            <AuthContext.Provider
+                value={{ currentUser: currentUser, setCurrentUser: () => {} }}
+            >
                 <AccountDropdownMenu />
             </AuthContext.Provider>,
         )
@@ -31,7 +33,9 @@ describe('AccountDropdownMenu', () => {
         }
 
         render(
-            <AuthContext.Provider value={{ currentUser }}>
+            <AuthContext.Provider
+                value={{ currentUser: currentUser, setCurrentUser: () => {} }}
+            >
                 <AccountDropdownMenu />
             </AuthContext.Provider>,
         )
