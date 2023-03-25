@@ -46,7 +46,7 @@ const signInWithGoogle = async () => {
     try {
         const res = await signInWithPopup(auth, googleProvider);
         const user = res.user;
-        await updateProfile(user, { displayName: user.displayName });
+        await updateProfile(user, {displayName: user.displayName});
         const q = query(collection(db, "users"), where("uid", "==", user.uid));
         const docs = await getDocs(q);
         if (docs.docs.length === 0) {
@@ -58,7 +58,8 @@ const signInWithGoogle = async () => {
                 email: user.email,
             });
             await setDoc(doc(db, 'friends', user.uid), {
-                friends: []
+                friends: [],
+                blocked: [],
             })
             await setDoc(doc(db, 'userChats', user.uid), {});
         }
@@ -87,7 +88,7 @@ const registerWithEmailAndPassword = async (username: string, displayName: strin
         });
         const res = await createUserWithEmailAndPassword(auth, email, password);
         const user = res.user;
-        await updateProfile(user, { displayName });
+        await updateProfile(user, {displayName});
         await setDoc(doc(db, 'users', user.uid), {
             uid: user.uid,
             username,
@@ -96,7 +97,8 @@ const registerWithEmailAndPassword = async (username: string, displayName: strin
             email,
         });
         await setDoc(doc(db, 'friends', user.uid), {
-            friends: []
+            friends: [],
+            blocked: [],
         })
         await setDoc(doc(db, 'userChats', user.uid), {});
     } catch (err: any) {
@@ -124,10 +126,6 @@ const logout = async () => {
     }
 }
 
-/* TODO:
-    handle the case where username is not found properly (in toADdUID === "" part)
-    check if users are already friends
- */
 const addFriend = async (toAddUsername: string) => {
     const q = query(collection(db, "users"), where("username", "==", toAddUsername));
     const docs = await getDocs(q);
@@ -225,15 +223,65 @@ const removeFriend = async (toRemoveUsername: string): Promise<string> => {
 
 const getFriends = async () => {
     if (!auth.currentUser) return
-    const friends: any = (await getDoc(doc(db, 'friends', auth.currentUser.uid))).data()
-    const friendUIDs = friends.friends
-    let friendsData = []
+    const myFriendsData: any = (await getDoc(doc(db, 'friends', auth.currentUser.uid))).data();
+    const friendUIDs = myFriendsData.friends;
+    const myBlocked = myFriendsData.blocked;
+
+    let friendsData = [];
     for (const uid of friendUIDs) {
-        let temp = (await getDoc(doc(db, 'users', uid))).data()
-        friendsData.push(temp)
+        if (!myBlocked.includes(uid)) {
+            let temp = (await getDoc(doc(db, 'users', uid))).data();
+            friendsData.push(temp);
+        }
     }
-    return friendsData
+    return friendsData;
 }
+
+
+const blockFriend = async (toBlockUsername: string) => {
+    try {
+        const currentUser = auth.currentUser;
+        if (!currentUser) {
+            throw new Error('User not authenticated');
+        }
+
+        const userQuery = query(collection(db, "users"), where("username", "==", toBlockUsername));
+        const userDocs = await getDocs(userQuery);
+        let toBlockUID = "";
+        userDocs.forEach((doc) => {
+            if (doc.data().username === toBlockUsername) {
+                toBlockUID = doc.data().uid;
+            }
+        });
+
+        if (toBlockUID === "") {
+            return "not_found";
+        }
+
+        const myUID = currentUser.uid;
+        const myFriendsDoc = await getDoc(doc(db, 'friends', myUID));
+        const myFriendsData = myFriendsDoc.data();
+
+        if (!myFriendsData) {
+            return "not_found";
+        }
+
+        let myBlocked = myFriendsData.blocked;
+        if (!myBlocked.includes(toBlockUID)) {
+            myBlocked.push(toBlockUID);
+            await setDoc(doc(db, 'friends', myUID), {
+                ...myFriendsData,
+                blocked: myBlocked
+            });
+        }
+
+        return "success";
+    } catch (err: any) {
+        console.error(err);
+        return "error";
+    }
+};
+
 
 const createGroup = async (groupName: string) => {
     try {
@@ -288,10 +336,10 @@ const getGroups = async () => {
         const querySnapshot = await getDocs(userGroupsQuery);
 
         // Iterate through the documents and extract group data
-        const groups: Array<{id: string, groupPic: string}> = [];
+        const groups: Array<{ id: string, groupPic: string }> = [];
         querySnapshot.forEach((doc) => {
             // Not good particle to retreive everything in the group
-            groups.push({ id: doc.id, groupPic: doc.data().groupPic});
+            groups.push({id: doc.id, groupPic: doc.data().groupPic});
         });
 
         return groups;
@@ -314,4 +362,5 @@ export {
     createGroup,
     getGroups,
     removeFriend,
+    blockFriend,
 };
