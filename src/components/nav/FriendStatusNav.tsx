@@ -3,7 +3,6 @@ import React from 'react'
 import styles from './nav.module.css'
 import AddFriendModal from './AddFriendModal'
 import AccountDropdownMenu from '../icons/AccountDropdownMenu'
-import RemoveFriendModal from './RemoveFriend'
 
 const FriendStatusNav = () => {
     return (
@@ -20,9 +19,6 @@ const FriendStatusNav = () => {
                 </li>
                 <li>
                     <AddFriendModal />
-                </li>
-                <li>
-                    <RemoveFriendModal />
                 </li>
             </ul>
             <AccountDropdownMenu />

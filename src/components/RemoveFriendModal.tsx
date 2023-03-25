@@ -1,29 +1,19 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import { Modal } from 'react-bootstrap'
-import { removeFriend } from '../../firebase/friends/removeFriend'
+import { removeFriend } from '../firebase/friends/removeFriend'
 import PersonRemoveAlt1Icon from '@mui/icons-material/PersonRemoveAlt1'
 
-const RemoveFriendModal = () => {
+const RemoveFriendModal = ({ user }: { user: { displayName: string; username: string } }) => {
     const [show, setShow] = useState(false)
-    const [username, setUsername] = useState('')
 
     const handleClose = () => {
-        setUsername('')
         setShow(false)
     }
     const handleShow = () => setShow(true)
 
-    const handleUsernameChange = (event: any) => {
-        setUsername(event.target.value)
-    }
-
     const alertSuccessfully = (username: string) => {
         alert(`${username} has been successfully removed from your friends.`)
-    }
-
-    const alertNotFound = () => {
-        alert(`Username not found.`)
     }
 
     const alertNotFriends = (username: string) => {
@@ -31,18 +21,11 @@ const RemoveFriendModal = () => {
     }
 
     const handleRemoveFriend = async () => {
-        if (username.trim() === '') {
-            return
-        }
-        const result = await removeFriend(username)
+        const result = await removeFriend(user)
         if (result === 'success') {
-            alertSuccessfully(username)
-        } else if (result === 'not_found') {
-            alertNotFound()
-        } else {
-            if (result === 'not_friends') {
-                alertNotFriends(username)
-            }
+            alertSuccessfully(user.username)
+        } else if (result === 'not_friends') {
+            alertNotFriends(user.username)
         }
         handleClose()
     }
@@ -61,12 +44,7 @@ const RemoveFriendModal = () => {
                     <Modal.Title>Remove Friend</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <input
-                        placeholder="username"
-                        type="text"
-                        value={username}
-                        onChange={handleUsernameChange}
-                    />
+                    Are you sure you want to remove {user.displayName} from your friends?
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>

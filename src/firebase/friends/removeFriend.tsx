@@ -9,7 +9,7 @@ import {
     where,
 } from 'firebase/firestore'
 
-const removeFriend = async (toRemoveUsername: string): Promise<string> => {
+const removeFriend = async (user: { username: string; displayName: string }): Promise<string> => {
     try {
         const currentUser = auth.currentUser
         if (!currentUser) {
@@ -18,12 +18,12 @@ const removeFriend = async (toRemoveUsername: string): Promise<string> => {
 
         const userQuery = query(
             collection(db, 'users'),
-            where('username', '==', toRemoveUsername),
+            where('username', '==', user.username),
         )
         const userDocs = await getDocs(userQuery)
         let toRemoveUID = ''
         userDocs.forEach(doc => {
-            if (doc.data().username === toRemoveUsername) {
+            if (doc.data().username === user.username) {
                 toRemoveUID = doc.data().uid
             }
         })
