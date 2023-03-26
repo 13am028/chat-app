@@ -21,11 +21,12 @@ const Home = () => {
 
     useEffect(() => {
         if (!currentUser) return
-        return onSnapshot(doc(db, 'friends', currentUser.uid), async () => {
-            const users = await getFriends()
-            setFriends(users)
-        })
-    })
+        const unsub = onSnapshot(doc(db, "friends", currentUser.uid), (async () => {
+            const users = await getFriends();
+            setFriends(users);
+        }))
+        return unsub
+    }, [])
 
     let friendList: any = []
     if (friends) {

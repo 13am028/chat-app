@@ -52,7 +52,7 @@ const DirectMessageNav = () => {
     }
 
     return (
-        <div className={nstyles.navTopFirst}>
+        <div data-testid="direct-message-nav" className={nstyles.navTopFirst}>
             <div className={nstyles.nav_head}>
                 <h4>DIRECT MESSAGES</h4>
             </div>
@@ -62,6 +62,7 @@ const DirectMessageNav = () => {
                         className={styles.friend}
                         key={chat[0]}
                         onClick={() => handleOnSelect(chat[1].userInfo)}
+                        data-testid={`chat-${chat[0]}`}
                     >
                         <div className={styles.friendIcon}></div>
                         <div className={styles.friendName}>

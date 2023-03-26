@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import AddServerIcon from './AddServerIcon'
+import AddServerIcon from '../AddServerIcon'
 
 describe('AddServerIcon', () => {
     it('should render the component correctly', () => {

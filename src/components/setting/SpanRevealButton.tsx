@@ -67,14 +67,15 @@ const SpanRevealButton: React.FC<Props> = ({ data, type }) => {
     )
 
     return (
-        <div className="user-data-inner-row">
-            <span>{displayedData}</span>
+        <div className="user-data-inner-row" data-testid="user-data-inner-row">
+            <span data-testid="displayed-data">{displayedData}</span>
             <a
                 href="#top"
                 className="reveal-button"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 onClick={handleClick}
+                data-testid="reveal-button"
             >
                 {visibilityIcon}
             </a>

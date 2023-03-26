@@ -2,7 +2,7 @@
 // allows you to do things like:
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
-import '@testing-library/jest-dom';
+import '@testing-library/jest-dom'
 
 const mockFirebase = () => {
     const MockFirebase = require('mock-cloud-firestore')
@@ -21,23 +21,22 @@ const mockFirebase = () => {
                 },
             },
         },
-    };
+    }
 
-    const mockFirebaseInstance = new MockFirebase(fixtureData);
+    const mockFirebaseInstance = new MockFirebase(fixtureData)
 
     jest.mock('firebase/app', () => ({
         initializeApp: jest.fn(),
-    }));
+    }))
 
     jest.mock('firebase/firestore', () => ({
         getFirestore: jest.fn(() => mockFirebaseInstance.firestore()),
-    }));
+    }))
 
     jest.mock('firebase/auth', () => ({
-        getAuth: jest.fn(() => ({
-            onAuthStateChanged: jest.fn(),
-        })),
-    }));
-};
+        getAuth: jest.fn(),
+        onAuthStateChanged: jest.fn(),
+    }))
+}
 
-mockFirebase();
+mockFirebase()

@@ -36,11 +36,15 @@ const Nav = () => {
     }
 
     return (
-        <div className={styles.navLeft}>
-            <div className={styles.nav_head} onClick={routeChange}>
-                <GroupIcon />
+        <div className={styles.navLeft} data-testid="nav">
+            <div
+                className={styles.nav_head}
+                onClick={routeChange}
+                data-testid="nav-head"
+            >
+                <GroupIcon data-testid="group-icon" />
             </div>
-            <div className={styles.nav_content}>
+            <div className={styles.nav_content} data-testid="nav-content">
                 {groupList}
                 <AddServerIcon onGroupCreate={handleNewGroupRender} />
             </div>

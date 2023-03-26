@@ -4,7 +4,7 @@ import { Modal } from 'react-bootstrap'
 import { removeFriend } from '../../firebase/friends/removeFriend'
 import PersonRemoveAlt1Icon from '@mui/icons-material/PersonRemoveAlt1'
 
-const RemoveFriendModal = () => {
+const RemoveFriend = () => {
     const [show, setShow] = useState(false)
     const [username, setUsername] = useState('')
 
@@ -49,11 +49,20 @@ const RemoveFriendModal = () => {
 
     return (
         <div style={{ display: 'inline-block' }}>
-            <Button variant="danger" onClick={handleShow} size="sm">
+            <Button
+                variant="danger"
+                onClick={handleShow}
+                size="sm"
+                data-testid="remove-friend-button"
+            >
                 <PersonRemoveAlt1Icon />
             </Button>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal
+                show={show}
+                onHide={handleClose}
+                data-testid="remove-friend-modal"
+            >
                 <Modal.Header
                     closeButton
                     style={{ backgroundColor: 'var(--theme-danger)' }}
@@ -66,13 +75,18 @@ const RemoveFriendModal = () => {
                         type="text"
                         value={username}
                         onChange={handleUsernameChange}
+                        data-testid="username-input"
                     />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="danger" onClick={handleRemoveFriend}>
+                    <Button
+                        variant="danger"
+                        onClick={handleRemoveFriend}
+                        data-testid="remove-friend-confirm-button"
+                    >
                         Remove
                     </Button>
                 </Modal.Footer>
@@ -81,4 +95,4 @@ const RemoveFriendModal = () => {
     )
 }
 
-export default RemoveFriendModal
+export default RemoveFriend

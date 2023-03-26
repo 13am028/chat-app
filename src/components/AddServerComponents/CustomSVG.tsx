@@ -2,7 +2,13 @@ import React from 'react'
 
 const CustomSVG = () => {
     return (
-        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+        <svg
+            width="80"
+            height="80"
+            viewBox="0 0 80 80"
+            fill="none"
+            data-testid="custom-svg"
+        >
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"

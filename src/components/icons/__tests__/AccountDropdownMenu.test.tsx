@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import AccountDropdownMenu from './AccountDropdownMenu'
-import { AuthContext } from '../context/AuthContext'
+import AccountDropdownMenu from '../AccountDropdownMenu'
+import { AuthContext } from '../../context/AuthContext'
 
 describe('AccountDropdownMenu', () => {
     it('should render the user avatar image', () => {
