@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-// @ts-ignore
 import styles from './icons.module.css'
 import { CloseButton, Modal } from 'react-bootstrap'
 import SearchIcon from '@mui/icons-material/Search'
@@ -43,7 +42,6 @@ const GroupIcon = ({ imageUrl }: { imageUrl?: string }) => {
         }
     }, [])
 
-    // @ts-ignore
     return (
         <div className={styles.groupIcon} onContextMenu={handleContextMenu}>
             {showMenu && (

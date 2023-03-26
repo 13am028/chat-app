@@ -57,10 +57,16 @@ const FriendStatus = (user: any) => {
     }
 
     return (
-        <div className={styles.friend} onClick={handleOnSelect}>
-            <div className={styles.friendIcon}></div>
-            <div className={styles.friendName}>
-                <p className={styles.name}>{user.displayName}</p>
+        <div
+            className={styles.friend}
+            onClick={handleOnSelect}
+            data-testid="friend-status"
+        >
+            <div className={styles.friendIcon} data-testid="friend-icon"></div>
+            <div className={styles.friendName} data-testid="friend-name">
+                <p className={styles.name} data-testid="friend-display-name">
+                    {user.displayName}
+                </p>
                 <strong>status</strong>
             </div>
             <div style={{display: 'inline-block'}}>
