@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test.beforeEach(async ({ page }) => {
     await page.goto('./login')
-    await page.waitForLoadState('networkidle', { timeout: 0 })
+    await page.waitForLoadState('networkidle', { timeout: 60 * 100 })
 })
 
 test('First visit theme', async ({ page }) => {
@@ -79,7 +79,7 @@ test('Keep theme data when changing page (interact)', async ({ page }) => {
             expect(value).toBe('light-theme')
         })
     await page.getByRole('link', { name: 'Sign up' }).click()
-    await page.waitForLoadState('networkidle', { timeout: 0 })
+    await page.waitForLoadState('networkidle', { timeout: 60 * 100 })
 
     await page
         .locator('body')
@@ -108,7 +108,7 @@ test('Keep theme data when changing page (interact)', async ({ page }) => {
             expect(value).toBe('dark-theme')
         })
     await page.getByRole('link', { name: 'Log in here' }).click()
-    await page.waitForLoadState('networkidle', { timeout: 0 })
+    await page.waitForLoadState('networkidle', { timeout: 60 * 100 })
     await page
         .locator('body')
         .getAttribute('class')
@@ -194,7 +194,7 @@ test('Keep theme data when changing page (url)', async ({ page }) => {
             expect(value).toBe('dark-theme')
         })
     await page.goto('./login')
-    await page.waitForLoadState('networkidle', { timeout: 0 })
+    await page.waitForLoadState('networkidle', { timeout: 60 * 100 })
     await page
         .locator('body')
         .getAttribute('class')
