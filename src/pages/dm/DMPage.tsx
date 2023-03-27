@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import Nav from '../../components/nav/Nav'
 import DirectMessageNav from '../../components/nav/DirectMessageNav'
 import styles from '../../components/nav/nav.module.css'
-import Conversation from '../../components/Conversation'
+import Conversation from '../../components/dm/Conversation'
 import { ChatContext } from '../../components/context/ChatContext'
 
 const DMPage = () => {

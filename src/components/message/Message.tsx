@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from 'react'
 import './Message.css'
-import FriendIcon from './icons/FriendIcon'
-import { AuthContext } from './context/AuthContext'
+import FriendIcon from '../icons/FriendIcon'
+import { AuthContext } from '../context/AuthContext'
 
 function Message(props: any) {
     const { currentUser } = useContext(AuthContext)

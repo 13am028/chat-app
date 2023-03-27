@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { ChatContext, ChatContextProvider } from '../ChatContext'
 
 describe('ChatContextProvider', () => {
-    it('provides the chat data', () => {
+    it('provides the dm data', () => {
         const MockChildComponent = () => {
             const { data } = useContext(ChatContext)
             return (

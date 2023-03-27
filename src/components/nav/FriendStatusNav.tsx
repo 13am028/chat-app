@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './nav.module.css'
-import AddFriendModal from './AddFriendModal'
+import AddFriendModal from '../modal/AddFriendModal'
 import AccountDropdownMenu from '../icons/AccountDropdownMenu'
 
 const FriendStatusNav = () => {
