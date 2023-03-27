@@ -21,7 +21,7 @@ jobs:
       - name: npm ci
         run: npm ci
       - name: test
-        run: CI=true npm test
+        run: npm test
       - name: format
         run: npm run prettier
       - name: lint
