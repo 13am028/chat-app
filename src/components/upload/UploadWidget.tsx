@@ -1,6 +1,6 @@
 import React from 'react'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate'
-import { updateAvatar } from '../firebase/utils'
+import { updateAvatar } from '../../firebase/utils'
 
 const UploadWidget = () => {
     const showWidget = () => {
@@ -19,7 +19,11 @@ const UploadWidget = () => {
         widget.open()
     }
     return (
-        <div className="modal-box modal-upload" onClick={showWidget}>
+        <div
+            className="modal-box modal-upload"
+            onClick={showWidget}
+            data-testid="upload-image-button"
+        >
             <div className="modal-icon">
                 <i className="fas fa-upload"></i>
                 <AddPhotoAlternateIcon style={{ fontSize: 40 }} />

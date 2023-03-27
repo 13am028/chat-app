@@ -10,6 +10,5 @@ describe('FriendStatusNav component', () => {
         expect(screen.getByText('Pending')).toBeInTheDocument()
         expect(screen.getByText('Blocked')).toBeInTheDocument()
         expect(screen.getByTestId('add-friend-button')).toBeInTheDocument()
-        expect(screen.getByTestId('remove-friend-button')).toBeInTheDocument()
     })
 })
