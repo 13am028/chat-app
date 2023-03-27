@@ -30,6 +30,11 @@ jobs:
         run: npm run typescript
       - name: build
         run: npm run build --if-present
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        with:
+            name: Test results
+            path: coverage/clover.xml
 
   sonarqube:
     needs:   react-app-workflow
