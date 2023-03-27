@@ -10,19 +10,20 @@ function Message(props: any) {
         ref.current?.scrollIntoView({ behavior: 'smooth' })
     }, [props.messages])
     return (
-        <div>
+        <div data-testid="message-container">
             {props.messages.map((message: any) => (
                 <div
                     className={`messageGrid ${
                         message.senderId === currentUser?.uid &&
                         'messageGridOwner'
                     }`}
+                    key={message.id}
                 >
                     <FriendIcon></FriendIcon>
                     <p className="message">{message.text}</p>
                 </div>
             ))}
-            <div ref={ref} />
+            <div ref={ref} data-testid="bottom-div" />
         </div>
     )
 }
