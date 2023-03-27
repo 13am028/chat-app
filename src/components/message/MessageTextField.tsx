@@ -3,8 +3,8 @@ import Button from 'react-bootstrap/Button'
 import React, { useContext, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import './MessageTextField.css'
-import { AuthContext } from './context/AuthContext'
-import { ChatContext } from './context/ChatContext'
+import { AuthContext } from '../context/AuthContext'
+import { ChatContext } from '../context/ChatContext'
 import {
     arrayUnion,
     doc,
@@ -12,7 +12,7 @@ import {
     updateDoc,
     Timestamp,
 } from 'firebase/firestore'
-import { db } from '../firebase/init'
+import { db } from '../../firebase/init'
 import uuid from 'react-uuid'
 
 function MessageTextField() {

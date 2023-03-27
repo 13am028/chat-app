@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Message from './Message'
-import MessageTextField from './MessageTextField'
-import { ChatContext } from './context/ChatContext'
+import Message from '../message/Message'
+import MessageTextField from '../message/MessageTextField'
+import { ChatContext } from '../context/ChatContext'
 import { doc, onSnapshot } from 'firebase/firestore'
-import { db } from '../firebase/init'
+import { db } from '../../firebase/init'
 
 function Conversation() {
     const [messages, setMessages] = useState<any[]>([])
@@ -18,9 +18,7 @@ function Conversation() {
         const unSub = onSnapshot(doc(db, 'chats', data.chatId), doc => {
             doc.exists() && setMessages(doc.data().messages)
         })
-        return () => {
-            unSub()
-        }
+        return unSub
     }, [data.chatId])
 
     console.log(messages)

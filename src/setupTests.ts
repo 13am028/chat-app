@@ -3,6 +3,14 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom'
+module.exports = {
+    collectCoverage: true,
+    collectCoverageFrom: [
+        'src/**/*.{js,jsx,ts,tsx}',
+        '!src/**/*.test.{js,jsx,ts,tsx}',
+    ],
+    coverageReporters: ['json', 'lcov', 'text', 'clover'],
+}
 
 const mockFirebase = () => {
     const MockFirebase = require('mock-cloud-firestore')
@@ -31,11 +39,14 @@ const mockFirebase = () => {
 
     jest.mock('firebase/firestore', () => ({
         getFirestore: jest.fn(() => mockFirebaseInstance.firestore()),
+        doc: jest.fn(),
+        onSnapshot: jest.fn(),
     }))
 
     jest.mock('firebase/auth', () => ({
         getAuth: jest.fn(),
         onAuthStateChanged: jest.fn(),
+        GoogleAuthProvider: jest.fn(),
     }))
 }
 
