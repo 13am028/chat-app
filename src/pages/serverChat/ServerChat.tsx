@@ -3,7 +3,7 @@ import './ServerChat.css'
 import Nav from '../../components/nav/Nav'
 import Conversation from '../../components/dm/Conversation'
 import styles from '../../components/nav/nav.module.css'
-import ServerPeople from '../serverChat/ServerPeople'
+import ServerPeople from '../../components/server/ServerPeople'
 
 const ServerChat = () => {
     /* Disable default context menu */
