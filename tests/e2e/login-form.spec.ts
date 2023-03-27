@@ -5,7 +5,7 @@ const non_email = 'this_isnot_email'
 
 test.beforeEach(async ({ page }) => {
     await page.goto('./login')
-    await page.waitForLoadState('networkidle', { timeout: 60 * 100 })
+    await page.waitForLoadState('networkidle')
 })
 
 test('Show password icon show work properly', async ({ page }) => {
@@ -13,24 +13,24 @@ test('Show password icon show work properly', async ({ page }) => {
     await pass_input.click()
     await pass_input.fill(my_secret)
     await pass_input.getAttribute('type').then(value => {
-        expect(value).toBe('password')
+        expect(value).toEqual('password')
     })
     await pass_input.getAttribute('value').then(value => {
-        expect(value).toBe(my_secret)
+        expect(value).toEqual(my_secret)
     })
     await page.getByTestId('VisibilityIcon').locator('path').click()
     await pass_input.getAttribute('type').then(value => {
-        expect(value).toBe('text')
+        expect(value).toEqual('text')
     })
     await pass_input.getAttribute('value').then(value => {
-        expect(value).toBe(my_secret)
+        expect(value).toEqual(my_secret)
     })
     await page.getByTestId('VisibilityOffIcon').click()
     await pass_input.getAttribute('type').then(value => {
-        expect(value).toBe('password')
+        expect(value).toEqual('password')
     })
     await pass_input.getAttribute('value').then(value => {
-        expect(value).toBe(my_secret)
+        expect(value).toEqual(my_secret)
     })
 })
 
