@@ -23,7 +23,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
+        "test": "CI=true react-scripts test t --silent --coverage",
         "test:e2e": "playwright test",
         "eject": "react-scripts eject",
         "typescript": "tsc --project tsconfig.json --noEmit",

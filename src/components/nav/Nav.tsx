@@ -46,7 +46,7 @@ const Nav = () => {
     // }
 
     return (
-        <div className={styles.navLeft}>
+        <div className={styles.navLeft} data-testid='nav'>
             <div className={styles.nav_head} onClick={routeChange}>
                 <GroupIcon />
             </div>
