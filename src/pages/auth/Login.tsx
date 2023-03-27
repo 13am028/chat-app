@@ -48,7 +48,7 @@ const Login = (props: any) => {
                 <div className={`signup-box ${theme === 'dark' ? 'dark' : ''}`}>
                     <p className="signup-text">
                         Don't have an account?{' '}
-                        <Link to="/SignUp" className="signup_link">
+                        <Link to="/signup" className="signup_link">
                             Sign up
                         </Link>
                     </p>
