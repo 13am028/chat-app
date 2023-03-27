@@ -28,15 +28,15 @@
     font-size: 15px;
 }
 
-.menuOptionLine{
-    color: black
+.menuOptionLine {
+    color: black;
 }
 
-.dark.menuOptionLine{
+.dark.menuOptionLine {
     color: white;
 }
 
-.menuOptionInvite{
+.menuOptionInvite {
     color: #7289da;
 }
 
@@ -58,9 +58,6 @@
     border-radius: 3px;
 }
 
-
-
-
 .friendIcon {
     height: 7vh;
     width: 7vh;
@@ -69,8 +66,6 @@
     margin-right: 10px;
     transition: all 0.2s ease-in-out;
 }
-
-
 
 p {
     margin: auto 0 auto 0;
@@ -98,14 +93,13 @@ p {
     content: none;
 }
 
-.addServerModalTitle{
+.addServerModalTitle {
     text-align: left;
     font-size: 24px;
     font-weight: 800;
     margin-bottom: 30px;
     color: black;
 }
-
 
 .addServerModalHeader {
     padding: 15px 15px 0 15px;
@@ -114,7 +108,6 @@ p {
     flex-direction: column;
     justify-content: center;
     box-shadow: var(--box-shadow);
-
 }
 
 .dark.addServerModalHeader {
@@ -147,7 +140,6 @@ p {
     justify-content: flex-start;
     align-items: stretch;
 }
-
 
 .addServerModalBody {
     border: none;
@@ -192,7 +184,6 @@ p {
     white-space: nowrap;
     color: black;
     font-weight: bold;
-
 }
 
 .inviteButton {
@@ -200,7 +191,7 @@ p {
     border-color: #00d400;
     padding: 10px;
     margin-left: 300px;
-    color:black;
+    color: black;
     border-radius: 5px;
     align-self: flex-end;
 }
@@ -266,8 +257,6 @@ p {
     width: 22%;
 }
 
-
-
 .searchBar {
     display: flex;
     align-items: center;
@@ -292,7 +281,7 @@ p {
     width: 100%;
 }
 
-.searchBar input[type="text"] {
+.searchBar input[type='text'] {
     border: none;
     outline: none;
     background-color: transparent;
@@ -301,9 +290,6 @@ p {
     padding: 0 5px;
 }
 
-.searchBar input[type="text"]::placeholder {
+.searchBar input[type='text']::placeholder {
     color: #aaa;
 }
-
-
-

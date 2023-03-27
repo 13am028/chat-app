@@ -62,7 +62,7 @@ function App() {
                             }
                         />
                     </Route>
-                    <Route path="serverChat" element={<ServerChat />} ></Route>
+                    <Route path="serverChat" element={<ServerChat />}></Route>
                 </Routes>
             </BrowserRouter>
         </div>

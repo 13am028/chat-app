@@ -1,3 +1,6 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=13am028_stock&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=13am028_chat-app)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=13am028_stock&metric=coverage)](https://sonarcloud.io/summary/new_code?id=13am028_chat-app)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=13am028_stock&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=13am028_chat-app)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

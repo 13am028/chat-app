@@ -29,8 +29,6 @@ describe('BlockFriendModal', () => {
         render(<BlockFriendModal user={user} onClick={jest.fn()} />)
         fireEvent.click(screen.getByTestId('remove-friend-button'))
         fireEvent.click(screen.getByTestId('block-friend-button'))
-        // await waitFor(() => {
-        //     expect(window.alert).toHaveBeenCalledWith(`user ${user.displayName} has been blocked successfully`);
-        // });
+        // expect(window.alert).toHaveBeenCalledWith(`user ${user.displayName} has been blocked successfully`);
     })
 })
