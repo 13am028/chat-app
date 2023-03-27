@@ -1,7 +1,7 @@
 import React from 'react';
 import './ServerChat.css'
 import Nav from "../../components/nav/Nav";
-import Conversation from "../../components/Conversation";
+import Conversation from "../../components/dm/Conversation";
 import styles from "../../components/nav/nav.module.css";
 import ServerPeople from "../serverChat/ServerPeople";
 
