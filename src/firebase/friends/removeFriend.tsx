@@ -1,10 +1,7 @@
-import { auth, db } from '../init'
-import { doc, getDoc, setDoc } from 'firebase/firestore'
+import {auth, db} from '../init'
+import {doc, getDoc, setDoc,} from 'firebase/firestore'
 
-const removeFriend = async (user: {
-    uid: string
-    displayName: string
-}): Promise<string> => {
+const removeFriend = async (user: { uid: string; displayName: string }): Promise<string> => {
     try {
         const currentUser = auth.currentUser
         if (!currentUser) {

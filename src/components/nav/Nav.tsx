@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import GroupIcon from '../icons/GroupIcon'
-import AddServerIcon from '../addServer/AddServerIcon'
+import AddServerIcon from '../AddServerComponents/AddServerIcon'
 import styles from './nav.module.css'
 import { useNavigate } from 'react-router-dom'
 import { getGroups } from '../../firebase/groups/getGroups'
+
 
 const Nav = () => {
     let navigate = useNavigate()
@@ -26,6 +27,7 @@ const Nav = () => {
         setGroups(userGroups)
     }
 
+
     /*TO DO: Add onclick for group icon*/
     let groupList: any = []
     if (groups) {
@@ -44,15 +46,11 @@ const Nav = () => {
     // }
 
     return (
-        <div className={styles.navLeft} data-testid="nav">
-            <div
-                className={styles.nav_head}
-                onClick={routeChange}
-                data-testid="nav-head"
-            >
-                <GroupIcon data-testid="group-icon" />
+        <div className={styles.navLeft}>
+            <div className={styles.nav_head} onClick={routeChange}>
+                <GroupIcon />
             </div>
-            <div className={styles.nav_content} data-testid="nav-content">
+            <div className={styles.nav_content}>
                 {groupList}
                 <AddServerIcon onGroupCreate={handleNewGroupRender} />
             </div>
