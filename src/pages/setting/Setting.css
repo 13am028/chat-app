@@ -9,7 +9,7 @@
     --hr-color: #a39e9e;
 }
 
-body[data-theme="dark-theme"] {
+body[data-theme='dark-theme'] {
     --setting-main-color: #516eda;
     --setting-primary-color: #292a2e;
     --setting-secondary-color: #2c2f33;
