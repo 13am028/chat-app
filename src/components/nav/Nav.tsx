@@ -31,7 +31,7 @@ const Nav = () => {
     if (groups) {
         groups.forEach((group: any) => {
             groupList.push(
-                <GroupIcon groupId={group.id} imageUrl={group.groupPic} />,
+                <GroupIcon groupId={group.id} imageUrl={group.groupPic} adminUID={group.adminUID} />,
             )
         })
     }

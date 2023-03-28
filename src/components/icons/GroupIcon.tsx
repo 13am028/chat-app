@@ -4,15 +4,23 @@ import { CloseButton, Modal } from 'react-bootstrap'
 import SearchIcon from '@mui/icons-material/Search'
 import { getFriends } from '../../firebase/friends/getFriends'
 import { addFriendToGroup } from '../../firebase/groups/addFriendToGroup'
-import { db } from '../../firebase/init'
+import { deleteGroup } from '../../firebase/groups/deleteGroup'
+import { leaveGroup } from '../../firebase/groups/leaveGroup'
+import { db, auth } from '../../firebase/init'
 import { doc, getDoc } from 'firebase/firestore'
 
-const GroupIcon = ({ groupId, imageUrl }: { groupId?: string, imageUrl?: string }) => {
+const GroupIcon = ({ groupId, imageUrl, adminUID }: { groupId?: string, imageUrl?: string, adminUID?: string }) => {
     const [showMenu, setShowMenu] = useState(false)
     const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 })
     const menuRef = useRef(null)
     const [showModal, setShowModal] = useState(false)
     const [getFriendList, setFriendList] = useState<any>([]);
+
+    const [shouldRender, setShouldRender] = useState(true);
+
+    const handleRemoveComponent = () => {
+        setShouldRender(false);
+      };
 
     const handleContextMenu = (event: any) => {
         event.preventDefault()
@@ -69,6 +77,17 @@ const GroupIcon = ({ groupId, imageUrl }: { groupId?: string, imageUrl?: string 
         }
     }
 
+    const deleteTheGroup = async () => {
+        await deleteGroup(groupId!)
+        handleRemoveComponent();
+    }
+
+    const leaveTheGroup = async () => {
+        if (!auth.currentUser) return
+        await leaveGroup(auth.currentUser?.uid, groupId!)
+        handleRemoveComponent();
+    }
+
     useEffect(() => {
         document.addEventListener('click', handleClick)
         return () => {
@@ -77,7 +96,7 @@ const GroupIcon = ({ groupId, imageUrl }: { groupId?: string, imageUrl?: string 
     }, [])
 
 
-    return (
+    return shouldRender ?(
         <div className={styles.groupIcon} onContextMenu={handleContextMenu}>
             {showMenu && (
                 <div
@@ -92,7 +111,11 @@ const GroupIcon = ({ groupId, imageUrl }: { groupId?: string, imageUrl?: string 
                         Invite people
                     </div>
                     <hr className={styles.menuOptionLine} />
-                    <div className={styles.menuOptionLeave}>Leave server</div>
+                    {adminUID === auth.currentUser?.uid ? (
+                        <div className={styles.menuOptionLeave} onClick={deleteTheGroup}>Delete server</div>
+                    ) : (
+                        <div className={styles.menuOptionLeave} onClick={leaveTheGroup}>Leave server</div>
+                    )}
                 </div>
             )}
             <Modal show={showModal} onHide={handleClose} centered>
@@ -141,7 +164,7 @@ const GroupIcon = ({ groupId, imageUrl }: { groupId?: string, imageUrl?: string 
                 </Modal.Body>
             </Modal>
         </div>
-    )
+    ): null;
 }
 
 export default GroupIcon
