@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
-import styles from '../../components/icons/icons.module.css'
+import styles from '../icons/icons.module.css'
 import { doc, onSnapshot, Timestamp } from 'firebase/firestore'
-import { AuthContext } from '../../components/context/AuthContext'
+import { AuthContext } from '../context/AuthContext'
 import { db } from '../../firebase/init'
-import { ChatContext } from '../../components/context/ChatContext'
+import { ChatContext } from '../context/ChatContext'
 import { useNavigate } from 'react-router-dom'
 import './ServerPeople.css'
 
