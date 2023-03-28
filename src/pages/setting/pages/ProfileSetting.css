@@ -74,11 +74,10 @@
     text-transform: capitalize;
 }
 
-.profile-pic-bg{
+.profile-pic-bg {
     background-color: var(--setting-profile-card-bg);
     display: flex;
     align-items: center;
-
 }
 .profilepic {
     margin-top: -25px;
@@ -97,13 +96,13 @@
 }
 
 .profilepic:hover .profilepic__img {
-    opacity: .5;
+    opacity: 0.5;
 }
 
 .profilepic__img {
     object-fit: cover;
     opacity: 1;
-    transition: opacity .2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
 }
 
 .profilepic__content {
@@ -118,8 +117,13 @@
     align-items: center;
     color: white;
     opacity: 0;
-    transition: opacity .2s ease-in-out;
-    background-color: rgba(0, 0, 0, 0.5); /* add this line to set the background color */
+    transition: opacity 0.2s ease-in-out;
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0.5
+    ); /* add this line to set the background color */
 }
 
 .profilepic__icon {
@@ -216,7 +220,7 @@ hr {
 
 /* Modal styles */
 
-.modal-title{
+.modal-title {
     color: black;
     font-weight: bolder;
     font-size: 20px;
@@ -286,7 +290,6 @@ hr {
     flex-direction: row;
 }
 
-
 .modal-btn {
     background-color: #5f5f5f;
     color: #fff;
@@ -315,5 +318,4 @@ hr {
 }
 .modal-box:hover .modal-label {
     color: black;
-
 }

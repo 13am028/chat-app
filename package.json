@@ -23,12 +23,12 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
+        "test": "CI=true react-scripts test t --silent --coverage ",
         "test:e2e": "playwright test",
         "eject": "react-scripts eject",
         "typescript": "tsc --project tsconfig.json --noEmit",
         "lint": "eslint src --color",
-        "prettier": "prettier src -check",
+        "prettier": "prettier src --check",
         "lint-staged": "lint-staged --config lint-staged.js",
         "husky-install": "husky install"
     },

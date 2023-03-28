@@ -3,7 +3,7 @@ import './ProfileSetting.css'
 import { Modal } from 'react-bootstrap'
 import SpanRevealButton from '../../../components/setting/SpanRevealButton'
 import { AuthContext } from '../../../components/context/AuthContext'
-import UploadWidget from '../../../components/UploadWidget'
+import UploadWidget from '../../../components/upload/UploadWidget'
 
 const ProfileSetting = () => {
     const { currentUser } = useContext(AuthContext)
