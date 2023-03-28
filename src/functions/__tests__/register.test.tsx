@@ -51,7 +51,9 @@ describe('signup', () => {
         const cPassword = 'Password1!'
         const errorMessage = 'Some error occurred.'
         //@ts-ignore
-        registerWithEmailAndPassword.mockRejectedValueOnce(new Error(errorMessage))
+        registerWithEmailAndPassword.mockRejectedValueOnce(
+            new Error(errorMessage),
+        )
         const spy = jest.spyOn(window, 'alert').mockImplementation(() => {})
 
         await signup(displayName, username, email, password, cPassword)

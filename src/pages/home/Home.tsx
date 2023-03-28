@@ -45,14 +45,20 @@ const Home = () => {
     }
 
     return (
-        <div onContextMenu={handleContextMenu} className="navbar-group">
+        <div
+            onContextMenu={handleContextMenu}
+            className="navbar-group"
+            data-testid="friend-list"
+        >
             <div className="navbar-left">
-                <Nav />
-                <DirectMessageNav />
+                <Nav data-testid="nav" />
+                <DirectMessageNav data-testid="dm-nav" />
             </div>
             <div className="navbar-right">
-                <FriendStatusNav />
-                <div className="bg">{friendList}</div>
+                <FriendStatusNav data-testid="friend-status-nav" />
+                <div className="bg" data-testid="friend-list-items">
+                    {friendList}
+                </div>
             </div>
         </div>
     )

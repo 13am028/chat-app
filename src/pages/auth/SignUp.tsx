@@ -8,10 +8,13 @@ const SignUp = (props: any) => {
 
     return (
         <div className={styles.grid}>
-            <div className={`background ${theme === 'dark' ? 'dark' : ''}`}>
+            <div
+                className={`background ${theme === 'dark' ? 'dark' : ''}`}
+                data-testid="background"
+            >
                 <img src="/logo3_1.png" alt="logo" />
             </div>
-            <div className="signup-form-container">
+            <div className="signup-form-container" data-testid="signup-box">
                 <SignUpBox theme={theme} />
             </div>
         </div>

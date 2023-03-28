@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Setting.css'
-import ProfileSetting from './pages/ProfileSetting'
+import ProfileSetting from '../../components/setting/ProfileSetting'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import { Link } from 'react-router-dom'
 
