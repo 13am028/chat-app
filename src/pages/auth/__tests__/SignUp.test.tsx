@@ -2,29 +2,31 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import SignUp from '../SignUp'
 import { MemoryRouter } from 'react-router-dom'
+import { useAuthState } from 'react-firebase-hooks/auth'
+
+jest.mock('react-firebase-hooks/auth', () => ({
+    useAuthState: jest.fn(),
+}))
 
 describe('SignUp', () => {
-    it('should render the logo image', () => {
+    it('should render the SignUpBox component', () => {
+        //@ts-ignore
+        useAuthState.mockReturnValueOnce([null, false])
         render(
             <MemoryRouter>
                 <SignUp theme="light" />
             </MemoryRouter>,
         )
         const logoImage = screen.getByAltText('logo')
-        expect(logoImage).toBeInTheDocument()
-    })
-
-    it('should render the SignUpBox component', () => {
-        render(
-            <MemoryRouter>
-                <SignUp theme="light" />
-            </MemoryRouter>,
-        )
         const signUpBox = screen.getByTestId('signup-box')
+
+        expect(logoImage).toBeInTheDocument()
         expect(signUpBox).toBeInTheDocument()
     })
 
     it('should add the "dark" class to the background div when theme is "dark"', () => {
+        //@ts-ignore
+        useAuthState.mockReturnValueOnce([null, false])
         render(
             <MemoryRouter>
                 <SignUp theme="dark" />
@@ -35,6 +37,8 @@ describe('SignUp', () => {
     })
 
     it('should not add the "dark" class to the background div when theme is "light"', () => {
+        //@ts-ignore
+        useAuthState.mockReturnValueOnce([null, false])
         render(
             <MemoryRouter>
                 <SignUp theme="light" />
