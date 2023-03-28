@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import styles from "../../components/icons/icons.module.css";
 import {doc, onSnapshot, Timestamp} from "firebase/firestore";
 import { AuthContext } from "../../components/context/AuthContext";
-import {db} from "../../firebase";
+import { db } from '../../firebase/init';
 import { ChatContext } from "../../components/context/ChatContext";
 import {useNavigate} from "react-router-dom";
 import "./ServerPeople.css";
