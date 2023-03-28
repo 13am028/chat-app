@@ -5,10 +5,17 @@ const SignUpBox = (props: any) => {
     const { theme } = props
     return (
         <form>
-            <div className={`signup-box ${theme === 'dark' ? 'dark' : ''}`}>
+            <div
+                className={`signup-box ${theme === 'dark' ? 'dark' : ''}`}
+                data-testid="signup-box"
+            >
                 <p className="signup-text">
                     Don't have an account?{' '}
-                    <Link to="/signup" className="signup_link">
+                    <Link
+                        to="/signup"
+                        className="signup_link"
+                        data-testid="signup-link"
+                    >
                         Sign up
                     </Link>
                 </p>

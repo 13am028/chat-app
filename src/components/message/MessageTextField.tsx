@@ -73,6 +73,7 @@ function MessageTextField() {
                     boxShadow: '0 1px 3px rgba(0, 0, 0, 0.2)',
                     width: '50%',
                 }}
+                data-testid="outlined-input"
             />
             <Button
                 variant="contained"
@@ -85,6 +86,7 @@ function MessageTextField() {
                 }}
                 size="lg"
                 type="submit"
+                data-testid="submit-button"
             >
                 Send
             </Button>

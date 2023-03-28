@@ -38,11 +38,20 @@ const RemoveFriendModal = ({
 
     return (
         <div style={{ display: 'inline-block' }} onClick={onClick}>
-            <Button variant="warning" onClick={handleShow} size="sm">
+            <Button
+                variant="warning"
+                onClick={handleShow}
+                size="sm"
+                data-testid="remove-friend-button"
+            >
                 <PersonRemoveAlt1Icon />
             </Button>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal
+                show={show}
+                onHide={handleClose}
+                data-testid="remove-friend-modal"
+            >
                 <Modal.Header
                     closeButton
                     style={{ backgroundColor: 'var(--theme-warning)' }}
@@ -57,7 +66,11 @@ const RemoveFriendModal = ({
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="danger" onClick={handleRemoveFriend}>
+                    <Button
+                        variant="danger"
+                        onClick={handleRemoveFriend}
+                        data-testid="confirm-remove-friend-button"
+                    >
                         Remove
                     </Button>
                 </Modal.Footer>

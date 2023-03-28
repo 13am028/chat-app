@@ -30,11 +30,11 @@ const LoginBox = (props: any) => {
     }
 
     return (
-        <form className={loginFormClassNames}>
+        <form className={loginFormClassNames} data-testid="login-form">
             <div className="login-form-content">
                 <h3 className="login-form-title">Sign In</h3>
                 <div className="form-group-mt-3">
-                    <label>Email address</label>
+                    <label htmlFor="email">Email address</label>
                     <input
                         type="email"
                         id="email"
@@ -44,10 +44,11 @@ const LoginBox = (props: any) => {
                         required
                         value={email}
                         onChange={e => setEmail(e.target.value)}
+                        data-testid="email-input"
                     />
                 </div>
                 <div className="form-group-mt-3 password-input-container">
-                    <label>Password</label>
+                    <label htmlFor="password">Password</label>
                     <input
                         type={showPassword ? 'text' : 'password'}
                         id="password"
@@ -57,9 +58,11 @@ const LoginBox = (props: any) => {
                         required
                         value={password}
                         onChange={e => setPassword(e.target.value)}
+                        data-testid="password-input"
                     />
                     <div
                         className="show-password-icon"
+                        data-testid="show-password-icon"
                         onClick={() => setShowPassword(!showPassword)}
                     >
                         {showPassword ? (
@@ -75,6 +78,7 @@ const LoginBox = (props: any) => {
                         type="submit"
                         className="login_submit"
                         onClick={handleSubmit}
+                        data-testid="login-submit-button"
                     >
                         Login
                     </button>
