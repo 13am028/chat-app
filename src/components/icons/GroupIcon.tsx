@@ -41,7 +41,11 @@ const GroupIcon = ({ imageUrl }: { imageUrl?: string }) => {
     }, [])
 
     return (
-        <div className={styles.groupIcon} onContextMenu={handleContextMenu}>
+        <div
+            className={styles.groupIcon}
+            onContextMenu={handleContextMenu}
+            data-testid="group-icon"
+        >
             {showMenu && (
                 <div
                     className={styles.customContextMenu}
@@ -51,11 +55,17 @@ const GroupIcon = ({ imageUrl }: { imageUrl?: string }) => {
                     <div
                         className={styles.menuOptionInvite}
                         onClick={inviteFriendsModal}
+                        data-testid="invite-friends-option"
                     >
                         Invite people
                     </div>
                     <hr className={styles.menuOptionLine} />
-                    <div className={styles.menuOptionLeave}>Leave server</div>
+                    <div
+                        className={styles.menuOptionLeave}
+                        data-testid="leave-server-option"
+                    >
+                        Leave server
+                    </div>
                 </div>
             )}
             <Modal show={showModal} onHide={handleClose} centered>
@@ -65,7 +75,11 @@ const GroupIcon = ({ imageUrl }: { imageUrl?: string }) => {
                         Invite Friends
                     </h1>
                     <div className={styles.searchBar}>
-                        <input type="text" placeholder="Search for friends" />
+                        <input
+                            type="text"
+                            placeholder="Search for friends"
+                            data-testid="search-input"
+                        />
                         <SearchIcon />
                     </div>
                 </Modal.Header>
@@ -85,6 +99,7 @@ const GroupIcon = ({ imageUrl }: { imageUrl?: string }) => {
                             >
                                 <div
                                     className={styles.friendIconAddServer}
+                                    data-testid={`friend-icon-${index}`}
                                 ></div>
                                 <div className={styles.serverFriendName}>
                                     <p className={styles.inviteFriendsName}>
@@ -94,6 +109,7 @@ const GroupIcon = ({ imageUrl }: { imageUrl?: string }) => {
                                 <button
                                     type="submit"
                                     className={styles.inviteButton}
+                                    data-testid={`invite-button-${index}`}
                                 >
                                     Invite
                                 </button>

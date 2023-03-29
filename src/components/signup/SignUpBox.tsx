@@ -58,7 +58,7 @@ const SignUpBox = (props: any) => {
     }
 
     return (
-        <form className={formClasses}>
+        <form className={formClasses} data-testid="signup-form">
             <div className="form-group-mt-3">
                 <h1 className="signup__title">
                     Sign Up to chat with your friends and family
@@ -140,6 +140,7 @@ const SignUpBox = (props: any) => {
                                     }
                                 />
                                 <div
+                                    data-testid="show-password-button"
                                     className="show-password-cpassword-icon"
                                     onClick={
                                         inputProps.id === 'password'
@@ -196,7 +197,7 @@ const SignUpBox = (props: any) => {
                     htmlFor="terms"
                     className="signup__label signup__label--checkbox"
                 >
-                    <CheckboxCustom theme={theme} />
+                    <CheckboxCustom theme={theme} data-testid="checkbox" />
                     <span className="signup__checkbox-label">
                         {' '}
                         I agree to the{' '}
@@ -210,12 +211,21 @@ const SignUpBox = (props: any) => {
                     </span>
                 </label>
             </div>
-            <button className="signup__submit" type="submit" onClick={register}>
+            <button
+                className="signup__submit"
+                type="submit"
+                onClick={register}
+                data-testid="submit-signup-button"
+            >
                 Sign Up
             </button>
             <p className="signup__already-have-account">
                 Already have an account?{' '}
-                <a href="/login" className="signup__link">
+                <a
+                    href="/login"
+                    className="signup__link"
+                    data-testid="login-link"
+                >
                     Log in here
                 </a>
             </p>
