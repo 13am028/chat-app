@@ -51,7 +51,7 @@ const SpanRevealButton: React.FC<Props> = ({ data, type }) => {
     }
 
     const displayedData = isVisible ? data : maskedData()
-    let visibilityIcon;
+    let visibilityIcon
 
     if (isVisible) {
         if (isHovered) {
@@ -60,16 +60,19 @@ const SpanRevealButton: React.FC<Props> = ({ data, type }) => {
                     onClick={handleClick}
                     onMouseLeave={handleMouseLeave}
                 />
-            );
+            )
         } else {
-            visibilityIcon = <VisibilityIcon onMouseEnter={handleMouseEnter} />;
+            visibilityIcon = <VisibilityIcon onMouseEnter={handleMouseEnter} />
         }
     } else if (isHovered) {
         visibilityIcon = (
-            <VisibilityIcon onClick={handleClick} onMouseLeave={handleMouseLeave} />
-        );
+            <VisibilityIcon
+                onClick={handleClick}
+                onMouseLeave={handleMouseLeave}
+            />
+        )
     } else {
-        visibilityIcon = <VisibilityOffIcon onMouseEnter={handleMouseEnter} />;
+        visibilityIcon = <VisibilityOffIcon onMouseEnter={handleMouseEnter} />
     }
 
     return (

@@ -1,6 +1,6 @@
 import { Page, test, expect } from '@playwright/test'
 import HomePage from '../../pages/HomePage'
-import SettingPage from "../../pages/SettingPage";
+import SettingPage from '../../pages/SettingPage'
 
 test.describe('Health Check', () => {
     let page: Page
@@ -19,14 +19,13 @@ test.describe('Health Check', () => {
         await homePage.checkFriendStatusNav()
         await homePage.checkAddFriendModal()
         await homePage.checkAccountDropDown()
-    //    TODO: check left nav bar (waiting for group feature to be finished)
+        //    TODO: check left nav bar (waiting for group feature to be finished)
     })
 
     test('User can view setting page', async () => {
         await settingPage.navigate()
         await settingPage.checkSideBar()
         await settingPage.checkProfileSetting()
-
     })
 
     test('User can view dm page', () => {})
