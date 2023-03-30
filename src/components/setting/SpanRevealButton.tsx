@@ -32,7 +32,7 @@ const SpanRevealButton: React.FC<Props> = ({ data, type }) => {
             case 'email':
                 // how some first and domain with fixed asterisk
                 return data.replace(
-                    /^(.{1,4})(.*)(@.*)$/,
+                    /^([^\n]{1,4})(.*)(@.*)$/,
                     (match, first, middle, last) => {
                         return `${first}${'****'}${last}`
                     },
@@ -51,20 +51,26 @@ const SpanRevealButton: React.FC<Props> = ({ data, type }) => {
     }
 
     const displayedData = isVisible ? data : maskedData()
-    const visibilityIcon = isVisible ? (
-        isHovered ? (
-            <VisibilityOffIcon
-                onClick={handleClick}
-                onMouseLeave={handleMouseLeave}
-            />
-        ) : (
-            <VisibilityIcon onMouseEnter={handleMouseEnter} />
-        )
-    ) : isHovered ? (
-        <VisibilityIcon onClick={handleClick} onMouseLeave={handleMouseLeave} />
-    ) : (
-        <VisibilityOffIcon onMouseEnter={handleMouseEnter} />
-    )
+    let visibilityIcon;
+
+    if (isVisible) {
+        if (isHovered) {
+            visibilityIcon = (
+                <VisibilityOffIcon
+                    onClick={handleClick}
+                    onMouseLeave={handleMouseLeave}
+                />
+            );
+        } else {
+            visibilityIcon = <VisibilityIcon onMouseEnter={handleMouseEnter} />;
+        }
+    } else if (isHovered) {
+        visibilityIcon = (
+            <VisibilityIcon onClick={handleClick} onMouseLeave={handleMouseLeave} />
+        );
+    } else {
+        visibilityIcon = <VisibilityOffIcon onMouseEnter={handleMouseEnter} />;
+    }
 
     return (
         <div className="user-data-inner-row" data-testid="user-data-inner-row">
