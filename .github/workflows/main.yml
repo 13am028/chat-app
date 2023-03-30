@@ -21,7 +21,7 @@ jobs:
       - name: npm ci
         run: npm ci
       - name: test
-        run: npm test
+        run: npm test --testResultsProcessor=jest-sonar-reporter
       - name: format
         run: npm run prettier
       - name: lint
