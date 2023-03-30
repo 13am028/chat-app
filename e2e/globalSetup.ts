@@ -1,5 +1,5 @@
 import { chromium } from '@playwright/test'
-import LoginPage from './pages/loginPage'
+import LoginPage from './pages/LoginPage'
 
 require('dotenv').config()
 
