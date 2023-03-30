@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             name: coverage-report
-            path: coverage/lcov.info
+            path: coverage/clover.xml
 
   sonarqube:
     needs:   react-app-workflow
