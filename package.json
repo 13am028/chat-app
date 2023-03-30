@@ -60,6 +60,7 @@
         "firestore-jest-mock": "^0.20.0",
         "husky": "^8.0.3",
         "jest": "^27.5.1",
+        "jest-sonar-reporter": "^2.0.0",
         "lint-staged": "^13.2.0",
         "mock-cloud-firestore": "^0.12.0",
         "prettier": "^2.8.7",
