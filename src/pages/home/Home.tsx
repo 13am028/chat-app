@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import './Home.css'
 import Nav from '../../components/nav/Nav'
 import FriendStatusNav from '../../components/nav/FriendStatusNav'
 import DirectMessageNav from '../../components/nav/DirectMessageNav'
 import FriendStatus from '../../components/icons/FriendStatus'
-import { getFriends } from '../../firebase/friends/getFriends'
-import { db } from '../../firebase/init'
-import { doc, onSnapshot } from 'firebase/firestore'
-import { AuthContext } from '../../components/context/AuthContext'
+import {getFriends} from '../../firebase/friends/getFriends'
+import {db} from '../../firebase/init'
+import {doc, onSnapshot} from 'firebase/firestore'
+import {AuthContext} from '../../components/context/AuthContext'
 
 const Home = () => {
     const { currentUser } = useContext(AuthContext)
@@ -21,14 +21,13 @@ const Home = () => {
 
     useEffect(() => {
         if (!currentUser) return
-        const unsub = onSnapshot(
+        return onSnapshot(
             doc(db, 'friends', currentUser.uid),
             async () => {
                 const users = await getFriends()
                 setFriends(users)
             },
         )
-        return unsub
     }, [currentUser])
 
     let friendList: any = []
