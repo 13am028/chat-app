@@ -1,6 +1,6 @@
 import { Page, test, expect } from '@playwright/test'
-import HomePage from '../../pages/HomePage'
-import SettingPage from '../../pages/SettingPage'
+import HomePage from '../../pages/homePage'
+import SettingPage from '../../pages/settingPage'
 
 test.describe('Health Check', () => {
     let page: Page

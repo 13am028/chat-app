@@ -1,5 +1,5 @@
 import { chromium } from '@playwright/test'
-import LoginPage from './pages/LoginPage'
+import LoginPage from './pages/loginPage'
 
 require('dotenv').config()
 
@@ -9,9 +9,9 @@ async function globalSetup() {
     const loginPage = new LoginPage(page)
     const email = process.env.TEST_USERNAME
     const password = process.env.TEST_PASSWORD
-
     await loginPage.navigate()
     await loginPage.login(email as string, password as string)
+    await page.context().storageState({ path: 'storageState.json' });
     await browser.close()
 }
 

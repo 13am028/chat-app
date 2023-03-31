@@ -8,10 +8,10 @@ import UploadWidget from '../upload/UploadWidget'
 const ProfileSetting = () => {
     const { currentUser } = useContext(AuthContext)
     const mockUser = {
-        uid: '1234',
-        email: 'johndow@example.com',
-        displayName: 'Johndow',
-        username: 'Johndow',
+        uid: '',
+        email: '',
+        displayName: '',
+        username: '',
     }
 
     let imgURL = 'https://cdn-icons-png.flaticon.com/512/456/456212.png'
@@ -36,8 +36,8 @@ const ProfileSetting = () => {
     return (
         <div>
             <div className="profile">
-                <h2 className="section-title">My Profile</h2>
-                <svg className="profile-banner">
+                <h2 className="section-title" data-testid='my-profile'>My Profile</h2>
+                <svg className="profile-banner" data-testid='profile-banner'>
                     {/* <mask>
                         <rect fill='white' x='0' y='0' width='100%' height='100%'></rect>
                         <circle fill='black' cx='62' cy='122' r='46'></circle>
@@ -62,7 +62,7 @@ const ProfileSetting = () => {
                             </div>
                         </div>
                     </div>
-                    <span className="username-span">{displayName}</span>
+                    <span className="username-span" data-testid='display-name'>{displayName}</span>
                 </div>
                 <Modal
                     show={showModal}
@@ -71,7 +71,7 @@ const ProfileSetting = () => {
                     data-testid="change-avatar-modal"
                 >
                     <Modal.Header closeButton>
-                        <h4 className="modal-title">Change Avatar</h4>
+                        <h4 className="modal-title" data-testid='modal-title'>Change Avatar</h4>
                     </Modal.Header>
                     <Modal.Body>
                         <UploadWidget />
@@ -81,17 +81,17 @@ const ProfileSetting = () => {
                     <div className="profile-card-field-list">
                         <div className="field">
                             <div className="username-row">
-                                <h3>USERNAME</h3>
+                                <h3 data-testid='username-heading'>USERNAME</h3>
                                 <div className="username-inner-row">
-                                    <span>{username}</span>
+                                    <span data-testid='username'>{username}</span>
                                     {/* <span>#6550</span> */}
                                 </div>
                             </div>
                         </div>
                         <div className="field field-spacer">
                             <div className="email-row">
-                                <h3>EMAIL</h3>
-                                <SpanRevealButton data={email} type="email" />
+                                <h3 data-testid='email-heading'>EMAIL</h3>
+                                <SpanRevealButton data={email} type="email" data-testid='email'/>
                             </div>
                         </div>
                         {/* <div className='field field-spacer'>
@@ -106,9 +106,9 @@ const ProfileSetting = () => {
 
             <hr />
 
-            <div className="profile user-security">
+            <div className="profile user-security" data-testid='user-security'>
                 <div>
-                    <h2 className="section-title">
+                    <h2 className="section-title" data-testid='password-authentication'>
                         Password and Authentication
                     </h2>
                 </div>
@@ -123,12 +123,13 @@ const ProfileSetting = () => {
                     </div>
                     <div>
                         <div className="flex">
-                            <div className="description title">
+                            <div className="description title" data-testid='two-fa-heading'>
                                 TWO-FACTOR AUTHENTICATION
                             </div>
                             <div
                                 className="description"
                                 style={{ marginBottom: 8 }}
+                                data-testid='two-fa-description'
                             >
                                 Protect your Discord account with an extra layer
                                 of security. Once configured, you'll be required
@@ -141,7 +142,7 @@ const ProfileSetting = () => {
                                     className="button"
                                     data-testid="enable-2fa-button"
                                 >
-                                    <div>Enable Two-Factor Auth</div>
+                                    <div data-testid='enable-2fa'>Enable Two-Factor Auth</div>
                                 </button>
                             </div>
                         </div>
