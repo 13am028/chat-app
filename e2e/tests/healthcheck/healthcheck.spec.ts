@@ -1,15 +1,19 @@
 import { Page, test, expect } from '@playwright/test'
 import HomePage from '../../pages/homePage'
 import SettingPage from '../../pages/settingPage'
+import LoginPage from "../../pages/loginPage";
 
 test.describe('Health Check', () => {
     let page: Page
     let homePage: HomePage
     let settingPage: SettingPage
+    let loginPage: LoginPage
 
     test.beforeAll(async ({ browser }) => {
         page = await browser.newPage()
-        await page.goto('/home')
+        loginPage = new LoginPage(page)
+        await loginPage.navigate()
+        await loginPage.login()
         await expect(page).toHaveURL('/home')
         homePage = new HomePage(page)
         settingPage = new SettingPage(page)
