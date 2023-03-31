@@ -9,13 +9,13 @@ const DMPage = () => {
     const { data } = useContext(ChatContext)
 
     return (
-        <div className="navbar-group">
+        <div className="navbar-group" data-testid="dm-page">
             <div className="navbar-left">
-                <Nav />
+                <Nav data-testid="nav" />
                 <DirectMessageNav />
             </div>
             <div className="navbar-right">
-                <div className={styles.navTopSecond}>
+                <div className={styles.navTopSecond} data-testid="display-name">
                     <h4>{data.user.displayName}</h4>
                 </div>
                 <Conversation></Conversation>

@@ -36,13 +36,6 @@ const Nav = () => {
         })
     }
 
-    // const { dispatch } = useContext(ChatContext)
-
-    // const handleOnSelect = (u: any) => {
-    //     dispatch({ type: 'CHANGE_USER', payload: u })
-    //     navigate('/serverChat')
-    // }
-
     return (
         <div className={styles.navLeft} data-testid="nav">
             <div
@@ -50,7 +43,15 @@ const Nav = () => {
                 onClick={routeChange}
                 data-testid="nav-head"
             >
-                <GroupIcon data-testid="group-icon" />
+                <img
+                    src="/favicon.png"
+                    alt="logo"
+                    style={{
+                        width: '8vh',
+                        marginLeft: '3px',
+                        cursor: 'pointer',
+                    }}
+                />
             </div>
             <div className={styles.nav_content} data-testid="nav-content">
                 {groupList}

@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react'
 import './ProfileSetting.css'
 import { Modal } from 'react-bootstrap'
-import SpanRevealButton from '../../../components/setting/SpanRevealButton'
-import { AuthContext } from '../../../components/context/AuthContext'
-import UploadWidget from '../../../components/upload/UploadWidget'
+import SpanRevealButton from './SpanRevealButton'
+import { AuthContext } from '../context/AuthContext'
+import UploadWidget from '../upload/UploadWidget'
 
 const ProfileSetting = () => {
     const { currentUser } = useContext(AuthContext)
@@ -50,11 +50,13 @@ const ProfileSetting = () => {
                             className="profile-img"
                             src={imgURL}
                             alt="Profile"
+                            data-testid="profile-img"
                         />
                         <div className="profilepic__content">
                             <div
                                 className="profilepic__text"
                                 onClick={handleShowModal}
+                                data-testid="change-avatar-button"
                             >
                                 Change Avatar
                             </div>
@@ -62,7 +64,12 @@ const ProfileSetting = () => {
                     </div>
                     <span className="username-span">{displayName}</span>
                 </div>
-                <Modal show={showModal} onHide={handleCloseModal} centered>
+                <Modal
+                    show={showModal}
+                    onHide={handleCloseModal}
+                    centered
+                    data-testid="change-avatar-modal"
+                >
                     <Modal.Header closeButton>
                         <h4 className="modal-title">Change Avatar</h4>
                     </Modal.Header>
@@ -107,7 +114,10 @@ const ProfileSetting = () => {
                 </div>
                 <div className="children">
                     <div>
-                        <button className="button">
+                        <button
+                            className="button"
+                            data-testid="change-password-button"
+                        >
                             <div>Change Password</div>
                         </button>
                     </div>
@@ -127,7 +137,10 @@ const ProfileSetting = () => {
                                 order to sign in.
                             </div>
                             <div>
-                                <button className="button">
+                                <button
+                                    className="button"
+                                    data-testid="enable-2fa-button"
+                                >
                                     <div>Enable Two-Factor Auth</div>
                                 </button>
                             </div>

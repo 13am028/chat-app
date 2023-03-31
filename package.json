@@ -23,7 +23,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "CI=true react-scripts test t --silent --coverage ",
+        "test": "CI=true react-scripts test --silent --coverage --coveragePathIgnorePatterns 'src/index.tsx' 'src/reportWebVitals.ts' 'src/firebase'",
         "test:e2e": "playwright test",
         "eject": "react-scripts eject",
         "typescript": "tsc --project tsconfig.json --noEmit",
@@ -51,10 +51,10 @@
         ]
     },
     "devDependencies": {
+        "@playwright/test": "^1.32.0",
         "@testing-library/jest-dom": "^5.16.5",
         "@types/jest": "^29.5.0",
         "@types/node": "^18.15.7",
-        "@playwright/test": "^1.32.0",
         "eslint": "^8.22.0",
         "firebase-mock": "^2.3.2",
         "firestore-jest-mock": "^0.20.0",

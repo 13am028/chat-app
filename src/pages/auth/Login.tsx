@@ -34,7 +34,7 @@ const Login = (props: any) => {
                     <span className="divider-text">or</span>
                     <hr className="divider-line" />
                 </div>
-                <SignUpBox theme={theme} />
+                <SignUpBox theme={theme} data-testid="signup-box" />
             </div>
         </div>
     )

@@ -62,6 +62,7 @@ body[data-theme='dark-theme'] {
     --theme-third: #282c34;
     --theme-fourth: #1a1d1d;
     --theme-fifth: #282c34;
+    --nav-bar: #34383d;
     --font-color: white;
     --message-bg: #45484f;
     --group-icon: white;

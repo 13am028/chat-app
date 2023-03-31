@@ -94,10 +94,12 @@ const GroupIcon = ({ groupId, imageUrl, adminUID }: { groupId?: string, imageUrl
             document.removeEventListener('click', handleClick)
         }
     }, [])
-
-
-    return shouldRender ?(
-        <div className={styles.groupIcon} onContextMenu={handleContextMenu}>
+    return (
+        <div
+            className={styles.groupIcon}
+            onContextMenu={handleContextMenu}
+            data-testid="group-icon"
+        >
             {showMenu && (
                 <div
                     className={styles.customContextMenu}
@@ -107,15 +109,17 @@ const GroupIcon = ({ groupId, imageUrl, adminUID }: { groupId?: string, imageUrl
                     <div
                         className={styles.menuOptionInvite}
                         onClick={inviteFriendsModal}
+                        data-testid="invite-friends-option"
                     >
                         Invite people
                     </div>
                     <hr className={styles.menuOptionLine} />
-                    {adminUID === auth.currentUser?.uid ? (
-                        <div className={styles.menuOptionLeave} onClick={deleteTheGroup}>Delete server</div>
-                    ) : (
-                        <div className={styles.menuOptionLeave} onClick={leaveTheGroup}>Leave server</div>
-                    )}
+                    <div
+                        className={styles.menuOptionLeave}
+                        data-testid="leave-server-option"
+                    >
+                        Leave server
+                    </div>
                 </div>
             )}
             <Modal show={showModal} onHide={handleClose} centered>
@@ -125,7 +129,11 @@ const GroupIcon = ({ groupId, imageUrl, adminUID }: { groupId?: string, imageUrl
                         Invite Friends
                     </h1>
                     <div className={styles.searchBar}>
-                        <input type="text" placeholder="Search for friends" />
+                        <input
+                            type="text"
+                            placeholder="Search for friends"
+                            data-testid="search-input"
+                        />
                         <SearchIcon />
                     </div>
                 </Modal.Header>
@@ -145,6 +153,7 @@ const GroupIcon = ({ groupId, imageUrl, adminUID }: { groupId?: string, imageUrl
                             >
                                 <div
                                     className={styles.friendIconAddServer}
+                                    data-testid={`friend-icon-${index}`}
                                 ></div>
                                 <div className={styles.serverFriendName}>
                                     <p className={styles.inviteFriendsName}>   
@@ -155,6 +164,7 @@ const GroupIcon = ({ groupId, imageUrl, adminUID }: { groupId?: string, imageUrl
                                     type="submit"
                                     className={styles.inviteButton}
                                     onClick={() => inviteFriendToGroup(index)}
+                                    data-testid={`invite-button-${index}`}
                                 >
                                     Invite
                                 </button>
