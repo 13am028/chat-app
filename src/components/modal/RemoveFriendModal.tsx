@@ -5,7 +5,6 @@ import { removeFriend } from '../../firebase/friends/removeFriend'
 import PersonRemoveAlt1Icon from '@mui/icons-material/PersonRemoveAlt1'
 import './Modal.css'
 
-
 const RemoveFriendModal = ({
     user,
     onClick,
@@ -55,16 +54,17 @@ const RemoveFriendModal = ({
                 onHide={handleClose}
                 data-testid="remove-friend-modal"
             >
-                <Modal.Header
-                    closeButton
-                    className="modal-header"
-                >
+                <Modal.Header closeButton className="modal-header">
                     <Modal.Title>Remove Friend</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="modal-body">
-                    <p className="header-text">Are you sure you want to remove <span style={{fontWeight: 'bold'}}>{user.displayName}</span> from your
-                    friends?
-                        </p>
+                    <p className="header-text">
+                        Are you sure you want to remove{' '}
+                        <span style={{ fontWeight: 'bold' }}>
+                            {user.displayName}
+                        </span>{' '}
+                        from your friends?
+                    </p>
                 </Modal.Body>
                 <Modal.Footer className="modal-footer">
                     <Button variant="secondary" onClick={handleClose}>

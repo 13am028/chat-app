@@ -1,18 +1,18 @@
-.modal-header{
+.modal-header {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     border-top: none;
 }
 
-.modal-body{
+.modal-body {
     font-size: 1.1rem;
     line-height: 1.5;
     align-content: center;
     padding-left: 300px;
 }
 
-.header-text{
+.header-text {
     margin-left: 15px;
 }
 

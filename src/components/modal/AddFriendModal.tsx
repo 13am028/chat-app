@@ -58,19 +58,18 @@ const AddFriendModal = ({
                 </Modal.Header>
                 <Modal.Body>
                     {/*<div className="input-wrapper">*/}
-                        {/*<div className="box">*/}
-                        <input
-                            placeholder="Enter a username"
-                            type="text"
-                            value={username}
-                            onChange={handleUsernameChange}
-                            data-testid="username-input"
-                            className="form-control input-box"
-                        />
-                        {/*</div>*/}
+                    {/*<div className="box">*/}
+                    <input
+                        placeholder="Enter a username"
+                        type="text"
+                        value={username}
+                        onChange={handleUsernameChange}
+                        data-testid="username-input"
+                        className="form-control input-box"
+                    />
+                    {/*</div>*/}
                     {/*</div>*/}
                 </Modal.Body>
-
 
                 <Modal.Footer>
                     <Button

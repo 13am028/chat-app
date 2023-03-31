@@ -6,8 +6,8 @@ describe('AddFriendModal', () => {
         render(<AddFriendModal />)
 
         fireEvent.click(screen.getByTestId('add-friend-button'))
-        const usernameInput = screen.getByPlaceholderText(
-            'username',
+        const usernameInput = screen.getByTestId(
+            'username-input',
         ) as HTMLButtonElement
         fireEvent.change(usernameInput, { target: { value: 'testuser' } })
 
@@ -21,7 +21,7 @@ describe('AddFriendModal', () => {
         render(<AddFriendModal handleAddFriend={mockHandleAddFriend} />)
         fireEvent.click(screen.getByTestId('add-friend-button'))
 
-        const usernameInput = screen.getByPlaceholderText('username')
+        const usernameInput = screen.getByTestId('username-input')
         fireEvent.change(usernameInput, { target: { value: 'testuser' } })
 
         const addButton = screen.getByTestId('add-friend-button')
@@ -35,7 +35,7 @@ describe('AddFriendModal', () => {
         render(<AddFriendModal handleAddFriend={mockHandleAddFriend} />)
         fireEvent.click(screen.getByTestId('add-friend-button'))
 
-        const usernameInput = screen.getByPlaceholderText('username')
+        const usernameInput = screen.getByTestId('username-input')
         fireEvent.change(usernameInput, { target: { value: 'testuser' } })
 
         const addButton = screen.getByTestId('add-friend-button')
@@ -49,7 +49,7 @@ describe('AddFriendModal', () => {
         render(<AddFriendModal handleAddFriend={mockHandleAddFriend} />)
         fireEvent.click(screen.getByTestId('add-friend-button'))
 
-        const usernameInput = screen.getByPlaceholderText('username')
+        const usernameInput = screen.getByTestId('username-input')
         fireEvent.change(usernameInput, { target: { value: 'testuser' } })
 
         const addButton = screen.getByTestId('add-friend-button')
@@ -65,7 +65,7 @@ describe('AddFriendModal', () => {
         render(<AddFriendModal handleAddFriend={mockHandleAddFriend} />)
         fireEvent.click(screen.getByTestId('add-friend-button'))
 
-        const usernameInput = screen.getByPlaceholderText('username')
+        const usernameInput = screen.getByTestId('username-input')
         fireEvent.change(usernameInput, { target: { value: 'testuser' } })
 
         const addButton = screen.getByTestId('add-friend-button')

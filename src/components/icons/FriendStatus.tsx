@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import styles from './icons.module.css'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
@@ -14,15 +14,14 @@ import { ChatContext } from '../context/ChatContext'
 
 import RemoveFriendModal from '../modal/RemoveFriendModal'
 import BlockFriendModal from '../modal/BlockFriendModal'
-import {Button} from "@mui/material";
 
 const FriendStatus = (user: any) => {
     const { currentUser } = useContext(AuthContext)
     const { dispatch } = useContext(ChatContext)
 
     const handleModalClick = (e: React.MouseEvent) => {
-        e.stopPropagation();
-    };
+        e.stopPropagation()
+    }
     let navigate = useNavigate()
     const routeChange = () => {
         let path = '/dm'
