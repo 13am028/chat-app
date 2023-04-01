@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button'
 import { Modal } from 'react-bootstrap'
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1'
 import addFriendValidate from '../../functions/addFriendValidate'
+import './Modal.css'
 
 const AddFriendModal = ({
     handleAddFriend,
@@ -56,14 +57,20 @@ const AddFriendModal = ({
                     <Modal.Title>Add Friend</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    {/*<div className="input-wrapper">*/}
+                    {/*<div className="box">*/}
                     <input
-                        placeholder="username"
+                        placeholder="Enter a username"
                         type="text"
                         value={username}
                         onChange={handleUsernameChange}
                         data-testid="username-input"
+                        className="form-control input-box"
                     />
+                    {/*</div>*/}
+                    {/*</div>*/}
                 </Modal.Body>
+
                 <Modal.Footer>
                     <Button
                         variant="secondary"

@@ -11,12 +11,17 @@ import {
 } from 'firebase/firestore'
 import { db } from '../../firebase/init'
 import { ChatContext } from '../context/ChatContext'
+
 import RemoveFriendModal from '../modal/RemoveFriendModal'
 import BlockFriendModal from '../modal/BlockFriendModal'
 
 const FriendStatus = (user: any) => {
     const { currentUser } = useContext(AuthContext)
     const { dispatch } = useContext(ChatContext)
+
+    const handleModalClick = (e: React.MouseEvent) => {
+        e.stopPropagation()
+    }
     let navigate = useNavigate()
     const routeChange = () => {
         let path = '/dm'
@@ -77,7 +82,7 @@ const FriendStatus = (user: any) => {
             <div style={{ display: 'inline-block' }}>
                 <RemoveFriendModal
                     user={{ displayName: user.displayName, uid: user.uid }}
-                    onClick={stopPropagation}
+                    onClick={handleModalClick}
                 />
                 <BlockFriendModal
                     user={{ displayName: user.displayName, uid: user.uid }}
