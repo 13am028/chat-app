@@ -23,8 +23,6 @@ const createGroup = async (groupName: string) => {
             adminUID: myUID,
             users: {
                 [myUID]: true,
-                role: 'admin',
-                profilePic: 'some image url',
             },
         })
 
