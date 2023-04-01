@@ -16,10 +16,18 @@ const getGroups = async () => {
         const querySnapshot = await getDocs(userGroupsQuery)
 
         // Iterate through the documents and extract group data
-        const groups: Array<{ id: string; groupPic: string; adminUID: string }> = []
+        const groups: Array<{
+            id: string
+            groupPic: string
+            adminUID: string
+        }> = []
         querySnapshot.forEach(doc => {
             // Not good particle to retreive everything in the group
-            groups.push({ id: doc.id, groupPic: doc.data().groupPic, adminUID: doc.data().adminUID })
+            groups.push({
+                id: doc.id,
+                groupPic: doc.data().groupPic,
+                adminUID: doc.data().adminUID,
+            })
         })
 
         return groups

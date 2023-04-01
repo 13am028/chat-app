@@ -9,10 +9,10 @@ const UserSettingPage = () => {
 
     return (
         <div className="container">
-            <div className="left-panel">
+            <div className="left-panel" data-testid="left-panel">
                 <div className="left-panel-bar">
                     <div className="left-panel-content">
-                        <h2>USER SETTINGS</h2>
+                        <h2 data-testid="user-setting">USER SETTINGS</h2>
                         <ul>
                             <li>
                                 <a
@@ -21,6 +21,7 @@ const UserSettingPage = () => {
                                         activeTab === 'profile' ? 'active' : ''
                                     }
                                     href="#top"
+                                    data-testid="profile link"
                                 >
                                     My Profile
                                 </a>
@@ -28,14 +29,15 @@ const UserSettingPage = () => {
                             <li>
                                 <a
                                     onClick={() =>
-                                        setActiveTab('privary-safety')
+                                        setActiveTab('privacy-safety')
                                     }
                                     className={
-                                        activeTab === 'privary-safety'
+                                        activeTab === 'privacy-safety'
                                             ? 'active'
                                             : ''
                                     }
                                     href="#top"
+                                    data-testid="privacy link"
                                 >
                                     Privacy &amp; Safety
                                 </a>
@@ -51,13 +53,14 @@ const UserSettingPage = () => {
                                             : ''
                                     }
                                     href="#top"
+                                    data-testid="friend-request-link"
                                 >
                                     Friend Requests
                                 </a>
                             </li>
                         </ul>
                         <hr />
-                        <h2>APP SETTINGS</h2>
+                        <h2 data-testid="app-settings">APP SETTINGS</h2>
                         <ul>
                             <li>
                                 <a
@@ -68,6 +71,7 @@ const UserSettingPage = () => {
                                             : ''
                                     }
                                     href="#top"
+                                    data-testid="appearance-link"
                                 >
                                     Appearance
                                 </a>
@@ -83,6 +87,7 @@ const UserSettingPage = () => {
                                             : ''
                                     }
                                     href="#top"
+                                    data-testid="accessibility-link"
                                 >
                                     Accessibility
                                 </a>
@@ -96,6 +101,7 @@ const UserSettingPage = () => {
                                             : ''
                                     }
                                     href="#top"
+                                    data-testid="voice-video-link"
                                 >
                                     Voice & Video
                                 </a>
@@ -109,6 +115,7 @@ const UserSettingPage = () => {
                                             : ''
                                     }
                                     href="#top"
+                                    data-testid="text-image-link"
                                 >
                                     Text & Image
                                 </a>
@@ -122,6 +129,7 @@ const UserSettingPage = () => {
                                             : ''
                                     }
                                     href="#top"
+                                    data-testid="notification-link"
                                 >
                                     Notification
                                 </a>
@@ -133,27 +141,31 @@ const UserSettingPage = () => {
                                         activeTab === 'language' ? 'active' : ''
                                     }
                                     href="#top"
+                                    data-testid="language-link"
                                 >
                                     Language
                                 </a>
                             </li>
                         </ul>
                         <hr />
-                        <h2>ACTIVITY SETTINGS</h2>
+                        <h2 data-testid="activity-settings">
+                            ACTIVITY SETTINGS
+                        </h2>
                         <ul>
                             <li>
                                 <a
                                     onClick={() =>
-                                        setActiveTab('activity-privary')
+                                        setActiveTab('activity-privacy')
                                     }
                                     className={
-                                        activeTab === 'activity-privary'
+                                        activeTab === 'activity-privacy'
                                             ? 'active'
                                             : ''
                                     }
                                     href="#top"
+                                    data-testid="activity-privacy-link"
                                 >
-                                    Activity Privary
+                                    Activity Privacy
                                 </a>
                             </li>
                             <li>
@@ -167,6 +179,7 @@ const UserSettingPage = () => {
                                             : ''
                                     }
                                     href="#top"
+                                    data-testid="registered-game-link"
                                 >
                                     Registered Games
                                 </a>
@@ -178,6 +191,7 @@ const UserSettingPage = () => {
                                 <a
                                     href="#top"
                                     onClick={() => setActiveTab('logout')}
+                                    data-testid="logout-link"
                                 >
                                     Log Out
                                 </a>
@@ -188,9 +202,12 @@ const UserSettingPage = () => {
                 </div>
             </div>
 
-            <div className="right-panel">
-                <Link to="/home" className="icon-link">
-                    <HighlightOffIcon className="close-button" />
+            <div className="right-panel" data-testid="right-panel">
+                <Link to="/home" className="icon-link" data-tesid="icon-link">
+                    <HighlightOffIcon
+                        className="close-button"
+                        data-testid="close-button"
+                    />
                 </Link>
 
                 {activeTab === 'profile' && <ProfileSetting />}

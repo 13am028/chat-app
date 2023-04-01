@@ -1,5 +1,5 @@
 import { db } from '../init'
-import { doc, getDoc, updateDoc, deleteField  } from 'firebase/firestore'
+import { doc, updateDoc, deleteField } from 'firebase/firestore'
 
 const leaveGroup = async (userUID: string, groupId: string) => {
     try {
@@ -7,8 +7,7 @@ const leaveGroup = async (userUID: string, groupId: string) => {
 
         await updateDoc(groupRef, {
             [`users.${userUID}`]: deleteField(),
-          });
-
+        })
     } catch (error: any) {
         console.error(error)
     }
