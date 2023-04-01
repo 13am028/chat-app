@@ -1,19 +1,19 @@
-import './App.css';
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
-import Login from './pages/auth/Login';
-import SignUp from './pages/auth/SignUp';
-import Home from './pages/home/Home';
-import DMPage from './pages/dm/DMPage';
-import UserSettingPage from './pages/setting/UserSetting';
-import Logout from './functions/logout';
-import ServerChat from './pages/serverChat/ServerChat';
-import React, { useEffect, useState } from 'react';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import { AuthContextProvider } from "./components/context/AuthContext";
-import { ChatContextProvider } from "./components/context/ChatContext";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from './firebase/init';
+import './App.css'
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
+import Login from './pages/auth/Login'
+import SignUp from './pages/auth/SignUp'
+import Home from './pages/home/Home'
+import DMPage from './pages/dm/DMPage'
+import UserSettingPage from './pages/setting/UserSetting'
+import Logout from './functions/logout'
+import ServerChat from './pages/serverChat/ServerChat'
+import React, { useEffect, useState } from 'react'
+import LightModeIcon from '@mui/icons-material/LightMode'
+import DarkModeIcon from '@mui/icons-material/DarkMode'
+import { AuthContextProvider } from './components/context/AuthContext'
+import { ChatContextProvider } from './components/context/ChatContext'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth } from './firebase/init'
 
 function ThemeToggleButton({ theme, toggleTheme }: any) {
     return (
@@ -27,45 +27,76 @@ function ThemeToggleButton({ theme, toggleTheme }: any) {
                 <LightModeIcon sx={{ fontSize: 24 }} />
             )}
         </button>
-    );
+    )
 }
 
 function ProtectedRoutes({ children }: any) {
-    const navigate = useNavigate();
-    const [user, loading] = useAuthState(auth);
+    const navigate = useNavigate()
+    const [user, loading] = useAuthState(auth)
 
     if (!user && !loading) {
-        navigate('/login');
-        return null;
+        navigate('/login')
+        return null
     }
-    return <>{children}</>;
+    return <>{children}</>
 }
 
 function App() {
-    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light')
     const toggleTheme = () => {
-        setTheme(theme === 'light' ? 'dark' : 'light');
+        setTheme(theme === 'light' ? 'dark' : 'light')
     }
 
     useEffect(() => {
-        localStorage.setItem('theme', theme);
-        document.body.className = theme;
-        document.body.setAttribute('data-theme', `${theme}-theme`);
-    }, [theme]);
+        localStorage.setItem('theme', theme)
+        document.body.className = theme
+        document.body.setAttribute('data-theme', `${theme}-theme`)
+    }, [theme])
 
     return (
         <AuthContextProvider>
             <ChatContextProvider>
                 <div className={`App ${theme}`}>
-                    <ThemeToggleButton theme={theme} toggleTheme={toggleTheme} />
+                    <ThemeToggleButton
+                        theme={theme}
+                        toggleTheme={toggleTheme}
+                    />
                     <BrowserRouter>
                         <Routes>
                             <Route path="/">
                                 <Route path="logout" element={<Logout />} />
-                                <Route path="/" element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
-                                <Route path="home" element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
-                                <Route path="dm" element={<ProtectedRoutes><DMPage /></ProtectedRoutes>} />
-                                <Route path="setting" element={<ProtectedRoutes><UserSettingPage /></ProtectedRoutes>} />
+                                <Route
+                                    path="/"
+                                    element={
+                                        <ProtectedRoutes>
+                                            <Home />
+                                        </ProtectedRoutes>
+                                    }
+                                />
+                                <Route
+                                    path="home"
+                                    element={
+                                        <ProtectedRoutes>
+                                            <Home />
+                                        </ProtectedRoutes>
+                                    }
+                                />
+                                <Route
+                                    path="dm"
+                                    element={
+                                        <ProtectedRoutes>
+                                            <DMPage />
+                                        </ProtectedRoutes>
+                                    }
+                                />
+                                <Route
+                                    path="setting"
+                                    element={
+                                        <ProtectedRoutes>
+                                            <UserSettingPage />
+                                        </ProtectedRoutes>
+                                    }
+                                />
                                 <Route
                                     path="login"
                                     element={
@@ -85,7 +116,14 @@ function App() {
                                     }
                                 />
                             </Route>
-                            <Route path="serverChat" element={<ProtectedRoutes><ServerChat /></ProtectedRoutes>}></Route>
+                            <Route
+                                path="serverChat"
+                                element={
+                                    <ProtectedRoutes>
+                                        <ServerChat />
+                                    </ProtectedRoutes>
+                                }
+                            ></Route>
                         </Routes>
                     </BrowserRouter>
                 </div>
@@ -94,4 +132,4 @@ function App() {
     )
 }
 
-export default App;
+export default App

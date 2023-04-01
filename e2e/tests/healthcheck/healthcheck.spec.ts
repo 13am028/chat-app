@@ -1,13 +1,15 @@
 import { Page, test, expect } from '@playwright/test'
 import HomePage from '../../pages/homePage'
 import SettingPage from '../../pages/settingPage'
-import LoginPage from "../../pages/loginPage";
+import LoginPage from '../../pages/loginPage'
+import DmPage from '../../pages/dmPage'
 
 test.describe('Health Check', () => {
     let page: Page
     let homePage: HomePage
     let settingPage: SettingPage
     let loginPage: LoginPage
+    let dmPage: DmPage
 
     test.beforeAll(async ({ browser }) => {
         page = await browser.newPage()
@@ -17,6 +19,7 @@ test.describe('Health Check', () => {
         await expect(page).toHaveURL('/home')
         homePage = new HomePage(page)
         settingPage = new SettingPage(page)
+        dmPage = new DmPage(page)
     })
 
     test('User can view home page', async () => {
@@ -32,7 +35,10 @@ test.describe('Health Check', () => {
         await settingPage.checkProfileSetting()
     })
 
-    test('User can view dm page', () => {})
+    test('User can view dm page', async () => {
+        await dmPage.navigate()
+        await dmPage.checkDMPage()
+    })
 
     test('User can view group page', () => {})
 })
