@@ -69,6 +69,10 @@ const mockFirebase = () => {
         onAuthStateChanged: jest.fn(),
         GoogleAuthProvider: jest.fn(),
     }))
+
+    jest.mock('react-firebase-hooks/auth', () => ({
+        useAuthState: jest.fn(() => [{}, false, null]),
+    }))
 }
 
 mockFirebase()

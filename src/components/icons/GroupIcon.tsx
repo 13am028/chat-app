@@ -9,18 +9,27 @@ import { leaveGroup } from '../../firebase/groups/leaveGroup'
 import { db, auth } from '../../firebase/init'
 import { doc, getDoc } from 'firebase/firestore'
 
-const GroupIcon = ({ groupId, imageUrl, adminUID }: { groupId?: string, imageUrl?: string, adminUID?: string }) => {
+const GroupIcon = ({
+    groupId,
+    imageUrl,
+    adminUID,
+}: {
+    groupId?: string
+    imageUrl?: string
+    adminUID?: string
+}) => {
     const [showMenu, setShowMenu] = useState(false)
     const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 })
     const menuRef = useRef(null)
     const [showModal, setShowModal] = useState(false)
-    const [getFriendList, setFriendList] = useState<any>([]);
+    const [getFriendList, setFriendList] = useState<any>([])
 
-    const [shouldRender, setShouldRender] = useState(true);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [shouldRender, setShouldRender] = useState(true)
 
     const handleRemoveComponent = () => {
-        setShouldRender(false);
-      };
+        setShouldRender(false)
+    }
 
     const handleContextMenu = (event: any) => {
         event.preventDefault()
@@ -37,22 +46,24 @@ const GroupIcon = ({ groupId, imageUrl, adminUID }: { groupId?: string, imageUrl
 
     const fetchFriendList = async () => {
         try {
-            const friends = await getFriends();
-            if (!friends) return;
+            const friends = await getFriends()
+            if (!friends) return
 
-            if (!groupId) return;
+            if (!groupId) return
             const groupRef = await doc(db, 'groups', groupId)
-            const groupData = await (await getDoc(groupRef)).data();
+            const groupData = await (await getDoc(groupRef)).data()
 
-            if (!groupData) return;
-            
-            const groupUsers = Object.keys(groupData.users);
-            const friendList = friends.filter((friend: any) => !groupUsers.includes(friend.uid));
-            
-            setFriendList(friendList);
-          } catch (error) {
-            console.log(error);
-          }
+            if (!groupData) return
+
+            const groupUsers = Object.keys(groupData.users)
+            const friendList = friends.filter(
+                (friend: any) => !groupUsers.includes(friend.uid),
+            )
+
+            setFriendList(friendList)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const inviteFriendsModal = () => {
@@ -67,25 +78,26 @@ const GroupIcon = ({ groupId, imageUrl, adminUID }: { groupId?: string, imageUrl
 
     const inviteFriendToGroup = async (index: number) => {
         // ! mean trust me it not null
-        const bool = await addFriendToGroup(groupId!, getFriendList[index].uid);
-        if (bool)
-        {
+        const bool = await addFriendToGroup(groupId!, getFriendList[index].uid)
+        if (bool) {
             // After success invite friend to group, stop show that friend in invite modal
-            const friendList = [...getFriendList];
-            friendList.splice(index, 1);
-            setFriendList(friendList);
+            const friendList = [...getFriendList]
+            friendList.splice(index, 1)
+            setFriendList(friendList)
         }
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const deleteTheGroup = async () => {
         await deleteGroup(groupId!)
-        handleRemoveComponent();
+        handleRemoveComponent()
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const leaveTheGroup = async () => {
         if (!auth.currentUser) return
         await leaveGroup(auth.currentUser?.uid, groupId!)
-        handleRemoveComponent();
+        handleRemoveComponent()
     }
 
     useEffect(() => {
@@ -156,7 +168,7 @@ const GroupIcon = ({ groupId, imageUrl, adminUID }: { groupId?: string, imageUrl
                                     data-testid={`friend-icon-${index}`}
                                 ></div>
                                 <div className={styles.serverFriendName}>
-                                    <p className={styles.inviteFriendsName}>   
+                                    <p className={styles.inviteFriendsName}>
                                         {item.displayName}
                                     </p>
                                 </div>
@@ -174,7 +186,7 @@ const GroupIcon = ({ groupId, imageUrl, adminUID }: { groupId?: string, imageUrl
                 </Modal.Body>
             </Modal>
         </div>
-    ): null;
+    )
 }
 
 export default GroupIcon
