@@ -2,12 +2,25 @@ import React, { useEffect, useRef, useState } from 'react'
 import styles from './icons.module.css'
 import { CloseButton, Modal } from 'react-bootstrap'
 import SearchIcon from '@mui/icons-material/Search'
+import { getFriends } from '../../firebase/friends/getFriends'
+import { addFriendToGroup } from '../../firebase/groups/addFriendToGroup'
+import { deleteGroup } from '../../firebase/groups/deleteGroup'
+import { leaveGroup } from '../../firebase/groups/leaveGroup'
+import { db, auth } from '../../firebase/init'
+import { doc, getDoc } from 'firebase/firestore'
 
-const GroupIcon = ({ imageUrl }: { imageUrl?: string }) => {
+const GroupIcon = ({ groupId, imageUrl, adminUID }: { groupId?: string, imageUrl?: string, adminUID?: string }) => {
     const [showMenu, setShowMenu] = useState(false)
     const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 })
     const menuRef = useRef(null)
     const [showModal, setShowModal] = useState(false)
+    const [getFriendList, setFriendList] = useState<any>([]);
+
+    const [shouldRender, setShouldRender] = useState(true);
+
+    const handleRemoveComponent = () => {
+        setShouldRender(false);
+      };
 
     const handleContextMenu = (event: any) => {
         event.preventDefault()
@@ -22,16 +35,58 @@ const GroupIcon = ({ imageUrl }: { imageUrl?: string }) => {
         }
     }
 
+    const fetchFriendList = async () => {
+        try {
+            const friends = await getFriends();
+            if (!friends) return;
+
+            if (!groupId) return;
+            const groupRef = await doc(db, 'groups', groupId)
+            const groupData = await (await getDoc(groupRef)).data();
+
+            if (!groupData) return;
+            
+            const groupUsers = Object.keys(groupData.users);
+            const friendList = friends.filter((friend: any) => !groupUsers.includes(friend.uid));
+            
+            setFriendList(friendList);
+          } catch (error) {
+            console.log(error);
+          }
+    }
+
     const inviteFriendsModal = () => {
         setShowModal(true)
         setShowMenu(false) // close the menu when modal is opened
+        fetchFriendList()
     }
 
     const handleClose = () => {
         setShowModal(false)
     }
 
-    const items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    const inviteFriendToGroup = async (index: number) => {
+        // ! mean trust me it not null
+        const bool = await addFriendToGroup(groupId!, getFriendList[index].uid);
+        if (bool)
+        {
+            // After success invite friend to group, stop show that friend in invite modal
+            const friendList = [...getFriendList];
+            friendList.splice(index, 1);
+            setFriendList(friendList);
+        }
+    }
+
+    const deleteTheGroup = async () => {
+        await deleteGroup(groupId!)
+        handleRemoveComponent();
+    }
+
+    const leaveTheGroup = async () => {
+        if (!auth.currentUser) return
+        await leaveGroup(auth.currentUser?.uid, groupId!)
+        handleRemoveComponent();
+    }
 
     useEffect(() => {
         document.addEventListener('click', handleClick)
@@ -39,7 +94,6 @@ const GroupIcon = ({ imageUrl }: { imageUrl?: string }) => {
             document.removeEventListener('click', handleClick)
         }
     }, [])
-
     return (
         <div
             className={styles.groupIcon}
@@ -91,7 +145,7 @@ const GroupIcon = ({ imageUrl }: { imageUrl?: string }) => {
                             overflow: 'auto',
                         }}
                     >
-                        {items.map((item, index) => (
+                        {getFriendList.map((item: any, index: number) => (
                             <div
                                 className={styles.serverFriend}
                                 key={index}
@@ -102,13 +156,14 @@ const GroupIcon = ({ imageUrl }: { imageUrl?: string }) => {
                                     data-testid={`friend-icon-${index}`}
                                 ></div>
                                 <div className={styles.serverFriendName}>
-                                    <p className={styles.inviteFriendsName}>
-                                        Hello
+                                    <p className={styles.inviteFriendsName}>   
+                                        {item.displayName}
                                     </p>
                                 </div>
                                 <button
                                     type="submit"
                                     className={styles.inviteButton}
+                                    onClick={() => inviteFriendToGroup(index)}
                                     data-testid={`invite-button-${index}`}
                                 >
                                     Invite
@@ -119,7 +174,7 @@ const GroupIcon = ({ imageUrl }: { imageUrl?: string }) => {
                 </Modal.Body>
             </Modal>
         </div>
-    )
+    ): null;
 }
 
 export default GroupIcon

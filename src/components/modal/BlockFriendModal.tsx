@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import { Modal } from 'react-bootstrap'
 import { blockFriend } from '../../firebase/friends/blockFriend'
-import PersonRemoveAlt1Icon from '@mui/icons-material/PersonRemoveAlt1'
+import BlockIcon from '@mui/icons-material/Block'
+import './Modal.css'
 
 const BlockFriendModal = ({
     user,
@@ -36,27 +37,29 @@ const BlockFriendModal = ({
                 variant="danger"
                 onClick={handleShow}
                 size="sm"
-                data-testid="remove-friend-button"
+                data-testid="block-friend-button"
+                title="Block Friend"
             >
-                <PersonRemoveAlt1Icon />
+                <BlockIcon />
             </Button>
-
             <Modal
                 show={show}
                 onHide={handleClose}
                 data-testid="block-friend-modal"
             >
-                <Modal.Header
-                    closeButton
-                    style={{ backgroundColor: 'var(--theme-danger)' }}
-                >
+                <Modal.Header closeButton className="modal-header">
                     <Modal.Title>Block Friend</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    Are you sure you want to block {user.displayName} from your
-                    friends?
+                <Modal.Body className="modal-body">
+                    <p className="header-text">
+                        Are you sure you want to block &nbsp;
+                        <span style={{ fontWeight: 'bold' }}>
+                            {user.displayName}
+                        </span>
+                        &nbsp; from your friends?
+                    </p>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer className="modal-footer">
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
@@ -65,7 +68,7 @@ const BlockFriendModal = ({
                         onClick={handleBlockFriend}
                         data-testid="block-friend-button"
                     >
-                        Remove
+                        Block
                     </Button>
                 </Modal.Footer>
             </Modal>
