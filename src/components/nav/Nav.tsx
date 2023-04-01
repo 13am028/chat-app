@@ -7,9 +7,15 @@ import { getGroups } from '../../firebase/groups/getGroups'
 
 const Nav = () => {
     let navigate = useNavigate()
-    const routeChange = () => {
+    const toHome = () => {
         let path = '/home'
         navigate(path)
+    }
+
+    const toGroup = (groupId: string, groupName: string, groupMembers: any) => {
+        console.log(groupName)
+        let path = '/server-chat'
+        navigate(path, { state: { groupId, groupName, groupMembers } })
     }
 
     const [groups, setGroups] = useState<any>([])
@@ -31,11 +37,17 @@ const Nav = () => {
     if (groups) {
         groups.forEach((group: any) => {
             groupList.push(
-                <GroupIcon
-                    groupId={group.id}
-                    imageUrl={group.groupPic}
-                    adminUID={group.adminUID}
-                />,
+                <div
+                    onClick={() =>
+                        toGroup(group.id, group.groupName, group.groupMembers)
+                    }
+                >
+                    <GroupIcon
+                        groupId={group.id}
+                        imageUrl={group.groupPic}
+                        adminUID={group.adminUID}
+                    />
+                </div>,
             )
         })
     }
@@ -44,7 +56,7 @@ const Nav = () => {
         <div className={styles.navLeft} data-testid="nav">
             <div
                 className={styles.nav_head}
-                onClick={routeChange}
+                onClick={toHome}
                 data-testid="nav-head"
             >
                 <img

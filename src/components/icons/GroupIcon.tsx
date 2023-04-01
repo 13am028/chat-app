@@ -87,13 +87,11 @@ const GroupIcon = ({
         }
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const deleteTheGroup = async () => {
         await deleteGroup(groupId!)
         handleRemoveComponent()
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const leaveTheGroup = async () => {
         if (!auth.currentUser) return
         await leaveGroup(auth.currentUser?.uid, groupId!)
@@ -125,6 +123,22 @@ const GroupIcon = ({
                     >
                         Invite people
                     </div>
+                    <hr className={styles.menuOptionLine} />
+                    {adminUID === auth.currentUser?.uid ? (
+                        <div
+                            className={styles.menuOptionLeave}
+                            onClick={deleteTheGroup}
+                        >
+                            Delete server
+                        </div>
+                    ) : (
+                        <div
+                            className={styles.menuOptionLeave}
+                            onClick={leaveTheGroup}
+                        >
+                            Leave server
+                        </div>
+                    )}
                     <hr className={styles.menuOptionLine} />
                     <div
                         className={styles.menuOptionLeave}

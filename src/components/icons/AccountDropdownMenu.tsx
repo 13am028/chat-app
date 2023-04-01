@@ -10,7 +10,14 @@ const AccountDropdownMenu = () => {
         imgURL = currentUser.avatar
     }
     return (
-        <Dropdown style={{ display: 'inline-block', right: '0', margin: '0' }}>
+        <Dropdown
+            style={{
+                display: 'inline-block',
+                right: '0',
+                margin: '0',
+                position: 'absolute',
+            }}
+        >
             <Dropdown.Toggle
                 variant="light"
                 id="dropdown-basic"

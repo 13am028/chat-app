@@ -1,15 +1,20 @@
 import React from 'react'
-import './ServerChat.css'
+import './Group.css'
 import Nav from '../../components/nav/Nav'
 import Conversation from '../../components/dm/Conversation'
 import styles from '../../components/nav/nav.module.css'
-import ServerPeople from '../../components/server/ServerPeople'
+import ServerPeople from '../../components/server/GroupMembers'
+import AccountDropdownMenu from '../../components/icons/AccountDropdownMenu'
+import { useLocation } from 'react-router-dom'
 
-const ServerChat = () => {
+const Group = () => {
     /* Disable default context menu */
     const handleContextMenu = (event: any) => {
         event.preventDefault()
     }
+
+    const location = useLocation()
+    const groupName = location.state.groupName
 
     return (
         <div onContextMenu={handleContextMenu} className="navbar-group">
@@ -19,7 +24,8 @@ const ServerChat = () => {
             </div>
             <div className="navbar-right">
                 <div className={styles.navTopSecond}>
-                    <h4>Group Name</h4>
+                    <AccountDropdownMenu />
+                    <h4>{groupName}</h4>
                 </div>
                 <div className="bg">
                     <Conversation />
@@ -29,4 +35,4 @@ const ServerChat = () => {
     )
 }
 
-export default ServerChat
+export default Group

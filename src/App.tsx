@@ -6,7 +6,7 @@ import Home from './pages/home/Home'
 import DMPage from './pages/dm/DMPage'
 import UserSettingPage from './pages/setting/UserSetting'
 import Logout from './functions/logout'
-import ServerChat from './pages/serverChat/ServerChat'
+import Group from './pages/group/Group'
 import React, { useEffect, useState } from 'react'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
@@ -117,10 +117,10 @@ function App() {
                                 />
                             </Route>
                             <Route
-                                path="serverChat"
+                                path="server-chat"
                                 element={
                                     <ProtectedRoutes>
-                                        <ServerChat />
+                                        <Group />
                                     </ProtectedRoutes>
                                 }
                             ></Route>
