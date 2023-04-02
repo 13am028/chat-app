@@ -24,7 +24,6 @@ const GroupIcon = ({
     const [showModal, setShowModal] = useState(false)
     const [getFriendList, setFriendList] = useState<any>([])
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [shouldRender, setShouldRender] = useState(true)
 
     const handleRemoveComponent = () => {
@@ -106,7 +105,7 @@ const GroupIcon = ({
             document.removeEventListener('click', handleClick)
         }
     }, [])
-    return (
+    return shouldRender ?(
         <div
             className={styles.groupIcon}
             onContextMenu={handleContextMenu}
@@ -186,7 +185,7 @@ const GroupIcon = ({
                 </Modal.Body>
             </Modal>
         </div>
-    )
+    ): null;
 }
 
 export default GroupIcon

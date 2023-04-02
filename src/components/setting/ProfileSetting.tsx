@@ -33,6 +33,10 @@ const ProfileSetting = () => {
         setShowModal(false)
     }
 
+    const handleURL = () => {
+
+    }
+
     return (
         <div>
             <div className="profile">
@@ -80,7 +84,7 @@ const ProfileSetting = () => {
                         </h4>
                     </Modal.Header>
                     <Modal.Body>
-                        <UploadWidget />
+                        <UploadWidget handleURL={handleURL}/>
                     </Modal.Body>
                 </Modal>
                 <div className="profile-card">
@@ -149,7 +153,7 @@ const ProfileSetting = () => {
                                 style={{ marginBottom: 8 }}
                                 data-testid="two-fa-description"
                             >
-                                Protect your Discord account with an extra layer
+                                Protect your Habibi account with an extra layer
                                 of security. Once configured, you'll be required
                                 to enter both your password and an
                                 authentication code from your mobile phone in
