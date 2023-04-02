@@ -103,7 +103,7 @@ const GroupIcon = ({
             document.removeEventListener('click', handleClick)
         }
     }, [])
-    return shouldRender ?(
+    return shouldRender ? (
         <div
             className={styles.groupIcon}
             onContextMenu={handleContextMenu}
@@ -124,9 +124,19 @@ const GroupIcon = ({
                     </div>
                     <hr className={styles.menuOptionLine} />
                     {adminUID === auth.currentUser?.uid ? (
-                        <div className={styles.menuOptionLeave} onClick={deleteTheGroup}>Delete server</div>
+                        <div
+                            className={styles.menuOptionLeave}
+                            onClick={deleteTheGroup}
+                        >
+                            Delete server
+                        </div>
                     ) : (
-                        <div className={styles.menuOptionLeave} onClick={leaveTheGroup}>Leave server</div>
+                        <div
+                            className={styles.menuOptionLeave}
+                            onClick={leaveTheGroup}
+                        >
+                            Leave server
+                        </div>
                     )}
                 </div>
             )}
@@ -182,7 +192,7 @@ const GroupIcon = ({
                 </Modal.Body>
             </Modal>
         </div>
-    ): null;
+    ) : null
 }
 
 export default GroupIcon

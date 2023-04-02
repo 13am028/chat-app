@@ -16,7 +16,7 @@ const AddServerIcon = ({ onGroupCreate }: Props) => {
     const [showModal, setModal] = useState(false)
     const [groupName, setGroupName] = useState('')
     const [showUploadModal, setShowUploadModal] = useState(false)
-    const [imageURL, setImageUrl] = useState("");
+    const [imageURL, setImageUrl] = useState('')
 
     const handleClose = () => {
         setModal(false)
@@ -57,7 +57,7 @@ const AddServerIcon = ({ onGroupCreate }: Props) => {
         handleCloseUploadModal()
         console.log(url)
         setImageUrl(url)
-    };
+    }
 
     return (
         <div data-testid="add-server-icon">
@@ -81,7 +81,7 @@ const AddServerIcon = ({ onGroupCreate }: Props) => {
                         data-testid="add-server-modal-close-button"
                         onClick={handleClose}
                     />
-                    <h1 style={{color: "black"}}>Customize your server</h1>
+                    <h1 style={{ color: 'black' }}>Customize your server</h1>
                     <div>
                         Give your new server a personality with a name and an
                         icon. You can always change it later.
@@ -89,10 +89,9 @@ const AddServerIcon = ({ onGroupCreate }: Props) => {
                 </Modal.Header>
 
                 <Modal.Body className="addServerModalBody">
-                    
                     <div className="addServerModalBodyContent">
                         <div onClick={handleShowUploadModal}>
-                            <CustomSVG/>    
+                            <CustomSVG />
                         </div>
 
                         <Modal
@@ -102,12 +101,15 @@ const AddServerIcon = ({ onGroupCreate }: Props) => {
                             data-testid="change-avatar-modal"
                         >
                             <Modal.Header closeButton>
-                                <h4 className="modal-title" data-testid="modal-title">
+                                <h4
+                                    className="modal-title"
+                                    data-testid="modal-title"
+                                >
                                     Upload Group Picture
                                 </h4>
                             </Modal.Header>
                             <Modal.Body>
-                                <UploadWidget handleURL={handleURL}/>
+                                <UploadWidget handleURL={handleURL} />
                             </Modal.Body>
                         </Modal>
                     </div>

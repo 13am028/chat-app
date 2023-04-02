@@ -33,9 +33,7 @@ const ProfileSetting = () => {
         setShowModal(false)
     }
 
-    const handleURL = () => {
-
-    }
+    const handleURL = () => {}
 
     return (
         <div>
@@ -83,7 +81,7 @@ const ProfileSetting = () => {
                         </h4>
                     </Modal.Header>
                     <Modal.Body>
-                        <UploadWidget handleURL={handleURL}/>
+                        <UploadWidget handleURL={handleURL} />
                     </Modal.Body>
                 </Modal>
                 <div className="profile-card">

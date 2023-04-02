@@ -35,7 +35,6 @@ const CustomSVG = () => {
                 ></path>
             </svg>
         </div>
-        
     )
 }
 
