@@ -10,7 +10,14 @@ const AccountDropdownMenu = () => {
         imgURL = currentUser.avatar
     }
     return (
-        <Dropdown style={{ display: 'inline-block', right: '0', margin: '0' }}>
+        <Dropdown
+            style={{
+                display: 'inline-block',
+                right: '0',
+                margin: '0',
+                position: 'absolute',
+            }}
+        >
             <Dropdown.Toggle
                 variant="light"
                 id="dropdown-basic"
@@ -18,7 +25,6 @@ const AccountDropdownMenu = () => {
                 className={styles.myIcon}
                 data-testid="account-dropdown-toggle"
             >
-                {/* TODO: fix image proportion */}
                 <img
                     src={imgURL}
                     alt="profile avatar"

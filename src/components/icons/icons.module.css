@@ -78,11 +78,11 @@ p {
 .myIcon {
     height: 45px;
     width: 45px;
-    background-color: pink;
     border-radius: 50%;
     cursor: pointer;
     padding: 0;
     transition: all 0.2s ease-in-out;
+    border: 0;
 }
 
 .myIcon:hover {

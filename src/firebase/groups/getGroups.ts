@@ -18,6 +18,7 @@ const getGroups = async () => {
         // Iterate through the documents and extract group data
         const groups: Array<{
             id: string
+            groupName: string
             groupPic: string
             adminUID: string
         }> = []
@@ -25,6 +26,7 @@ const getGroups = async () => {
             // Not good particle to retreive everything in the group
             groups.push({
                 id: doc.id,
+                groupName: doc.data().groupName,
                 groupPic: doc.data().groupPic,
                 adminUID: doc.data().adminUID,
             })

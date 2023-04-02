@@ -35,6 +35,7 @@ const Home = () => {
                     key={user.uid}
                     displayName={user.displayName}
                     uid={user.uid}
+                    avatar={user.avatar}
                 />,
             )
         })

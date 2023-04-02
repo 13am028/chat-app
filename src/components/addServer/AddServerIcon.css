@@ -1,4 +1,4 @@
-/* add serverChat */
+/* add group */
 
 .addServerIcon {
     height: 7vh;
@@ -21,7 +21,7 @@
 }
 
 .addServerModalHeader {
-    padding: 24px 24px 0px 24px;
+    padding: 24px 24px 0 24px;
     border: none;
     display: flex;
     flex-direction: column;
@@ -57,7 +57,7 @@
 }
 
 .addServerModalBodyFormHeader {
-    margin: 24px 0px 8px 0px;
+    margin: 24px 0 8px 0;
     width: 100%;
     font-size: 13px;
     font-weight: 700;
