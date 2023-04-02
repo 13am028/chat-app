@@ -3,8 +3,6 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate'
 import { updateAvatar } from '../../firebase/utils'
 
 const UploadWidget = ({ handleURL }: { handleURL: (url: string) => void }) => {
-    const [imageUrl, setImageUrl] = useState('')
-
     const showWidget = () => {
         let widget = (window as any).cloudinary.createUploadWidget(
             {

@@ -118,9 +118,10 @@ const GroupIcon = ({
             <img
                 src={imageUrl}
                 alt="profile avatar"
-                className={styles.friendIcon}
-                data-testid="profile-avatar"
+                className={styles.groupIcon}
+                style={{ margin: '0px' }}
             />
+
             {showMenu && (
                 <div
                     className={styles.customContextMenu}
