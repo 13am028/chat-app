@@ -118,33 +118,15 @@ const GroupIcon = ({
                     <div
                         className={styles.menuOptionInvite}
                         onClick={inviteFriendsModal}
-                        data-testid="invite-friends-option"
                     >
                         Invite people
                     </div>
                     <hr className={styles.menuOptionLine} />
                     {adminUID === auth.currentUser?.uid ? (
-                        <div
-                            className={styles.menuOptionLeave}
-                            onClick={deleteTheGroup}
-                        >
-                            Delete server
-                        </div>
+                        <div className={styles.menuOptionLeave} onClick={deleteTheGroup}>Delete server</div>
                     ) : (
-                        <div
-                            className={styles.menuOptionLeave}
-                            onClick={leaveTheGroup}
-                        >
-                            Leave server
-                        </div>
+                        <div className={styles.menuOptionLeave} onClick={leaveTheGroup}>Leave server</div>
                     )}
-                    <hr className={styles.menuOptionLine} />
-                    <div
-                        className={styles.menuOptionLeave}
-                        data-testid="leave-server-option"
-                    >
-                        Leave server
-                    </div>
                 </div>
             )}
             <Modal show={showModal} onHide={handleClose} centered>
