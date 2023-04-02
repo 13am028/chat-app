@@ -14,6 +14,7 @@ import { ChatContext } from '../context/ChatContext'
 
 import RemoveFriendModal from '../modal/RemoveFriendModal'
 import BlockFriendModal from '../modal/BlockFriendModal'
+import FriendIcon from './FriendIcon'
 
 const FriendStatus = (user: any) => {
     const { currentUser } = useContext(AuthContext)
@@ -72,7 +73,10 @@ const FriendStatus = (user: any) => {
             onClick={handleOnSelect}
             data-testid="friend-status"
         >
-            <div className={styles.friendIcon} data-testid="friend-icon"></div>
+            <FriendIcon
+                data-testid="friend-icon"
+                imgURL={user.avatar}
+            ></FriendIcon>
             <div className={styles.friendName} data-testid="friend-name">
                 <p className={styles.name} data-testid="friend-display-name">
                     {user.displayName}
