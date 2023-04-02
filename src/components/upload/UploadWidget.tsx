@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate'
 import { updateAvatar } from '../../firebase/utils'
 
