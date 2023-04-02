@@ -118,6 +118,7 @@ const GroupIcon = ({
                     <div
                         className={styles.menuOptionInvite}
                         onClick={inviteFriendsModal}
+                        data-testid="invite-friends-option"
                     >
                         Invite people
                     </div>
