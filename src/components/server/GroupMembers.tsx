@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom'
 import getGroupMembers from '../../firebase/groups/getGroupMembers'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { db } from '../../firebase/init'
+import FriendIcon from '../icons/FriendIcon'
 
 const GroupMembers = () => {
     const location = useLocation()
@@ -31,7 +32,7 @@ const GroupMembers = () => {
                         key={member.uid}
                         style={{ cursor: 'default' }}
                     >
-                        <div className={styles.friendIcon}></div>
+                        <FriendIcon imgURL={member.avatar}></FriendIcon>
                         <div className={styles.friendName}>
                             <p className={styles.name}>{member.displayName}</p>
                         </div>

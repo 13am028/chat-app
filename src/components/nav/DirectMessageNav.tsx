@@ -6,12 +6,16 @@ import { db } from '../../firebase/init'
 import { ChatContext } from '../context/ChatContext'
 import { useNavigate } from 'react-router-dom'
 import nstyles from './nav.module.css'
+import FriendIcon from '../icons/FriendIcon'
+import { getUser } from '../../firebase/utils'
 
 const DirectMessageNav = () => {
     type Chat = {
         chatId: string
         userInfo: {
             displayName: string
+            uid: string
+            avatar: string
         }
         lastMessage: {
             message: string | null
@@ -29,7 +33,7 @@ const DirectMessageNav = () => {
             if (currentUser?.uid) {
                 const unsub = onSnapshot(
                     doc(db, 'userChats', currentUser.uid),
-                    doc => {
+                    async doc => {
                         const chatsData = doc.data()
                         const chatsArray = chatsData
                             ? Object.values(chatsData)
@@ -37,6 +41,12 @@ const DirectMessageNav = () => {
                         const sortedChats = chatsArray.sort(
                             (a, b) => b.date - a.date,
                         )
+                        // get avatar
+                        for (const chat of Object.entries(sortedChats)) {
+                            chat[1].userInfo.avatar = (
+                                await getUser(chat[1].userInfo.uid)
+                            )?.avatar
+                        }
                         setChats(sortedChats)
                     },
                 )
@@ -64,7 +74,9 @@ const DirectMessageNav = () => {
                         onClick={() => handleOnSelect(chat[1].userInfo)}
                         data-testid={`chat-${chat[0]}`}
                     >
-                        <div className={styles.friendIcon}></div>
+                        <FriendIcon
+                            imgURL={chat[1].userInfo.avatar}
+                        ></FriendIcon>
                         <div className={styles.friendName}>
                             <p className={styles.name}>
                                 {chat[1].userInfo.displayName}

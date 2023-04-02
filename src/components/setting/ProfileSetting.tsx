@@ -47,9 +47,8 @@ const ProfileSetting = () => {
                 </svg>
                 <div className="profile-pic-bg">
                     <div className="profilepic">
-                        {/*TODO: fix, image very zoomed in*/}
                         <img
-                            className="profile-img"
+                            className="profilepic__img"
                             src={imgURL}
                             alt="Profile"
                             data-testid="profile-img"

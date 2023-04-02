@@ -25,7 +25,6 @@ const AccountDropdownMenu = () => {
                 className={styles.myIcon}
                 data-testid="account-dropdown-toggle"
             >
-                {/* TODO: fix image proportion */}
                 <img
                     src={imgURL}
                     alt="profile avatar"
