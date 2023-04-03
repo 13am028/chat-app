@@ -7,7 +7,7 @@ import {
     setDoc,
 } from 'firebase/firestore'
 
-const createGroup = async (groupName: string) => {
+const createGroup = async (groupName: string, imageUrl: string) => {
     try {
         if (!auth.currentUser) return
 
@@ -19,7 +19,7 @@ const createGroup = async (groupName: string) => {
         await setDoc(groupRef, {
             groupId: groupUid,
             groupName,
-            groupPic: 'some image url',
+            groupPic: imageUrl,
             adminUID: myUID,
             users: {
                 [myUID]: true,

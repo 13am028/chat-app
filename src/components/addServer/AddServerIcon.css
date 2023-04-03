@@ -43,6 +43,8 @@
 
 .addServerModalBody {
     border: none;
+    display: flex;
+    flex-direction: column;
     margin-top: 16px;
     margin-bottom: 16px;
     padding-left: 16px;
@@ -54,6 +56,8 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .addServerModalBodyFormHeader {
