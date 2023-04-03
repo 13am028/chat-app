@@ -24,7 +24,7 @@ const GroupIcon = ({
     const [showModal, setShowModal] = useState(false)
     const [getFriendList, setFriendList] = useState<any>([])
 
-    const [_, setShouldRender] = useState(true)
+    const [shouldRender, setShouldRender] = useState(true)
 
     const handleRemoveComponent = () => {
         setShouldRender(false)
