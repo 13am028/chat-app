@@ -32,7 +32,7 @@ const SpanRevealButton: React.FC<Props> = ({ data, type }) => {
             case 'email':
                 // how some first and domain with fixed asterisk
                 return data.replace(
-                    /^([^\n]{1,4})(.*)(@.*)$/,
+                    /^([^\n]{1,4})([a-zA-Z0-9_.+-]+)(@.*)$/,
                     (match, first, middle, last) => {
                         return `${first}${'****'}${last}`
                     },

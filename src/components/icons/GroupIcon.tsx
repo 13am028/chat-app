@@ -25,7 +25,7 @@ const GroupIcon = ({
     const [getFriendList, setFriendList] = useState<any>([])
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [shouldRender, setShouldRender] = useState(true)
+    const [_, setShouldRender] = useState(true)
 
     const handleRemoveComponent = () => {
         setShouldRender(false)
@@ -66,10 +66,10 @@ const GroupIcon = ({
         }
     }
 
-    const inviteFriendsModal = () => {
+    const inviteFriendsModal = async () => {
         setShowModal(true)
         setShowMenu(false) // close the menu when modal is opened
-        fetchFriendList()
+        await fetchFriendList()
     }
 
     const handleClose = () => {
