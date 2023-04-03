@@ -34,7 +34,7 @@ const ProfileSetting = () => {
     }
 
     return (
-        <div>
+        <div data-testid="profile-setting">
             <div className="profile">
                 <h2 className="section-title" data-testid="my-profile">
                     My Profile

@@ -21,7 +21,7 @@ const UserSettingPage = () => {
                                         activeTab === 'profile' ? 'active' : ''
                                     }
                                     href="#top"
-                                    data-testid="profile link"
+                                    data-testid="profile-link"
                                 >
                                     My Profile
                                 </a>
@@ -37,7 +37,7 @@ const UserSettingPage = () => {
                                             : ''
                                     }
                                     href="#top"
-                                    data-testid="privacy link"
+                                    data-testid="privacy-link"
                                 >
                                     Privacy &amp; Safety
                                 </a>
