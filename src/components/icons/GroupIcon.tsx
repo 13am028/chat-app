@@ -104,23 +104,22 @@ const GroupIcon = ({
         }
     }, [])
 
-    let imgURL = 'https://cdn-icons-png.flaticon.com/512/456/456212.png'
-    if (imageUrl === '') {
-        imageUrl = imgURL
-    }
-
     return shouldRender ? (
         <div
             className={styles.groupIcon}
             onContextMenu={handleContextMenu}
             data-testid="group-icon"
         >
-            <img
-                src={imageUrl}
-                alt="profile avatar"
-                className={styles.groupIcon}
-                style={{ margin: '0px' }}
-            />
+            {imageUrl !== '' ? (
+                <img
+                    src={imageUrl}
+                    alt="profile avatar"
+                    className={styles.groupIcon}
+                    style={{ margin: '0px' }}
+                />
+            ) : (
+                <div />
+            )}
 
             {showMenu && (
                 <div
