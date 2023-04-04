@@ -66,9 +66,9 @@ const LoginBox = (props: any) => {
                         onClick={() => setShowPassword(!showPassword)}
                     >
                         {showPassword ? (
-                            <VisibilityOffIcon />
-                        ) : (
                             <VisibilityIcon />
+                        ) : (
+                            <VisibilityOffIcon />
                         )}
                     </div>
                 </div>
