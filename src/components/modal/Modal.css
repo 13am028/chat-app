@@ -5,7 +5,7 @@
     border-top: none;
 }
 
-.dark.modal-header{
+.dark.modal-header {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -14,7 +14,7 @@
     color: white;
 }
 
-.dark.modal-title{
+.dark.modal-title {
     background-color: var(--dark-background-color);
     color: white;
 }
@@ -42,6 +42,7 @@
     justify-content: flex-end;
     border-top: none;
 }
+
 .dark.modal-footer {
     background-color: #444444;
     color: white;

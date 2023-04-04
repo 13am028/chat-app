@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import Button from 'react-bootstrap/Button'
-import { Modal } from 'react-bootstrap'
+import {Modal} from 'react-bootstrap'
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1'
 import addFriendValidate from '../../functions/addFriendValidate'
 import './Modal.css'
 
-const AddFriendModal = ({ theme, handleAddFriend, }: { theme: any, handleAddFriend?: () => void}) => {
+const AddFriendModal = ({theme, handleAddFriend,}: { theme: any, handleAddFriend?: () => void }) => {
     const [show, setShow] = useState(false)
     const [username, setUsername] = useState('')
 
@@ -31,14 +31,14 @@ const AddFriendModal = ({ theme, handleAddFriend, }: { theme: any, handleAddFrie
     }
 
     return (
-        <div style={{ display: 'inline-block' }}>
+        <div style={{display: 'inline-block'}}>
             <Button
                 variant="primary"
                 onClick={handleShow}
                 size="sm"
                 data-testid="add-friend-button"
             >
-                <PersonAddAlt1Icon />
+                <PersonAddAlt1Icon/>
             </Button>
 
             <Modal
