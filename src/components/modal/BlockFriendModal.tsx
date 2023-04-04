@@ -60,7 +60,11 @@ const BlockFriendModal = ({
                     </p>
                 </Modal.Body>
                 <Modal.Footer className="modal-footer">
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button
+                        variant="secondary"
+                        onClick={handleClose}
+                        data-testid="close-button"
+                    >
                         Close
                     </Button>
                     <Button

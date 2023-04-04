@@ -23,7 +23,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "CI=true react-scripts test --silent --coverage --coveragePathIgnorePatterns 'src/index.tsx' 'src/reportWebVitals.ts' 'src/firebase'",
+        "test": "CI=true react-scripts test --silent --coverage --coveragePathIgnorePatterns 'src/index.tsx' 'src/*.ts' 'src/firebase'",
         "test:e2e": "playwright test",
         "eject": "react-scripts eject",
         "typescript": "tsc --project tsconfig.json --noEmit",

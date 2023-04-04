@@ -1,76 +1,43 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import {
+    fireEvent,
+    render,
+    screen,
+    waitForElementToBeRemoved,
+} from '@testing-library/react'
 import AddFriendModal from '../AddFriendModal'
 
 describe('AddFriendModal', () => {
-    it('displays the username entered by the user', async () => {
+    it('should render properly', () => {
         render(<AddFriendModal />)
-
-        fireEvent.click(screen.getByTestId('add-friend-button'))
-        const usernameInput = screen.getByTestId(
-            'username-input',
-        ) as HTMLButtonElement
-        fireEvent.change(usernameInput, { target: { value: 'testuser' } })
-
-        expect(usernameInput.value).toBe('testuser')
+        expect(screen.getByTestId('add-friend-button')).toBeInTheDocument()
     })
 
-    it('calls handleAddFriend function when Add button is clicked', async () => {
-        const mockHandleAddFriend = jest.fn()
-        jest.spyOn(global, 'alert').mockImplementation(() => {})
-
-        render(<AddFriendModal handleAddFriend={mockHandleAddFriend} />)
-        fireEvent.click(screen.getByTestId('add-friend-button'))
-
-        const usernameInput = screen.getByTestId('username-input')
-        fireEvent.change(usernameInput, { target: { value: 'testuser' } })
-
+    it('should open the modal on button click', () => {
+        render(<AddFriendModal />)
         const addButton = screen.getByTestId('add-friend-button')
         fireEvent.click(addButton)
+        expect(screen.getByTestId('add-friend-modal')).toBeVisible()
     })
 
-    it('handles add friend success scenario correctly', async () => {
-        const mockHandleAddFriend = jest.fn(() => Promise.resolve('success'))
-        jest.spyOn(global, 'alert').mockImplementation(() => {})
-
-        render(<AddFriendModal handleAddFriend={mockHandleAddFriend} />)
-        fireEvent.click(screen.getByTestId('add-friend-button'))
-
-        const usernameInput = screen.getByTestId('username-input')
-        fireEvent.change(usernameInput, { target: { value: 'testuser' } })
-
+    it('should close the modal on close button click', async () => {
+        render(<AddFriendModal />)
         const addButton = screen.getByTestId('add-friend-button')
         fireEvent.click(addButton)
+        const addFriendModal = screen.getByTestId('add-friend-modal')
+        const closeButton = screen.getByTestId('close-button')
+        fireEvent.click(closeButton)
+        await waitForElementToBeRemoved(addFriendModal)
+        expect(screen.queryByTestId('add-friend-modal')).toBeNull()
     })
 
-    it('handles add friend not found scenario correctly', async () => {
-        const mockHandleAddFriend = jest.fn(() => Promise.resolve('not_found'))
-        jest.spyOn(global, 'alert').mockImplementation(() => {})
-
-        render(<AddFriendModal handleAddFriend={mockHandleAddFriend} />)
-        fireEvent.click(screen.getByTestId('add-friend-button'))
-
-        const usernameInput = screen.getByTestId('username-input')
-        fireEvent.change(usernameInput, { target: { value: 'testuser' } })
-
+    it('should remove modal after add friend', async () => {
+        render(<AddFriendModal />)
         const addButton = screen.getByTestId('add-friend-button')
         fireEvent.click(addButton)
-    })
-
-    it('handles already friends scenario correctly', async () => {
-        const mockHandleAddFriend = jest.fn(() =>
-            Promise.resolve('already_friends'),
-        )
-        jest.spyOn(global, 'alert').mockImplementation(() => {})
-
-        render(<AddFriendModal handleAddFriend={mockHandleAddFriend} />)
-        fireEvent.click(screen.getByTestId('add-friend-button'))
-
         const usernameInput = screen.getByTestId('username-input')
-        fireEvent.change(usernameInput, { target: { value: 'testuser' } })
-
-        const addButton = screen.getByTestId('add-friend-button')
-        fireEvent.click(addButton)
-
-        // expect(global.alert).toHaveBeenCalledWith('You are already friends with testuser.')
+        fireEvent.change(usernameInput, 'test')
+        const addFriendButton = screen.getByTestId('add-button')
+        fireEvent.click(addFriendButton)
+        await waitForElementToBeRemoved(usernameInput)
     })
 })

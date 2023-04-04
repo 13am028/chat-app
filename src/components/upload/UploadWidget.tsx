@@ -2,7 +2,7 @@ import React from 'react'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate'
 import { updateAvatar } from '../../firebase/utils'
 
-const UploadWidget = () => {
+const UploadWidget = ({ handleURL }: { handleURL: (url: string) => void }) => {
     const showWidget = () => {
         let widget = (window as any).cloudinary.createUploadWidget(
             {
@@ -11,12 +11,15 @@ const UploadWidget = () => {
             },
             async (error: any, result: any) => {
                 if (!error && result && result.event === 'success') {
-                    await updateAvatar(result.info.url)
+                    const url: string = result.info.url
+                    await updateAvatar(url)
+                    handleURL(url)
                 }
             },
         )
         widget.open()
     }
+
     return (
         <div
             className="modal-box modal-upload"

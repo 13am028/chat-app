@@ -32,7 +32,6 @@ export const AuthContextProvider = ({
         onAuthStateChanged(auth, async () => {
             if (!auth.currentUser) return
             const currentUser = await getUser(auth.currentUser.uid)
-            console.log(currentUser)
             setCurrentUser(
                 currentUser
                     ? {
