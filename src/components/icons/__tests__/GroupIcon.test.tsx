@@ -8,7 +8,7 @@ import GroupIcon from '../GroupIcon'
 
 describe('GroupIcon', () => {
     it('should show the invite friends option when right-clicked', () => {
-        render(<GroupIcon />)
+        render(<GroupIcon theme="dark" />)
         const groupIcon = screen.getByTestId('group-icon')
         fireEvent.contextMenu(groupIcon)
         const inviteFriendsOption = screen.getByTestId('invite-friends-option')
@@ -16,7 +16,7 @@ describe('GroupIcon', () => {
     })
 
     it('should close the menu when clicking outside', async () => {
-        render(<GroupIcon />)
+        render(<GroupIcon theme="dark" />)
         const groupIcon = screen.getByTestId('group-icon')
         fireEvent.contextMenu(groupIcon)
         fireEvent.click(document.body) // simulate clicking outside the menu
@@ -27,7 +27,7 @@ describe('GroupIcon', () => {
     })
 
     it('should show the invite friends modal when clicking the invite friends option', () => {
-        render(<GroupIcon />)
+        render(<GroupIcon theme="dark" />)
         const groupIcon = screen.getByTestId('group-icon')
         fireEvent.contextMenu(groupIcon)
         const inviteFriendsOption = screen.getByTestId('invite-friends-option')
@@ -37,7 +37,7 @@ describe('GroupIcon', () => {
     })
 
     it('should show a search input in the invite friends modal', () => {
-        render(<GroupIcon />)
+        render(<GroupIcon theme="dark" />)
         const groupIcon = screen.getByTestId('group-icon')
         fireEvent.contextMenu(groupIcon)
         const inviteFriendsOption = screen.getByTestId('invite-friends-option')
@@ -47,7 +47,7 @@ describe('GroupIcon', () => {
     })
 
     it('should show a list of friends in the invite friends modal', () => {
-        render(<GroupIcon />)
+        render(<GroupIcon theme="dark" />)
         const groupIcon = screen.getByTestId('group-icon')
         fireEvent.contextMenu(groupIcon)
         const inviteFriendsOption = screen.getByTestId('invite-friends-option')
@@ -57,7 +57,7 @@ describe('GroupIcon', () => {
     })
 
     it('should show an invite button for each friend in the invite friends modal', () => {
-        render(<GroupIcon />)
+        render(<GroupIcon theme="dark" />)
         const groupIcon = screen.getByTestId('group-icon')
         fireEvent.contextMenu(groupIcon)
         const inviteFriendsOption = screen.getByTestId('invite-friends-option')
@@ -67,7 +67,7 @@ describe('GroupIcon', () => {
     })
 
     it('should close the invite friends modal when clicking the close button', async () => {
-        render(<GroupIcon />)
+        render(<GroupIcon theme="dark" />)
         const groupIcon = screen.getByTestId('group-icon')
         fireEvent.contextMenu(groupIcon)
         const inviteFriendsOption = screen.getByTestId('invite-friends-option')

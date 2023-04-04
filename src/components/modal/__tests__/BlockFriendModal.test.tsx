@@ -11,19 +11,19 @@ describe('BlockFriendModal', () => {
     const onCLick = jest.fn()
 
     it('should render properly', () => {
-        render(<BlockFriendModal user={user} onClick={onCLick} />)
+        render(<BlockFriendModal user={user} onClick={onCLick} theme="dark" />)
         expect(screen.getByTestId('block-friend-button')).toBeInTheDocument()
     })
 
     it('should open the modal on button click', () => {
-        render(<BlockFriendModal user={user} onClick={onCLick} />)
+        render(<BlockFriendModal user={user} onClick={onCLick} theme="dark" />)
         const addButton = screen.getByTestId('block-friend-button')
         fireEvent.click(addButton)
         expect(screen.getByTestId('block-friend-modal')).toBeVisible()
     })
 
     it('should close the modal on close button click', async () => {
-        render(<BlockFriendModal user={user} onClick={onCLick} />)
+        render(<BlockFriendModal user={user} onClick={onCLick} theme="dark" />)
         const addButton = screen.getByTestId('block-friend-button')
         fireEvent.click(addButton)
         const addFriendModal = screen.getByTestId('block-friend-modal')

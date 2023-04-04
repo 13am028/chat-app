@@ -20,7 +20,7 @@ describe('RemoveFriendModal', () => {
     }
 
     it('renders the modal with the correct title and message', () => {
-        render(<RemoveFriendModal {...defaultProps} />)
+        render(<RemoveFriendModal {...defaultProps} theme="dark" />)
         fireEvent.click(screen.getByTestId('remove-friend-button'))
         expect(screen.getByText('Remove Friend')).toBeInTheDocument()
         // expect(
@@ -31,14 +31,14 @@ describe('RemoveFriendModal', () => {
     })
 
     it('calls the removeFriend function when the remove button is clicked', () => {
-        render(<RemoveFriendModal {...defaultProps} />)
+        render(<RemoveFriendModal {...defaultProps} theme="dark" />)
         const removeButton = screen.getByTestId('remove-friend-button')
         userEvent.click(removeButton)
         expect(mockRemoveFriend).toHaveBeenCalledTimes(1)
     })
 
     it('closes the modal when the close button is clicked', async () => {
-        render(<RemoveFriendModal {...defaultProps} />)
+        render(<RemoveFriendModal {...defaultProps} theme="dark" />)
         fireEvent.click(screen.getByTestId('remove-friend-button'))
         const closeButton = screen.getByText('Close')
         fireEvent.click(closeButton)
