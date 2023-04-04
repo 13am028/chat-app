@@ -3,7 +3,8 @@ import styles from './nav.module.css'
 import AddFriendModal from '../modal/AddFriendModal'
 import AccountDropdownMenu from '../icons/AccountDropdownMenu'
 
-const FriendStatusNav = () => {
+const FriendStatusNav = (props: any) => {
+    const { theme } = props
     return (
         <div className={styles.navTopSecond}>
             <ul className={styles.navTop_list}>
@@ -17,7 +18,7 @@ const FriendStatusNav = () => {
                     <h4 data-testid="blocked-heading">Blocked</h4>
                 </li>
                 <li>
-                    <AddFriendModal />
+                    <AddFriendModal theme={theme} />
                 </li>
             </ul>
             <AccountDropdownMenu />

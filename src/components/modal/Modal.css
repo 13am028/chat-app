@@ -5,11 +5,30 @@
     border-top: none;
 }
 
+.dark.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-top: none;
+    background-color: var(--dark-background-color);
+    color: white;
+}
+
+.dark.modal-title {
+    background-color: var(--dark-background-color);
+    color: white;
+}
+
 .modal-body {
     font-size: 1.1rem;
     line-height: 1.5;
     align-content: center;
     padding-left: 300px;
+}
+
+.dark.modal-body {
+    background-color: var(--dark-background-color);
+    color: white;
 }
 
 .header-text {
@@ -22,6 +41,11 @@
     align-items: center;
     justify-content: flex-end;
     border-top: none;
+}
+
+.dark.modal-footer {
+    background-color: #444444;
+    color: white;
 }
 
 /* CSS for the container */
@@ -57,4 +81,8 @@
     text-align: left;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input-box:focus {
+    background-color: transparent;
 }

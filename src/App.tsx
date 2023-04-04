@@ -77,7 +77,10 @@ function App() {
                                     path="home"
                                     element={
                                         <ProtectedRoutes>
-                                            <Home />
+                                            <Home
+                                                theme={theme}
+                                                toggleTheme={toggleTheme}
+                                            />
                                         </ProtectedRoutes>
                                     }
                                 />

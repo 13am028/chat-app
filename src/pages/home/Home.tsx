@@ -9,7 +9,8 @@ import { db } from '../../firebase/init'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { AuthContext } from '../../components/context/AuthContext'
 
-const Home = () => {
+const Home = (props: any) => {
+    const { theme } = props
     const { currentUser } = useContext(AuthContext)
 
     /* Disable default context menu */
@@ -32,6 +33,7 @@ const Home = () => {
         friends.forEach((user: any) => {
             friendList.push(
                 <FriendStatus
+                    theme={theme}
                     key={user.uid}
                     displayName={user.displayName}
                     uid={user.uid}
@@ -48,11 +50,14 @@ const Home = () => {
             data-testid="friend-list"
         >
             <div className="navbar-left">
-                <Nav data-testid="nav" />
+                <Nav theme={theme} data-testid="nav" />
                 <DirectMessageNav data-testid="dm-nav" />
             </div>
             <div className="navbar-right">
-                <FriendStatusNav data-testid="friend-status-nav" />
+                <FriendStatusNav
+                    theme={theme}
+                    data-testid="friend-status-nav"
+                />
                 <div className="bg" data-testid="friend-list-items">
                     {friendList}
                 </div>
