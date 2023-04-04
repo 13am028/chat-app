@@ -20,8 +20,8 @@ export default class SettingPage {
 
     async checkSideBar() {
         await expect(this.page.getByTestId('user-setting')).toBeVisible()
-        await expect(this.page.getByTestId('profile link')).toBeVisible()
-        await expect(this.page.getByTestId('privacy link')).toBeVisible()
+        await expect(this.page.getByTestId('profile-link')).toBeVisible()
+        await expect(this.page.getByTestId('privacy-link')).toBeVisible()
         await expect(this.page.getByTestId('friend-request-link')).toBeVisible()
         await expect(this.page.getByTestId('app-settings')).toBeVisible()
         await expect(this.page.getByTestId('appearance-link')).toBeVisible()
@@ -80,7 +80,7 @@ export default class SettingPage {
     hiddenEmail() {
         let hidden = this.email
         return hidden.replace(
-            /^([^\n]{1,4})(.*)(@.*)$/,
+            /^([^\n]{1,4})([a-zA-Z0-9_.+-]+)(@.*)$/,
             (match, first, middle, last) => {
                 return `${first}${'****'}${last}`
             },

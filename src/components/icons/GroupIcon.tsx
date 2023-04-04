@@ -65,10 +65,10 @@ const GroupIcon = ({
         }
     }
 
-    const inviteFriendsModal = () => {
+    const inviteFriendsModal = async () => {
         setShowModal(true)
         setShowMenu(false) // close the menu when modal is opened
-        fetchFriendList()
+        await fetchFriendList()
     }
 
     const handleClose = () => {
