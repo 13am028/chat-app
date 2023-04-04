@@ -6,9 +6,11 @@ import PersonRemoveAlt1Icon from '@mui/icons-material/PersonRemoveAlt1'
 import './Modal.css'
 
 const RemoveFriendModal = ({
+    theme,
     user,
     onClick,
 }: {
+    theme: any
     user: { uid: string; displayName: string }
     onClick: (e: React.MouseEvent) => void
 }) => {
@@ -54,10 +56,21 @@ const RemoveFriendModal = ({
                 onHide={handleClose}
                 data-testid="remove-friend-modal"
             >
-                <Modal.Header closeButton className="modal-header">
-                    <Modal.Title>Remove Friend</Modal.Title>
+                <Modal.Header
+                    closeButton
+                    className={`modal-header ${theme === 'dark' ? 'dark' : ''}`}
+                >
+                    <Modal.Title
+                        className={`modal-title ${
+                            theme === 'dark' ? 'dark' : ''
+                        }`}
+                    >
+                        Remove Friend
+                    </Modal.Title>
                 </Modal.Header>
-                <Modal.Body className="modal-body">
+                <Modal.Body
+                    className={`modal-body ${theme === 'dark' ? 'dark' : ''}`}
+                >
                     <p className="header-text">
                         Are you sure you want to remove{' '}
                         <span style={{ fontWeight: 'bold' }}>
@@ -66,7 +79,9 @@ const RemoveFriendModal = ({
                         from your friends?
                     </p>
                 </Modal.Body>
-                <Modal.Footer className="modal-footer">
+                <Modal.Footer
+                    className={`modal-footer ${theme === 'dark' ? 'dark' : ''}`}
+                >
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>

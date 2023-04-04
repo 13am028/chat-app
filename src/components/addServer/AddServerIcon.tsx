@@ -114,22 +114,24 @@ const AddServerIcon = ({ onGroupCreate }: Props) => {
                         </Modal>
                     </div>
 
-                    <form>
-                        <label
-                            data-testid="add-server-modal-label"
-                            className="addServerModalBodyFormHeader"
-                        >
-                            SERVER NAME
-                        </label>
-                        <input
-                            data-testid="add-server-modal-input"
-                            className="addServerModalBodyFormContent"
-                            placeholder="server name"
-                            type="text"
-                            onChange={handleGroupNameChange}
-                            value={groupName}
-                        />
-                    </form>
+                    <div className="addServerModalBodyFormContainer">
+                        <form>
+                            <label
+                                data-testid="add-server-modal-label"
+                                className="addServerModalBodyFormHeader"
+                            >
+                                SERVER NAME
+                            </label>
+                            <input
+                                data-testid="add-server-modal-input"
+                                className="addServerModalBodyFormContent"
+                                placeholder="server name"
+                                type="text"
+                                onChange={handleGroupNameChange}
+                                value={groupName}
+                            />
+                        </form>
+                    </div>
                 </Modal.Body>
 
                 <Modal.Footer className="addServerModalFooter">

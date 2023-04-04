@@ -15,7 +15,7 @@ const FriendStatusNav: React.FC<FriendStatusNavProps> = ({
     const handleTabClick = (tab: string) => {
         setSelectedTab(tab)
     }
-
+    
     return (
         <div className={styles.navTopSecond} data-testid={testId}>
             <ul className={styles.navTop_list}>
@@ -26,7 +26,7 @@ const FriendStatusNav: React.FC<FriendStatusNavProps> = ({
                     <h4 data-testid="blocked-heading">Blocked</h4>
                 </li>
                 <li>
-                    <AddFriendModal />
+                    <AddFriendModal theme={theme} />
                 </li>
             </ul>
             <AccountDropdownMenu />

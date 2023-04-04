@@ -6,8 +6,10 @@ import addFriendValidate from '../../functions/addFriendValidate'
 import './Modal.css'
 
 const AddFriendModal = ({
+    theme,
     handleAddFriend,
 }: {
+    theme: any
     handleAddFriend?: () => void
 }) => {
     const [show, setShow] = useState(false)
@@ -52,26 +54,34 @@ const AddFriendModal = ({
             >
                 <Modal.Header
                     closeButton
-                    style={{ backgroundColor: 'var(--theme-primary)' }}
+                    className={`modal-header ${theme === 'dark' ? 'dark' : ''}`}
                 >
-                    <Modal.Title>Add Friend</Modal.Title>
+                    <Modal.Title
+                        className={`modal-title ${
+                            theme === 'dark' ? 'dark' : ''
+                        }`}
+                    >
+                        Add Friend
+                    </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    {/*<div className="input-wrapper">*/}
-                    {/*<div className="box">*/}
+                <Modal.Body
+                    className={`modal-body ${theme === 'dark' ? 'dark' : ''}`}
+                >
                     <input
                         placeholder="Enter a username"
                         type="text"
                         value={username}
                         onChange={handleUsernameChange}
                         data-testid="username-input"
-                        className="form-control input-box"
+                        className={`form-control input-box ${
+                            theme === 'dark' ? 'dark text-light' : ''
+                        }`}
                     />
-                    {/*</div>*/}
-                    {/*</div>*/}
                 </Modal.Body>
 
-                <Modal.Footer>
+                <Modal.Footer
+                    className={`modal-footer ${theme === 'dark' ? 'dark' : ''}`}
+                >
                     <Button
                         variant="secondary"
                         onClick={handleClose}
