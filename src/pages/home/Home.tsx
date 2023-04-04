@@ -74,6 +74,7 @@ const Home = (props: any) => {
                 <FriendStatusNav
                     setSelectedTab={setSelectedTab}
                     data-testid="friend-status-nav"
+                    theme={theme}
                 />
                 <div className="bg" data-testid="friend-list-items">
                     {friendList}

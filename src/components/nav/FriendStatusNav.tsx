@@ -6,16 +6,18 @@ import AccountDropdownMenu from '../icons/AccountDropdownMenu'
 interface FriendStatusNavProps {
     setSelectedTab: (tab: string) => void
     'data-testid'?: string
+    theme?: string
 }
 
 const FriendStatusNav: React.FC<FriendStatusNavProps> = ({
     setSelectedTab,
     'data-testid': testId,
+    theme,
 }) => {
     const handleTabClick = (tab: string) => {
         setSelectedTab(tab)
     }
-    
+
     return (
         <div className={styles.navTopSecond} data-testid={testId}>
             <ul className={styles.navTop_list}>
