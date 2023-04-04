@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import { Modal } from 'react-bootstrap'
-import { blockFriend } from '../../firebase/friends/blockFriend'
+import { blockFriend } from '../../firebase/friends/friendActions'
 import BlockIcon from '@mui/icons-material/Block'
 import './Modal.css'
 

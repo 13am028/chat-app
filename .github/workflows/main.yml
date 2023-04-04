@@ -3,9 +3,9 @@ name: React App CI
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   react-app-workflow:
@@ -33,11 +33,11 @@ jobs:
       - name: Upload test results
         uses: actions/upload-artifact@v2
         with:
-            name: coverage-report
-            path: coverage/lcov.info
+          name: coverage-report
+          path: coverage/lcov.info
 
   sonarqube:
-    needs:   react-app-workflow
+    needs: react-app-workflow
     runs-on: ubuntu-20.04
 
     steps:

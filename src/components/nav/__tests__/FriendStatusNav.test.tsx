@@ -2,13 +2,13 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import FriendStatusNav from '../FriendStatusNav'
 
-describe('FriendStatusNav component', () => {
-    it('should render the component', () => {
-        render(<FriendStatusNav />)
+describe('FriendStatusNav', () => {
+    test('renders FriendStatusNav component', () => {
+        // Pass a mock function for setSelectedTab
+        const mockSetSelectedTab = jest.fn()
 
-        expect(screen.getByText('Friends')).toBeInTheDocument()
-        expect(screen.getByText('Pending')).toBeInTheDocument()
-        expect(screen.getByText('Blocked')).toBeInTheDocument()
-        expect(screen.getByTestId('add-friend-button')).toBeInTheDocument()
+        render(<FriendStatusNav setSelectedTab={mockSetSelectedTab} />)
+        expect(screen.getByTestId('friends-heading')).toBeInTheDocument()
+        expect(screen.getByTestId('blocked-heading')).toBeInTheDocument()
     })
 })
