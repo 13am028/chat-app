@@ -8,7 +8,6 @@ const UploadWidget = () => {
             {
                 cloudName: 'du690nkqz',
                 uploadPreset: 'ocwggr1b',
-                folder: 'users',
             },
             async (error: any, result: any) => {
                 if (!error && result && result.event === 'success') {
