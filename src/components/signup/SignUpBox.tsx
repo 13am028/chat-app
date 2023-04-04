@@ -154,14 +154,14 @@ const SignUpBox = (props: any) => {
                                 >
                                     {inputProps.id === 'password' ? (
                                         showPassword ? (
-                                            <VisibilityOffIcon />
-                                        ) : (
                                             <VisibilityIcon />
+                                        ) : (
+                                            <VisibilityOffIcon />
                                         )
                                     ) : cShowPassword ? (
-                                        <VisibilityOffIcon />
-                                    ) : (
                                         <VisibilityIcon />
+                                    ) : (
+                                        <VisibilityOffIcon />
                                     )}
                                 </div>
                             </div>
