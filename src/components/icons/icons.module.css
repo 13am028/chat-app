@@ -134,6 +134,7 @@ p {
     width: 90%;
     color: #9a9494;
 }
+
 .modal-body {
     display: flex;
     flex-direction: column;

@@ -13,7 +13,10 @@ describe('AccountDropdownMenu', () => {
         }
         render(
             <AuthContext.Provider
-                value={{ currentUser: currentUser, setCurrentUser: () => {} }}
+                value={{
+                    currentUser: currentUser,
+                    setCurrentUser: () => {},
+                }}
             >
                 <AccountDropdownMenu />
             </AuthContext.Provider>,
@@ -34,7 +37,10 @@ describe('AccountDropdownMenu', () => {
 
         render(
             <AuthContext.Provider
-                value={{ currentUser: currentUser, setCurrentUser: () => {} }}
+                value={{
+                    currentUser: currentUser,
+                    setCurrentUser: () => {},
+                }}
             >
                 <AccountDropdownMenu />
             </AuthContext.Provider>,

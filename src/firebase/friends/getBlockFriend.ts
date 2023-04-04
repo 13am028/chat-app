@@ -1,9 +1,9 @@
 import { auth, db } from '../init'
 import { doc, getDoc } from 'firebase/firestore'
 
-const getBlockFriend = async ():Promise<string[] | undefined> => {
+const getBlockFriend = async (): Promise<string[] | undefined> => {
     const currentUser = auth.currentUser
-    if(!currentUser) {
+    if (!currentUser) {
         console.error('User not authenticated')
         return
     }
@@ -29,4 +29,4 @@ const getBlockFriend = async ():Promise<string[] | undefined> => {
     return blockedFriendsData
 }
 
-export {getBlockFriend}
+export { getBlockFriend }

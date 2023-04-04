@@ -14,8 +14,14 @@ const BlockedFriendStatus = (user: any) => {
                 data-testid="blocked-friend-icon"
                 imgURL={user.avatar}
             ></FriendIcon>
-            <div className={styles.friendName} data-testid="blocked-friend-name">
-                <p className={styles.name} data-testid="blocked-friend-display-name">
+            <div
+                className={styles.friendName}
+                data-testid="blocked-friend-name"
+            >
+                <p
+                    className={styles.name}
+                    data-testid="blocked-friend-display-name"
+                >
                     {user.displayName}
                 </p>
                 <strong>Blocked</strong>

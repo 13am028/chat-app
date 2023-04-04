@@ -4,11 +4,14 @@ import AddFriendModal from '../modal/AddFriendModal'
 import AccountDropdownMenu from '../icons/AccountDropdownMenu'
 
 interface FriendStatusNavProps {
-    setSelectedTab: (tab: string) => void;
-    'data-testid'?: string;
+    setSelectedTab: (tab: string) => void
+    'data-testid'?: string
 }
 
-const FriendStatusNav: React.FC<FriendStatusNavProps> = ({ setSelectedTab, 'data-testid': testId }) => {
+const FriendStatusNav: React.FC<FriendStatusNavProps> = ({
+    setSelectedTab,
+    'data-testid': testId,
+}) => {
     const handleTabClick = (tab: string) => {
         setSelectedTab(tab)
     }

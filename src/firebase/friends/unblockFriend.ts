@@ -1,5 +1,5 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { auth, db} from '../init'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
+import { auth, db } from '../init'
 
 const unblockFriend = async (user: {
     uid: string
@@ -22,7 +22,6 @@ const unblockFriend = async (user: {
             return 'not_found'
         }
 
-
         const myFriendsData = myFriendsDoc.data()
         const myBlocked = myFriendsData.blocked || []
 
@@ -41,4 +40,4 @@ const unblockFriend = async (user: {
     }
 }
 
-export {unblockFriend}
+export { unblockFriend }

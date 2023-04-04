@@ -6,7 +6,7 @@ import DirectMessageNav from '../../components/nav/DirectMessageNav'
 import FriendStatus from '../../components/icons/FriendStatus'
 import BlockedFriendStatus from '../../components/icons/BlockedFriendStatus'
 import { getFriends } from '../../firebase/friends/getFriends'
-import { getBlockFriend} from "../../firebase/friends/getBlockFriend";
+import { getBlockFriend } from '../../firebase/friends/getBlockFriend'
 import { db } from '../../firebase/init'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { AuthContext } from '../../components/context/AuthContext'
@@ -69,7 +69,10 @@ const Home = () => {
                 <DirectMessageNav data-testid="dm-nav" />
             </div>
             <div className="navbar-right">
-                <FriendStatusNav setSelectedTab={setSelectedTab} data-testid="friend-status-nav" />
+                <FriendStatusNav
+                    setSelectedTab={setSelectedTab}
+                    data-testid="friend-status-nav"
+                />
                 <div className="bg" data-testid="friend-list-items">
                     {friendList}
                 </div>

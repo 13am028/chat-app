@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import FriendStatusNav from "../nav/FriendStatusNav";
+import FriendStatusNav from '../nav/FriendStatusNav'
 import FriendStatus from './FriendStatus'
 import BlockedFriendStatus from './BlockedFriendStatus'
-import { getFriends} from "../../firebase/friends/getFriends";
-import { getBlockFriend} from "../../firebase/friends/getBlockFriend";
+import { getFriends } from '../../firebase/friends/getFriends'
+import { getBlockFriend } from '../../firebase/friends/getBlockFriend'
 
 const FriendsContainer = () => {
     const [selectedTab, setSelectedTab] = useState('friends')
@@ -29,12 +29,15 @@ const FriendsContainer = () => {
         <>
             <FriendStatusNav setSelectedTab={setSelectedTab} />
             {selectedTab === 'friends' &&
-                friends.map((friend) => (
+                friends.map(friend => (
                     <FriendStatus key={friend.uid} {...friend} />
                 ))}
             {selectedTab === 'blocked' &&
-                blockedFriends.map((blockedFriend) => (
-                    <BlockedFriendStatus key={blockedFriend.uid} {...blockedFriend} />
+                blockedFriends.map(blockedFriend => (
+                    <BlockedFriendStatus
+                        key={blockedFriend.uid}
+                        {...blockedFriend}
+                    />
                 ))}
         </>
     )
