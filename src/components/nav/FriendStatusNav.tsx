@@ -22,9 +22,6 @@ const FriendStatusNav: React.FC<FriendStatusNavProps> = ({
                 <li onClick={() => handleTabClick('friends')}>
                     <h4 data-testid="friends-heading">Friends</h4>
                 </li>
-                <li onClick={() => handleTabClick('pending')}>
-                    <h4 data-testid="pending-heading">Pending</h4>
-                </li>
                 <li onClick={() => handleTabClick('blocked')}>
                     <h4 data-testid="blocked-heading">Blocked</h4>
                 </li>

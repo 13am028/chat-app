@@ -9,7 +9,6 @@ describe('FriendStatusNav', () => {
 
         render(<FriendStatusNav setSelectedTab={mockSetSelectedTab} />)
         expect(screen.getByTestId('friends-heading')).toBeInTheDocument()
-        expect(screen.getByTestId('pending-heading')).toBeInTheDocument()
         expect(screen.getByTestId('blocked-heading')).toBeInTheDocument()
     })
 })

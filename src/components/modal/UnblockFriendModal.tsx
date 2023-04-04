@@ -1,7 +1,7 @@
 // UnblockFriendModal.tsx
 import React, { useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import { unblockFriend } from '../../firebase/friends/unblockFriend'
+import { unblockFriend } from '../../firebase/friends/friendActions'
 
 const UnblockFriendModal = ({ user, onClick }: any) => {
     const [show, setShow] = useState(false)
