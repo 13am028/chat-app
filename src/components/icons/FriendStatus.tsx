@@ -1,7 +1,7 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import styles from './icons.module.css'
-import {useNavigate} from 'react-router-dom'
-import {AuthContext} from '../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../context/AuthContext'
 import {
     doc,
     getDoc,
@@ -9,16 +9,16 @@ import {
     setDoc,
     updateDoc,
 } from 'firebase/firestore'
-import {db} from '../../firebase/init'
-import {ChatContext} from '../context/ChatContext'
+import { db } from '../../firebase/init'
+import { ChatContext } from '../context/ChatContext'
 
 import RemoveFriendModal from '../modal/RemoveFriendModal'
 import BlockFriendModal from '../modal/BlockFriendModal'
 import FriendIcon from './FriendIcon'
 
 const FriendStatus = (user: any) => {
-    const {currentUser} = useContext(AuthContext)
-    const {dispatch} = useContext(ChatContext)
+    const { currentUser } = useContext(AuthContext)
+    const { dispatch } = useContext(ChatContext)
 
     const handleModalClick = (e: React.MouseEvent) => {
         e.stopPropagation()
@@ -27,7 +27,7 @@ const FriendStatus = (user: any) => {
     const routeChange = () => {
         let path = '/dm'
         navigate(path, {
-            state: {displayName: user.displayName, uid: user.uid},
+            state: { displayName: user.displayName, uid: user.uid },
         })
     }
 
@@ -39,7 +39,7 @@ const FriendStatus = (user: any) => {
         try {
             const response = await getDoc(doc(db, 'chats', combinedId))
             if (!response.exists()) {
-                await setDoc(doc(db, 'chats', combinedId), {messages: []})
+                await setDoc(doc(db, 'chats', combinedId), { messages: [] })
                 await updateDoc(doc(db, 'userChats', currentUser?.uid ?? ''), {
                     [combinedId + '.userInfo']: {
                         uid: user.uid,
@@ -57,11 +57,10 @@ const FriendStatus = (user: any) => {
             }
             dispatch({
                 type: 'CHANGE_USER',
-                payload: {uid: user.uid, displayName: user.displayName},
+                payload: { uid: user.uid, displayName: user.displayName },
             })
             routeChange()
-        } catch (err) {
-        }
+        } catch (err) {}
     }
 
     const stopPropagation = (e: React.MouseEvent) => {
@@ -84,15 +83,15 @@ const FriendStatus = (user: any) => {
                 </p>
                 <strong>status</strong>
             </div>
-            <div style={{display: 'inline-block'}}>
+            <div style={{ display: 'inline-block' }}>
                 <RemoveFriendModal
                     theme={user.theme}
-                    user={{displayName: user.displayName, uid: user.uid}}
+                    user={{ displayName: user.displayName, uid: user.uid }}
                     onClick={handleModalClick}
                 />
                 <BlockFriendModal
                     theme={user.theme}
-                    user={{displayName: user.displayName, uid: user.uid}}
+                    user={{ displayName: user.displayName, uid: user.uid }}
                     onClick={stopPropagation}
                 />
             </div>

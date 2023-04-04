@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './AddServerIcon.css'
-import {CloseButton, Modal} from 'react-bootstrap'
+import { CloseButton, Modal } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import AddIcon from '@mui/icons-material/Add'
-import {createGroup} from '../../firebase/groups/createGroup'
+import { createGroup } from '../../firebase/groups/createGroup'
 import CustomSVG from './CustomSVG'
 import UploadWidget from '../upload/UploadWidget'
 
@@ -11,7 +11,7 @@ type Props = {
     onGroupCreate: () => void
 }
 
-const AddServerIcon = ({onGroupCreate}: Props) => {
+const AddServerIcon = ({ onGroupCreate }: Props) => {
     /* Show or Hide Popup when clicking button */
     const [showModal, setModal] = useState(false)
     const [groupName, setGroupName] = useState('')
@@ -67,7 +67,7 @@ const AddServerIcon = ({onGroupCreate}: Props) => {
                 onClick={handleShow}
                 className="addServerIcon"
             >
-                <AddIcon htmlColor="white" fontSize="large"/>
+                <AddIcon htmlColor="white" fontSize="large" />
             </button>
 
             <Modal
@@ -81,7 +81,7 @@ const AddServerIcon = ({onGroupCreate}: Props) => {
                         data-testid="add-server-modal-close-button"
                         onClick={handleClose}
                     />
-                    <h1 style={{color: 'black'}}>Customize your server</h1>
+                    <h1 style={{ color: 'black' }}>Customize your server</h1>
                     <div>
                         Give your new server a personality with a name and an
                         icon. You can always change it later.
@@ -91,7 +91,7 @@ const AddServerIcon = ({onGroupCreate}: Props) => {
                 <Modal.Body className="addServerModalBody">
                     <div className="addServerModalBodyContent">
                         <div onClick={handleShowUploadModal}>
-                            <CustomSVG/>
+                            <CustomSVG />
                         </div>
 
                         <Modal
@@ -109,7 +109,7 @@ const AddServerIcon = ({onGroupCreate}: Props) => {
                                 </h4>
                             </Modal.Header>
                             <Modal.Body>
-                                <UploadWidget handleURL={handleURL}/>
+                                <UploadWidget handleURL={handleURL} />
                             </Modal.Body>
                         </Modal>
                     </div>

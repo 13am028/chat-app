@@ -1,16 +1,16 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
-import {Modal} from 'react-bootstrap'
-import {removeFriend} from '../../firebase/friends/removeFriend'
+import { Modal } from 'react-bootstrap'
+import { removeFriend } from '../../firebase/friends/removeFriend'
 import PersonRemoveAlt1Icon from '@mui/icons-material/PersonRemoveAlt1'
 import './Modal.css'
 
 const RemoveFriendModal = ({
-                               theme,
-                               user,
-                               onClick,
-                           }: {
-    theme: any,
+    theme,
+    user,
+    onClick,
+}: {
+    theme: any
     user: { uid: string; displayName: string }
     onClick: (e: React.MouseEvent) => void
 }) => {
@@ -40,7 +40,7 @@ const RemoveFriendModal = ({
     }
 
     return (
-        <div style={{display: 'inline-block'}} onClick={onClick}>
+        <div style={{ display: 'inline-block' }} onClick={onClick}>
             <Button
                 variant="warning"
                 onClick={handleShow}
@@ -48,7 +48,7 @@ const RemoveFriendModal = ({
                 data-testid="remove-friend-button"
                 title="Remove Friend"
             >
-                <PersonRemoveAlt1Icon/>
+                <PersonRemoveAlt1Icon />
             </Button>
 
             <Modal
@@ -56,19 +56,32 @@ const RemoveFriendModal = ({
                 onHide={handleClose}
                 data-testid="remove-friend-modal"
             >
-                <Modal.Header closeButton className={`modal-header ${theme === 'dark' ? 'dark' : ''}`}>
-                    <Modal.Title className={`modal-title ${theme === 'dark' ? 'dark' : ''}`}>Remove Friend</Modal.Title>
+                <Modal.Header
+                    closeButton
+                    className={`modal-header ${theme === 'dark' ? 'dark' : ''}`}
+                >
+                    <Modal.Title
+                        className={`modal-title ${
+                            theme === 'dark' ? 'dark' : ''
+                        }`}
+                    >
+                        Remove Friend
+                    </Modal.Title>
                 </Modal.Header>
-                <Modal.Body className={`modal-body ${theme === 'dark' ? 'dark' : ''}`}>
+                <Modal.Body
+                    className={`modal-body ${theme === 'dark' ? 'dark' : ''}`}
+                >
                     <p className="header-text">
                         Are you sure you want to remove{' '}
-                        <span style={{fontWeight: 'bold'}}>
+                        <span style={{ fontWeight: 'bold' }}>
                             {user.displayName}
                         </span>{' '}
                         from your friends?
                     </p>
                 </Modal.Body>
-                <Modal.Footer className={`modal-footer ${theme === 'dark' ? 'dark' : ''}`}>
+                <Modal.Footer
+                    className={`modal-footer ${theme === 'dark' ? 'dark' : ''}`}
+                >
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>

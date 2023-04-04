@@ -18,9 +18,7 @@ const FriendStatusNav = (props: any) => {
                     <h4 data-testid="blocked-heading">Blocked</h4>
                 </li>
                 <li>
-                    <AddFriendModal
-                        theme={theme}
-                    />
+                    <AddFriendModal theme={theme} />
                 </li>
             </ul>
             <AccountDropdownMenu />

@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import GroupIcon from '../icons/GroupIcon'
 import AddServerIcon from '../addServer/AddServerIcon'
 import styles from './nav.module.css'
-import {useNavigate} from 'react-router-dom'
-import {getGroups} from '../../firebase/groups/getGroups'
+import { useNavigate } from 'react-router-dom'
+import { getGroups } from '../../firebase/groups/getGroups'
 
 const Nav = (props: any) => {
-    const {theme} = props
+    const { theme } = props
     let navigate = useNavigate()
     const toHome = () => {
         let path = '/home'
@@ -16,7 +16,7 @@ const Nav = (props: any) => {
     const toGroup = (groupId: string, groupName: string, groupMembers: any) => {
         console.log(groupName)
         let path = '/server-chat'
-        navigate(path, {state: {groupId, groupName, groupMembers}})
+        navigate(path, { state: { groupId, groupName, groupMembers } })
     }
 
     const [groups, setGroups] = useState<any>([])
@@ -73,9 +73,7 @@ const Nav = (props: any) => {
             </div>
             <div className={styles.nav_content} data-testid="nav-content">
                 {groupList}
-                <AddServerIcon
-                    onGroupCreate={handleNewGroupRender}
-                />
+                <AddServerIcon onGroupCreate={handleNewGroupRender} />
             </div>
         </div>
     )

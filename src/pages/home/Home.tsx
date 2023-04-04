@@ -1,17 +1,17 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Home.css'
 import Nav from '../../components/nav/Nav'
 import FriendStatusNav from '../../components/nav/FriendStatusNav'
 import DirectMessageNav from '../../components/nav/DirectMessageNav'
 import FriendStatus from '../../components/icons/FriendStatus'
-import {getFriends} from '../../firebase/friends/getFriends'
-import {db} from '../../firebase/init'
-import {doc, onSnapshot} from 'firebase/firestore'
-import {AuthContext} from '../../components/context/AuthContext'
+import { getFriends } from '../../firebase/friends/getFriends'
+import { db } from '../../firebase/init'
+import { doc, onSnapshot } from 'firebase/firestore'
+import { AuthContext } from '../../components/context/AuthContext'
 
 const Home = (props: any) => {
-    const {theme} = props
-    const {currentUser} = useContext(AuthContext)
+    const { theme } = props
+    const { currentUser } = useContext(AuthContext)
 
     /* Disable default context menu */
     const handleContextMenu = (event: any) => {
@@ -50,11 +50,8 @@ const Home = (props: any) => {
             data-testid="friend-list"
         >
             <div className="navbar-left">
-                <Nav
-                    theme={theme}
-                    data-testid="nav"
-                />
-                <DirectMessageNav data-testid="dm-nav"/>
+                <Nav theme={theme} data-testid="nav" />
+                <DirectMessageNav data-testid="dm-nav" />
             </div>
             <div className="navbar-right">
                 <FriendStatusNav

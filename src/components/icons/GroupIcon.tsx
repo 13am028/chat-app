@@ -1,27 +1,27 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from './icons.module.css'
-import {CloseButton, Modal} from 'react-bootstrap'
+import { CloseButton, Modal } from 'react-bootstrap'
 import SearchIcon from '@mui/icons-material/Search'
-import {getFriends} from '../../firebase/friends/getFriends'
-import {addFriendToGroup} from '../../firebase/groups/addFriendToGroup'
-import {deleteGroup} from '../../firebase/groups/deleteGroup'
-import {leaveGroup} from '../../firebase/groups/leaveGroup'
-import {db, auth} from '../../firebase/init'
-import {doc, getDoc} from 'firebase/firestore'
+import { getFriends } from '../../firebase/friends/getFriends'
+import { addFriendToGroup } from '../../firebase/groups/addFriendToGroup'
+import { deleteGroup } from '../../firebase/groups/deleteGroup'
+import { leaveGroup } from '../../firebase/groups/leaveGroup'
+import { db, auth } from '../../firebase/init'
+import { doc, getDoc } from 'firebase/firestore'
 
 const GroupIcon = ({
-                       theme,
-                       groupId,
-                       imageUrl,
-                       adminUID,
-                   }: {
+    theme,
+    groupId,
+    imageUrl,
+    adminUID,
+}: {
     theme: any
     groupId?: string
     imageUrl?: string
     adminUID?: string
 }) => {
     const [showMenu, setShowMenu] = useState(false)
-    const [menuPosition, setMenuPosition] = useState({x: 0, y: 0})
+    const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 })
     const menuRef = useRef(null)
     const [showModal, setShowModal] = useState(false)
     const [getFriendList, setFriendList] = useState<any>([])
@@ -35,7 +35,7 @@ const GroupIcon = ({
     const handleContextMenu = (event: any) => {
         event.preventDefault()
         setShowMenu(true)
-        setMenuPosition({x: event.clientX, y: event.clientY})
+        setMenuPosition({ x: event.clientX, y: event.clientY })
     }
 
     const handleClick = (event: any) => {
@@ -117,17 +117,17 @@ const GroupIcon = ({
                     src={imageUrl}
                     alt="profile avatar"
                     className={styles.groupIcon}
-                    style={{margin: '0px'}}
+                    style={{ margin: '0px' }}
                 />
             ) : (
-                <div/>
+                <div />
             )}
 
             {showMenu && (
                 <div
                     className={styles.customContextMenu}
                     ref={menuRef}
-                    style={{top: menuPosition.y, left: menuPosition.x}}
+                    style={{ top: menuPosition.y, left: menuPosition.x }}
                 >
                     <div
                         className={styles.menuOptionInvite}
@@ -136,7 +136,11 @@ const GroupIcon = ({
                     >
                         Invite people
                     </div>
-                    <hr className={`styles.menuOptionLine ${theme === 'dark' ? 'dark' : ''}`}/>
+                    <hr
+                        className={`styles.menuOptionLine ${
+                            theme === 'dark' ? 'dark' : ''
+                        }`}
+                    />
                     {adminUID === auth.currentUser?.uid ? (
                         <div
                             className={styles.menuOptionLeave}
@@ -156,7 +160,7 @@ const GroupIcon = ({
             )}
             <Modal show={showModal} onHide={handleClose} centered>
                 <Modal.Header className={styles.addServerModalHeader}>
-                    <CloseButton onClick={handleClose}/>
+                    <CloseButton onClick={handleClose} />
                     <h1 className={styles.addServerModalTitle}>
                         Invite Friends
                     </h1>
@@ -166,7 +170,7 @@ const GroupIcon = ({
                             placeholder="Search for friends"
                             data-testid="search-input"
                         />
-                        <SearchIcon/>
+                        <SearchIcon />
                     </div>
                 </Modal.Header>
                 <Modal.Body className={styles.inviteFriendsModalBody}>
@@ -181,7 +185,7 @@ const GroupIcon = ({
                             <div
                                 className={styles.serverFriend}
                                 key={index}
-                                style={{position: 'relative'}}
+                                style={{ position: 'relative' }}
                             >
                                 <div
                                     className={styles.friendIconAddServer}
