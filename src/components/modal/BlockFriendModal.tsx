@@ -6,9 +6,11 @@ import BlockIcon from '@mui/icons-material/Block'
 import './Modal.css'
 
 const BlockFriendModal = ({
+    theme,
     user,
     onClick,
 }: {
+    theme: any
     user: { uid: string; displayName: string }
     onClick: (e: React.MouseEvent) => void
 }) => {
@@ -47,10 +49,10 @@ const BlockFriendModal = ({
                 onHide={handleClose}
                 data-testid="block-friend-modal"
             >
-                <Modal.Header closeButton className="modal-header">
-                    <Modal.Title>Block Friend</Modal.Title>
+                <Modal.Header closeButton className={`modal-header ${theme === 'dark' ? 'dark' : ''}`}>
+                    <Modal.Title className={`modal-title ${theme === 'dark' ? 'dark' : ''}`}>Block Friend</Modal.Title>
                 </Modal.Header>
-                <Modal.Body className="modal-body">
+                <Modal.Body className={`modal-body ${theme === 'dark' ? 'dark' : ''}`}>
                     <p className="header-text">
                         Are you sure you want to block &nbsp;
                         <span style={{ fontWeight: 'bold' }}>
@@ -59,7 +61,7 @@ const BlockFriendModal = ({
                         &nbsp; from your friends?
                     </p>
                 </Modal.Body>
-                <Modal.Footer className="modal-footer">
+                <Modal.Footer className={`modal-footer ${theme === 'dark' ? 'dark' : ''}`}>
                     <Button
                         variant="secondary"
                         onClick={handleClose}

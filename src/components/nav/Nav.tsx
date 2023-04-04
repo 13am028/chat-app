@@ -5,7 +5,8 @@ import styles from './nav.module.css'
 import { useNavigate } from 'react-router-dom'
 import { getGroups } from '../../firebase/groups/getGroups'
 
-const Nav = () => {
+const Nav = (props: any) => {
+    const { theme } = props
     let navigate = useNavigate()
     const toHome = () => {
         let path = '/home'
@@ -43,6 +44,7 @@ const Nav = () => {
                     }
                 >
                     <GroupIcon
+                        theme={theme}
                         groupId={group.id}
                         imageUrl={group.groupPic}
                         adminUID={group.adminUID}
@@ -71,7 +73,9 @@ const Nav = () => {
             </div>
             <div className={styles.nav_content} data-testid="nav-content">
                 {groupList}
-                <AddServerIcon onGroupCreate={handleNewGroupRender} />
+                <AddServerIcon
+                    onGroupCreate={handleNewGroupRender}
+                />
             </div>
         </div>
     )

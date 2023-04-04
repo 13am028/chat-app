@@ -10,10 +10,12 @@ import { db, auth } from '../../firebase/init'
 import { doc, getDoc } from 'firebase/firestore'
 
 const GroupIcon = ({
+    theme,
     groupId,
     imageUrl,
     adminUID,
 }: {
+    theme: any
     groupId?: string
     imageUrl?: string
     adminUID?: string
@@ -134,7 +136,7 @@ const GroupIcon = ({
                     >
                         Invite people
                     </div>
-                    <hr className={styles.menuOptionLine} />
+                    <hr className={`styles.menuOptionLine ${theme === 'dark' ? 'dark' : ''}`} />
                     {adminUID === auth.currentUser?.uid ? (
                         <div
                             className={styles.menuOptionLeave}

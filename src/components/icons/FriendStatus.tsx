@@ -85,10 +85,12 @@ const FriendStatus = (user: any) => {
             </div>
             <div style={{ display: 'inline-block' }}>
                 <RemoveFriendModal
+                    theme={user.theme}
                     user={{ displayName: user.displayName, uid: user.uid }}
                     onClick={handleModalClick}
-                />
+                 />
                 <BlockFriendModal
+                    theme={user.theme}
                     user={{ displayName: user.displayName, uid: user.uid }}
                     onClick={stopPropagation}
                 />
