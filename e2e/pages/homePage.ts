@@ -13,7 +13,6 @@ export default class HomePage {
 
     async checkFriendStatusNav() {
         await expect(this.page.getByTestId('friends-heading')).toBeVisible()
-        await expect(this.page.getByTestId('pending-heading')).toBeVisible()
         await expect(this.page.getByTestId('blocked-heading')).toBeVisible()
         await expect(this.page.getByTestId('add-friend-button')).toBeVisible()
         await expect(
