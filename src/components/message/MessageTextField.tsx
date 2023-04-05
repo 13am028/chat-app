@@ -11,44 +11,50 @@ import {
     serverTimestamp,
     updateDoc,
     Timestamp,
+    increment
 } from 'firebase/firestore'
 import { db } from '../../firebase/init'
 import uuid from 'react-uuid'
 
-function MessageTextField() {
-    const [message, setMessage] = useState('')
-    const { currentUser } = useContext(AuthContext)
-    const { data } = useContext(ChatContext)
+
+function MessageTextField(props: any) {
+    const [message, setMessage] = useState('');
+    const {currentUser} = useContext(AuthContext);
+    const {data} = useContext(ChatContext);
+
 
     const handleSubmit = async (event: any) => {
-        event.preventDefault()
-        if (message === '') return
-        await updateDoc(doc(db, 'chats', data.chatId), {
+        event.preventDefault();
+        if (message == "") return
+        await updateDoc(doc(db, "chats", data.chatId), {
             messages: arrayUnion({
                 id: uuid(),
                 text: message,
                 senderId: currentUser?.uid,
-                date: Timestamp.now(),
-            }),
+                date: Timestamp.now()
+            })
         })
         // @ts-ignore
-        await updateDoc(doc(db, 'userChats', currentUser.uid), {
-            [data.chatId + '.lastMessage']: {
+        await updateDoc(doc(db, "userChats", currentUser.uid), {
+            [data.chatId + ".lastMessage"]: {
                 message,
             },
-            [data.chatId + '.date']: serverTimestamp(),
-        })
-        await updateDoc(doc(db, 'userChats', data.user.uid), {
-            [data.chatId + '.lastMessage']: {
+            [data.chatId + ".date"]: serverTimestamp(),
+        });
+        await updateDoc(doc(db, "userChats", data.user.uid), {
+            [data.chatId + ".lastMessage"]: {
                 message,
             },
-            [data.chatId + '.date']: serverTimestamp(),
-        })
-        setMessage('')
-    }
+            [data.chatId + ".date"]: serverTimestamp(),
+        });
+        await updateDoc(doc(db, "userChats", data.user.uid), {
+            [data.chatId + ".unreadCount"]: increment(1),
+        });
+        setMessage("");
+    };
     const handleChange = (event: any) => {
-        setMessage(event.target.value)
-    }
+        setMessage(event.target.value);
+    };
 
     return (
         <Form onSubmit={handleSubmit} className="send-message-form">
@@ -59,7 +65,7 @@ function MessageTextField() {
                 placeholder="Send a message"
                 inputProps={{
                     'aria-label': 'message',
-                    style: { color: 'var(--font-color)' },
+                    'style': {color: 'var(--font-color)'}
                 }}
                 sx={{
                     '& .MuiOutlinedInput-notchedOutline': {
@@ -71,27 +77,24 @@ function MessageTextField() {
 
                     backgroundColor: 'var(--theme-fourth)',
                     boxShadow: '0 1px 3px rgba(0, 0, 0, 0.2)',
-                    width: '50%',
+                    width: '50%'
                 }}
-                data-testid="outlined-input"
             />
-            <Button
-                variant="contained"
-                style={{
-                    backgroundColor: 'var(--theme-primary)',
-                    color: 'var(--font-color)',
-                    padding: '1rem',
-                    width: '100px',
-                    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.2)',
-                }}
-                size="lg"
-                type="submit"
-                data-testid="submit-button"
+            <Button variant="contained"
+                    style={{
+                        backgroundColor: 'var(--theme-primary)',
+                        color: 'var(--font-color)',
+                        padding: '1rem',
+                        width: '100px',
+                        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.2)'
+                    }}
+                    size='lg'
+                    type='submit'
             >
                 Send
             </Button>
         </Form>
-    )
+    );
 }
 
 export default MessageTextField

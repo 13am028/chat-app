@@ -307,3 +307,14 @@ p {
 .searchBar input[type='text']::placeholder {
     color: #aaa;
 }
+
+.notificationBadge {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.5rem;
+    background-color: red;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
