@@ -51,6 +51,7 @@ const Home = (props: any) => {
         blockedFriends.forEach((user: any) => {
             friendList.push(
                 <BlockedFriendStatus
+                    theme={theme}
                     key={user.uid}
                     displayName={user.displayName}
                     uid={user.uid}
