@@ -1,26 +1,46 @@
-import { test, expect, Dialog } from '@playwright/test'
+import { test, expect, Locator, Page } from '@playwright/test'
 
-const my_secret = 'MySecretPassword'
+const secure_password = '$S30Jap%ySGI8%W64h'
 const norm_email = 'johndoe@example.com'
 const non_email = 'this_isnot_email'
-
 const norm_username = 'myusername'
-const nonorm_username =
-    'very very absolutely normal username for the _ normal, typical, civilize, educated, and great people'
-const cool_username = 's҉u҉p҉e҉r҉@w3s()๓E+ยูสเชอร์เนม...!'
-const invi_display_name = 'ㅤ'
 const norm_display_name = 'mydisplayname'
+
+// Error Text
+const all_fields_alert = 'Please fill in all fields.'
+const match_pass_alert = 'Passwords have to match'
 const invalid_pass_alert =
     'Please enter a valid password. Your password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.'
+const invalid_email_alert = 'Please enter a valid email address.'
+const check_box_alert =
+    'Please agree to the terms of service and privacy policy.'
 
-test.beforeEach(async ({ page }) => {
+let page: Page
+let display_input: Locator
+let username_input: Locator
+let email_input: Locator
+let pass_input: Locator
+let cpass_input: Locator
+
+test.beforeAll(async ({ browser }) => {
+    page = await browser.newPage()
+    await page.goto('./signup')
+    await page.waitForLoadState('networkidle')
+    display_input = page.getByLabel('Display Name')
+    username_input = page.getByLabel('Username')
+    email_input = page.getByLabel('Email')
+    pass_input = page.getByLabel('Password', { exact: true })
+    cpass_input = page.getByLabel('Confirm Password')
+})
+
+test.beforeEach(async () => {
     await page.goto('./signup')
     await page.waitForLoadState('networkidle')
 })
 
-test('All fields empty', async ({ page }) => {
+test('All fields empty', async () => {
     page.once('dialog', dialog => {
-        expect(dialog.message()).toEqual('Please fill in all fields.')
+        expect(dialog.message()).toEqual(all_fields_alert)
         dialog.accept()
     })
     await page.getByRole('button', { name: 'Sign Up' }).click()
@@ -28,8 +48,7 @@ test('All fields empty', async ({ page }) => {
 })
 
 test.describe('Show password icon show work properly', () => {
-    test('1st icon (Password)', async ({ page }) => {
-        const pass_input = page.getByLabel('Password', { exact: true })
+    test('1st icon (Password)', async () => {
         const pass_eye = page
             .locator('div')
             .filter({
@@ -38,30 +57,30 @@ test.describe('Show password icon show work properly', () => {
             })
             .locator('path')
 
-        await pass_input.fill(my_secret)
+        await pass_input.fill(secure_password)
         await pass_input.getAttribute('type').then(value => {
             expect(value).toEqual('password')
         })
         await pass_input.getAttribute('value').then(value => {
-            expect(value).toEqual(my_secret)
+            expect(value).toEqual(secure_password)
         })
         await pass_eye.click()
         await pass_input.getAttribute('type').then(value => {
             expect(value).toEqual('text')
         })
         await pass_input.getAttribute('value').then(value => {
-            expect(value).toEqual(my_secret)
+            expect(value).toEqual(secure_password)
         })
         await pass_eye.click()
         await pass_input.getAttribute('type').then(value => {
             expect(value).toEqual('password')
         })
         await pass_input.getAttribute('value').then(value => {
-            expect(value).toEqual(my_secret)
+            expect(value).toEqual(secure_password)
         })
     })
 
-    test('2nd icon (Confirm password)', async ({ page }) => {
+    test('2nd icon (Confirm password)', async () => {
         const pass_input = page.getByLabel('Confirm Password')
         const pass_eye = page
             .locator('div')
@@ -69,127 +88,101 @@ test.describe('Show password icon show work properly', () => {
             .locator('path')
 
         // confirm pass input check
-
-        await pass_input.fill(my_secret)
+        await pass_input.fill(secure_password)
         await pass_input.getAttribute('type').then(value => {
             expect(value).toEqual('password')
         })
         await pass_input.getAttribute('value').then(value => {
-            expect(value).toEqual(my_secret)
+            expect(value).toEqual(secure_password)
         })
         await pass_eye.click()
         await pass_input.getAttribute('type').then(value => {
             expect(value).toEqual('text')
         })
         await pass_input.getAttribute('value').then(value => {
-            expect(value).toEqual(my_secret)
+            expect(value).toEqual(secure_password)
         })
         await pass_eye.click()
         await pass_input.getAttribute('type').then(value => {
             expect(value).toEqual('password')
         })
         await pass_input.getAttribute('value').then(value => {
-            expect(value).toEqual(my_secret)
+            expect(value).toEqual(secure_password)
         })
     })
 })
 
 test.describe('missing some fields', () => {
-    test('Display name empty', async ({ page }) => {
-        const username_input = page.getByLabel('Username')
-        const email_input = page.getByLabel('Email')
-        const pass_input = page.getByLabel('Password', { exact: true })
-        const cpass_input = page.getByLabel('Confirm Password')
-
+    test('Display name empty', async () => {
         // Fill the fields
         await username_input.fill(norm_display_name)
         await email_input.fill(norm_email)
-        await pass_input.fill(my_secret)
-        await cpass_input.fill(my_secret)
+        await pass_input.fill(secure_password)
+        await cpass_input.fill(secure_password)
 
         // submit
         page.once('dialog', dialog => {
-            expect(dialog.message()).toEqual('Please fill in all fields.')
+            expect(dialog.message()).toEqual(all_fields_alert)
             dialog.accept()
         })
         await page.getByRole('button', { name: 'Sign Up' }).click()
         expect(page.url()).toContain('signup')
     })
-    test('Username empty', async ({ page }) => {
-        const display_input = page.getByLabel('Display Name')
-        const email_input = page.getByLabel('Email')
-        const pass_input = page.getByLabel('Password', { exact: true })
-        const cpass_input = page.getByLabel('Confirm Password')
-
+    test('Username empty', async () => {
         // Fill the fields
         await display_input.fill(norm_display_name)
         await email_input.fill(norm_email)
-        await pass_input.fill(my_secret)
-        await cpass_input.fill(my_secret)
+        await pass_input.fill(secure_password)
+        await cpass_input.fill(secure_password)
 
         // submit
         page.once('dialog', dialog => {
-            expect(dialog.message()).toEqual('Please fill in all fields.')
+            expect(dialog.message()).toEqual(all_fields_alert)
             dialog.accept()
         })
         await page.getByRole('button', { name: 'Sign Up' }).click()
         expect(page.url()).toContain('signup')
     })
-    test('Email empty', async ({ page }) => {
-        const display_input = page.getByLabel('Display Name')
-        const username_input = page.getByLabel('Username')
-        const pass_input = page.getByLabel('Password', { exact: true })
-        const cpass_input = page.getByLabel('Confirm Password')
-
+    test('Email empty', async () => {
         // Fill the fields
         await display_input.fill(norm_display_name)
         await username_input.fill(norm_display_name)
-        await pass_input.fill(my_secret)
-        await cpass_input.fill(my_secret)
+        await pass_input.fill(secure_password)
+        await cpass_input.fill(secure_password)
 
         // submit
         page.once('dialog', dialog => {
-            expect(dialog.message()).toEqual('Please fill in all fields.')
+            expect(dialog.message()).toEqual(all_fields_alert)
             dialog.accept()
         })
         await page.getByRole('button', { name: 'Sign Up' }).click()
         expect(page.url()).toContain('signup')
     })
-    test('Password empty', async ({ page }) => {
-        const display_input = page.getByLabel('Display Name')
-        const username_input = page.getByLabel('Username')
-        const email_input = page.getByLabel('Email')
-        const cpass_input = page.getByLabel('Confirm Password')
-
+    test('Password empty', async () => {
         // Fill the fields
         await display_input.fill(norm_display_name)
         await username_input.fill(norm_display_name)
         await email_input.fill(norm_email)
-        await cpass_input.fill(my_secret)
+        await cpass_input.fill(secure_password)
 
         // submit
         page.once('dialog', dialog => {
-            expect(dialog.message()).toEqual('Please fill in all fields.')
+            expect(dialog.message()).toEqual(all_fields_alert)
             dialog.accept()
         })
         await page.getByRole('button', { name: 'Sign Up' }).click()
         expect(page.url()).toContain('signup')
     })
-    test('Confirm password empty', async ({ page }) => {
-        const display_input = page.getByLabel('Display Name')
-        const username_input = page.getByLabel('Username')
-        const email_input = page.getByLabel('Email')
-        const pass_input = page.getByLabel('Password', { exact: true })
-
+    test('Confirm password empty', async () => {
         // Fill the fields
         await display_input.fill(norm_display_name)
         await username_input.fill(norm_display_name)
         await email_input.fill(norm_email)
-        await pass_input.fill(my_secret)
+        await pass_input.fill(secure_password)
 
         // submit
         page.once('dialog', dialog => {
-            expect(dialog.message()).toEqual(invalid_pass_alert)
+            expect(dialog.message()).toEqual(match_pass_alert)
             dialog.accept()
         })
         await page.getByRole('button', { name: 'Sign Up' }).click()
@@ -197,7 +190,222 @@ test.describe('missing some fields', () => {
     })
 })
 
-test('Navigate to login correctly', async ({ page }) => {
+test.describe('Testing form', () => {
+    test.describe('Insecure password', () => {
+        test('Password too short', async () => {
+            let short_pass = 'H_18.&s'
+            await display_input.fill(norm_display_name)
+            await username_input.fill(norm_username)
+            await email_input.fill(norm_email)
+            await pass_input.fill(short_pass)
+            await cpass_input.fill(short_pass)
+            page.once('dialog', dialog => {
+                expect(dialog.message()).toEqual(invalid_pass_alert)
+                dialog.accept()
+            })
+            await page.getByRole('button', { name: 'Sign Up' }).click()
+            expect(page.url()).toContain('signup')
+        })
+
+        test('Password only digit', async () => {
+            let only_digit = '12345678912'
+            await display_input.fill(norm_display_name)
+            await username_input.fill(norm_username)
+            await email_input.fill(norm_email)
+            await pass_input.fill(only_digit)
+            await cpass_input.fill(only_digit)
+            page.once('dialog', dialog => {
+                expect(dialog.message()).toEqual(invalid_pass_alert)
+                dialog.accept()
+            })
+            await page.getByRole('button', { name: 'Sign Up' }).click()
+            expect(page.url()).toContain('signup')
+        })
+
+        test('Password only lower char', async () => {
+            let only_low_char = 'asdqwfdfnoais'
+            await display_input.fill(norm_display_name)
+            await username_input.fill(norm_username)
+            await email_input.fill(norm_email)
+            await pass_input.fill(only_low_char)
+            await cpass_input.fill(only_low_char)
+            page.once('dialog', dialog => {
+                expect(dialog.message()).toEqual(invalid_pass_alert)
+                dialog.accept()
+            })
+            await page.getByRole('button', { name: 'Sign Up' }).click()
+            expect(page.url()).toContain('signup')
+        })
+
+        test('Password only upper char', async () => {
+            let only_up_char = 'ASDIAUDOSCAPNSQC'
+            await display_input.fill(norm_display_name)
+            await username_input.fill(norm_username)
+            await email_input.fill(norm_email)
+            await pass_input.fill(only_up_char)
+            await cpass_input.fill(only_up_char)
+            page.once('dialog', dialog => {
+                expect(dialog.message()).toEqual(invalid_pass_alert)
+                dialog.accept()
+            })
+            await page.getByRole('button', { name: 'Sign Up' }).click()
+            expect(page.url()).toContain('signup')
+        })
+
+        test('Password up + low char', async () => {
+            let low_up_char = 'ASDadcxDOSCAPNSQC'
+            await display_input.fill(norm_display_name)
+            await username_input.fill(norm_username)
+            await email_input.fill(norm_email)
+            await pass_input.fill(low_up_char)
+            await cpass_input.fill(low_up_char)
+            page.once('dialog', dialog => {
+                expect(dialog.message()).toEqual(invalid_pass_alert)
+                dialog.accept()
+            })
+            await page.getByRole('button', { name: 'Sign Up' }).click()
+            expect(page.url()).toContain('signup')
+        })
+
+        test('Password low + num char', async () => {
+            let low_num_pass = 'asdh129jcds0'
+            await display_input.fill(norm_display_name)
+            await username_input.fill(norm_username)
+            await email_input.fill(norm_email)
+            await pass_input.fill(low_num_pass)
+            await cpass_input.fill(low_num_pass)
+            page.once('dialog', dialog => {
+                expect(dialog.message()).toEqual(invalid_pass_alert)
+                dialog.accept()
+            })
+            await page.getByRole('button', { name: 'Sign Up' }).click()
+            expect(page.url()).toContain('signup')
+        })
+
+        test('Password up + num char', async () => {
+            let up_num_pass = 'ASDH129JCDS0'
+            await display_input.fill(norm_display_name)
+            await username_input.fill(norm_username)
+            await email_input.fill(norm_email)
+            await pass_input.fill(up_num_pass)
+            await cpass_input.fill(up_num_pass)
+            page.once('dialog', dialog => {
+                expect(dialog.message()).toEqual(invalid_pass_alert)
+                dialog.accept()
+            })
+            await page.getByRole('button', { name: 'Sign Up' }).click()
+            expect(page.url()).toContain('signup')
+        })
+
+        test('Password up + lower + num char', async () => {
+            let up_num_pass = 'ASDH129JCDS0'
+            await display_input.fill(norm_display_name)
+            await username_input.fill(norm_username)
+            await email_input.fill(norm_email)
+            await pass_input.fill(up_num_pass)
+            await cpass_input.fill(up_num_pass)
+            page.once('dialog', dialog => {
+                expect(dialog.message()).toEqual(invalid_pass_alert)
+                dialog.accept()
+            })
+            await page.getByRole('button', { name: 'Sign Up' }).click()
+            expect(page.url()).toContain('signup')
+        })
+    })
+
+    test('Not match password', async () => {
+        await display_input.fill(norm_display_name)
+        await username_input.fill(norm_username)
+        await email_input.fill(norm_email)
+        await pass_input.fill(secure_password)
+        await cpass_input.fill('not_secret')
+        page.once('dialog', dialog => {
+            expect(dialog.message()).toEqual(match_pass_alert)
+            dialog.accept()
+        })
+        await page.getByRole('button', { name: 'Sign Up' }).click()
+        expect(page.url()).toContain('signup')
+    })
+
+    test('Invalid email', async () => {
+        await display_input.fill(norm_display_name)
+        await username_input.fill(norm_display_name)
+        await email_input.fill(non_email)
+        await pass_input.fill(secure_password)
+        await cpass_input.fill(secure_password)
+        page.once('dialog', dialog => {
+            expect(dialog.message()).toEqual(invalid_email_alert)
+            dialog.accept()
+        })
+        await page.getByRole('button', { name: 'Sign Up' }).click()
+        expect(page.url()).toContain('signup')
+    })
+
+    test('Invisible display name', async () => {
+        //TODO: recheck this
+        let invi_display_name = 'ㅤ'
+        await display_input.fill(invi_display_name)
+        await username_input.fill(invi_display_name)
+        await email_input.fill(norm_email)
+        await pass_input.fill(secure_password)
+        await cpass_input.fill(secure_password)
+        page.once('dialog', dialog => {
+            expect(dialog.message()).toEqual(check_box_alert)
+            dialog.accept()
+        })
+        await page.getByRole('button', { name: 'Sign Up' }).click()
+        expect(page.url()).toContain('signup')
+    })
+
+    test('Long username', async () => {
+        //TODO: recheck this
+        let long_username =
+            'very very absolutely normal username for the _ normal, typical, civilize, educated, and great people'
+        await display_input.fill(norm_display_name)
+        await username_input.fill(long_username)
+        await email_input.fill(norm_email)
+        await pass_input.fill(secure_password)
+        await cpass_input.fill(secure_password)
+        page.once('dialog', dialog => {
+            expect(dialog.message()).toEqual(check_box_alert)
+            dialog.accept()
+        })
+        await page.getByRole('button', { name: 'Sign Up' }).click()
+        expect(page.url()).toContain('signup')
+    })
+
+    test('cool username', async () => {
+        //TODO: recheck this
+        let cool_username = 's҉u҉p҉e҉r҉@w3s()๓E+ยูสเชอร์เนม...!'
+        await display_input.fill(norm_display_name)
+        await username_input.fill(cool_username)
+        await email_input.fill(norm_email)
+        await pass_input.fill(secure_password)
+        await cpass_input.fill(secure_password)
+        page.once('dialog', dialog => {
+            expect(dialog.message()).toEqual(check_box_alert)
+            dialog.accept()
+        })
+        await page.getByRole('button', { name: 'Sign Up' }).click()
+        expect(page.url()).toContain('signup')
+    })
+
+    test('Forget check box', async () => {
+        await display_input.fill(norm_display_name)
+        await username_input.fill(norm_username)
+        await email_input.fill(norm_email)
+        await pass_input.fill(secure_password)
+        await cpass_input.fill(secure_password)
+        page.once('dialog', dialog => {
+            expect(dialog.message()).toEqual(check_box_alert)
+            dialog.accept()
+        })
+        await page.getByRole('button', { name: 'Sign Up' }).click()
+        expect(page.url()).toContain('signup')
+    })
+})
+
+test('Navigate to login correctly', async () => {
     await page.getByRole('link', { name: 'Log in here' }).click()
     expect(page.url()).toContain('login')
 })
