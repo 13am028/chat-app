@@ -36,7 +36,7 @@ test('Button Testing', async ({ page }) => {
             expect(value).toEqual('light-theme')
         })
     // 1st click
-    await page.locator('button.Dark-Light-Button').click()
+    await page.getByRole('button').first().click()
     await page.waitForLoadState('networkidle')
     await page
         .locator('body')
@@ -51,7 +51,7 @@ test('Button Testing', async ({ page }) => {
             expect(value).toEqual('dark-theme')
         })
     // 2n click
-    await page.locator('button.Dark-Light-Button').click()
+    await page.getByRole('button').first().click()
     await page
         .locator('body')
         .getAttribute('class')
@@ -79,7 +79,7 @@ test('Keep theme data when changing page (interact)', async ({ page }) => {
         .then(value => {
             expect(value).toEqual('light-theme')
         })
-    await page.locator('a.signup_link').last().click()
+    await page.getByRole('link', { name: 'Sign up' }).click()
 
     await page
         .locator('body')
@@ -94,7 +94,7 @@ test('Keep theme data when changing page (interact)', async ({ page }) => {
             expect(value).toEqual('light-theme')
         })
 
-    await page.locator('button.Dark-Light-Button').click()
+    await page.getByRole('button').first().click()
     await page
         .locator('body')
         .getAttribute('class')
@@ -107,7 +107,7 @@ test('Keep theme data when changing page (interact)', async ({ page }) => {
         .then(value => {
             expect(value).toEqual('dark-theme')
         })
-    await page.locator('a.signup__link').last().click()
+    await page.getByRole('link', { name: 'Log in here' }).click()
     await page.waitForLoadState('networkidle')
 
     await page
@@ -122,8 +122,7 @@ test('Keep theme data when changing page (interact)', async ({ page }) => {
         .then(value => {
             expect(value).toEqual('dark-theme')
         })
-
-    await page.locator('button.Dark-Light-Button').click()
+    await page.getByRole('button').first().click()
     await page
         .locator('body')
         .getAttribute('class')
@@ -137,7 +136,7 @@ test('Keep theme data when changing page (interact)', async ({ page }) => {
             expect(value).toEqual('light-theme')
         })
 
-    await page.locator('button.Dark-Light-Button').click()
+    await page.getByRole('button').first().click()
     await page
         .locator('body')
         .getAttribute('class')
@@ -168,7 +167,7 @@ test('Keep theme data when changing page (url)', async ({ page }) => {
         })
     // check default theme
     await page.goto('./signup')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('networkidle', { timeout: 0 })
     await page
         .locator('body')
         .getAttribute('class')
@@ -182,7 +181,7 @@ test('Keep theme data when changing page (url)', async ({ page }) => {
             expect(value).toEqual('light-theme')
         })
     // change theme and check
-    await page.locator('button.Dark-Light-Button').click()
+    await page.getByRole('button').first().click()
     await page
         .locator('body')
         .getAttribute('class')
@@ -196,7 +195,7 @@ test('Keep theme data when changing page (url)', async ({ page }) => {
             expect(value).toEqual('dark-theme')
         })
     await page.goto('./login')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('networkidle', { timeout: 0 })
     await page
         .locator('body')
         .getAttribute('class')
