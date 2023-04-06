@@ -4,6 +4,7 @@ import { Modal } from 'react-bootstrap'
 import SpanRevealButton from './SpanRevealButton'
 import { AuthContext } from '../context/AuthContext'
 import UploadWidget from '../upload/UploadWidget'
+import { updateStatus } from '../../firebase/utils'
 
 const ProfileSetting = () => {
     const { currentUser } = useContext(AuthContext)
@@ -12,6 +13,7 @@ const ProfileSetting = () => {
         email: '',
         displayName: '',
         username: '',
+        status: '',
     }
 
     let imgURL = 'https://cdn-icons-png.flaticon.com/512/456/456212.png'
@@ -23,6 +25,7 @@ const ProfileSetting = () => {
     const email = user.email ? user.email : 'johndow@example.com'
     const displayName = user.displayName ? user.displayName : 'Johndow'
     const username = user.username ? user.username : 'Johndow'
+    const [status, setStatus] = useState('')
     const [showModal, setShowModal] = useState(false)
 
     const handleShowModal = () => {
@@ -34,6 +37,10 @@ const ProfileSetting = () => {
     }
 
     const handleURL = () => {}
+
+    const handleStatusChanged = async () => {
+        await updateStatus(status)
+    }
 
     return (
         <div data-testid="profile-setting">
@@ -87,13 +94,23 @@ const ProfileSetting = () => {
                 <div className="profile-card">
                     <div className="profile-card-field-list">
                         <div className="field">
+                            <div>
+                                <h3>status</h3>
+                                <input
+                                    style={{ display: 'inline' }}
+                                    placeholder={user.status as string}
+                                    onChange={e => setStatus(e.target.value)}
+                                />
+                                <button onClick={handleStatusChanged}>
+                                    save
+                                </button>
+                            </div>
                             <div className="username-row">
                                 <h3 data-testid="username-heading">USERNAME</h3>
                                 <div className="username-inner-row">
                                     <span data-testid="username">
                                         {username}
                                     </span>
-                                    {/* <span>#6550</span> */}
                                 </div>
                             </div>
                         </div>

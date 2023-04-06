@@ -44,6 +44,7 @@ const Home = (props: any) => {
                     displayName={user.displayName}
                     uid={user.uid}
                     avatar={user.avatar}
+                    status={user.status}
                 />,
             )
         })
@@ -56,6 +57,7 @@ const Home = (props: any) => {
                     displayName={user.displayName}
                     uid={user.uid}
                     avatar={user.avatar}
+                    status={user.status}
                 />,
             )
         })
