@@ -22,6 +22,10 @@ test.describe('Health Check', () => {
         dmPage = new DmPage(page)
     })
 
+    test.afterAll(async () => {
+        await page.close()
+    })
+
     test('User can view home page', async () => {
         await homePage.checkFriendStatusNav()
         await homePage.checkAddFriendModal()

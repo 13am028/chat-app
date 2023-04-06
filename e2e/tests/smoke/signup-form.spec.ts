@@ -33,6 +33,10 @@ test.beforeAll(async ({ browser }) => {
     cpass_input = page.getByLabel('Confirm Password')
 })
 
+test.afterAll(async () => {
+    await page.close()
+})
+
 test.beforeEach(async () => {
     await page.goto('./signup')
     await page.waitForLoadState('networkidle')

@@ -5,6 +5,10 @@ test.beforeEach(async ({ page }) => {
     await page.waitForLoadState('networkidle')
 })
 
+test.afterEach(async ({ page }) => {
+    await page.close()
+})
+
 test('First visit theme', async ({ page }) => {
     // visit website for the first time
     await page

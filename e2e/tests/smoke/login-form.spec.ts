@@ -2,11 +2,15 @@ import { test, expect } from '@playwright/test'
 
 const my_secret = 'MySecretPassword'
 const non_email = 'this_isnot_email'
-const norm_email = 'johndoe@example.com'
+// const norm_email = 'johndoe@example.com'
 
 test.beforeEach(async ({ page }) => {
     await page.goto('./login')
     await page.waitForLoadState('networkidle')
+})
+
+test.afterEach(async ({ page }) => {
+    await page.close()
 })
 
 test('Show password icon show work properly', async ({ page }) => {
