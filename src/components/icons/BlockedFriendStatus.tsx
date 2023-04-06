@@ -28,6 +28,7 @@ const BlockedFriendStatus = (user: any) => {
             </div>
             <div style={{ display: 'inline-block' }}>
                 <UnblockFriendModal
+                    theme={user.theme}
                     user={{ displayName: user.displayName, uid: user.uid }}
                     onClick={handleModalClick}
                 />

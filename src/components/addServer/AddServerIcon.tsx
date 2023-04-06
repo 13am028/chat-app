@@ -113,8 +113,10 @@ const AddServerIcon = ({ onGroupCreate }: Props) => {
                             </Modal.Body>
                         </Modal>
                     </div>
-
-                    <div className="addServerModalBodyFormContainer">
+                    <div
+                        className="addServerModalBodyFormContainer"
+                        style={{ display: 'flex', flexDirection: 'column' }}
+                    >
                         <form>
                             <label
                                 data-testid="add-server-modal-label"
