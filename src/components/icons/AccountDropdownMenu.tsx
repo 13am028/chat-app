@@ -34,7 +34,7 @@ const AccountDropdownMenu = () => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu data-testid="account-dropdown-menu">
-                <Dropdown.Item href="/profile" data-testid="profile-link">
+                <Dropdown.Item href="/setting" data-testid="profile-link">
                     Profile
                 </Dropdown.Item>
                 <Dropdown.Item href="/setting" data-testid="settings-link">
