@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 import './Home.css'
 import Nav from '../../components/nav/Nav'
 import FriendStatusNav from '../../components/nav/FriendStatusNav'
@@ -10,6 +10,7 @@ import { getBlockFriend } from '../../firebase/friends/getBlockFriend'
 import { db } from '../../firebase/init'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { AuthContext } from '../../components/context/AuthContext'
+import ReactSearchBox from 'react-search-box'
 
 const Home = (props: any) => {
     const { theme } = props
@@ -21,8 +22,10 @@ const Home = (props: any) => {
     }
 
     const [friends, setFriends] = useState<any>(null)
+    const [filteredFriends, setFilteredFriends] = useState<any>([])
     const [blockedFriends, setBlockedFriends] = useState<any>(null)
     const [selectedTab, setSelectedTab] = useState<string>('friends')
+    const [searchString, setSearchString] = useState('')
 
     useEffect(() => {
         if (!currentUser) return
@@ -34,33 +37,56 @@ const Home = (props: any) => {
         })
     }, [currentUser])
 
-    let friendList: any = []
-    if (friends && selectedTab === 'friends') {
-        friends.forEach((user: any) => {
-            friendList.push(
-                <FriendStatus
-                    theme={theme}
-                    key={user.uid}
-                    displayName={user.displayName}
-                    uid={user.uid}
-                    avatar={user.avatar}
-                    status={user.status}
-                />,
-            )
-        })
-    } else if (blockedFriends && selectedTab === 'blocked') {
-        blockedFriends.forEach((user: any) => {
-            friendList.push(
-                <BlockedFriendStatus
-                    theme={theme}
-                    key={user.uid}
-                    displayName={user.displayName}
-                    uid={user.uid}
-                    avatar={user.avatar}
-                    status={user.status}
-                />,
-            )
-        })
+    const friendList = useMemo(() => {
+        let list: any = []
+        if (friends && selectedTab === 'friends') {
+            friends.forEach((user: any) => {
+                list.push({
+                    key: user.displayName,
+                    value: (
+                        <FriendStatus
+                            theme={theme}
+                            key={user.uid}
+                            displayName={user.displayName}
+                            uid={user.uid}
+                            avatar={user.avatar}
+                        />
+                    ),
+                })
+            })
+        } else if (blockedFriends && selectedTab === 'blocked') {
+            blockedFriends.forEach((user: any) => {
+                list.push({
+                    key: user.displayName,
+                    value: (
+                        <BlockedFriendStatus
+                            theme={theme}
+                            key={user.uid}
+                            displayName={user.displayName}
+                            uid={user.uid}
+                            avatar={user.avatar}
+                        />
+                    ),
+                })
+            })
+        }
+        return list
+    }, [friends, blockedFriends, selectedTab, theme])
+
+    useEffect(() => {
+        console.log(friendList)
+        setFilteredFriends(friendList)
+        setFilteredFriends(
+            friendList.filter((friend: any) => {
+                const friendKey = friend.key.toLowerCase()
+                const search = searchString.toLowerCase()
+                return friendKey.includes(search)
+            }),
+        )
+    }, [searchString, friendList])
+
+    const func = (string: any) => {
+        setSearchString(string)
     }
 
     return (
@@ -80,7 +106,16 @@ const Home = (props: any) => {
                     theme={theme}
                 />
                 <div className="bg" data-testid="friend-list-items">
-                    {friendList}
+                    <div className="search">
+                        <ReactSearchBox
+                            placeholder="Search for friends"
+                            data={filteredFriends}
+                            onSelect={func}
+                            onChange={func}
+                            inputBackgroundColor="var(--theme-third)"
+                        />
+                    </div>
+                    {filteredFriends.map((friend: any) => friend.value)}
                 </div>
             </div>
         </div>

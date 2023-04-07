@@ -118,10 +118,6 @@ p {
     box-shadow: var(--box-shadow);
 }
 
-.bg {
-    background-color: red;
-}
-
 .dark.addServerModalHeader {
     /*padding: 15px 15px 0 15px;*/
     /*border: none;*/
@@ -158,24 +154,20 @@ p {
 }
 
 .inviteFriendsModalBody {
-    display: flex;
-    flex-direction: column;
     height: 360px;
 }
 
 .dark.inviteFriendsModalBody {
-    display: flex;
-    flex-direction: column;
     height: 360px;
     background-color: #444444;
 }
 
 .serverFriend {
-    display: flex;
+    display: grid;
+    grid-template-columns: 70px 315px 100px;
     align-items: center;
-    justify-content: space-between;
     margin-bottom: 10px;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .friendIconAddServer {
@@ -189,7 +181,7 @@ p {
 
 .serverFriendName {
     flex: 1;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .inviteFriendsName {
@@ -205,10 +197,9 @@ p {
     background-color: transparent; /* replace with your button style */
     border-color: #00d400;
     padding: 10px;
-    margin-left: 300px;
     color: black;
     border-radius: 5px;
-    align-self: flex-end;
+    right: 0;
 }
 
 .inviteButton:hover {

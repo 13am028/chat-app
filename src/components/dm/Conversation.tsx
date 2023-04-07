@@ -20,8 +20,6 @@ function Conversation() {
         return unSub
     }, [data.chatId])
 
-    console.log(messages)
-
     return (
         <div className="bg">
             <Message messages={messages} />
