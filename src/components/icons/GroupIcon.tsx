@@ -8,7 +8,8 @@ import { deleteGroup } from '../../firebase/groups/deleteGroup'
 import { leaveGroup } from '../../firebase/groups/leaveGroup'
 import { db, auth } from '../../firebase/init'
 import { doc, getDoc } from 'firebase/firestore'
-import FriendIcon from './FriendIcon'
+import FriendInvite from './FriendInvite'
+import ReactSearchBox from 'react-search-box'
 
 const GroupIcon = ({
     theme,
@@ -26,8 +27,9 @@ const GroupIcon = ({
     const menuRef = useRef(null)
     const [showModal, setShowModal] = useState(false)
     const [getFriendList, setFriendList] = useState<any>([])
-
+    const [filteredList, setFilteredList] = useState<any>([])
     const [shouldRender, setShouldRender] = useState(true)
+    const [searchString, setSearchString] = useState('')
 
     const handleRemoveComponent = () => {
         setShouldRender(false)
@@ -105,7 +107,20 @@ const GroupIcon = ({
         return () => {
             document.removeEventListener('click', handleClick)
         }
-    }, [])
+    })
+
+    useEffect(() => {
+        setFilteredList(getFriendList)
+        let tempList: any = []
+        getFriendList.forEach((friend: any) => {
+            if (friend.displayName.includes(searchString)) tempList.push(friend)
+        })
+        setFilteredList(tempList)
+    }, [searchString, getFriendList])
+
+    const func = (search: any) => {
+        setSearchString(search)
+    }
 
     return shouldRender ? (
         <div
@@ -165,11 +180,15 @@ const GroupIcon = ({
                     <h1 className={styles.addServerModalTitle}>
                         Invite Friends
                     </h1>
-                    <div className={styles.searchBar}>
-                        <input
-                            type="text"
+                    <div
+                        className={styles.searchBar}
+                        data-testid="search-input"
+                    >
+                        <ReactSearchBox
                             placeholder="Search for friends"
-                            data-testid="search-input"
+                            data={filteredList}
+                            onSelect={func}
+                            onChange={func}
                         />
                         <SearchIcon />
                     </div>
@@ -182,27 +201,12 @@ const GroupIcon = ({
                             overflow: 'auto',
                         }}
                     >
-                        {getFriendList.map((item: any, index: number) => (
-                            <div
-                                className={styles.serverFriend}
-                                key={index}
-                                style={{ position: 'relative' }}
-                            >
-                                <FriendIcon imgURL={item.avatar}></FriendIcon>
-                                <div className={styles.serverFriendName}>
-                                    <p className={styles.inviteFriendsName}>
-                                        {item.displayName}
-                                    </p>
-                                </div>
-                                <button
-                                    type="submit"
-                                    className={styles.inviteButton}
-                                    onClick={() => inviteFriendToGroup(index)}
-                                    data-testid={`invite-button-${index}`}
-                                >
-                                    Invite
-                                </button>
-                            </div>
+                        {filteredList.map((item: any) => (
+                            <FriendInvite
+                                index={item.uid}
+                                item={item}
+                                onInvite={inviteFriendToGroup}
+                            />
                         ))}
                     </div>
                 </Modal.Body>

@@ -14,7 +14,6 @@ const Nav = (props: any) => {
     }
 
     const toGroup = (groupId: string, groupName: string, groupMembers: any) => {
-        console.log(groupName)
         let path = '/server-chat'
         navigate(path, { state: { groupId, groupName, groupMembers } })
     }
