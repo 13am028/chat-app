@@ -19,7 +19,7 @@ function Message(props: any) {
                     }`}
                     key={message.id}
                 >
-                    <FriendIcon></FriendIcon>
+                    <FriendIcon uid={message.senderId}></FriendIcon>
                     <p className="message">{message.text}</p>
                 </div>
             ))}
