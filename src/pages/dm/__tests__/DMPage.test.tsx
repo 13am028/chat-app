@@ -19,6 +19,7 @@ describe('DMPage', () => {
                     email: 'test',
                     avatar: '',
                     displayName: 'bar',
+                    status: '',
                 },
             },
         }

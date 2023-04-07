@@ -81,7 +81,7 @@ const FriendStatus = (user: any) => {
                 <p className={styles.name} data-testid="friend-display-name">
                     {user.displayName}
                 </p>
-                <strong>status</strong>
+                <strong>{user.status}</strong>
             </div>
             <div style={{ display: 'inline-block' }}>
                 <RemoveFriendModal

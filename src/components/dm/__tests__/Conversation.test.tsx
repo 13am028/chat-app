@@ -10,6 +10,7 @@ const mockData = {
         displayName: 'mock',
         email: 'email',
         avatar: '',
+        status: '',
     },
 }
 

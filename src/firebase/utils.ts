@@ -13,4 +13,12 @@ const updateAvatar = async (url: string) => {
     })
 }
 
-export { getUser, updateAvatar }
+const updateStatus = async (status: string) => {
+    if (!auth.currentUser) return
+    const userRef = doc(db, 'users', auth.currentUser.uid)
+    await updateDoc(userRef, {
+        status: status,
+    })
+}
+
+export { getUser, updateAvatar, updateStatus }
