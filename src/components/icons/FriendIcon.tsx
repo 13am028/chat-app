@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './icons.module.css'
+import { doc, onSnapshot } from 'firebase/firestore'
+import { db } from '../../firebase/init'
 
 const FriendIcon = (props: any) => {
-    const imgURL = props.imgURL
+    const uid = props.uid
+    const [imgURL, setImgUrl] = useState(props.imgURL)
+    useEffect(() => {
+        if (uid) {
+            const unSub = onSnapshot(doc(db, 'users', uid), doc => {
+                doc.exists() && setImgUrl(doc.data().avatar)
+            })
+            return unSub
+        }
+    }, [uid])
     const img = () => {
         if (imgURL)
             return (
