@@ -75,7 +75,7 @@ jobs:
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
-        run: firebase deploy --only hosting --project ${{secrets.REACT_APP_PROJECT_ID}}
+          args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           FIREBASE_API_KEY: ${{secrets.REACT_APP_API_KEY}}
@@ -85,3 +85,4 @@ jobs:
           FIREBASE_MESSAGING_SENDER_ID: ${{secrets.REACT_APP_MESSAGING_SENDER_ID}}
           FIREBASE_APP_ID: ${{secrets.REACT_APP_APP_ID}}
           FIREBASE_MEASUREMENT_ID: ${{secrets.REACT_APP_MEASUREMENT_ID}}
+        working-directory: ./
