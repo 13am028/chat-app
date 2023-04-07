@@ -1,4 +1,5 @@
 import { test, expect, Locator, Page } from '@playwright/test'
+import { randomBytes } from 'crypto'
 
 const secure_password = '$S30Jap%ySGI8%W64h'
 const norm_email = 'johndoe@example.com'
@@ -21,6 +22,7 @@ let username_input: Locator
 let email_input: Locator
 let pass_input: Locator
 let cpass_input: Locator
+let agreement_box: Locator
 
 test.beforeAll(async ({ browser }) => {
     page = await browser.newPage()
@@ -31,6 +33,9 @@ test.beforeAll(async ({ browser }) => {
     email_input = page.getByLabel('Email')
     pass_input = page.getByLabel('Password', { exact: true })
     cpass_input = page.getByLabel('Confirm Password')
+    agreement_box = page.getByLabel(
+        'I agree to the Terms of Service and Privacy Policy',
+    )
 })
 
 test.afterAll(async () => {
@@ -43,9 +48,9 @@ test.beforeEach(async () => {
 })
 
 test('All fields empty', async () => {
-    page.once('dialog', dialog => {
+    page.once('dialog', async dialog => {
         expect(dialog.message()).toEqual(all_fields_alert)
-        dialog.accept()
+        await dialog.accept()
     })
     await page.getByRole('button', { name: 'Sign Up' }).click()
     expect(page.url()).toContain('signup')
@@ -125,9 +130,9 @@ test.describe('missing some fields', () => {
         await cpass_input.fill(secure_password)
 
         // submit
-        page.once('dialog', dialog => {
+        page.once('dialog', async dialog => {
             expect(dialog.message()).toEqual(all_fields_alert)
-            dialog.accept()
+            await dialog.accept()
         })
         await page.getByRole('button', { name: 'Sign Up' }).click()
         expect(page.url()).toContain('signup')
@@ -140,9 +145,9 @@ test.describe('missing some fields', () => {
         await cpass_input.fill(secure_password)
 
         // submit
-        page.once('dialog', dialog => {
+        page.once('dialog', async dialog => {
             expect(dialog.message()).toEqual(all_fields_alert)
-            dialog.accept()
+            await dialog.accept()
         })
         await page.getByRole('button', { name: 'Sign Up' }).click()
         expect(page.url()).toContain('signup')
@@ -155,9 +160,9 @@ test.describe('missing some fields', () => {
         await cpass_input.fill(secure_password)
 
         // submit
-        page.once('dialog', dialog => {
+        page.once('dialog', async dialog => {
             expect(dialog.message()).toEqual(all_fields_alert)
-            dialog.accept()
+            await dialog.accept()
         })
         await page.getByRole('button', { name: 'Sign Up' }).click()
         expect(page.url()).toContain('signup')
@@ -170,9 +175,9 @@ test.describe('missing some fields', () => {
         await cpass_input.fill(secure_password)
 
         // submit
-        page.once('dialog', dialog => {
+        page.once('dialog', async dialog => {
             expect(dialog.message()).toEqual(all_fields_alert)
-            dialog.accept()
+            await dialog.accept()
         })
         await page.getByRole('button', { name: 'Sign Up' }).click()
         expect(page.url()).toContain('signup')
@@ -185,9 +190,9 @@ test.describe('missing some fields', () => {
         await pass_input.fill(secure_password)
 
         // submit
-        page.once('dialog', dialog => {
+        page.once('dialog', async dialog => {
             expect(dialog.message()).toEqual(match_pass_alert)
-            dialog.accept()
+            await dialog.accept()
         })
         await page.getByRole('button', { name: 'Sign Up' }).click()
         expect(page.url()).toContain('signup')
@@ -203,9 +208,9 @@ test.describe('Testing form', () => {
             await email_input.fill(norm_email)
             await pass_input.fill(short_pass)
             await cpass_input.fill(short_pass)
-            page.once('dialog', dialog => {
+            page.once('dialog', async dialog => {
                 expect(dialog.message()).toEqual(invalid_pass_alert)
-                dialog.accept()
+                await dialog.accept()
             })
             await page.getByRole('button', { name: 'Sign Up' }).click()
             expect(page.url()).toContain('signup')
@@ -218,9 +223,9 @@ test.describe('Testing form', () => {
             await email_input.fill(norm_email)
             await pass_input.fill(only_digit)
             await cpass_input.fill(only_digit)
-            page.once('dialog', dialog => {
+            page.once('dialog', async dialog => {
                 expect(dialog.message()).toEqual(invalid_pass_alert)
-                dialog.accept()
+                await dialog.accept()
             })
             await page.getByRole('button', { name: 'Sign Up' }).click()
             expect(page.url()).toContain('signup')
@@ -233,9 +238,9 @@ test.describe('Testing form', () => {
             await email_input.fill(norm_email)
             await pass_input.fill(only_low_char)
             await cpass_input.fill(only_low_char)
-            page.once('dialog', dialog => {
+            page.once('dialog', async dialog => {
                 expect(dialog.message()).toEqual(invalid_pass_alert)
-                dialog.accept()
+                await dialog.accept()
             })
             await page.getByRole('button', { name: 'Sign Up' }).click()
             expect(page.url()).toContain('signup')
@@ -248,9 +253,9 @@ test.describe('Testing form', () => {
             await email_input.fill(norm_email)
             await pass_input.fill(only_up_char)
             await cpass_input.fill(only_up_char)
-            page.once('dialog', dialog => {
+            page.once('dialog', async dialog => {
                 expect(dialog.message()).toEqual(invalid_pass_alert)
-                dialog.accept()
+                await dialog.accept()
             })
             await page.getByRole('button', { name: 'Sign Up' }).click()
             expect(page.url()).toContain('signup')
@@ -263,9 +268,9 @@ test.describe('Testing form', () => {
             await email_input.fill(norm_email)
             await pass_input.fill(low_up_char)
             await cpass_input.fill(low_up_char)
-            page.once('dialog', dialog => {
+            page.once('dialog', async dialog => {
                 expect(dialog.message()).toEqual(invalid_pass_alert)
-                dialog.accept()
+                await dialog.accept()
             })
             await page.getByRole('button', { name: 'Sign Up' }).click()
             expect(page.url()).toContain('signup')
@@ -278,9 +283,9 @@ test.describe('Testing form', () => {
             await email_input.fill(norm_email)
             await pass_input.fill(low_num_pass)
             await cpass_input.fill(low_num_pass)
-            page.once('dialog', dialog => {
+            page.once('dialog', async dialog => {
                 expect(dialog.message()).toEqual(invalid_pass_alert)
-                dialog.accept()
+                await dialog.accept()
             })
             await page.getByRole('button', { name: 'Sign Up' }).click()
             expect(page.url()).toContain('signup')
@@ -293,9 +298,9 @@ test.describe('Testing form', () => {
             await email_input.fill(norm_email)
             await pass_input.fill(up_num_pass)
             await cpass_input.fill(up_num_pass)
-            page.once('dialog', dialog => {
+            page.once('dialog', async dialog => {
                 expect(dialog.message()).toEqual(invalid_pass_alert)
-                dialog.accept()
+                await dialog.accept()
             })
             await page.getByRole('button', { name: 'Sign Up' }).click()
             expect(page.url()).toContain('signup')
@@ -308,9 +313,9 @@ test.describe('Testing form', () => {
             await email_input.fill(norm_email)
             await pass_input.fill(up_num_pass)
             await cpass_input.fill(up_num_pass)
-            page.once('dialog', dialog => {
+            page.once('dialog', async dialog => {
                 expect(dialog.message()).toEqual(invalid_pass_alert)
-                dialog.accept()
+                await dialog.accept()
             })
             await page.getByRole('button', { name: 'Sign Up' }).click()
             expect(page.url()).toContain('signup')
@@ -323,9 +328,9 @@ test.describe('Testing form', () => {
         await email_input.fill(norm_email)
         await pass_input.fill(secure_password)
         await cpass_input.fill('not_secret')
-        page.once('dialog', dialog => {
+        page.once('dialog', async dialog => {
             expect(dialog.message()).toEqual(match_pass_alert)
-            dialog.accept()
+            await dialog.accept()
         })
         await page.getByRole('button', { name: 'Sign Up' }).click()
         expect(page.url()).toContain('signup')
@@ -337,32 +342,30 @@ test.describe('Testing form', () => {
         await email_input.fill(non_email)
         await pass_input.fill(secure_password)
         await cpass_input.fill(secure_password)
-        page.once('dialog', dialog => {
+        page.once('dialog', async dialog => {
             expect(dialog.message()).toEqual(invalid_email_alert)
-            dialog.accept()
+            await dialog.accept()
         })
         await page.getByRole('button', { name: 'Sign Up' }).click()
         expect(page.url()).toContain('signup')
     })
 
     test('Invisible display name', async () => {
-        //TODO: recheck this
         let invi_display_name = 'ㅤ'
         await display_input.fill(invi_display_name)
         await username_input.fill(invi_display_name)
         await email_input.fill(norm_email)
         await pass_input.fill(secure_password)
         await cpass_input.fill(secure_password)
-        page.once('dialog', dialog => {
+        page.once('dialog', async dialog => {
             expect(dialog.message()).toEqual(check_box_alert)
-            dialog.accept()
+            await dialog.accept()
         })
         await page.getByRole('button', { name: 'Sign Up' }).click()
         expect(page.url()).toContain('signup')
     })
 
     test('Long username', async () => {
-        //TODO: recheck this
         let long_username =
             'very very absolutely normal username for the _ normal, typical, civilize, educated, and great people'
         await display_input.fill(norm_display_name)
@@ -370,25 +373,24 @@ test.describe('Testing form', () => {
         await email_input.fill(norm_email)
         await pass_input.fill(secure_password)
         await cpass_input.fill(secure_password)
-        page.once('dialog', dialog => {
+        page.once('dialog', async dialog => {
             expect(dialog.message()).toEqual(check_box_alert)
-            dialog.accept()
+            await dialog.accept()
         })
         await page.getByRole('button', { name: 'Sign Up' }).click()
         expect(page.url()).toContain('signup')
     })
 
     test('cool username', async () => {
-        //TODO: recheck this
         let cool_username = 's҉u҉p҉e҉r҉@w3s()๓E+ยูสเชอร์เนม...!'
         await display_input.fill(norm_display_name)
         await username_input.fill(cool_username)
         await email_input.fill(norm_email)
         await pass_input.fill(secure_password)
         await cpass_input.fill(secure_password)
-        page.once('dialog', dialog => {
+        page.once('dialog', async dialog => {
             expect(dialog.message()).toEqual(check_box_alert)
-            dialog.accept()
+            await dialog.accept()
         })
         await page.getByRole('button', { name: 'Sign Up' }).click()
         expect(page.url()).toContain('signup')
@@ -400,13 +402,71 @@ test.describe('Testing form', () => {
         await email_input.fill(norm_email)
         await pass_input.fill(secure_password)
         await cpass_input.fill(secure_password)
-        page.once('dialog', dialog => {
+        page.once('dialog', async dialog => {
             expect(dialog.message()).toEqual(check_box_alert)
-            dialog.accept()
+            await dialog.accept()
         })
         await page.getByRole('button', { name: 'Sign Up' }).click()
         expect(page.url()).toContain('signup')
     })
+
+    test('Username already exist user', async () => {
+        require('dotenv').config()
+        const email = process.env.TEST_EMAIL as string
+        const username = process.env.TEST_USERNAME as string
+        const displayName = process.env.TEST_DISPLAY_NAME as string
+        const password = process.env.TEST_PASSWORD as string
+        await display_input.fill(displayName)
+        await username_input.fill(username)
+        await email_input.fill(email)
+        await pass_input.fill(password)
+        await cpass_input.fill(password)
+        await agreement_box.check()
+        page.once('dialog', async dialog => {
+            expect(dialog.message()).toEqual('username already exists')
+            await dialog.accept()
+        })
+        await page.getByRole('button', { name: 'Sign Up' }).click()
+        expect(page.url()).toContain('signup')
+    })
+
+    test('Email already exist user', async () => {
+        require('dotenv').config()
+        const email = process.env.TEST_EMAIL as string
+        const username = process.env.TEST_USERNAME as string
+        const displayName = process.env.TEST_DISPLAY_NAME as string
+        const password = process.env.TEST_PASSWORD as string
+        await display_input.fill(displayName + '0')
+        await username_input.fill(username + '0')
+        await email_input.fill(email)
+        await pass_input.fill(password)
+        await cpass_input.fill(password)
+        await agreement_box.check()
+        page.once('dialog', async dialog => {
+            expect(dialog.message()).toEqual(
+                'Firebase: Error (auth/email-already-in-use).',
+            )
+            await dialog.accept()
+        })
+        await page.getByRole('button', { name: 'Sign Up' }).click()
+        expect(page.url()).toContain('signup')
+    })
+})
+
+test('Signup working properly', async () => {
+    let name = randomBytes(12).toString('hex')
+    let email = name + '@testinguser.com'
+    await display_input.fill(name)
+    await username_input.fill(name)
+    await email_input.fill(email)
+    await pass_input.fill(secure_password)
+    await cpass_input.fill(secure_password)
+    await agreement_box.check()
+    // expect(page.url()).toContain(name)
+    await page.getByRole('button', { name: 'Sign Up' }).click()
+    await page.waitForURL('**/home')
+    await page.waitForLoadState('networkidle')
+    expect(page.url()).toContain('home')
 })
 
 test('Navigate to login correctly', async () => {

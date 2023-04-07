@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test'
 
 const my_secret = 'MySecretPassword'
 const non_email = 'this_isnot_email'
-// const norm_email = 'johndoe@example.com'
 
 test.beforeEach(async ({ page }) => {
     await page.goto('./login')
@@ -84,7 +83,18 @@ test('Invalid email input', async ({ page }) => {
     })
     await page.getByRole('button', { name: 'Login' }).click()
     expect(page.url()).toContain('login')
-    await page.getByRole('link', { name: 'Sign up' }).click()
+})
+
+test('login working properly', async ({ page }) => {
+    require('dotenv').config()
+    const email = process.env.TEST_EMAIL as string
+    const password = process.env.TEST_PASSWORD as string
+    await page.getByPlaceholder('Enter email').fill(email)
+    await page.getByPlaceholder('Enter password').fill(password)
+    await page.getByRole('button', { name: 'Login' }).click()
+    await page.waitForURL('**/home')
+    await page.waitForLoadState('networkidle')
+    expect(page.url()).not.toContain('home')
 })
 
 test('Navigate to signup correctly', async ({ page }) => {
