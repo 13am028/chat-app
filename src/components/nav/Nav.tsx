@@ -38,6 +38,7 @@ const Nav = (props: any) => {
         groups.forEach((group: any) => {
             groupList.push(
                 <div
+                    key={group.id}
                     onClick={() =>
                         toGroup(group.id, group.groupName, group.groupMembers)
                     }

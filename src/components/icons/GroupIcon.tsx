@@ -204,6 +204,7 @@ const GroupIcon = ({
                     >
                         {filteredList.map((item: any) => (
                             <FriendInvite
+                                key={item.uid}
                                 item={item}
                                 onInvite={inviteFriendToGroup}
                             />
