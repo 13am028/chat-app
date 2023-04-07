@@ -45,11 +45,10 @@ const Home = (props: any) => {
                     key: user.displayName,
                     value: (
                         <FriendStatus
-                            theme={theme}
-                            key={user.uid}
                             displayName={user.displayName}
                             uid={user.uid}
                             avatar={user.avatar}
+                            status={user.status}
                         />
                     ),
                 })
@@ -60,8 +59,6 @@ const Home = (props: any) => {
                     key: user.displayName,
                     value: (
                         <BlockedFriendStatus
-                            theme={theme}
-                            key={user.uid}
                             displayName={user.displayName}
                             uid={user.uid}
                             avatar={user.avatar}
@@ -71,7 +68,7 @@ const Home = (props: any) => {
             })
         }
         return list
-    }, [friends, blockedFriends, selectedTab, theme])
+    }, [friends, blockedFriends, selectedTab])
 
     useEffect(() => {
         console.log(friendList)
