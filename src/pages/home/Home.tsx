@@ -73,7 +73,6 @@ const Home = (props: any) => {
     }, [friends, blockedFriends, selectedTab])
 
     useEffect(() => {
-        console.log(friendList)
         setFilteredFriends(friendList)
         setFilteredFriends(
             friendList.filter((friend: any) => {
