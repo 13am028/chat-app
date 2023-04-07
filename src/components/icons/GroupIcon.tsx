@@ -80,13 +80,14 @@ const GroupIcon = ({
         setShowModal(false)
     }
 
-    const inviteFriendToGroup = async (index: number) => {
+    const inviteFriendToGroup = async (uid: string) => {
         // ! mean trust me it not null
-        const bool = await addFriendToGroup(groupId!, getFriendList[index].uid)
+        const bool = await addFriendToGroup(groupId!, uid)
         if (bool) {
             // After success invite friend to group, stop show that friend in invite modal
-            const friendList = [...getFriendList]
-            friendList.splice(index, 1)
+            const friendList = getFriendList.filter(
+                (item: any) => item.uid !== uid,
+            )
             setFriendList(friendList)
         }
     }
@@ -203,7 +204,6 @@ const GroupIcon = ({
                     >
                         {filteredList.map((item: any) => (
                             <FriendInvite
-                                index={item.uid}
                                 item={item}
                                 onInvite={inviteFriendToGroup}
                             />

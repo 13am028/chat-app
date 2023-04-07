@@ -3,13 +3,12 @@ import styles from './icons.module.css'
 import FriendIcon from './FriendIcon'
 
 const FriendInvite = (props: any) => {
-    const index = props.index
     const item = props.item
     return (
         <div>
             <div
                 className={styles.serverFriend}
-                key={index}
+                key={item.uid}
                 style={{ position: 'relative' }}
             >
                 <FriendIcon imgURL={item.avatar}></FriendIcon>
@@ -21,8 +20,8 @@ const FriendInvite = (props: any) => {
                 <button
                     type="submit"
                     className={styles.inviteButton}
-                    onClick={() => props.onInvite(index)}
-                    data-testid={`invite-button-${index}`}
+                    onClick={() => props.onInvite(item.uid)}
+                    data-testid={`invite-button-${item.uid}`}
                 >
                     Invite
                 </button>
