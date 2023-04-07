@@ -15,6 +15,11 @@ test.describe('DM Page', () => {
         await expect(page).toHaveURL('/home')
         settingPage = new SettingPage(page)
     })
+
+    test.afterAll(async () => {
+        await page.close()
+    })
+
     test('User can view profile details', async () => {
         await settingPage.navigate()
         await settingPage.checkRevealButton()

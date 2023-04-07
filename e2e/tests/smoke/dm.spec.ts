@@ -15,6 +15,11 @@ test.describe('DM Page', () => {
         await expect(page).toHaveURL('/home')
         dmPage = new DmPage(page)
     })
+
+    test.afterAll(async () => {
+        await page.close()
+    })
+
     test('User can send messages', async () => {
         await dmPage.navigate()
     })
