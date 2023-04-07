@@ -17,6 +17,7 @@ describe('DirectMessageNav', () => {
                 email: 'test',
                 avatar: '',
                 displayName: 'bar',
+                status: '',
             },
         },
     }

@@ -10,6 +10,7 @@ describe('AccountDropdownMenu', () => {
             displayName: 'Test User',
             username: 'testuser',
             avatar: 'https://example.com/avatar.png',
+            status: '',
         }
         render(
             <AuthContext.Provider
@@ -33,6 +34,7 @@ describe('AccountDropdownMenu', () => {
             displayName: 'Test User',
             username: 'testuser',
             avatar: 'https://example.com/avatar.png',
+            status: '',
         }
 
         render(

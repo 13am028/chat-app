@@ -9,6 +9,7 @@ export type User = {
     displayName: string | null
     username: string | null
     avatar: string | null
+    status: string | null
 }
 
 type AuthContextProps = {
@@ -40,6 +41,7 @@ export const AuthContextProvider = ({
                           displayName: currentUser.displayName,
                           username: currentUser.username,
                           avatar: currentUser.avatar,
+                          status: currentUser.status,
                       }
                     : null,
             )

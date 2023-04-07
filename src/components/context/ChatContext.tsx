@@ -18,6 +18,7 @@ export const ChatContext = createContext<ChatContextProps>({
             displayName: '',
             username: '',
             avatar: '',
+            status: '',
         },
     },
     dispatch: () => null,
