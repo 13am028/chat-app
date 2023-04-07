@@ -5,6 +5,7 @@ const non_email = 'this_isnot_email'
 
 test.beforeEach(async ({ page }) => {
     await page.goto('./login')
+    await page.waitForURL('**/login')
     await page.waitForLoadState('networkidle')
 })
 
@@ -93,8 +94,7 @@ test('login working properly', async ({ page }) => {
     await page.getByPlaceholder('Enter password').fill(password)
     await page.getByRole('button', { name: 'Login' }).click()
     await page.waitForURL('**/home')
-    await page.waitForLoadState('networkidle')
-    expect(page.url()).not.toContain('home')
+    expect(page.url()).toContain('home')
 })
 
 test('Navigate to signup correctly', async ({ page }) => {

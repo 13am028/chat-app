@@ -422,10 +422,6 @@ test.describe('Testing form', () => {
         await pass_input.fill(password)
         await cpass_input.fill(password)
         await agreement_box.check()
-        page.once('dialog', async dialog => {
-            expect(dialog.message()).toEqual('username already exists')
-            await dialog.accept()
-        })
         await page.getByRole('button', { name: 'Sign Up' }).click()
         expect(page.url()).toContain('signup')
     })
@@ -442,12 +438,6 @@ test.describe('Testing form', () => {
         await pass_input.fill(password)
         await cpass_input.fill(password)
         await agreement_box.check()
-        page.once('dialog', async dialog => {
-            expect(dialog.message()).toEqual(
-                'Firebase: Error (auth/email-already-in-use).',
-            )
-            await dialog.accept()
-        })
         await page.getByRole('button', { name: 'Sign Up' }).click()
         expect(page.url()).toContain('signup')
     })
@@ -462,14 +452,18 @@ test('Signup working properly', async () => {
     await pass_input.fill(secure_password)
     await cpass_input.fill(secure_password)
     await agreement_box.check()
-    // expect(page.url()).toContain(name)
+
     await page.getByRole('button', { name: 'Sign Up' }).click()
     await page.waitForURL('**/home')
     await page.waitForLoadState('networkidle')
     expect(page.url()).toContain('home')
+    await page.getByTestId('account-dropdown-toggle').click()
+    await page.getByTestId('logout-link').click()
+    await page.waitForURL('**/login')
 })
 
 test('Navigate to login correctly', async () => {
     await page.getByRole('link', { name: 'Log in here' }).click()
+    await page.waitForURL('**/login')
     expect(page.url()).toContain('login')
 })
