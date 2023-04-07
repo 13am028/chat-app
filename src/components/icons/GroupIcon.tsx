@@ -8,6 +8,7 @@ import { deleteGroup } from '../../firebase/groups/deleteGroup'
 import { leaveGroup } from '../../firebase/groups/leaveGroup'
 import { db, auth } from '../../firebase/init'
 import { doc, getDoc } from 'firebase/firestore'
+import FriendIcon from './FriendIcon'
 
 const GroupIcon = ({
     theme,
@@ -187,10 +188,7 @@ const GroupIcon = ({
                                 key={index}
                                 style={{ position: 'relative' }}
                             >
-                                <div
-                                    className={styles.friendIconAddServer}
-                                    data-testid={`friend-icon-${index}`}
-                                ></div>
+                                <FriendIcon imgURL={item.avatar}></FriendIcon>
                                 <div className={styles.serverFriendName}>
                                     <p className={styles.inviteFriendsName}>
                                         {item.displayName}
