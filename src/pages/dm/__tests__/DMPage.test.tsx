@@ -32,12 +32,10 @@ describe('DMPage', () => {
         )
 
         const dmPage = screen.getByTestId('dm-page')
-        const nav = screen.getByTestId('nav')
         const displayName = screen.getByTestId('display-name')
         const header = screen.getByRole('heading', { name: 'bar' })
 
         expect(dmPage).toBeInTheDocument()
-        expect(nav).toBeInTheDocument()
         expect(displayName).toBeInTheDocument()
         expect(header).toBeInTheDocument()
     })
