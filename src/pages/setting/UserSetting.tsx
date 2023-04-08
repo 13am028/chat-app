@@ -189,7 +189,7 @@ const UserSettingPage = () => {
                         <ul>
                             <li>
                                 <a
-                                    href="#top"
+                                    href="/logout"
                                     onClick={() => setActiveTab('logout')}
                                     data-testid="logout-link"
                                 >

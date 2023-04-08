@@ -22,6 +22,19 @@
     width: 75%;
 }
 
+.search input {
+    display: flex;
+    align-items: center;
+    color: var(--font-color) !important;
+    z-index: -1 !important;
+    margin: 5px;
+    border-color: var(--theme-fifth);
+}
+
+.search span {
+    width: 80%;
+}
+
 @media (max-width: 1000px) {
     .navbar-left {
         width: 35%;

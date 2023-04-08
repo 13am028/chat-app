@@ -8,6 +8,7 @@ const mockUser: User = {
     displayName: 'Test User',
     username: 'testuser',
     avatar: 'https://example.com/avatar.png',
+    status: '',
 }
 
 jest.mock('../../../firebase/utils', () => ({

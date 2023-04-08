@@ -15,6 +15,11 @@ test.describe('Home Page', () => {
         await expect(page).toHaveURL('/home')
         homePage = new HomePage(page)
     })
+
+    test.afterAll(async () => {
+        await page.close()
+    })
+
     test('User can add friend', async () => {
         await homePage.checkAddFriend()
     })

@@ -5,6 +5,10 @@ test.beforeEach(async ({ page }) => {
     await page.waitForLoadState('networkidle')
 })
 
+test.afterEach(async ({ page }) => {
+    await page.close()
+})
+
 test('First visit theme', async ({ page }) => {
     // visit website for the first time
     await page
@@ -167,7 +171,7 @@ test('Keep theme data when changing page (url)', async ({ page }) => {
         })
     // check default theme
     await page.goto('./signup')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('networkidle', { timeout: 0 })
     await page
         .locator('body')
         .getAttribute('class')
@@ -195,7 +199,7 @@ test('Keep theme data when changing page (url)', async ({ page }) => {
             expect(value).toEqual('dark-theme')
         })
     await page.goto('./login')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('networkidle', { timeout: 0 })
     await page
         .locator('body')
         .getAttribute('class')

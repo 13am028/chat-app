@@ -8,6 +8,7 @@ const currentUser = {
     displayName: 'Johndow',
     username: 'Johndow',
     avatar: '',
+    status: '',
 }
 const mockSetCurrentUser = jest.fn()
 const mockAuthProps = {

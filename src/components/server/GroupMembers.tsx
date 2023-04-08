@@ -35,6 +35,7 @@ const GroupMembers = () => {
                         <FriendIcon imgURL={member.avatar}></FriendIcon>
                         <div className={styles.friendName}>
                             <p className={styles.name}>{member.displayName}</p>
+                            <p>{member.status}</p>
                         </div>
                     </div>
                 ))}
