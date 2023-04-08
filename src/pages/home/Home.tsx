@@ -42,9 +42,10 @@ const Home = (props: any) => {
         if (friends && selectedTab === 'friends') {
             friends.forEach((user: any) => {
                 list.push({
-                    key: user.displayName,
+                    displayName: user.displayName,
                     value: (
                         <FriendStatus
+                            key={user.uid}
                             displayName={user.displayName}
                             uid={user.uid}
                             avatar={user.avatar}
@@ -56,9 +57,10 @@ const Home = (props: any) => {
         } else if (blockedFriends && selectedTab === 'blocked') {
             blockedFriends.forEach((user: any) => {
                 list.push({
-                    key: user.displayName,
+                    displayName: user.displayName,
                     value: (
                         <BlockedFriendStatus
+                            key={user.uid}
                             displayName={user.displayName}
                             uid={user.uid}
                             avatar={user.avatar}
@@ -71,11 +73,10 @@ const Home = (props: any) => {
     }, [friends, blockedFriends, selectedTab])
 
     useEffect(() => {
-        console.log(friendList)
         setFilteredFriends(friendList)
         setFilteredFriends(
             friendList.filter((friend: any) => {
-                const friendKey = friend.key.toLowerCase()
+                const friendKey = friend.displayName.toLowerCase()
                 const search = searchString.toLowerCase()
                 return friendKey.includes(search)
             }),

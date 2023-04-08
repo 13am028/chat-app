@@ -27,9 +27,12 @@
     align-items: center;
     color: var(--font-color) !important;
     z-index: -1 !important;
-    width: 80%;
     margin: 5px;
     border-color: var(--theme-fifth);
+}
+
+.search span {
+    width: 80%;
 }
 
 @media (max-width: 1000px) {
