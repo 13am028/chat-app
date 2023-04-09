@@ -7,8 +7,8 @@ export default class HomePage {
 
     constructor(page: Page) {
         this.page = page
-        this.toAddUsername = 'thisistestuser'
-        this.toAddDisplayName = 'John Doe'
+        this.toAddUsername = 'anonymous1'
+        this.toAddDisplayName = 'anonymous1'
     }
 
     async checkFriendStatusNav() {

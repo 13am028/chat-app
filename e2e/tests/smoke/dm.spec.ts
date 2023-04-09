@@ -18,12 +18,12 @@ test.describe('DM Page', () => {
         await dmPage.navigate()
     })
 
-    test.afterAll(async () => {
-        await page.close()
-    })
-
     test('User can send messages', async () => {
         await dmPage.checkSendEmptyMessage()
-        await dmPage.checkSendMessage
+        await dmPage.checkSendMessage()
+    })
+
+    test.afterAll(async () => {
+        await page.close()
     })
 })
