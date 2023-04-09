@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import Nav from '../../components/nav/Nav'
 import DirectMessageNav from '../../components/nav/DirectMessageNav'
 import styles from '../../components/nav/nav.module.css'
 import Conversation from '../../components/dm/Conversation'
@@ -11,7 +10,6 @@ const DMPage = () => {
     return (
         <div className="navbar-group" data-testid="dm-page">
             <div className="navbar-left">
-                <Nav data-testid="nav" />
                 <DirectMessageNav />
             </div>
             <div className="navbar-right">
