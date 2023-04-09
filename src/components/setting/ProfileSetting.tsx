@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './ProfileSetting.css'
 import { Modal } from 'react-bootstrap'
 import SpanRevealButton from './SpanRevealButton'
@@ -96,7 +96,7 @@ const ProfileSetting = (props: any) => {
                     <div className="profile-card-field-list">
                         <div className="field">
                             <div>
-                                <h3>status</h3>
+                                <h3 style={{ fontWeight: 'bold' }}>STATUS</h3>
                                 <input
                                     className={`form-control status-input ${
                                         theme === 'dark'
