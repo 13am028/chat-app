@@ -1,7 +1,7 @@
 import { Page, expect } from '@playwright/test'
 import { randomBytes } from 'crypto'
 
-export default class DmPage {
+export default class GroupPage {
     page: Page
 
     constructor(page: Page) {
@@ -9,17 +9,13 @@ export default class DmPage {
     }
 
     async navigate() {
-        await this.page.getByTestId('chat-0').click()
+        await this.page.getByTestId('group-icon').first().click()
     }
 
-    async checkDMPage() {
+    async checkGroupPage() {
         await expect(
-            this.page
-                .getByTestId('direct-message-nav')
-                .locator('div')
-                .filter({ hasText: 'DIRECT MESSAGES' }),
+            this.page.locator('.nav_head').filter({ hasText: 'Members' }),
         ).toBeVisible()
-        await expect(this.page.getByTestId('display-name')).toBeVisible()
         await expect(this.page.getByPlaceholder('Send a message')).toBeVisible()
         await expect(this.page.getByTestId('submit-button')).toBeVisible()
     }
@@ -38,5 +34,21 @@ export default class DmPage {
         await expect(
             this.page.locator('.messageGridOwner').getByText(message),
         ).toBeVisible()
+    }
+
+    async checkCreateGroup() {
+        await this.page.getByTestId('add-server-icon-button').click()
+        await this.page.getByTestId('add-server-modal-input').click()
+        await this.page
+            .getByTestId('add-server-modal-input')
+            .fill('Testing server Name')
+        await this.page.getByTestId('add-server-modal-create-button').click()
+    }
+
+    async checkDeletedGroup() {
+        await this.page.getByTestId('group-icon').last().click({
+            button: 'right',
+        })
+        await this.page.getByText('Delete server').click()
     }
 }

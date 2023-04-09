@@ -1,5 +1,34 @@
-import { test } from '@playwright/test'
+import { Page, test, expect } from '@playwright/test'
+import LoginPage from '../../pages/loginPage'
+import GroupPage from '../../pages/groupPage'
 
 test.describe('Group Page', () => {
-    test('User can send messages in group', () => {})
+    test.describe.configure({ mode: 'serial' })
+    let page: Page
+    let loginPage: LoginPage
+    let groupPage: GroupPage
+
+    test.beforeAll(async ({ browser }) => {
+        page = await browser.newPage()
+        loginPage = new LoginPage(page)
+        await loginPage.navigate()
+        await loginPage.login()
+        await expect(page).toHaveURL('/home')
+        groupPage = new GroupPage(page)
+        await groupPage.navigate()
+    })
+
+    test.afterAll(async () => {
+        await page.close()
+    })
+
+    // test('User can send messages in group', async () => {
+    //     await groupPage.checkSendEmptyMessage()
+    //     await groupPage.checkSendMessage()
+    // })
+
+    test('User can create/deleted new Group', async () => {
+        await groupPage.checkCreateGroup()
+        await groupPage.checkDeletedGroup()
+    })
 })
