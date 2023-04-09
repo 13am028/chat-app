@@ -12,10 +12,14 @@ const alertAlreadyFriends = (username: string) => {
     alert(`You are already friends with ${username}.`)
 }
 
-const addFriendValidate = async (username: string) => {
+const alertCannotAddSelf = () => {
+    alert(`You cannot add yourself as a friend.`)
+}
+
+const addFriendValidate = async (username: string): Promise<string> => {
     // Check that the username is not empty
     if (username.trim() === '') {
-        return
+        return 'empty_username'
     }
 
     const result = await addFriend(username)
@@ -26,7 +30,11 @@ const addFriendValidate = async (username: string) => {
         alertNotFound()
     } else if (result === 'already_friends') {
         alertAlreadyFriends(username)
+    } else if (result === 'cannot_add_self') {
+        alertCannotAddSelf()
     }
+
+    return result
 }
 
 export default addFriendValidate

@@ -14,9 +14,11 @@ const AddFriendModal = ({
 }) => {
     const [show, setShow] = useState(false)
     const [username, setUsername] = useState('')
+    const [message, setMessage] = useState('')
 
     const handleClose = () => {
         setUsername('')
+        setMessage('')
         setShow(false)
     }
 
@@ -29,10 +31,18 @@ const AddFriendModal = ({
     }
 
     const handleAddFriendAsync = async () => {
-        await addFriendValidate(username)
-        handleClose()
-        if (handleAddFriend) {
-            handleAddFriend()
+        const result = await addFriendValidate(username)
+        if (result === 'success') {
+            handleClose()
+            if (handleAddFriend) {
+                handleAddFriend()
+            }
+        } else if (result === 'not_found') {
+            setMessage('Invalid username')
+        } else if (result === 'already_friends') {
+            setMessage('Already friends')
+        } else if (result === 'empty_username') {
+            setMessage('Please enter a username')
         }
     }
 
@@ -77,6 +87,11 @@ const AddFriendModal = ({
                             theme === 'dark' ? 'dark text-light' : ''
                         }`}
                     />
+                    {message && (
+                        <div className="alert alert-warning mt-2" role="alert">
+                            {message}
+                        </div>
+                    )}
                 </Modal.Body>
 
                 <Modal.Footer
