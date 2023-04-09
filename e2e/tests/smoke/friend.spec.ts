@@ -36,6 +36,4 @@ test.describe('Home Page', () => {
     test('User can remove friend', async () => {
         await homePage.checkRemoveFriend()
     })
-
-    test('User can create new group', () => {})
 })
