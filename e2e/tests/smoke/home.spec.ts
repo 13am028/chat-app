@@ -30,10 +30,12 @@ test.describe('Home Page', () => {
     })
 
     test('User can unblock friend', async () => {
-        await homePage.checkUnblockFunction()
+        await homePage.checkUnblockFriend()
     })
 
-    test('User can remove friend', async () => {})
+    test('User can remove friend', async () => {
+        await homePage.checkRemoveFriend()
+    })
 
     test('User can create new group', () => {})
 })

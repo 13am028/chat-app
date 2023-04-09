@@ -8,7 +8,7 @@ export default class DmPage {
     }
 
     async navigate() {
-        await this.page.getByTestId('friend-status').first().click()
+        await this.page.getByTestId('chat-0').click()
     }
 
     async checkDMPage() {
