@@ -1,13 +1,19 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from '../icons/icons.module.css'
-import {doc, onSnapshot, Timestamp, getDoc, updateDoc} from 'firebase/firestore'
-import {AuthContext} from '../context/AuthContext'
-import {db} from '../../firebase/init'
-import {ChatContext} from '../context/ChatContext'
-import {useNavigate} from 'react-router-dom'
+import {
+    doc,
+    onSnapshot,
+    Timestamp,
+    getDoc,
+    updateDoc,
+} from 'firebase/firestore'
+import { AuthContext } from '../context/AuthContext'
+import { db } from '../../firebase/init'
+import { ChatContext } from '../context/ChatContext'
+import { useNavigate } from 'react-router-dom'
 import nstyles from './nav.module.css'
 import FriendIcon from '../icons/FriendIcon'
-import {getUser} from '../../firebase/utils'
+import { getUser } from '../../firebase/utils'
 
 const DirectMessageNav = () => {
     type Chat = {
@@ -24,9 +30,9 @@ const DirectMessageNav = () => {
         unreadCount: number
     }
 
-    const {currentUser} = useContext(AuthContext)
+    const { currentUser } = useContext(AuthContext)
     const [chats, setChats] = useState<Chat[]>([])
-    const {dispatch} = useContext(ChatContext)
+    const { dispatch } = useContext(ChatContext)
     let navigate = useNavigate()
 
     useEffect(() => {
@@ -58,23 +64,23 @@ const DirectMessageNav = () => {
     }, [currentUser?.uid])
 
     const handleOnSelect = async (u: any) => {
-        dispatch({type: 'CHANGE_USER', payload: u})
+        dispatch({ type: 'CHANGE_USER', payload: u })
         navigate('/dm')
 
         let combinedId = u.uid + currentUser?.uid
         console.log(combinedId)
 
         // @ts-ignore
-        const response = await getDoc(doc(db, "userChats", currentUser?.uid));
+        const response = await getDoc(doc(db, 'userChats', currentUser?.uid))
 
-        if (response.get(combinedId) == undefined) {
+        if (response.get(combinedId) === undefined) {
             combinedId = currentUser?.uid + u.uid
         }
 
         // @ts-ignore
-        await updateDoc(doc(db, "userChats", currentUser?.uid), {
-            [combinedId + ".unreadCount"]: 0
-        });
+        await updateDoc(doc(db, 'userChats', currentUser?.uid), {
+            [combinedId + '.unreadCount']: 0,
+        })
     }
 
     return (
