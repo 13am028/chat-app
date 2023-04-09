@@ -82,6 +82,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+      - name: Install Playwright
+        run: npm ci --only=prod --ignore-scripts playwright
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
