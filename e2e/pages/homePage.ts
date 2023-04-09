@@ -39,7 +39,9 @@ export default class HomePage {
         await this.page.getByTestId('add-friend-button').click()
         await this.page.getByTestId('username-input').fill(this.toAddUsername)
         this.page.once('dialog', dialog => {
-            console.log(`Dialog message: ${dialog.message()}`)
+            expect(dialog.message()).toContain(
+                'has been successfully added as your friend.',
+            )
             dialog.dismiss().catch(() => {})
         })
         await this.page.getByTestId('add-button').click()
@@ -49,4 +51,37 @@ export default class HomePage {
                 .getByText(this.toAddDisplayName),
         ).toBeVisible()
     }
+
+    async checkBlockFriend() {
+        await this.page.getByTestId('block-friend-button').first().click()
+        this.page.once('dialog', dialog => {
+            expect(dialog.message()).toContain('has been blocked successfully')
+            dialog.dismiss().catch(() => {})
+        })
+        await this.page
+            .getByTestId('block-friend-modal')
+            .getByTestId('block-friend-button')
+            .click()
+        await expect(
+            this.page.getByTestId('friend-display-name').getByText('John Doe'),
+        ).not.toBeVisible()
+        await this.page.getByTestId('blocked-heading').click()
+        await expect(
+            this.page.getByTestId('friend-list-items').getByText('John Doe'),
+        ).toBeVisible()
+    }
+
+    async checkUnblockFunction() {
+        await this.page.getByRole('button', { name: 'Unblock' }).click()
+        await this.page
+            .getByRole('dialog')
+            .getByRole('button', { name: 'Unblock' })
+            .click()
+        await this.page.getByTestId('friends-heading').click()
+        await expect(
+            this.page.getByTestId('friend-list-items').getByText('John Doe'),
+        ).toBeVisible()
+    }
+
+    async
 }
