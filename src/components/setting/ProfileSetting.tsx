@@ -82,7 +82,6 @@ const ProfileSetting = (props: any) => {
                     onHide={handleCloseModal}
                     centered
                     data-testid="change-avatar-modal"
-
                 >
                     <Modal.Header closeButton>
                         <h4 className="modal-title" data-testid="modal-title">
