@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import GroupMessageTextField from '../message/GroupMessageTextField'
 import { collection, doc, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { db } from '../../firebase/init'
 import { useLocation } from 'react-router-dom'
+import { AuthContext } from '../context/AuthContext'
+import Message from '../message/Message'
 
 function GroupConversation() {
     const [messages, setMessages] = useState<any[]>([])
+    const { currentUser } = useContext(AuthContext)
 
     const location = useLocation()
     const groupId = location.state.groupId
@@ -30,11 +33,7 @@ function GroupConversation() {
 
     return (
         <div className="bg">
-            {messages.map((message, index) => (
-                <div key={index}>
-                    {message.senderId}: {message.text}
-                </div>
-            ))}
+            <Message messages={messages} currentUser={currentUser} />
             <GroupMessageTextField groupId={groupId} />
         </div>
     )

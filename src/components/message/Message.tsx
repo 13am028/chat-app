@@ -1,17 +1,22 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import './Message.css'
 import FriendIcon from '../icons/FriendIcon'
-import { AuthContext } from '../context/AuthContext'
 
-function Message(props: any) {
-    const { currentUser } = useContext(AuthContext)
+// @ts-ignore
+function Message({
+    messages,
+    currentUser,
+}: {
+    messages: any
+    currentUser: any
+}) {
     const ref = useRef<HTMLDivElement>(null)
     useEffect(() => {
         ref.current?.scrollIntoView({ behavior: 'smooth' })
-    }, [props.messages])
+    }, [messages])
     return (
         <div data-testid="message-container">
-            {props.messages.map((message: any) => (
+            {messages.map((message: any) => (
                 <div
                     className={`messageGrid ${
                         message.senderId === currentUser?.uid &&
