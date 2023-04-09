@@ -1,20 +1,36 @@
 import { OutlinedInput } from '@mui/material'
 import Button from 'react-bootstrap/Button'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import './MessageTextField.css'
-
-function GroupMessageTextField(props: any) {
+import { AuthContext } from '../context/AuthContext'
+import { doc, serverTimestamp, collection, addDoc } from 'firebase/firestore'
+import { db } from '../../firebase/init'
+function GroupMessageTextField({ groupId }: { groupId: string }) {
     const [message, setMessage] = useState('')
-    // const { currentUser } = useContext(AuthContext)
-    // const { data } = useContext(ChatContext)
+    const { currentUser } = useContext(AuthContext)
 
     const handleChange = (event: any) => {
         setMessage(event.target.value)
     }
 
+    const handleSubmit = async (event: any) => {
+        event.preventDefault()
+
+        const newMessage = {
+            text: message,
+            senderId: currentUser?.uid,
+            timestamp: serverTimestamp(),
+        }
+
+        const groupChatRef = doc(db, 'groupChats', groupId)
+        const messagesCollection = collection(groupChatRef, 'messages')
+        await addDoc(messagesCollection, newMessage)
+        setMessage('')
+    }
+
     return (
-        <Form className="send-message-form">
+        <Form onSubmit={handleSubmit} className="send-message-form">
             <OutlinedInput
                 value={message}
                 onChange={handleChange}
