@@ -1,5 +1,4 @@
 import { expect, Page, test } from '@playwright/test'
-import HomePage from '../../pages/homePage'
 import LoginPage from '../../pages/loginPage'
 
 test.describe('Redirect to login', async () => {
