@@ -25,9 +25,7 @@ const Group = () => {
                     <AccountDropdownMenu />
                     <h4>{groupName}</h4>
                 </div>
-                <div className="bg">
-                    <GroupConversation />
-                </div>
+                <GroupConversation></GroupConversation>
             </div>
         </div>
     )
