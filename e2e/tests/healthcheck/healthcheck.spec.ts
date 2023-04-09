@@ -3,6 +3,7 @@ import HomePage from '../../pages/homePage'
 import SettingPage from '../../pages/settingPage'
 import LoginPage from '../../pages/loginPage'
 import DmPage from '../../pages/dmPage'
+import GroupPage from '../../pages/groupPage'
 
 test.describe('Health Check', () => {
     let page: Page
@@ -10,6 +11,7 @@ test.describe('Health Check', () => {
     let settingPage: SettingPage
     let loginPage: LoginPage
     let dmPage: DmPage
+    let groupPage: GroupPage
 
     test.beforeAll(async ({ browser }) => {
         page = await browser.newPage()
@@ -20,6 +22,7 @@ test.describe('Health Check', () => {
         homePage = new HomePage(page)
         settingPage = new SettingPage(page)
         dmPage = new DmPage(page)
+        groupPage = new GroupPage(page)
     })
 
     test.afterAll(async () => {
@@ -44,5 +47,8 @@ test.describe('Health Check', () => {
         await dmPage.checkDMPage()
     })
 
-    test('User can view group page', () => {})
+    test('User can view group page', async () => {
+        await groupPage.navigate()
+        await groupPage.checkGroupPage()
+    })
 })
