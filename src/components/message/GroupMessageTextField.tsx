@@ -6,6 +6,7 @@ import './MessageTextField.css'
 import { AuthContext } from '../context/AuthContext'
 import { doc, serverTimestamp, collection, addDoc } from 'firebase/firestore'
 import { db } from '../../firebase/init'
+
 function GroupMessageTextField({ groupId }: { groupId: string }) {
     const [message, setMessage] = useState('')
     const { currentUser } = useContext(AuthContext)
@@ -40,29 +41,12 @@ function GroupMessageTextField({ groupId }: { groupId: string }) {
                     'aria-label': 'message',
                     style: { color: 'var(--font-color)' },
                 }}
-                sx={{
-                    '& .MuiOutlinedInput-notchedOutline': {
-                        border: 'none',
-                    },
-                    '&:hover .MuiOutlinedInput-notchedOutline': {
-                        border: 'none',
-                    },
-
-                    backgroundColor: 'var(--theme-fourth)',
-                    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.2)',
-                    width: '50%',
-                }}
+                className="outlined-input"
                 data-testid="outlined-input"
             />
             <Button
                 variant="contained"
-                style={{
-                    backgroundColor: 'var(--theme-primary)',
-                    color: 'var(--font-color)',
-                    padding: '1rem',
-                    width: '100px',
-                    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.2)',
-                }}
+                className="submit-button"
                 size="lg"
                 type="submit"
                 data-testid="submit-button"

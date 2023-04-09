@@ -14,3 +14,25 @@
     height: 20rem;
     overflow: auto;
 }
+
+.outlined-input .MuiOutlinedInput-notchedOutline {
+    border: none;
+}
+
+.outlined-input:hover .MuiOutlinedInput-notchedOutline {
+    border: none;
+}
+
+.outlined-input {
+    background-color: var(--theme-fourth);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    width: 50%;
+}
+
+.submit-button {
+    background-color: var(--theme-primary);
+    color: var(--font-color);
+    padding: 1rem;
+    width: 100px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
