@@ -1,6 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styles from '../icons/icons.module.css'
-import { doc, onSnapshot, Timestamp } from 'firebase/firestore'
+import {
+    doc,
+    onSnapshot,
+    Timestamp,
+    getDoc,
+    updateDoc,
+} from 'firebase/firestore'
 import { AuthContext } from '../context/AuthContext'
 import { db } from '../../firebase/init'
 import { ChatContext } from '../context/ChatContext'
@@ -21,6 +27,7 @@ const DirectMessageNav = () => {
             message: string | null
         }
         date: Timestamp
+        unreadCount: number
     }
 
     const { currentUser } = useContext(AuthContext)
@@ -56,9 +63,24 @@ const DirectMessageNav = () => {
         currentUser?.uid && getChats()
     }, [currentUser?.uid])
 
-    const handleOnSelect = (u: any) => {
+    const handleOnSelect = async (u: any) => {
         dispatch({ type: 'CHANGE_USER', payload: u })
         navigate('/dm')
+
+        let combinedId = u.uid + currentUser?.uid
+        console.log(combinedId)
+
+        // @ts-ignore
+        const response = await getDoc(doc(db, 'userChats', currentUser?.uid))
+
+        if (response.get(combinedId) === undefined) {
+            combinedId = currentUser?.uid + u.uid
+        }
+
+        // @ts-ignore
+        await updateDoc(doc(db, 'userChats', currentUser?.uid), {
+            [combinedId + '.unreadCount']: 0,
+        })
     }
 
     return (
@@ -83,6 +105,11 @@ const DirectMessageNav = () => {
                             </p>
                             <p>{chat[1].lastMessage?.message}</p>
                         </div>
+                        {chat[1].unreadCount > 0 && (
+                            <div className={styles.notificationBadge}>
+                                {chat[1].unreadCount}
+                            </div>
+                        )}
                     </div>
                 ))}
         </div>

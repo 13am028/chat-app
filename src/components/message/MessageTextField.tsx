@@ -11,11 +11,12 @@ import {
     serverTimestamp,
     updateDoc,
     Timestamp,
+    increment,
 } from 'firebase/firestore'
 import { db } from '../../firebase/init'
 import uuid from 'react-uuid'
 
-function MessageTextField() {
+function MessageTextField(props: any) {
     const [message, setMessage] = useState('')
     const { currentUser } = useContext(AuthContext)
     const { data } = useContext(ChatContext)
@@ -43,6 +44,9 @@ function MessageTextField() {
                 message,
             },
             [data.chatId + '.date']: serverTimestamp(),
+        })
+        await updateDoc(doc(db, 'userChats', data.user.uid), {
+            [data.chatId + '.unreadCount']: increment(1),
         })
         setMessage('')
     }
