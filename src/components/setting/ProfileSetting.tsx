@@ -82,13 +82,14 @@ const ProfileSetting = (props: any) => {
                     onHide={handleCloseModal}
                     centered
                     data-testid="change-avatar-modal"
+
                 >
                     <Modal.Header closeButton>
                         <h4 className="modal-title" data-testid="modal-title">
                             Change Avatar
                         </h4>
                     </Modal.Header>
-                    <Modal.Body>
+                    <Modal.Body className="modal-body-space">
                         <UploadWidget handleURL={handleURL} />
                     </Modal.Body>
                 </Modal>

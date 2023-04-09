@@ -82,7 +82,7 @@ function MessageTextField(props: any) {
             <Button
                 variant="contained"
                 style={{
-                    backgroundColor: 'var(--theme-primary)',
+                    backgroundColor: 'var(--dark-background-color)',
                     color: 'var(--font-color)',
                     padding: '1rem',
                     width: '100px',
