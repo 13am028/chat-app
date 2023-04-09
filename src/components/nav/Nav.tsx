@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import GroupIcon from '../icons/GroupIcon'
 import AddServerIcon from '../addServer/AddServerIcon'
 import styles from './nav.module.css'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { getGroups } from '../../firebase/groups/getGroups'
 
 const Nav = (props: any) => {
     const { theme } = props
     let navigate = useNavigate()
+    let location = useLocation()
+
     const toHome = () => {
         let path = '/home'
         navigate(path)
@@ -19,20 +21,23 @@ const Nav = (props: any) => {
     }
 
     const [groups, setGroups] = useState<any>([])
+    const [show, setShow] = useState<boolean>(true)
 
     useEffect(() => {
         ;(async () => {
             const userGroups = await getGroups()
             setGroups(userGroups)
         })()
-    }, [])
+        if (['/login', '/signup', '/setting'].includes(location.pathname))
+            setShow(false)
+        else setShow(true)
+    }, [location])
 
     const handleNewGroupRender = async () => {
         const userGroups = await getGroups()
         setGroups(userGroups)
     }
 
-    /*TO DO: Add onclick for group icon*/
     let groupList: any = []
     if (groups) {
         groups.forEach((group: any) => {
@@ -53,7 +58,7 @@ const Nav = (props: any) => {
         })
     }
 
-    return (
+    return show ? (
         <div className={styles.navLeft} data-testid="nav">
             <div
                 className={styles.nav_head}
@@ -75,7 +80,7 @@ const Nav = (props: any) => {
                 <AddServerIcon onGroupCreate={handleNewGroupRender} />
             </div>
         </div>
-    )
+    ) : null
 }
 
 export default Nav

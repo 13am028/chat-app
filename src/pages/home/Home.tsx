@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 import './Home.css'
-import Nav from '../../components/nav/Nav'
 import FriendStatusNav from '../../components/nav/FriendStatusNav'
 import DirectMessageNav from '../../components/nav/DirectMessageNav'
 import FriendStatus from '../../components/icons/FriendStatus'
@@ -42,9 +41,10 @@ const Home = (props: any) => {
         if (friends && selectedTab === 'friends') {
             friends.forEach((user: any) => {
                 list.push({
-                    key: user.displayName,
+                    displayName: user.displayName,
                     value: (
                         <FriendStatus
+                            key={user.uid}
                             displayName={user.displayName}
                             uid={user.uid}
                             avatar={user.avatar}
@@ -56,9 +56,10 @@ const Home = (props: any) => {
         } else if (blockedFriends && selectedTab === 'blocked') {
             blockedFriends.forEach((user: any) => {
                 list.push({
-                    key: user.displayName,
+                    displayName: user.displayName,
                     value: (
                         <BlockedFriendStatus
+                            key={user.uid}
                             displayName={user.displayName}
                             uid={user.uid}
                             avatar={user.avatar}
@@ -71,11 +72,10 @@ const Home = (props: any) => {
     }, [friends, blockedFriends, selectedTab])
 
     useEffect(() => {
-        console.log(friendList)
         setFilteredFriends(friendList)
         setFilteredFriends(
             friendList.filter((friend: any) => {
-                const friendKey = friend.key.toLowerCase()
+                const friendKey = friend.displayName.toLowerCase()
                 const search = searchString.toLowerCase()
                 return friendKey.includes(search)
             }),
@@ -93,7 +93,6 @@ const Home = (props: any) => {
             data-testid="friend-list"
         >
             <div className="navbar-left">
-                <Nav theme={theme} data-testid="nav" />
                 <DirectMessageNav data-testid="dm-nav" />
             </div>
             <div className="navbar-right">
