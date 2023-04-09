@@ -9,6 +9,7 @@ import { getBlockFriend } from '../../firebase/friends/getBlockFriend'
 import { db } from '../../firebase/init'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { AuthContext } from '../../components/context/AuthContext'
+// @ts-ignore
 import ReactSearchBox from 'react-search-box'
 
 const Home = (props: any) => {
@@ -49,6 +50,7 @@ const Home = (props: any) => {
                             uid={user.uid}
                             avatar={user.avatar}
                             status={user.status}
+                            theme ={theme}
                         />
                     ),
                 })

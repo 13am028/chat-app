@@ -10,3 +10,7 @@
 .search span {
     width: 80%;
 }
+
+.search-box{
+    background-color: var(--dark-login-button-background);
+}

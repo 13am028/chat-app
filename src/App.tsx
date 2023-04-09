@@ -98,7 +98,7 @@ function App() {
                                     path="setting"
                                     element={
                                         <ProtectedRoutes>
-                                            <UserSettingPage />
+                                            <UserSettingPage theme={theme} />
                                         </ProtectedRoutes>
                                     }
                                 />
