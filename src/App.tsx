@@ -14,6 +14,7 @@ import { AuthContextProvider } from './components/context/AuthContext'
 import { ChatContextProvider } from './components/context/ChatContext'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from './firebase/init'
+import Nav from './components/nav/Nav'
 
 function ThemeToggleButton({ theme, toggleTheme }: any) {
     return (
@@ -62,6 +63,7 @@ function App() {
                         toggleTheme={toggleTheme}
                     />
                     <BrowserRouter>
+                        <Nav />
                         <Routes>
                             <Route path="/">
                                 <Route path="logout" element={<Logout />} />

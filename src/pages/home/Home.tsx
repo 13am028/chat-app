@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 import './Home.css'
-import Nav from '../../components/nav/Nav'
 import FriendStatusNav from '../../components/nav/FriendStatusNav'
 import DirectMessageNav from '../../components/nav/DirectMessageNav'
 import FriendStatus from '../../components/icons/FriendStatus'
@@ -94,7 +93,6 @@ const Home = (props: any) => {
             data-testid="friend-list"
         >
             <div className="navbar-left">
-                <Nav theme={theme} data-testid="nav" />
                 <DirectMessageNav data-testid="dm-nav" />
             </div>
             <div className="navbar-right">

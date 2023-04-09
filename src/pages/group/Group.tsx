@@ -1,6 +1,5 @@
 import React from 'react'
 import './Group.css'
-import Nav from '../../components/nav/Nav'
 import Conversation from '../../components/dm/Conversation'
 import styles from '../../components/nav/nav.module.css'
 import ServerPeople from '../../components/server/GroupMembers'
@@ -19,7 +18,6 @@ const Group = () => {
     return (
         <div onContextMenu={handleContextMenu} className="navbar-group">
             <div className="navbar-left">
-                <Nav />
                 <ServerPeople />
             </div>
             <div className="navbar-right">
