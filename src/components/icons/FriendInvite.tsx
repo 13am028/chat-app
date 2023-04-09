@@ -12,7 +12,10 @@ const FriendInvite = (props: any) => {
                 style={{ position: 'relative' }}
             >
                 <FriendIcon imgURL={item.avatar}></FriendIcon>
-                <div className={styles.serverFriendName}>
+                <div
+                    className={styles.serverFriendName}
+                    data-testid="display-name"
+                >
                     <p className={styles.inviteFriendsName}>
                         {item.displayName}
                     </p>

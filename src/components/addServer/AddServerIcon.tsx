@@ -55,7 +55,6 @@ const AddServerIcon = ({ onGroupCreate }: Props) => {
 
     const handleURL = (url: string) => {
         handleCloseUploadModal()
-        console.log(url)
         setImageUrl(url)
     }
 
