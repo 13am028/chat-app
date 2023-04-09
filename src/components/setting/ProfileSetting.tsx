@@ -98,11 +98,18 @@ const ProfileSetting = (props: any) => {
                             <div>
                                 <h3>status</h3>
                                 <input
-                                    className={`form-control status-input ${theme === 'dark' ? 'dark text-light' : ''}`}
+                                    className={`form-control status-input ${
+                                        theme === 'dark'
+                                            ? 'dark text-light'
+                                            : ''
+                                    }`}
                                     placeholder={user.status as string}
                                     onChange={e => setStatus(e.target.value)}
                                 />
-                                <button className="save-button" onClick={handleStatusChanged}>
+                                <button
+                                    className="save-button"
+                                    onClick={handleStatusChanged}
+                                >
                                     save
                                 </button>
                             </div>

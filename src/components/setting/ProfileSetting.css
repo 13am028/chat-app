@@ -47,8 +47,7 @@
     color: var(--setting-primary-text-color);
 }
 
-
-.status-input{
+.status-input {
     display: inline;
     padding: 3px;
     border-radius: 5px;
@@ -60,7 +59,7 @@
     margin: 0;
 }
 
-.dark.status-input{
+.dark.status-input {
     background-color: var(--dark-login-button-background);
     display: inline;
     padding: 3px;
@@ -88,7 +87,6 @@
 .save-button:hover {
     background-color: var(--button-hover-color);
 }
-
 
 .profile-description {
     align-self: center;

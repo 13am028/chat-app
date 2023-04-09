@@ -50,7 +50,7 @@ const Home = (props: any) => {
                             uid={user.uid}
                             avatar={user.avatar}
                             status={user.status}
-                            theme ={theme}
+                            theme={theme}
                         />
                     ),
                 })

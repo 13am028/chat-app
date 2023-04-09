@@ -32,7 +32,7 @@ describe('ProfileSetting component', () => {
     test('renders change password button', () => {
         render(
             <AuthContext.Provider value={mockAuthProps}>
-                <ProfileSetting theme="dark"/>
+                <ProfileSetting theme="dark" />
             </AuthContext.Provider>,
         )
 
@@ -42,7 +42,7 @@ describe('ProfileSetting component', () => {
     test('renders enable two-factor auth button', () => {
         render(
             <AuthContext.Provider value={mockAuthProps}>
-                <ProfileSetting theme="dark"/>
+                <ProfileSetting theme="dark" />
             </AuthContext.Provider>,
         )
 
@@ -52,7 +52,7 @@ describe('ProfileSetting component', () => {
     test('opens and closes change avatar modal', () => {
         render(
             <AuthContext.Provider value={mockAuthProps}>
-                <ProfileSetting theme="dark"/>
+                <ProfileSetting theme="dark" />
             </AuthContext.Provider>,
         )
 
