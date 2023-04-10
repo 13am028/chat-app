@@ -68,7 +68,6 @@ const DirectMessageNav = () => {
         navigate('/dm')
 
         let combinedId = u.uid + currentUser?.uid
-        console.log(combinedId)
 
         // @ts-ignore
         const response = await getDoc(doc(db, 'userChats', currentUser?.uid))

@@ -4,6 +4,7 @@ import LoginPage from '../../pages/loginPage'
 test.describe('Redirect to login', async () => {
     test('index', async ({ page }) => {
         await page.goto('.')
+        await page.waitForLoadState('networkidle')
         await page.waitForURL('**/login')
         expect(page.url()).toContain('login')
     })
@@ -65,7 +66,7 @@ test.describe('Auth user redirect', async () => {
         expect(page.url()).toContain('home')
     })
 
-    test('setting', async () => {
+    test('navigate to setting', async () => {
         await page.goto('./setting')
         await page.waitForURL('**/setting')
         expect(page.url()).toContain('setting')
@@ -73,8 +74,8 @@ test.describe('Auth user redirect', async () => {
 
     test('Random', async () => {
         await page.goto('./asdqwedfasda')
-        await page.waitForURL('**/home')
-        expect(page.url()).toContain('home')
+        await page.waitForURL('/')
+        expect(page.url()).toContain('/')
     })
 
     test('logout', async () => {

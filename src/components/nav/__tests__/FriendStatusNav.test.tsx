@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import FriendStatusNav from '../FriendStatusNav'
 
 describe('FriendStatusNav', () => {
@@ -8,7 +8,11 @@ describe('FriendStatusNav', () => {
         const mockSetSelectedTab = jest.fn()
 
         render(<FriendStatusNav setSelectedTab={mockSetSelectedTab} />)
-        expect(screen.getByTestId('friends-heading')).toBeInTheDocument()
-        expect(screen.getByTestId('blocked-heading')).toBeInTheDocument()
+        const friendTab = screen.getByTestId('friends-heading')
+        const blockedTab = screen.getByTestId('blocked-heading')
+        expect(friendTab).toBeInTheDocument()
+        expect(blockedTab).toBeInTheDocument()
+        fireEvent.click(friendTab)
+        fireEvent.click(blockedTab)
     })
 })
