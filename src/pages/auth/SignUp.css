@@ -22,7 +22,14 @@
 }
 
 .signup__submit {
+    padding: 0.5rem; /* adjust the padding to make it smaller */
+    font-size: 0.875rem; /* adjust the font size to make it smaller */
+    font-weight: 500;
     background-color: var(--button-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
     color: var(--button-text-color);
 }
 
@@ -72,17 +79,6 @@
     font-weight: 500;
     text-align: left;
     margin-top: 0.5rem; /* adjust the margin to make it smaller */
-}
-
-.signup__submit {
-    padding: 0.5rem; /* adjust the padding to make it smaller */
-    font-size: 0.875rem; /* adjust the font size to make it smaller */
-    font-weight: 500;
-    background-color: var(--button-color);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
 }
 
 .signup__submit:hover {

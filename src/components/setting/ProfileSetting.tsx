@@ -33,8 +33,6 @@ const ProfileSetting = () => {
         setShowModal(false)
     }
 
-    const handleURL = () => {}
-
     const handleStatusChanged = async () => {
         await updateStatus(status)
     }
@@ -85,7 +83,7 @@ const ProfileSetting = () => {
                         </h4>
                     </Modal.Header>
                     <Modal.Body>
-                        <UploadWidget handleURL={handleURL} />
+                        <UploadWidget handleURL={() => {}} />
                     </Modal.Body>
                 </Modal>
                 <div className="profile-card">
