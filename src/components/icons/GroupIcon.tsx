@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './icons.module.css'
 import { CloseButton, Modal } from 'react-bootstrap'
 import SearchIcon from '@mui/icons-material/Search'
@@ -137,7 +137,15 @@ const GroupIcon = ({
                     style={{ margin: '0px' }}
                 />
             ) : (
-                <div />
+                <>
+                    <img
+                        src="https://cdn-icons-png.flaticon.com/512/33/33308.png"
+                        alt="profile avatar"
+                        className={styles.groupIcon}
+                        style={{ margin: '0px' }}
+                    />
+                    <div />
+                </>
             )}
 
             {showMenu && (
