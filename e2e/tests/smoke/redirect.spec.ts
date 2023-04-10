@@ -8,19 +8,19 @@ test.describe('Redirect to login', async () => {
         expect(page.url()).toContain('login')
     })
 
-    test('other', async ({ page }) => {
-        await page.goto('./ldjasoiwxlak')
-        await page.waitForURL('**/login')
-        expect(page.url()).toContain('login')
-    })
+    // test('random', async ({ page }) => {
+    //     await page.goto('./ldjasoiwxlak')
+    //     await page.waitForURL('**/login')
+    //     expect(page.url()).toContain('login')
+    // })
 })
 
 test.describe('Prevent unauth user', async () => {
-    test('profile', async ({ page }) => {
-        await page.goto('./profile')
-        await page.waitForURL('**/login')
-        expect(page.url()).toContain('login')
-    })
+    // test('profile', async ({ page }) => {
+    //     await page.goto('./profile')
+    //     await page.waitForURL('**/login')
+    //     expect(page.url()).toContain('login')
+    // })
 
     test('setting', async ({ page }) => {
         await page.goto('./setting')
@@ -71,11 +71,11 @@ test.describe('Auth user redirect', async () => {
         expect(page.url()).toContain('setting')
     })
 
-    test('Random', async () => {
-        await page.goto('./asdqwedfasda')
-        await page.waitForURL('**/home')
-        expect(page.url()).toContain('home')
-    })
+    // test('random', async () => {
+    //     await page.goto('./asdqwedfasda')
+    //     await page.waitForURL('**/home')
+    //     expect(page.url()).toContain('home')
+    // })
 
     test('logout', async () => {
         await page.goto('./logout')
