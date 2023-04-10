@@ -25,7 +25,7 @@ describe('Message component', () => {
             { senderId: '2', text: 'Hi there' },
             { senderId: '1', text: 'How are you?' },
         ]
-        render(<Message messages={messages} />)
+        render(<Message messages={messages} currentUser={currentUser} />)
         const bottomDiv = screen.getByTestId('bottom-div')
         expect(bottomDiv).toBeInTheDocument()
         expect(bottomDiv).toHaveProperty('scrollIntoView')
