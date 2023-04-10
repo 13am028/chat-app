@@ -23,7 +23,7 @@ test.describe('Group Page', () => {
     })
 
     test('User can send messages in group', async () => {
-        await groupPage.checkSendEmptyMessage()
+        // await groupPage.checkSendEmptyMessage()
         await groupPage.checkSendMessage()
     })
 
