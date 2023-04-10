@@ -34,6 +34,7 @@ ul {
     --nav-bar: #ebc9db;
     --font-color: black;
     --message-bg: white;
+    --message-owner-bg: #fcd6dd;
     --group-icon: #fcf6fd;
     --friend-icon: white;
     --line: grey;
@@ -65,6 +66,7 @@ body[data-theme='dark-theme'] {
     --nav-bar: #34383d;
     --font-color: white;
     --message-bg: #45484f;
+    --message-owner-bg: #6a5acd;
     --group-icon: white;
     --friend-icon: white;
     --line: #4d5050;

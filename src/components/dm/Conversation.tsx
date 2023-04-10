@@ -4,9 +4,11 @@ import MessageTextField from '../message/MessageTextField'
 import { ChatContext } from '../context/ChatContext'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { db } from '../../firebase/init'
+import { AuthContext } from '../context/AuthContext'
 
 function Conversation() {
     const [messages, setMessages] = useState<any[]>([])
+    const { currentUser } = useContext(AuthContext)
     const handleSendMessage = (message: string) => {
         setMessages([...messages, message])
     }
@@ -22,7 +24,7 @@ function Conversation() {
 
     return (
         <div className="bg">
-            <Message messages={messages} />
+            <Message messages={messages} currentUser={currentUser} />
             {/*@ts-ignore*/}
             <MessageTextField onSendMessage={handleSendMessage} />
         </div>

@@ -1,11 +1,5 @@
 import { auth, db } from '../init'
-import {
-    addDoc,
-    collection,
-    doc,
-    serverTimestamp,
-    setDoc,
-} from 'firebase/firestore'
+import { collection, doc, setDoc } from 'firebase/firestore'
 
 const createGroup = async (groupName: string, imageUrl: string) => {
     try {
@@ -26,16 +20,11 @@ const createGroup = async (groupName: string, imageUrl: string) => {
             },
         })
 
-        // Message subcollection under group document
-        const messagesCollection = collection(groupRef, 'messages')
+        const groupChatRef = doc(collection(db, 'groupChats'), groupUid)
 
-        const initialMessage = {
-            text: 'Welcome to the group!',
-            senderId: myUID,
-            timestamp: serverTimestamp(),
-        }
-
-        await addDoc(messagesCollection, initialMessage)
+        await setDoc(groupChatRef, {
+            messages: [],
+        })
     } catch (error: any) {
         console.error('Error creating group:', error)
         alert(error.message)

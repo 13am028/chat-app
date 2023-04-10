@@ -10,10 +10,9 @@ const BlockedFriendStatus = (user: any) => {
 
     return (
         <div className={styles.friend} data-testid="blocked-friend-status">
-            <FriendIcon
-                data-testid="blocked-friend-icon"
-                imgURL={user.avatar}
-            ></FriendIcon>
+            <div data-testid="blocked-friend-icon">
+                <FriendIcon imgURL={user.avatar}></FriendIcon>
+            </div>
             <div
                 className={styles.friendName}
                 data-testid="blocked-friend-name"
