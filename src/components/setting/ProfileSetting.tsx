@@ -14,17 +14,14 @@ const ProfileSetting = () => {
         displayName: '',
         username: '',
         status: '',
-    }
-
-    let imgURL = 'https://cdn-icons-png.flaticon.com/512/456/456212.png'
-    if (currentUser && currentUser.avatar) {
-        imgURL = currentUser.avatar
+        avatar: '',
     }
 
     const user = currentUser || mockUser
     const email = user.email ? user.email : 'johndow@example.com'
     const displayName = user.displayName ? user.displayName : 'Johndow'
     const username = user.username ? user.username : 'Johndow'
+    const avatar = user.avatar
     const [status, setStatus] = useState('')
     const [showModal, setShowModal] = useState(false)
 
@@ -58,7 +55,7 @@ const ProfileSetting = () => {
                     <div className="profilepic">
                         <img
                             className="profilepic__img"
-                            src={imgURL}
+                            src={avatar}
                             alt="Profile"
                             data-testid="profile-img"
                         />
