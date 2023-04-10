@@ -9,7 +9,7 @@ test.describe('Redirect to login', async () => {
         expect(page.url()).toContain('login')
     })
 
-    test.skip('other', async ({ page }) => {
+    test('other', async ({ page }) => {
         await page.goto('./ldjasoiwxlak')
         await page.waitForURL('**/login')
         expect(page.url()).toContain('login')
@@ -17,7 +17,7 @@ test.describe('Redirect to login', async () => {
 })
 
 test.describe('Prevent unauth user', async () => {
-    test.skip('profile', async ({ page }) => {
+    test('profile', async ({ page }) => {
         await page.goto('./profile')
         await page.waitForURL('**/login')
         expect(page.url()).toContain('login')
@@ -72,10 +72,10 @@ test.describe('Auth user redirect', async () => {
         expect(page.url()).toContain('setting')
     })
 
-    test.skip('Random', async () => {
+    test('Random', async () => {
         await page.goto('./asdqwedfasda')
-        await page.waitForURL('**/home')
-        expect(page.url()).toContain('home')
+        await page.waitForURL('/')
+        expect(page.url()).toContain('/')
     })
 
     test('logout', async () => {
