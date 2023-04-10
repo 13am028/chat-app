@@ -24,8 +24,33 @@ function Message({
                     }`}
                     key={message.id}
                 >
-                    <FriendIcon uid={message.senderId}></FriendIcon>
-                    <p className="message">{message.text}</p>
+                    <FriendIcon uid={message.senderId} />
+                    <div
+                        className={
+                            message.senderId === currentUser.uid
+                                ? 'messageContentOwner'
+                                : 'messageContent'
+                        }
+                    >
+                        <p
+                            className={
+                                message.senderId === currentUser.uid
+                                    ? 'senderDisplayNameOwner'
+                                    : 'senderDisplayName'
+                            }
+                        >
+                            {message.senderDisplayName}
+                        </p>
+                        <p
+                            className={
+                                message.senderId === currentUser.uid
+                                    ? 'messageOwner'
+                                    : 'message'
+                            }
+                        >
+                            {message.text}
+                        </p>
+                    </div>
                 </div>
             ))}
             <div ref={ref} data-testid="bottom-div" />

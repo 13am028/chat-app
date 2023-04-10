@@ -21,6 +21,7 @@ function GroupMessageTextField({ groupId }: { groupId: string }) {
         const newMessage = {
             text: message,
             senderId: currentUser?.uid,
+            senderDisplayName: currentUser?.displayName,
             timestamp: serverTimestamp(),
         }
 

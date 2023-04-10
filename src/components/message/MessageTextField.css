@@ -30,7 +30,7 @@
 }
 
 .submit-button {
-    background-color: var(--theme-primary);
+    background-color: var(--message-owner-bg);
     color: var(--font-color);
     padding: 1rem;
     width: 100px;

@@ -29,6 +29,7 @@ function MessageTextField(props: any) {
                 id: uuid(),
                 text: message,
                 senderId: currentUser?.uid,
+                senderDisplayName: currentUser?.displayName,
                 date: Timestamp.now(),
             }),
         })
