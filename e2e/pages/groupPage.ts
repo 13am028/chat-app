@@ -22,9 +22,13 @@ export default class GroupPage {
 
     async checkSendEmptyMessage() {
         await this.page.getByTestId('submit-button').click()
-        expect(
-            this.page.locator('.messageGridOwner').last().innerText,
-        ).not.toBeFalsy()
+        await this.page
+            .locator('.messageOwner')
+            .last()
+            .textContent()
+            .then(value => {
+                expect(value?.toString()).not.toBeFalsy()
+            })
     }
 
     async checkSendMessage() {

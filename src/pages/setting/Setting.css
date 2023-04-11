@@ -50,7 +50,7 @@ body[data-theme='dark-theme'] {
     font-size: 12px;
     font-weight: bold;
     color: var(--setting-secondary-font-color);
-    padding: 0px 0px 5px 5px;
+    padding: 0 0 5px 5px;
 }
 
 .left-panel-content ul {
@@ -63,8 +63,8 @@ body[data-theme='dark-theme'] {
     color: var(--setting-third-font-color);
     transition: background-color 0.2s;
     display: block;
-    padding: 5px 0px 5px 5px;
-    margin: 6px 0px 0px 0px;
+    padding: 5px 0 5px 5px;
+    margin: 6px 0 0 0;
     text-decoration: none;
     font-weight: 500;
     border-radius: 5px;
@@ -77,7 +77,7 @@ body[data-theme='dark-theme'] {
 }
 
 .left-panel-content .active {
-    background-color: #3f4249;
+    background-color: var(--setting-main-color);
 }
 
 .left-panel-content hr {
@@ -90,7 +90,7 @@ body[data-theme='dark-theme'] {
 .right-panel {
     background-color: var(--setting-secondary-color);
     width: 100%;
-    padding: 80px 0px 80px 45px;
+    padding: 80px 0 80px 45px;
 }
 
 .right-panel hr {
