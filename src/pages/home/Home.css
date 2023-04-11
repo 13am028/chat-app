@@ -5,8 +5,26 @@
     z-index: -1 !important;
     margin: 5px;
     border-color: var(--theme-fifth);
+    padding: 8px 30px 8px 40px;
+    height: 50px;
+    width: 250px;
+}
+
+.search {
+    width: 250px;
+    position: relative;
+    padding: 8px;
 }
 
 .search span {
     width: 80%;
+}
+
+.search .MuiSvgIcon-root {
+    position: absolute;
+    left: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--font-color);
+    pointer-events: none;
 }
