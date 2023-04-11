@@ -16,6 +16,7 @@ import {
 import { db } from '../../firebase/init'
 import uuid from 'react-uuid'
 import EmojiPicker from 'emoji-picker-react'
+import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions'
 
 function MessageTextField(props: any) {
     const [message, setMessage] = useState('')
@@ -76,20 +77,24 @@ function MessageTextField(props: any) {
                     className="outlined-input"
                     data-testid="outlined-input"
                 />
-                <button
-                    type="button"
+                <Button
+                    variant="contained"
+                    className="submit-button"
+                    size="sm"
                     onClick={() =>
                         setShowPicker(prevShowPicker => !prevShowPicker)
                     }
+                    style={{ width: '80px' }}
                 >
-                    Emoji
-                </button>
+                    <EmojiEmotionsIcon />
+                </Button>
                 <Button
                     variant="contained"
                     className="submit-button"
                     size="lg"
                     type="submit"
                     data-testid="submit-button"
+                    style={{ fontSize: '16px' }}
                 >
                     Send
                 </Button>

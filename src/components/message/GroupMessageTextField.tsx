@@ -7,6 +7,7 @@ import { AuthContext } from '../context/AuthContext'
 import { doc, serverTimestamp, collection, addDoc } from 'firebase/firestore'
 import { db } from '../../firebase/init'
 import EmojiPicker from 'emoji-picker-react'
+import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions'
 
 function GroupMessageTextField({ groupId }: { groupId: string }) {
     const [message, setMessage] = useState('')
@@ -52,20 +53,24 @@ function GroupMessageTextField({ groupId }: { groupId: string }) {
                     className="outlined-input"
                     data-testid="outlined-input"
                 />
-                <button
-                    type="button"
-                    onClick={() =>
-                        setShowPicker(prevShowPicker => !prevShowPicker)
-                    }
-                >
-                    Emoji
-                </button>
                 <Button
                     variant="contained"
                     className="submit-button"
-                    size="lg"
+                    size="sm"
+                    onClick={() =>
+                        setShowPicker(prevShowPicker => !prevShowPicker)
+                    }
+                    style={{ width: '80px' }}
+                >
+                    <EmojiEmotionsIcon />
+                </Button>
+                <Button
+                    variant="contained"
+                    className="submit-button"
+                    size="sm"
                     type="submit"
                     data-testid="submit-button"
+                    style={{ fontSize: '16px' }}
                 >
                     Send
                 </Button>
