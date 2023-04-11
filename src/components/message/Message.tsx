@@ -14,6 +14,17 @@ function Message({
     useEffect(() => {
         ref.current?.scrollIntoView({ behavior: 'smooth' })
     }, [messages])
+
+    function formatDate(timestamp: any) {
+        const date = new Date(timestamp)
+        const day = String(date.getDate()).padStart(2, '0')
+        const month = String(date.getMonth() + 1).padStart(2, '0')
+        const year = date.getFullYear()
+        const hours = String(date.getHours()).padStart(2, '0')
+        const minutes = String(date.getMinutes()).padStart(2, '0')
+        return `${day}/${month}/${year} ${hours}:${minutes}`
+    }
+
     return (
         <div data-testid="message-container">
             {messages.map((message: any) => (
@@ -24,7 +35,20 @@ function Message({
                     }`}
                     key={message.id}
                 >
-                    <FriendIcon uid={message.senderId} />
+                    <div>
+                        <p
+                            className={
+                                message.senderId === currentUser.uid
+                                    ? 'senderDisplayNameOwner'
+                                    : 'senderDisplayName'
+                            }
+                        >
+                            {message.senderId === currentUser.uid
+                                ? 'Me'
+                                : message.senderDisplayName}
+                        </p>
+                        <FriendIcon uid={message.senderId} />
+                    </div>
                     <div
                         className={
                             message.senderId === currentUser.uid
@@ -35,20 +59,20 @@ function Message({
                         <p
                             className={
                                 message.senderId === currentUser.uid
-                                    ? 'senderDisplayNameOwner'
-                                    : 'senderDisplayName'
-                            }
-                        >
-                            {message.senderDisplayName}
-                        </p>
-                        <p
-                            className={
-                                message.senderId === currentUser.uid
                                     ? 'messageOwner'
                                     : 'message'
                             }
                         >
                             {message.text}
+                        </p>
+                        <p
+                            className={
+                                message.senderId === currentUser.uid
+                                    ? 'timestampOwner'
+                                    : 'timestamp'
+                            }
+                        >
+                            {formatDate(message.timestamp?.toMillis())}
                         </p>
                     </div>
                 </div>
