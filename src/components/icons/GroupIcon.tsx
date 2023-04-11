@@ -35,7 +35,7 @@ const GroupIcon = ({
     const [shouldRender, setShouldRender] = useState(true)
     const [searchString, setSearchString] = useState('')
 
-    console.log(`Group ${groupId}: hasNewMessage = ${hasNewMessage}`)
+    //console.log(`Group ${groupId}: hasNewMessage = ${hasNewMessage}`)
 
     const handleRemoveComponent = () => {
         setShouldRender(false)

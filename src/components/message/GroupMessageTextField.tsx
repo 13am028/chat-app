@@ -17,7 +17,7 @@ function GroupMessageTextField({ groupId }: { groupId: string }) {
 
     const handleSubmit = async (event: any) => {
         event.preventDefault()
-
+        if (message === '') return
         const newMessage = {
             text: message,
             senderId: currentUser?.uid,
