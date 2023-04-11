@@ -15,14 +15,12 @@ import {
 } from 'firebase/firestore'
 import { db } from '../../firebase/init'
 import uuid from 'react-uuid'
-import EmojiPicker from 'emoji-picker-react'
-import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions'
+import EmojiPickerComponent from '../icons/EmojiPicker'
 
 function MessageTextField(props: any) {
     const [message, setMessage] = useState('')
     const { currentUser } = useContext(AuthContext)
     const { data } = useContext(ChatContext)
-    const [showPicker, setShowPicker] = useState(false)
 
     const handleEmojiSelect = (emoji: any) => {
         setMessage(prevMessage => prevMessage + emoji.emoji)
@@ -77,17 +75,7 @@ function MessageTextField(props: any) {
                     className="outlined-input"
                     data-testid="outlined-input"
                 />
-                <Button
-                    variant="contained"
-                    className="submit-button"
-                    size="sm"
-                    onClick={() =>
-                        setShowPicker(prevShowPicker => !prevShowPicker)
-                    }
-                    style={{ width: '80px' }}
-                >
-                    <EmojiEmotionsIcon />
-                </Button>
+                <EmojiPickerComponent onEmojiSelect={handleEmojiSelect} />
                 <Button
                     variant="contained"
                     className="submit-button"
@@ -99,11 +87,6 @@ function MessageTextField(props: any) {
                     Send
                 </Button>
             </Form>
-            {showPicker && (
-                <div className="emojiPickerContainer">
-                    <EmojiPicker onEmojiClick={handleEmojiSelect} />
-                </div>
-            )}
         </div>
     )
 }
