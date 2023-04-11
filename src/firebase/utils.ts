@@ -1,4 +1,12 @@
-import { doc, getDoc, updateDoc } from 'firebase/firestore'
+import {
+    collection,
+    doc,
+    getDoc,
+    onSnapshot,
+    orderBy,
+    query,
+    updateDoc,
+} from 'firebase/firestore'
 import { auth, db } from './init'
 
 const getUser = async (uid: string) => {
@@ -21,4 +29,22 @@ const updateStatus = async (status: string) => {
     })
 }
 
-export { getUser, updateAvatar, updateStatus }
+// @ts-ignore
+const listenToGroupMessages = (
+    groupId: any,
+    userId: string | undefined,
+    callback: any,
+) => {
+    const messagesRef = collection(db, 'groupChats', groupId, 'messages')
+    const messagesQuery = query(messagesRef, orderBy('timestamp'))
+
+    onSnapshot(messagesQuery, snapshot => {
+        const messages = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data(),
+        }))
+        callback(messages)
+    })
+}
+
+export { getUser, updateAvatar, updateStatus, listenToGroupMessages }
