@@ -18,7 +18,6 @@ function GroupMessageTextField({ groupId }: { groupId: string }) {
     }
 
     const handleEmojiSelect = (emoji: any) => {
-        console.log(emoji.emoji)
         setMessage(prevMessage => prevMessage + emoji.emoji)
     }
 

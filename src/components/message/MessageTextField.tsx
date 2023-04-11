@@ -15,11 +15,17 @@ import {
 } from 'firebase/firestore'
 import { db } from '../../firebase/init'
 import uuid from 'react-uuid'
+import EmojiPicker from 'emoji-picker-react'
 
 function MessageTextField(props: any) {
     const [message, setMessage] = useState('')
     const { currentUser } = useContext(AuthContext)
     const { data } = useContext(ChatContext)
+    const [showPicker, setShowPicker] = useState(false)
+
+    const handleEmojiSelect = (emoji: any) => {
+        setMessage(prevMessage => prevMessage + emoji.emoji)
+    }
 
     const handleSubmit = async (event: any) => {
         event.preventDefault()
@@ -56,29 +62,44 @@ function MessageTextField(props: any) {
     }
 
     return (
-        <Form onSubmit={handleSubmit} className="send-message-form">
-            <OutlinedInput
-                value={message}
-                onChange={handleChange}
-                id="message"
-                placeholder="Send a message"
-                inputProps={{
-                    'aria-label': 'message',
-                    style: { color: 'var(--font-color)' },
-                }}
-                className="outlined-input"
-                data-testid="outlined-input"
-            />
-            <Button
-                variant="contained"
-                className="submit-button"
-                size="lg"
-                type="submit"
-                data-testid="submit-button"
-            >
-                Send
-            </Button>
-        </Form>
+        <div className="sendMessageFormContainer">
+            <Form onSubmit={handleSubmit} className="send-message-form">
+                <OutlinedInput
+                    value={message}
+                    onChange={handleChange}
+                    id="message"
+                    placeholder="Send a message"
+                    inputProps={{
+                        'aria-label': 'message',
+                        style: { color: 'var(--font-color)' },
+                    }}
+                    className="outlined-input"
+                    data-testid="outlined-input"
+                />
+                <button
+                    type="button"
+                    onClick={() =>
+                        setShowPicker(prevShowPicker => !prevShowPicker)
+                    }
+                >
+                    Emoji
+                </button>
+                <Button
+                    variant="contained"
+                    className="submit-button"
+                    size="lg"
+                    type="submit"
+                    data-testid="submit-button"
+                >
+                    Send
+                </Button>
+            </Form>
+            {showPicker && (
+                <div className="emojiPickerContainer">
+                    <EmojiPicker onEmojiClick={handleEmojiSelect} />
+                </div>
+            )}
+        </div>
     )
 }
 
