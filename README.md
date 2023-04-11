@@ -1,4 +1,7 @@
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=13am028_chat-app&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=13am028_chat-app)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=13am028_chat-app&metric=coverage)](https://sonarcloud.io/summary/new_code?id=13am028_chat-app) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=13am028_chat-app&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=13am028_chat-app)
+
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=13am028_chat-app&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=13am028_chat-app) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=13am028_chat-app&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=13am028_chat-app) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=13am028_chat-app&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=13am028_chat-app)
+
 
 # Getting Started with Create React App
 

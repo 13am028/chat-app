@@ -22,10 +22,10 @@ test.describe('Group Page', () => {
         await page.close()
     })
 
-    // test('User can send messages in group', async () => {
-    //     await groupPage.checkSendEmptyMessage()
-    //     await groupPage.checkSendMessage()
-    // })
+    test('User can send messages in group', async () => {
+        // await groupPage.checkSendEmptyMessage()
+        await groupPage.checkSendMessage()
+    })
 
     test('User can create/deleted new Group', async () => {
         await groupPage.checkCreateGroup()
