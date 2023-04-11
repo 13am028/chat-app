@@ -6,13 +6,20 @@ import './MessageTextField.css'
 import { AuthContext } from '../context/AuthContext'
 import { doc, serverTimestamp, collection, addDoc } from 'firebase/firestore'
 import { db } from '../../firebase/init'
+import EmojiPicker from 'emoji-picker-react'
 
 function GroupMessageTextField({ groupId }: { groupId: string }) {
     const [message, setMessage] = useState('')
     const { currentUser } = useContext(AuthContext)
+    const [showPicker, setShowPicker] = useState(false)
 
     const handleChange = (event: any) => {
         setMessage(event.target.value)
+    }
+
+    const handleEmojiSelect = (emoji: any) => {
+        console.log(emoji.emoji)
+        setMessage(prevMessage => prevMessage + emoji.emoji)
     }
 
     const handleSubmit = async (event: any) => {
@@ -32,29 +39,44 @@ function GroupMessageTextField({ groupId }: { groupId: string }) {
     }
 
     return (
-        <Form onSubmit={handleSubmit} className="send-message-form">
-            <OutlinedInput
-                value={message}
-                onChange={handleChange}
-                id="message"
-                placeholder="Send a message"
-                inputProps={{
-                    'aria-label': 'message',
-                    style: { color: 'var(--font-color)' },
-                }}
-                className="outlined-input"
-                data-testid="outlined-input"
-            />
-            <Button
-                variant="contained"
-                className="submit-button"
-                size="lg"
-                type="submit"
-                data-testid="submit-button"
-            >
-                Send
-            </Button>
-        </Form>
+        <div className="sendMessageFormContainer">
+            <Form onSubmit={handleSubmit} className="send-message-form">
+                <OutlinedInput
+                    value={message}
+                    onChange={handleChange}
+                    id="message"
+                    placeholder="Send a message"
+                    inputProps={{
+                        'aria-label': 'message',
+                        style: { color: 'var(--font-color)' },
+                    }}
+                    className="outlined-input"
+                    data-testid="outlined-input"
+                />
+                <button
+                    type="button"
+                    onClick={() =>
+                        setShowPicker(prevShowPicker => !prevShowPicker)
+                    }
+                >
+                    Emoji
+                </button>
+                <Button
+                    variant="contained"
+                    className="submit-button"
+                    size="lg"
+                    type="submit"
+                    data-testid="submit-button"
+                >
+                    Send
+                </Button>
+            </Form>
+            {showPicker && (
+                <div className="emojiPickerContainer">
+                    <EmojiPicker onEmojiClick={handleEmojiSelect} />
+                </div>
+            )}
+        </div>
     )
 }
 

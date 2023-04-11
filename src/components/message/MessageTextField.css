@@ -36,3 +36,15 @@
     width: 100px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
+
+.sendMessageFormContainer {
+    position: relative;
+}
+
+.emojiPickerContainer {
+    position: fixed;
+    top: 70%;
+    left: 70%;
+    transform: translate(-75%, -75%);
+    z-index: 10;
+}
