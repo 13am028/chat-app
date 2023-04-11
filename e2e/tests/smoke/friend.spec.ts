@@ -3,6 +3,7 @@ import LoginPage from '../../pages/loginPage'
 import HomePage from '../../pages/homePage'
 
 test.describe('Home Page', () => {
+    test.describe.configure({ mode: 'serial' })
     let page: Page
     let loginPage: LoginPage
     let homePage: HomePage
@@ -24,9 +25,15 @@ test.describe('Home Page', () => {
         await homePage.checkAddFriend()
     })
 
-    test('User can block friend', () => {})
+    test('User can block friend', async () => {
+        await homePage.checkBlockFriend()
+    })
 
-    test('User can remove friend', () => {})
+    test('User can unblock friend', async () => {
+        await homePage.checkUnblockFriend()
+    })
 
-    test('User can create new group', () => {})
+    test('User can remove friend', async () => {
+        await homePage.checkRemoveFriend()
+    })
 })

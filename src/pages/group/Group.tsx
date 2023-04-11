@@ -1,10 +1,10 @@
 import React from 'react'
 import './Group.css'
-import Conversation from '../../components/dm/Conversation'
 import styles from '../../components/nav/nav.module.css'
 import ServerPeople from '../../components/server/GroupMembers'
 import AccountDropdownMenu from '../../components/icons/AccountDropdownMenu'
 import { useLocation } from 'react-router-dom'
+import GroupConversation from '../../components/dm/GroupConversation'
 
 const Group = () => {
     /* Disable default context menu */
@@ -25,9 +25,7 @@ const Group = () => {
                     <AccountDropdownMenu />
                     <h4>{groupName}</h4>
                 </div>
-                <div className="bg">
-                    <Conversation />
-                </div>
+                <GroupConversation></GroupConversation>
             </div>
         </div>
     )

@@ -1,5 +1,11 @@
 import './App.css'
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
+import {
+    BrowserRouter,
+    Navigate,
+    Route,
+    Routes,
+    useNavigate,
+} from 'react-router-dom'
 import Login from './pages/auth/Login'
 import SignUp from './pages/auth/SignUp'
 import Home from './pages/home/Home'
@@ -129,6 +135,7 @@ function App() {
                                     </ProtectedRoutes>
                                 }
                             ></Route>
+                            <Route path="*" element={<Navigate to="/" />} />
                         </Routes>
                     </BrowserRouter>
                 </div>

@@ -8,7 +8,7 @@ export type User = {
     email: string | null
     displayName: string | null
     username: string | null
-    avatar: string | null
+    avatar: string
     status: string | null
 }
 
@@ -40,7 +40,9 @@ export const AuthContextProvider = ({
                           email: currentUser.email,
                           displayName: currentUser.displayName,
                           username: currentUser.username,
-                          avatar: currentUser.avatar,
+                          avatar:
+                              currentUser.avatar ||
+                              'https://cdn-icons-png.flaticon.com/512/456/456212.png',
                           status: currentUser.status,
                       }
                     : null,
