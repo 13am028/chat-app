@@ -16,11 +16,15 @@ const GroupIcon = ({
     groupId,
     imageUrl,
     adminUID,
+    hasNewMessage,
+    onClearNewMessage,
 }: {
     theme: any
     groupId?: string
     imageUrl?: string
     adminUID?: string
+    hasNewMessage?: boolean
+    onClearNewMessage?: () => void
 }) => {
     const [showMenu, setShowMenu] = useState(false)
     const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 })
@@ -30,6 +34,8 @@ const GroupIcon = ({
     const [filteredList, setFilteredList] = useState<any>([])
     const [shouldRender, setShouldRender] = useState(true)
     const [searchString, setSearchString] = useState('')
+
+    console.log(`Group ${groupId}: hasNewMessage = ${hasNewMessage}`)
 
     const handleRemoveComponent = () => {
         setShouldRender(false)
@@ -128,6 +134,7 @@ const GroupIcon = ({
             className={styles.groupIcon}
             onContextMenu={handleContextMenu}
             data-testid="group-icon"
+            style={{ position: 'relative' }}
         >
             {imageUrl !== '' ? (
                 <img
@@ -135,9 +142,23 @@ const GroupIcon = ({
                     alt="profile avatar"
                     className={styles.groupIcon}
                     style={{ margin: '0px' }}
+                    onClick={onClearNewMessage}
                 />
             ) : (
                 <div />
+            )}
+            {hasNewMessage && (
+                <div
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        right: 0,
+                        width: '15px',
+                        height: '15px',
+                        borderRadius: '50%',
+                        backgroundColor: 'red',
+                    }}
+                ></div>
             )}
 
             {showMenu && (
