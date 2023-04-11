@@ -147,7 +147,7 @@ const GroupIcon = ({
             ) : (
                 <>
                     <img
-                        src="https://cdn-icons-png.flaticon.com/512/33/33308.png"
+                        src="https://cdn-icons-png.flaticon.com/512/4389/4389432.png"
                         alt="profile avatar"
                         className={styles.groupIcon}
                         style={{ margin: '0px' }}
