@@ -39,10 +39,13 @@ const AddFriendModal = ({
     return (
         <div style={{ display: 'inline-block' }}>
             <Button
-                variant="primary"
                 onClick={handleShow}
                 size="sm"
                 data-testid="add-friend-button"
+                style={{
+                    backgroundColor: 'var(--message-owner-bg)',
+                    border: 'none',
+                }}
             >
                 <PersonAddAlt1Icon />
             </Button>
@@ -90,7 +93,10 @@ const AddFriendModal = ({
                         Close
                     </Button>
                     <Button
-                        variant="primary"
+                        style={{
+                            backgroundColor: 'var(--message-owner-bg)',
+                            border: 'none',
+                        }}
                         onClick={handleAddFriendAsync}
                         data-testid="add-button"
                     >

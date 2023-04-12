@@ -32,6 +32,7 @@ ul {
     --theme-fourth: white;
     --theme-fifth: #f6efe6;
     --nav-bar: #ebc9db;
+    --search-bar: #fdf4e3;
     --font-color: black;
     --message-bg: white;
     --message-owner-bg: #fcd6dd;
@@ -64,6 +65,7 @@ body[data-theme='dark-theme'] {
     --theme-fourth: #1a1d1d;
     --theme-fifth: #282c34;
     --nav-bar: #34383d;
+    --search-bar: #34383d;
     --font-color: white;
     --message-bg: #45484f;
     --message-owner-bg: #6a5acd;
