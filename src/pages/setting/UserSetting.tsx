@@ -211,7 +211,7 @@ const UserSettingPage = (props: any) => {
                     />
                 </Link>
 
-                {activeTab === 'profile' && <ProfileSetting theme={theme}/>}
+                {activeTab === 'profile' && <ProfileSetting theme={theme} />}
             </div>
         </div>
     )

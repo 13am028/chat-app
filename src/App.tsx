@@ -104,7 +104,7 @@ function App() {
                                     path="setting"
                                     element={
                                         <ProtectedRoutes>
-                                            <UserSettingPage theme={theme}/>
+                                            <UserSettingPage theme={theme} />
                                         </ProtectedRoutes>
                                     }
                                 />
