@@ -86,3 +86,10 @@
 .input-box:focus {
     background-color: transparent;
 }
+
+.block-friend-modal-dialog {
+    z-index: 9999 !important;
+}
+.remove-friend-modal-dialog {
+    z-index: 9999 !important;
+}

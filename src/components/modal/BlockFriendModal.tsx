@@ -48,6 +48,7 @@ const BlockFriendModal = ({
                 show={show}
                 onHide={handleClose}
                 data-testid="block-friend-modal"
+                className="block-friend-modal-dialog"
             >
                 <Modal.Header
                     closeButton

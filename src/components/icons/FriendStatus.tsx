@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import styles from './icons.module.css'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
@@ -15,6 +15,8 @@ import { ChatContext } from '../context/ChatContext'
 import RemoveFriendModal from '../modal/RemoveFriendModal'
 import BlockFriendModal from '../modal/BlockFriendModal'
 import FriendIcon from './FriendIcon'
+import { Button, Menu, MenuItem } from '@mui/material'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
 
 const FriendStatus = (user: any) => {
     const { currentUser } = useContext(AuthContext)
@@ -23,6 +25,19 @@ const FriendStatus = (user: any) => {
     const handleModalClick = (e: React.MouseEvent) => {
         e.stopPropagation()
     }
+
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+
+    const handleOpenMenu = (event: React.MouseEvent<HTMLElement>) => {
+        event.stopPropagation()
+        setAnchorEl(event.currentTarget)
+    }
+
+    const handleCloseMenu = (e: React.MouseEvent) => {
+        e.stopPropagation()
+        setAnchorEl(null)
+    }
+
     let navigate = useNavigate()
     const routeChange = () => {
         let path = '/dm'
@@ -83,17 +98,42 @@ const FriendStatus = (user: any) => {
                 </p>
                 <strong>{user.status}</strong>
             </div>
-            <div style={{ display: 'inline-block' }}>
-                <RemoveFriendModal
-                    theme={user.theme}
-                    user={{ displayName: user.displayName, uid: user.uid }}
-                    onClick={handleModalClick}
-                />
-                <BlockFriendModal
-                    theme={user.theme}
-                    user={{ displayName: user.displayName, uid: user.uid }}
+            <div className={styles.dropdownContainer}>
+                <Button
+                    className={styles.dropdownButton}
+                    onClick={handleOpenMenu}
+                    data-testid="dropdown-button"
+                    style={{ color: 'var(--text)' }}
+                >
+                    <MoreVertIcon></MoreVertIcon>
+                </Button>
+                <Menu
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleCloseMenu}
                     onClick={stopPropagation}
-                />
+                >
+                    <MenuItem>
+                        <RemoveFriendModal
+                            theme={user.theme}
+                            user={{
+                                displayName: user.displayName,
+                                uid: user.uid,
+                            }}
+                            onClick={handleModalClick}
+                        />
+                    </MenuItem>
+                    <MenuItem>
+                        <BlockFriendModal
+                            theme={user.theme}
+                            user={{
+                                displayName: user.displayName,
+                                uid: user.uid,
+                            }}
+                            onClick={stopPropagation}
+                        />
+                    </MenuItem>
+                </Menu>
             </div>
         </div>
     )

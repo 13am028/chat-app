@@ -55,6 +55,7 @@ const RemoveFriendModal = ({
                 show={show}
                 onHide={handleClose}
                 data-testid="remove-friend-modal"
+                className="remove-friend-modal-dialog"
             >
                 <Modal.Header
                     closeButton
