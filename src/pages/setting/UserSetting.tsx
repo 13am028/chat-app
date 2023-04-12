@@ -4,7 +4,8 @@ import ProfileSetting from '../../components/setting/ProfileSetting'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import { Link } from 'react-router-dom'
 
-const UserSettingPage = () => {
+const UserSettingPage = (props: any) => {
+    const { theme } = props
     const [activeTab, setActiveTab] = useState('profile')
 
     return (
@@ -210,7 +211,7 @@ const UserSettingPage = () => {
                     />
                 </Link>
 
-                {activeTab === 'profile' && <ProfileSetting />}
+                {activeTab === 'profile' && <ProfileSetting theme={theme} />}
             </div>
         </div>
     )

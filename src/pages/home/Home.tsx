@@ -50,6 +50,7 @@ const Home = (props: any) => {
                             uid={user.uid}
                             avatar={user.avatar}
                             status={user.status}
+                            theme={theme}
                         />
                     ),
                 })
@@ -64,13 +65,14 @@ const Home = (props: any) => {
                             displayName={user.displayName}
                             uid={user.uid}
                             avatar={user.avatar}
+                            theme={theme}
                         />
                     ),
                 })
             })
         }
         return list
-    }, [friends, blockedFriends, selectedTab])
+    }, [friends, blockedFriends, selectedTab, theme])
 
     useEffect(() => {
         setFilteredFriends(friendList)
