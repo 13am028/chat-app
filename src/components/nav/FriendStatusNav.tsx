@@ -21,11 +21,17 @@ const FriendStatusNav: React.FC<FriendStatusNavProps> = ({
     return (
         <div className={styles.navTopSecond} data-testid={testId}>
             <ul className={styles.navTop_list}>
-                <li onClick={() => handleTabClick('friends')}>
-                    <h4 data-testid="friends-heading">Friends</h4>
+                <li
+                    onClick={() => handleTabClick('friends')}
+                    data-testid="friends-heading"
+                >
+                    <h4>Friends</h4>
                 </li>
-                <li onClick={() => handleTabClick('blocked')}>
-                    <h4 data-testid="blocked-heading">Blocked</h4>
+                <li
+                    onClick={() => handleTabClick('blocked')}
+                    data-testid="blocked-heading"
+                >
+                    <h4>Blocked</h4>
                 </li>
                 <li>
                     <AddFriendModal theme={theme} />

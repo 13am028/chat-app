@@ -59,7 +59,8 @@ export default class HomePage {
     }
 
     async checkBlockFriend() {
-        await this.page.getByTestId('block-friend-button').first().click()
+        await this.page.getByTestId('dropdown-button').first().click()
+        await this.page.getByTestId('block-friend-button').click()
         this.page.once('dialog', dialog => {
             expect(dialog.message()).toContain('has been blocked successfully')
             dialog.dismiss().catch(() => {})
@@ -82,6 +83,8 @@ export default class HomePage {
     }
 
     async checkUnblockFriend() {
+        await expect(this.page.getByTestId('blocked-heading')).toBeVisible()
+        await this.page.getByTestId('blocked-heading').click()
         await this.page.getByRole('button', { name: 'Unblock' }).click()
         await this.page
             .getByRole('dialog')
@@ -101,7 +104,8 @@ export default class HomePage {
     }
 
     async checkRemoveFriend() {
-        await this.page.getByTestId('remove-friend-button').first().click()
+        await this.page.getByTestId('dropdown-button').first().click()
+        await this.page.getByTestId('remove-friend-button').click()
         this.page.once('dialog', dialog => {
             expect(dialog.message()).toContain(
                 'has been successfully removed from your friends.',

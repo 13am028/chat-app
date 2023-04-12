@@ -98,11 +98,13 @@ const FriendStatus = (user: any) => {
                 </p>
                 <strong>{user.status}</strong>
             </div>
-            <div className={styles.dropdownContainer}>
+            <div
+                className={styles.dropdownContainer}
+                data-testid="dropdown-button"
+            >
                 <Button
                     className={styles.dropdownButton}
                     onClick={handleOpenMenu}
-                    data-testid="dropdown-button"
                     style={{ color: 'var(--text)' }}
                 >
                     <MoreVertIcon></MoreVertIcon>
