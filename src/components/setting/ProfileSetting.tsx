@@ -91,7 +91,7 @@ const ProfileSetting = (props: any) => {
                     <div className="profile-card-field-list">
                         <div className="field">
                             <div>
-                                <h3>status</h3>
+                                <h3>STATUS</h3>
                                 <input
                                     className={`form-control status-input ${
                                         theme === 'dark'
