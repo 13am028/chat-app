@@ -72,7 +72,7 @@ const Home = (props: any) => {
             })
         }
         return list
-    }, [friends, blockedFriends, selectedTab])
+    }, [friends, blockedFriends, selectedTab, theme])
 
     useEffect(() => {
         setFilteredFriends(friendList)
