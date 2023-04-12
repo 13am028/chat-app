@@ -38,13 +38,19 @@ export default class HomePage {
     async checkAddFriend() {
         await this.page.getByTestId('add-friend-button').click()
         await this.page.getByTestId('username-input').fill(this.toAddUsername)
-        this.page.once('dialog', dialog => {
+        this.page.once('dialog', async dialog => {
             expect(dialog.message()).toContain(
                 'has been successfully added as your friend.',
             )
-            dialog.dismiss().catch(() => {})
+            await dialog.dismiss().catch(() => {})
         })
+
+        // Wait for the add button to be stable before clicking
+        await this.page.waitForSelector(
+            '[data-testid="add-button"]:not([disabled])',
+        )
         await this.page.getByTestId('add-button').click()
+
         await expect(
             this.page
                 .getByTestId('friend-list-items')
