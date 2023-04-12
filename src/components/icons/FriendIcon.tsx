@@ -25,7 +25,7 @@ const FriendIcon = (props: any) => {
         else {
             return (
                 <img
-                    src="https://cdn-icons-png.flaticon.com/512/456/456212.png"
+                    src="https://cdn-icons-png.flaticon.com/512/1144/1144709.png"
                     className={styles.friendIcon}
                     alt="user avatar"
                 />

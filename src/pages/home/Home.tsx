@@ -11,6 +11,7 @@ import { doc, onSnapshot } from 'firebase/firestore'
 import { AuthContext } from '../../components/context/AuthContext'
 // @ts-ignore
 import ReactSearchBox from 'react-search-box'
+import SearchIcon from '@mui/icons-material/Search'
 
 const Home = (props: any) => {
     const { theme } = props
@@ -110,8 +111,9 @@ const Home = (props: any) => {
                             data={filteredFriends}
                             onSelect={func}
                             onChange={func}
-                            inputBackgroundColor="var(--theme-third)"
+                            inputBackgroundColor="var(--search-bar)"
                         />
+                        <SearchIcon fontSize="medium" />
                     </div>
                     {filteredFriends.map((friend: any) => friend.value)}
                 </div>

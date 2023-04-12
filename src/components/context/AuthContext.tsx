@@ -42,7 +42,7 @@ export const AuthContextProvider = ({
                           username: currentUser.username,
                           avatar:
                               currentUser.avatar ||
-                              'https://cdn-icons-png.flaticon.com/512/456/456212.png',
+                              'https://cdn-icons-png.flaticon.com/512/1144/1144709.png',
                           status: currentUser.status,
                       }
                     : null,

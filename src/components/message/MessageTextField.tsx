@@ -15,11 +15,16 @@ import {
 } from 'firebase/firestore'
 import { db } from '../../firebase/init'
 import uuid from 'react-uuid'
+import EmojiPickerComponent from '../icons/EmojiPicker'
 
 function MessageTextField(props: any) {
     const [message, setMessage] = useState('')
     const { currentUser } = useContext(AuthContext)
     const { data } = useContext(ChatContext)
+
+    const handleEmojiSelect = (emoji: any) => {
+        setMessage(prevMessage => prevMessage + emoji.emoji)
+    }
 
     const handleSubmit = async (event: any) => {
         event.preventDefault()
@@ -29,7 +34,8 @@ function MessageTextField(props: any) {
                 id: uuid(),
                 text: message,
                 senderId: currentUser?.uid,
-                date: Timestamp.now(),
+                senderDisplayName: currentUser?.displayName,
+                timestamp: Timestamp.now(),
             }),
         })
         // @ts-ignore
@@ -55,46 +61,33 @@ function MessageTextField(props: any) {
     }
 
     return (
-        <Form onSubmit={handleSubmit} className="send-message-form">
-            <OutlinedInput
-                value={message}
-                onChange={handleChange}
-                id="message"
-                placeholder="Send a message"
-                inputProps={{
-                    'aria-label': 'message',
-                    style: { color: 'var(--font-color)' },
-                }}
-                sx={{
-                    '& .MuiOutlinedInput-notchedOutline': {
-                        border: 'none',
-                    },
-                    '&:hover .MuiOutlinedInput-notchedOutline': {
-                        border: 'none',
-                    },
-
-                    backgroundColor: 'var(--theme-fourth)',
-                    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.2)',
-                    width: '50%',
-                }}
-                data-testid="outlined-input"
-            />
-            <Button
-                variant="contained"
-                style={{
-                    backgroundColor: 'var(--dark-background-color)',
-                    color: 'var(--font-color)',
-                    padding: '1rem',
-                    width: '100px',
-                    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.2)',
-                }}
-                size="lg"
-                type="submit"
-                data-testid="submit-button"
-            >
-                Send
-            </Button>
-        </Form>
+        <div className="sendMessageFormContainer">
+            <Form onSubmit={handleSubmit} className="send-message-form">
+                <OutlinedInput
+                    value={message}
+                    onChange={handleChange}
+                    id="message"
+                    placeholder="Send a message"
+                    inputProps={{
+                        'aria-label': 'message',
+                        style: { color: 'var(--font-color)' },
+                    }}
+                    className="outlined-input"
+                    data-testid="outlined-input"
+                />
+                <EmojiPickerComponent onEmojiSelect={handleEmojiSelect} />
+                <Button
+                    variant="contained"
+                    className="submit-button"
+                    size="lg"
+                    type="submit"
+                    data-testid="submit-button"
+                    style={{ fontSize: '16px' }}
+                >
+                    Send
+                </Button>
+            </Form>
+        </div>
     )
 }
 
