@@ -47,6 +47,47 @@
     color: var(--setting-primary-text-color);
 }
 
+.status-input {
+    background-color: gainsboro;
+    display: inline;
+    padding: 3px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    outline: none;
+    width: 150px;
+    margin: 0;
+}
+
+.dark.status-input {
+    background-color: var(--dark-login-button-background);
+    display: inline;
+    padding: 3px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    outline: none;
+    width: 150px;
+}
+
+.save-button {
+    background-color: var(--button-color);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+    background-color: var(--button-hover-color);
+}
+
 .profile-description {
     align-self: center;
     width: 90%;
@@ -242,7 +283,7 @@ hr {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: calc(50% - 30px); /* 50% width of the parent minus the margin */
+    width: 92%; /* 50% width of the parent minus the margin */
     height: 200px;
     background-color: #fff;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);

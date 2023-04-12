@@ -6,7 +6,8 @@ import { AuthContext } from '../context/AuthContext'
 import UploadWidget from '../upload/UploadWidget'
 import { updateStatus } from '../../firebase/utils'
 
-const ProfileSetting = () => {
+const ProfileSetting = (props: any) => {
+    const { theme } = props
     const { currentUser } = useContext(AuthContext)
     const mockUser = {
         uid: '',
@@ -90,13 +91,21 @@ const ProfileSetting = () => {
                     <div className="profile-card-field-list">
                         <div className="field">
                             <div>
-                                <h3>status</h3>
+                                <h3>STATUS</h3>
                                 <input
+                                    className={`form-control status-input ${
+                                        theme === 'dark'
+                                            ? 'dark text-light'
+                                            : ''
+                                    }`}
                                     style={{ display: 'inline' }}
                                     placeholder={user.status as string}
                                     onChange={e => setStatus(e.target.value)}
                                 />
-                                <button onClick={handleStatusChanged}>
+                                <button
+                                    className="save-button"
+                                    onClick={handleStatusChanged}
+                                >
                                     save
                                 </button>
                             </div>
