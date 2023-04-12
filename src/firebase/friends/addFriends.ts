@@ -9,7 +9,7 @@ import {
 } from 'firebase/firestore'
 import { auth, db } from '../init'
 
-const addFriend = async (toAddUsername: string) => {
+const addFriend = async (toAddUsername: string): Promise<string> => {
     const q = query(
         collection(db, 'users'),
         where('username', '==', toAddUsername),
@@ -27,6 +27,10 @@ const addFriend = async (toAddUsername: string) => {
     }
 
     const myUID = auth.currentUser.uid
+    if (myUID === toAddUID) {
+        return 'cannot_add_self'
+    }
+
     let friendsData = (await getDoc(doc(db, 'friends', myUID))).data()
     let toAddFriendsData = (await getDoc(doc(db, 'friends', toAddUID))).data()
 
